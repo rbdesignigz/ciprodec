@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLEX</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body>
+
+    <!--place-content-center //se usa para centrar elementos-->
+    <!--place-content-between //uno al principio y el resto a los lados-->
+    <!--place-content-around //quedan centrados horizontalmente-->
+    <div class="flex place-content-around border-2 h-[300px]">
+        <!--card es una clase personalizada que esta definida dentro de input.css-->
+        <div class="card">001</div>
+        <div class="card self-center">002</div>
+        <div class="card self-end">003</div>
+        <!--self-center //centra verticalmente - Self-end pone al final verticalmente-->
+    </div>
+
+    <div class="flex gap-4 bg-red-200 h-[200px]">
+        <!--card es una clase personalizada que esta definida dentro de input.css-->
+        <div class="card basis-1/4">001</div>
+        <div class="card basis-1/4">002</div>
+        <div class="card basis-1/2">003</div>
+        <!--self-center //centra verticalmente - Self-end pone al final verticalmente-->
+    </div>
+
+    <div class="flex flex-wrap gap-4 bg-red-200 h-[400px] m-0">
+        <!--card es una clase personalizada que esta definida dentro de input.css-->
+        <div class="card basis-1/4">001</div>
+        <div class="card basis-1/4">002</div>
+        <div class="card basis-1/2">003</div>
+        <!--self-center //centra verticalmente - Self-end pone al final verticalmente-->
+    </div>
+</body>
+</html>

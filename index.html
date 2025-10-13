@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ciprodec</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="icon" href="./img/iso-logo.png">
+
+    
+    <meta name="title" content="ciprodec.com" />
+    <meta name="description" content="Centro de profesionales de la construcción en Puerto Iguazú - Misiones - Argentina - CP: 3370" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ciprodec.com/" />
+    <meta property="og:title" content="ciprodec.com" />
+    <meta property="og:description" content="Centro de profesionales de la construcción - Arquitectura - Puerto Iguazú" />
+    <meta property="og:image" content="https://ciprodec.com/img/iso-logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="https://ciprodec.com/img/iso-logo.png" />
+    <meta property="twitter:url" content="https://ciprodec.com/" />
+    <meta property="twitter:title" content="ciprodec.com" />
+    <meta property="twitter:description" content="Centro de profesionales de la construcción - Arquitectura - Puerto Iguazú"/>
+    <meta property="twitter:image" content="https://ciprodec.com/img/iso-logo.png" />
+
+    <meta name="keywords" content="ciprodec, Puerto Iguazú - Misiones - Argentina, Arquitecture, Arquitectura, centro de profesionales de la construcción, construction, inmobiliaria, agrimensor, seguridad e higiene">
+    <meta name="author" kcontent="rbdesign">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=podcasts" />
+    
+
+</head>
+<body>
+
+
+    <div class="bg-white">
+        <header class="absolute inset-x-0 top-0 z-50">
+          <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div class="flex lg:flex-1">
+              <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="./img/iso-logo.png" alt="">
+              </a>
+            </div>
+            <div class="flex lg:hidden">
+              <button onclick="openMenuu()" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 menu-toggle hover:transition-all">
+                <span class="sr-only">Open main menu</span>
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              </button>
+            </div>
+            <div class="hidden lg:flex lg:gap-x-12">
+              <a href="#" class="text-sm/6 font-semibold text-gray-900">Servicios</a>
+              <a href="#" class="text-sm/6 font-semibold text-gray-900">Arquitectura</a>
+              <a href="#" class="text-sm/6 font-semibold text-gray-900">Inmobiliaria</a>
+              <a href="#" class="text-sm/6 font-semibold text-gray-900">compañia</a>
+            </div>
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+              <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-gray-900">Contacto <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </nav>
+          <!-- Mobile menu, show/hide based on menu open state. -->
+          <div id="mobilemenu" class="hidden " role="dialog" aria-modal="true">  <!--antes estaba lg:hidden para no mostrar en LG-->
+            <!-- Background backdrop, show/hide based on slide-over state. -->
+            <div class="fixed inset-0 z-50"></div>
+            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+              <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                  <span class="sr-only">Your Company</span>
+                  <img class="h-8 w-auto" src="./img/iso-logo.png" alt="">
+                </a>
+                <button onclick="closeMenuu()" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                  <span class="sr-only">Close menu</span>
+                  <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/10">
+                  <div class="space-y-2 py-6">
+                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Servicios</a>
+                    <a href="https://www.instagram.com/ciprodec/?hl=es-la" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">instagram</a>
+                    <a href="https://www.facebook.com/profile.php?id=100064049114522" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">facebook</a>
+                    <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Contacto</a>
+                  </div>
+                  <!-- <div class="py-6">
+                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+      
+        <section>
+                <div class="relative isolate px-6 pt-14 lg:px-8">
+                <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+                    <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#000000] to-[#696969] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+                </div>
+                <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+                    <!-- <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                    </div> -->
+                    </div>
+                    <div class="text-center">
+                    <h1 class="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">ciprodec</h1>
+                    <p class="mt-8 text-pretty text-lg font-medium text-gray-700 sm:text-xl/8">Centro integral de profesionales de la construcción</p>
+                    <p class=" text-pretty text-lg font-light text-gray-700 sm:text-x1/8">Estrenamos nueva oficina en Av. Victoria Aguirre 1190.</p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                        <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" 
+                          class="rounded-md bg-black px-3.5 h-10  text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 flex items-center justify-center">
+                            contactenos
+                        </a>
+                                                <!-- botón radio -->
+                        <a href="https://ciprodecradio.com.ar/" 
+                         class="rounded-md bg-red-500 px-3.5 h-10 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline-2 
+                         focus-visible:outline-offset-2 focus-visible:outline-red-800 flex items-center justify-center">
+                            
+                            nuestra radio <span class="material-symbols-outlined pl-2">podcasts</span>
+                        </a>
+                        
+                                
+                    </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="grid h-[600px] w-[full] bg-gray-100 items-center justify-center">
+          <div class="relative flex h-full items-center justify-center">
+            <div class="absolute w-80 h-80 rounded-full bg-violet-400 left-40 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
+            <div class="absolute w-80 h-80 rounded-full bg-orange-400 right-44 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
+            <div class="absolute w-80 h-80 rounded-full bg-blue-400 bottom-16 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
+            <img class="z-10 w-[400px] animate-none" src="/img/astro.png" alt="Astronauta">
+          </div>
+        </section> -->
+
+        <section id="section-precios" class="hidden">
+          <div class="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+            <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
+              <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+            <div class="mx-auto max-w-4xl text-center">
+              <h2 class="text-base/7 font-semibold text-gray-800">Precios</h2>
+              <p class="mt-2 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-6xl">Elija un plan</p>
+            </div>
+            <p class="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-gray-600 sm:text-xl/8">Puede elegir un plan que se adapte mejor a usted</p>
+            <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
+              <div class="rounded-3xl rounded-t-3xl bg-white/60 p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-bl-3xl lg:rounded-tr-none">
+                <h3 id="tier-hobby" class="text-base/7 font-semibold text-indigo-600">Standard</h3>
+                <p class="mt-4 flex items-baseline gap-x-2">
+                  <span class="text-5xl font-semibold tracking-tight text-gray-900">$100.000</span>
+                  <span class="text-base text-gray-500"></span>
+                </p>
+                <p class="mt-6 text-base/7 text-gray-600">Plan de diseños de paginas para iniciarse en el mundo web.</p>
+                <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 sm:mt-10">
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Fácil
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    100% online
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Diseño responsivo
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Soporte en menos de 72hs hábiles
+                  </li>
+                </ul>
+                <a href="#" aria-describedby="tier-hobby" class="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-10">Empiece hoy</a>
+              </div>
+              <div class="relative rounded-3xl bg-gray-900 p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10">
+                <h3 id="tier-enterprise" class="text-base/7 font-semibold text-indigo-400">Empresarial</h3>
+                <p class="mt-4 flex items-baseline gap-x-2">
+                  <span class="text-5xl font-semibold tracking-tight text-white">$200.000</span>
+                  <span class="text-base text-gray-400">/mes</span>
+                </p>
+                <p class="mt-6 text-base/7 text-gray-300">Sitio web dedicado a su compañia</p>
+                <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-300 sm:mt-10">
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Diseño a medida
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Mail corporativo
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Metodo SEO
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Soporte en 48hs hébiles.
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Marketing y Promociones
+                  </li>
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                    </svg>
+                    Diseños customizados
+                  </li>
+                </ul>
+                <a href="#" aria-describedby="tier-enterprise" class="mt-8 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10">Empiece hoy</a>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+
+
+        <section id="vento" class="bg-slate-100">
+          <div class="bg-slate-100 pt-6">
+            <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+              <h2 class="text-center text-base/7 font-semibold text-indigo-600">ciprodec</h2>
+              <p class="mx-auto mt-2  text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">Nuestros servicios</p>
+            </div>
+          </div>
+
+<!-- plantilla -->
+<div class="bg-gray-100 ">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl py-6 sm:py-12 lg:max-w-none lg:py-12">
+      <h2 class="text-2xl font-bold text-gray-900 text-center">ciprodec - centro de profesionales de la construcción</h2>
+
+      <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-6">
+        <div class="group relative">
+          <img src="./img/arquitectura02.avif" alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Arquitectura
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Diseño y planificación de proyectos constructivos.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/ingenieria01.avif" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Ingeniería
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Cálculos, estructuras y dirección técnica de obra.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/evacuacion01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Plan de Contingencias
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Protocolos de seguridad y respuesta ante emergencias.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/hab-municipal.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Habilitaciones municipales
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Gestión y obtención de permisos de construcción y uso.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/estudio-suelos01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Estudios de suelos
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Análisis de la capacidad portante y propiedades geotécnicas</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/calculos-estructurales01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Cálculos estructurales
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Determinación de cargas, dimensiones y refuerzos.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/calc-materiales01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Cálculos de materiales
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Estimación de cantidades y costos de insumos de obra.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/construccion-civil.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Construcciones civiles
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Ejecución de obras residenciales, comerciales e industriales.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/diseno-interiores01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Diseño de interiores
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Estética, funcionalidad y distribución de espacios internos.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/paisajismo01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Paisajismo
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Diseño, planificación y gestión de áreas verdes exteriores.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/inmobiliaria.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Inmobiliaria
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Asesoría en compra, venta y alquiler de bienes inmuebles.</p>
+        </div>
+
+        <div class="group relative">
+          <img src="./img/impo-expo01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Importación y exportación de materiales para la construcción
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Logística y comercio internacional de insumos de obra.</p>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+        </section>
+
+        <section id="vento">
+          <div class="bg-gray-50 py-24 sm:py-32">
+            <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+              <h2 class="text-center text-base/7 font-semibold text-indigo-600">ciprodec</h2>
+              <p class="mx-auto mt-2  text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">Expertos en construcción a tu servicio.</p>
+              <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+                <div class="relative lg:row-span-2">
+                  <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+                    <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
+                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Arquitectura</p>
+                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Diseñando soluciones innovadoras para un mundo en constante evolución.</p>
+                    </div>
+                    <div class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
+                      <div class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
+                        <img class="size-full object-cover object-top" src="./img/Arquitectura.png" alt="Arquitectura">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
+                </div>
+                <div class="relative max-lg:row-start-1">
+                  <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+                    <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Diseños 3D</p>
+                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Hacemos realidad tus sueños, podrás ver la casa de tus sueños antes de empezar la obra.</p>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
+                      <img class="w-full max-lg:max-w-xs" src="./img/Diseno3d.png" alt="">
+                    </div>
+                  </div>
+                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
+                </div>
+                <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+                  <div class="absolute inset-px rounded-lg bg-white"></div>
+                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
+                    <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Ingeniería</p>
+                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Realizamos calculos de estructuras, soluciones de estructuras innovadoras.</p>
+                    </div>
+                    <div class="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
+                      <img class="h-[min(152px,40cqw)] object-cover items-center" src="./img/Ingeniería.png" alt="">
+                    </div>
+                  </div>
+                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
+                </div>
+                <div class="relative lg:row-span-2">
+                  <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+                    <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
+                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Diseño de interiores</p>
+                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Nos encargamos del diseño de interiores, modernos, contemporaneos y atemporales.</p>
+                    </div>
+                    <div class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
+                      <img class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl" src="../img/Interiores2.png" alt="">
+                    </div>
+
+
+                  </div>
+                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+        </section>
+
+        <!--
+        <section class="pt-16">
+          <div>
+              
+                <div id="caja" class="bg-gray-500">
+                  <p id="texto" class="text-center font-bold text-4xl ">texto</p>
+                </div>
+              
+          </div>
+        </section>
+        -->
+      
+        <script src="./src/script.js"></script>
+
+       
+<!--
+        <script>
+          const menuToggle = document.getElementById('.menu-toggle');
+          const menulink = document.getElementById('.mobilemenu');
+
+          menuToggle.addEventListener('click',()=>{
+            menulink.classList.toggle('hidden');
+          });
+        </script>
+        
+        <script>
+            const button = document.querySelector('.menu-button');
+            const menu = document.querySelector('.menu');
+
+            button.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            });
+        </script> 
+-->
+        <!--
+        <script>
+          const menuHamburger = document.querySelector(".menu-hamburger")
+          const navLinks = document.querySelector(".menu")
+      
+          menuHamburger.addEventListener('click',()=>{
+          navLinks.classList.toggle('lg:hidden')
+          })
+        </script>
+        
+        <script>
+            function openMenu() {
+                let menu = document.getElementById('menu');
+    
+                if(menu.ClassList.contains('hidden')){
+                    menu.ClassList.remove('hidden');
+                }else{
+                    menu.ClassList.add('hidden');
+                }
+            }
+        </script>
+        -->
+        <footer class="bg-black">
+          <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              <div>
+                <div class="text-white">
+                  <strong>ciprodec</strong>
+                </div>
+        
+                <p class="mt-4 max-w-xs text-gray-300">
+                  Centro de profesionales de la construcción
+                </p>
+        
+                <ul class="mt-8 flex gap-6">
+                  <li>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100064049114522"
+                      rel="noreferrer"
+                      target="_blank"
+                      class="text-gray-200 transition hover:opacity-75"
+                    >
+                      <span class="sr-only">Facebook</span>
+        
+                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          fill-rule="evenodd"
+                          d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+        
+                  <li>
+                    <a
+                      href="https://www.instagram.com/ciprodec/?hl=es-la"
+                      rel="noreferrer"
+                      target="_blank"
+                      class="text-gray-200 transition hover:opacity-75"
+                    >
+                      <span class="sr-only">Instagram</span>
+        
+                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          fill-rule="evenodd"
+                          d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+        
+                  <!-- <li>
+                    <a
+                      href="#"
+                      rel="noreferrer"
+                      target="_blank"
+                      class="text-gray-200 transition hover:opacity-75"
+                    >
+                      <span class="sr-only">Twitter</span>
+        
+                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                        />
+                      </svg>
+                    </a>
+                  </li> -->
+        
+                  <!-- <li>
+                    <a
+                      href="#"
+                      rel="noreferrer"
+                      target="_blank"
+                      class="text-gray-700 transition hover:opacity-75"
+                    >
+                      <span class="sr-only">GitHub</span>
+        
+                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          fill-rule="evenodd"
+                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  </li> -->
+        
+                  <!-- <li>
+                    <a
+                      href="#"
+                      rel="noreferrer"
+                      target="_blank"
+                      class="text-gray-700 transition hover:opacity-75"
+                    >
+                      <span class="sr-only">Dribbble</span>
+        
+                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          fill-rule="evenodd"
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  </li> -->
+
+
+                </ul>
+              </div>
+        
+              <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
+                <div>
+                  <p class="font-medium text-gray-200">Servicios</p>
+        
+                  <ul class="mt-6 space-y-4 text-sm">
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Proyectos </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseños en 3D </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Habilitaciones Municipales </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Consultoria de construcción </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Imp. - Exp. de materiales de la construcción </a>
+                    </li>
+                  </ul>
+                </div>
+        
+                <div>
+                  <p class="font-medium text-gray-200">Profesionales</p>
+        
+                  <ul class="mt-6 space-y-4 text-sm">
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Arquitectura </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Ingenieria </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Plan de contingencia </a>
+                    </li>
+
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Estudios de suelo </a>
+                    </li>
+
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseño de interiores </a>
+                    </li>
+                    
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseño de interiores </a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <div>
+                  <p class="font-medium text-gray-200">Otros</p>
+        
+                  <ul class="mt-6 space-y-4 text-sm">
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Paisajismos </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Interiorismos </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Inmobiliaria </a>
+                    </li>
+
+                    <li>
+                      <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-gray-400 transition hover:opacity-75"> Contacto </a>
+                    </li>
+                  </ul>
+                </div>
+        
+                
+        
+                <!-- <div>
+                  <p class="font-medium text-gray-200">Legal</p>
+        
+                  <ul class="mt-6 space-y-4 text-sm">
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Accessibility </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Returns Policy </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Refund Policy </a>
+                    </li>
+        
+                    <li>
+                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Hiring Statistics </a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+            </div>
+        
+            <p class="text-xs text-gray-400">2025 CIPRODEC</p>
+          </div>
+        </footer>
+
+</body>
+</html>
+
+
+
+  

@@ -25,3 +25,117 @@ function openMenuu(){
     mobilemenu.classList.toggle("hidden");
     console.log('abrió menú');
 }
+//fin animar menú
+
+
+//Galería de imágenes
+
+ // Datos de las galerías (imágenes para cada propiedad)
+        const galleryData = {
+            1: [
+                "./img/inmobiliaria/ven0001/Imagen1.jpg",
+                "./img/inmobiliaria/ven0001/Imagen2.jpg",
+                "./img/inmobiliaria/ven0001/Imagen3.jpg",
+                "./img/inmobiliaria/ven0001/Imagen4.jpg",
+                "./img/inmobiliaria/ven0001/Imagen5.jpg",
+                "./img/inmobiliaria/ven0001/Imagen6.jpg",
+            ],
+            2: [
+                "./img/inmobiliaria/ven0002/Imagen7.jpg",
+                "./img/inmobiliaria/ven0002/Imagen8.jpg",
+                "./img/inmobiliaria/ven0002/Imagen9.jpg",
+                "./img/inmobiliaria/ven0002/Imagen10.jpg",
+
+            ],
+            3: [
+                "./img/inmobiliaria/ven0003/Imagen11.jpg",
+                "./img/inmobiliaria/ven0003/Imagen12.jpg",
+                "./img/inmobiliaria/ven0003/Imagen13.jpg",
+                "./img/inmobiliaria/ven0003/Imagen14.jpg",
+            ]
+        };
+        
+        let currentGallery = 1;
+        let currentSlide = 0;
+        
+        function openGallery(galleryId) {
+            currentGallery = galleryId;
+            currentSlide = 0;
+            
+            const modal = document.getElementById('gallery-modal');
+            const carouselImages = document.getElementById('carousel-images');
+            const carouselIndicators = document.getElementById('carousel-indicators');
+            
+            // Limpiar contenido previo
+            carouselImages.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+            
+            // Agregar imágenes al carrusel
+            galleryData[galleryId].forEach((imageUrl, index) => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Imagen ${index + 1} de la propiedad`;
+                img.classList.add('carousel-image');
+                if (index === 0) img.classList.add('active');
+                carouselImages.appendChild(img);
+                
+                // Agregar indicadores
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (index === 0) indicator.classList.add('active');
+                indicator.onclick = () => goToSlide(index);
+                carouselIndicators.appendChild(indicator);
+            });
+            
+            // Mostrar el modal
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll en el fondo
+        }
+        
+        function closeGallery() {
+            const modal = document.getElementById('gallery-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+        
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-image');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            // Remover clase activa de la diapositiva actual
+            slides[currentSlide].classList.remove('active');
+            indicators[currentSlide].classList.remove('active');
+            
+            // Calcular nueva diapositiva
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            
+            // Agregar clase activa a la nueva diapositiva
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+        
+        function goToSlide(slideIndex) {
+            const slides = document.querySelectorAll('.carousel-image');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            // Remover clase activa de la diapositiva actual
+            slides[currentSlide].classList.remove('active');
+            indicators[currentSlide].classList.remove('active');
+            
+            // Establecer nueva diapositiva
+            currentSlide = slideIndex;
+            
+            // Agregar clase activa a la nueva diapositiva
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+        
+        // Cerrar galería con la tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeGallery();
+            }
+        });
+
+//fin galería de imágenes
+

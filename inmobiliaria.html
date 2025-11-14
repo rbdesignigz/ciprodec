@@ -34,13 +34,116 @@
 
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=podcasts" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+        <style>
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-image: url('./img/inmobiliaria/ven0001/Imagen2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+ 
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .carousel-image {
+            max-width: 100%;
+            max-height: 80vh;
+            display: none;
+        }
+        
+        .carousel-image.active {
+            display: block;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .carousel-btn.prev {
+            left: 20px;
+        }
+        
+        .carousel-btn.next {
+            right: 20px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .indicator.active {
+            background-color: white;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
 
 </head>
 <body>
-
-
-    <div class="bg-white">
+<div class="bg-white">
         <header class="absolute inset-x-0 top-0 z-50">
           <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
@@ -87,7 +190,7 @@
                 <div class="-my-6 divide-y divide-gray-500/10">
                   <div class="space-y-2 py-6">
                     <a href="./index.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">home</a>
-                    <a href="./inmobiliaria.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">inmobiliaria</a>
+                    <a href="./blog.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">+ contenido</a>
                     <a href="https://www.instagram.com/ciprodec/?hl=es-la" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">instagram</a>
                     <a href="https://www.facebook.com/profile.php?id=100064049114522" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">facebook</a>
                     <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Contacto</a>
@@ -100,233 +203,184 @@
             </div>
           </div>
         </header>
+        </div>
 
-      
-
-
-        <!-- <section class="grid h-[600px] w-[full] bg-gray-100 items-center justify-center">
-          <div class="relative flex h-full items-center justify-center">
-            <div class="absolute w-80 h-80 rounded-full bg-violet-400 left-40 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
-            <div class="absolute w-80 h-80 rounded-full bg-orange-400 right-44 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
-            <div class="absolute w-80 h-80 rounded-full bg-blue-400 bottom-16 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
-            <img class="z-10 w-[400px] animate-none" src="/img/astro.png" alt="Astronauta">
-          </div>
-        </section> -->
-
-       
-
-
-        <section id="vento" class="bg-slate-100 mt-16">
-          <div class="bg-slate-100 pt-6">
+          <div class="bg-white pt-6 mt-20">
             <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
               <h2 class="text-center text-base/7 font-semibold text-indigo-600">ciprodec</h2>
               <p class="mx-auto mt-2  text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">inmobiliaria</p>
             </div>
           </div>
 
-<!-- plantilla -->
-<section class="propiedades-listado max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-    
-    <div class="flex justify-between items-center mb-6 border-b pb-4">
-        <h1 class="text-xl sm:text-2xl font-semibold text-gray-800">
-            Puerto Iguazú - Misiones - Argentina
-        </h1>
-        <div class="flex items-center space-x-2">
-  
-      
+    <div class="container mx-auto px-4 py-8 grid lg:grid-cols-2 gap-8 ">
+        
+        
+        <!-- Propiedad 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="gallery-container" id="gallery-container-1" onclick="openGallery(1)" style="background-image: url('./img/inmobiliaria/ven0001/Imagen2.jpg')">
+                <!-- //sirve para poner el punto y abrir la galería// <div class="hotspot" style="top: 60%; left: 70%;" onclick="openGallery(1)"></div> -->
+            </div>
+            
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-2">CASA 3 DORMITORIOS - QUINCHO CON BAÑO</h2>
+                <p class="text-gray-600 mb-2">Vivienda en venta - Puerto Iguazú - B° Nuevo Iguazú</p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <p><span class="font-semibold">Terreno:</span> 600 m²</p>
+                        <p><span class="font-semibold">Construcción:</span> 100 m²</p>
+                    </div>
+                    <div>
+                        <p><span class="font-semibold">Habitaciones:</span> 3</p>
+                        <p><span class="font-semibold">Baños:</span> 2</p>
+                    </div>
+                </div>
+                
+                <p class="mb-4"><span class="font-semibold">Mascotas:</span> Permitidas</p>
+                
+                <div class="flex justify-between items-center">
+                    <p class="text-2xl font-bold text-black">USD 116.600</p>
+                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-slate-900 transition">
+                      <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
+                    </button>
+                </div>
+            </div>
         </div>
+        
+        <!-- Propiedad 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="gallery-container" id="gallery-container-2" onclick="openGallery(2)" style="background-image: url('./img/inmobiliaria/ven0002/Imagen7.jpg')">
+                <!-- <div class="hotspot" style="top: 40%; left: 50%;" onclick="openGallery(2)"></div> -->
+            </div>
+            
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-2">ZONA COSTANERA - Calle 1° de Mayo esq. Rio Paraná</h2>
+                <p class="text-gray-600 mb-2">Terreno en venta - Puerto Iguazú - B° Costanera</p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <p><span class="font-semibold">Terreno:</span> 391 m²</p>
+                        <p><span class="font-semibold">Construcción:</span> 152 m²</p>
+                    </div>
+                    <div>
+                        <p><span class="font-semibold">Habitaciones:</span> 2</p>
+                        <p><span class="font-semibold">Baños:</span> 1</p>
+                    </div>
+                </div>
+                
+                <p class="mb-4"><span class="font-semibold">Mascotas:</span> Permitidas</p>
+                
+                <div class="flex justify-between items-center">
+                    <p class="text-2xl font-bold text-black">USD 65.000</p>
+                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-slate-900 transition">
+                      <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
+                    </button>
+                </div>
+            </div>
+        
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
-            <div class="grid grid-cols-3">
+    <!-- Propiedad 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="gallery-container" id="gallery-container-2" onclick="openGallery(3)" style="background-image: url('./img/inmobiliaria/ven0003/Imagen12.jpg')">
+                <!-- <div class="hotspot" style="top: 40%; left: 50%;" onclick="openGallery(2)"></div> -->
+            </div>
+            
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-2">ZONA ALMIRANTE BROWN</h2>
+                <p class="text-gray-600 mb-2">Terreno a la venta - Puerto Iguazú - B° Almirante Brown</p>
                 
-                <div class="col-span-1 relative bg-gray-100 min-h-[150px]">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./img/inmobiliaria/ven0001/Imagen2.jpg');">
-                        <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                            + Nueva en el Mercado
-                        </span>
-                        <span class="absolute bottom-2 right-2 text-white text-xs bg-black/50 px-2 py-1 rounded">
-                            1/6
-                        </span>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <p><span class="font-semibold">Terreno:</span> 300 m²</p>
+                        <p><span class="font-semibold">Construcción:</span> 0 m²</p>
+                    </div>
+                    <div>
+                        <p><span class="font-semibold">Habitaciones:</span> 0</p>
+                        <p><span class="font-semibold">Baños:</span> 0</p>
                     </div>
                 </div>
-
-                <div class="col-span-2 p-4 flex flex-col justify-between">
-                    <div>
-                        <p class="text-xs font-medium text-gray-500 mb-1">Casa en venta</p>
-                        <h2 class="text-lg font-bold text-gray-900 leading-tight mb-2">
-                            CASA 3 DORMITORIOS - QUINCHO CON BAÑO
-                        </h2>
-                        <p class="text-sm text-gray-600 truncate mb-3">
-                            Puerto Iguazú - B° Nuevo Iguazú
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-x-4 text-sm text-gray-700">
-                            <span class="flex items-center">
-                                🏠 <span class="ml-1">600 m² Terreno</span>
-                            </span>
-                            <span class="flex items-center">
-                                📐 <span class="ml-1">100 m² Construcción</span>
-                            </span>
-                            <span class="flex items-center">
-                                🛏️ <span class="ml-1">3 Hab.</span>
-                            </span>
-                            <span class="flex items-center">
-                                🛁 <span class="ml-1">2 Baños</span>
-                            </span>
-                            <span class="flex items-center text-green-700">
-                                🐶 <span class="ml-1">Mascotas</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="mt-4 flex justify-between items-center pt-3 border-t">
-                        <p class="text-xl font-extrabold text-green-700">
-                            USD 116.600
-                        </p>
-                        <button class="bg-black hover:bg-slate-700 text-white text-sm font-semibold py-2 px-4 rounded-md">
-                            <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
-                        </button>
-                    </div>
+                
+                <p class="mb-4"><span class="font-semibold">Mascotas:</span> Permitidas</p>
+                
+                <div class="flex justify-between items-center">
+                    <p class="text-2xl font-bold text-black">USD 25.000</p>
+                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-slate-900 transition">
+                      <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
+                    </button>
                 </div>
             </div>
-        </article>
+        </div>
+    
 
-        <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
-            <div class="grid grid-cols-3">
+
+      <!-- tarjeta talegía- modelo------------------------------------------------------------------------------------------------------------------------ -->
+       <!--  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="gallery-container" id="gallery-container-2" onclick="openGallery(3)" style="background-image: url('./img/inmobiliaria/ven0003/Imagen12.jpg')">
                 
-                <div class="col-span-1 relative bg-gray-100 min-h-[150px]">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./img/inmobiliaria/ven0002/Imagen7.jpg');">
-<!--                         <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                            + Nueva en el Mercado
-                        </span> -->
-                        <span class="absolute bottom-2 right-2 text-white text-xs bg-black/50 px-2 py-1 rounded">
-                            1/4
-                        </span>
+            </div>
+            
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-2">ZONA COSTANERA - Calle 1° de Mayo esq. Rio Paraná</h2>
+                <p class="text-gray-600 mb-2">Puerto Iguazú - B° Costanera</p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <p><span class="font-semibold">Terreno:</span> 391 m²</p>
+                        <p><span class="font-semibold">Construcción:</span> 152 m²</p>
+                    </div>
+                    <div>
+                        <p><span class="font-semibold">Habitaciones:</span> 2</p>
+                        <p><span class="font-semibold">Baños:</span> 1</p>
                     </div>
                 </div>
-
-                <div class="col-span-2 p-4 flex flex-col justify-between">
-                    <div>
-                        <p class="text-xs font-medium text-gray-500 mb-1">Terreno en venta</p>
-                        <h2 class="text-lg font-bold text-gray-900 leading-tight mb-2">
-                            ZONA COSTANERA - Calle 1° de Mayo esq. Rio Paraná
-                        </h2>
-                        <p class="text-sm text-gray-600 truncate mb-3">
-                            Puerto Iguazú - B° Costanera
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-x-4 text-sm text-gray-700">
-                            <span class="flex items-center">
-                                🏠 <span class="ml-1">391 m² Terreno</span>
-                            </span>
-                           <!--  <span class="flex items-center">
-                                📐 <span class="ml-1">152 m² Construcción</span>
-                            </span>
-                            <span class="flex items-center">
-                                🛏️ <span class="ml-1">2 Hab.</span>
-                            </span>
-                            <span class="flex items-center">
-                                🛁 <span class="ml-1">1 Baños</span>
-                            </span> -->
-<!--                             <span class="flex items-center text-green-700">
-                                🐶 <span class="ml-1">Mascotas</span>
-                            </span> -->
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4 flex justify-between items-center pt-3 border-t">
-                        <p class="text-xl font-extrabold text-green-700">
-                            USD 999.000
-                        </p>
-                        <button class="bg-black hover:bg-slate-700 text-white text-sm font-semibold py-2 px-4 rounded-md">
-                            <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
-                        </button>
-                    </div>
+                
+                <p class="mb-4"><span class="font-semibold">Mascotas:</span> Permitidas</p>
+                
+                <div class="flex justify-between items-center">
+                    <p class="text-2xl font-bold text-blue-600">USD 65.000</p>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Contacto</button>
                 </div>
             </div>
-        </article>
+        </div>
+    </div> -->
+    <!-- tarjeta talegía------------------------------------------------------------------------------------------------------------------------- -->
 
-        <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
-            <div class="grid grid-cols-3">
-                
-                <div class="col-span-1 relative bg-gray-100 min-h-[150px]">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./img/inmobiliaria/ven0003/Imagen11.jpg');">
-<!--                         <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                            + Nueva en el Mercado
-                        </span> -->
-                        <span class="absolute bottom-2 right-2 text-white text-xs bg-black/50 px-2 py-1 rounded">
-                            1/4
-                        </span>
-                    </div>
-                </div>
 
-                <div class="col-span-2 p-4 flex flex-col justify-between">
-                    <div>
-                        <p class="text-xs font-medium text-gray-500 mb-1">Terreno en venta</p>
-                        <h2 class="text-lg font-bold text-gray-900 leading-tight mb-2">
-                            ZONA Almirante Brown
-                        </h2>
-                        <p class="text-sm text-gray-600 truncate mb-3">
-                            Puerto Iguazú - B° Almirante Brown
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-x-4 text-sm text-gray-700">
-                            <span class="flex items-center">
-                                🏠 <span class="ml-1">300 m² Terreno</span>
-                            </span>
-                           <!--  <span class="flex items-center">
-                                📐 <span class="ml-1">152 m² Construcción</span>
-                            </span>
-                            <span class="flex items-center">
-                                🛏️ <span class="ml-1">2 Hab.</span>
-                            </span>
-                            <span class="flex items-center">
-                                🛁 <span class="ml-1">1 Baños</span>
-                            </span> -->
-<!--                             <span class="flex items-center text-green-700">
-                                🐶 <span class="ml-1">Mascotas</span>
-                            </span> -->
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4 flex justify-between items-center pt-3 border-t">
-                        <p class="text-xl font-extrabold text-green-700">
-                            USD 25.000
-                        </p>
-                        <button class="bg-black hover:bg-slate-700 text-white text-sm font-semibold py-2 px-4 rounded-md">
-                            <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
-                        </button>
-                    </div>
-                </div>
+
+    
+    <!-- Modal de Galería -->
+    <div class="modal-overlay" id="gallery-modal">
+        <button class="close-btn" onclick="closeGallery()">&times;</button>
+        
+        <div class="modal-content">
+            <div class="carousel-images" id="carousel-images">
+                <!-- Las imágenes se insertarán aquí dinámicamente -->
             </div>
-        </article>
+            
+            <button class="carousel-btn prev" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" onclick="changeSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="carousel-indicators" id="carousel-indicators">
+                <!-- Los indicadores se insertarán aquí dinámicamente -->
+            </div>
+        </div>
+  
+ 
 
-        
-        
-        
-    </div>
-</section>
-
-
-
-        
 
 
 
       </div>
+
     </div>
-  </div>
-</div>
 
 
-
-        </section>
-
-        
+  </body>
 
         <!--
         <section class="pt-16">
@@ -604,7 +658,7 @@
           </div>
         </footer>
 
-</body>
+
 </html>
 
 

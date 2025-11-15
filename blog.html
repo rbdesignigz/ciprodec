@@ -130,7 +130,39 @@
     <div class="mx-auto max-w-3xl py-6 sm:py-12">
       <h2 class="text-2xl font-bold text-gray-900 text-center mb-6">ciprodec</h2>
 
-      <article class="bg-white shadow-sm rounded-lg overflow-hidden">
+      <article id="seghiglab" class="bg-white shadow-sm rounded-lg overflow-hidden">
+        <figure>
+          <img src="./img/blog01.jpeg" alt="Iguazú evento" class="w-full block object-cover max-h-[60vh]" />
+        </figure>
+
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Iguazú será sede de la primera jornada internacional sobre seguridad e higiene laboral.</h3>
+          
+          <div class="flex justify-between items-center mb-4">
+            <div>
+            <p class="text-sm text-gray-500">Seguridad e Higiene</p>
+              
+            </div>
+            <div>
+              <button onclick="copyToClipboard('https://ciprodec.com/blog.html#seghiglab')" class="bg-black rounded-full text-white m-2 px-3.5 py-1">copiar link</button>
+            </div>
+          </div>
+
+          <div class="text-gray-700 leading-relaxed space-y-4">
+        <p>El próximo 14 de noviembre, el Centro de Convenciones y Eventos de Iguazú se convertirá en punto de encuentro para especialistas, autoridades y profesionales de distintos países durante la I Jornada Internacional de Higiene, Seguridad y Salud en el Trabajo, organizada por el Colegio de Profesionales de Higiene y Seguridad en el Trabajo de la Provincia de Misiones (CPHySeM). El evento, que se desarrollará de 8 a 17 horas, tendrá alcance internacional, con la participación de referentes de varios países del Mercosur y América Latina.</p>
+
+        <p>Con el lema de fortalecer la profesión desde la prevención, la propuesta busca impulsar el diálogo y la cooperación entre naciones, además de fomentar el trabajo interdisciplinario en temas vinculados a la seguridad laboral. "La prevención sigue siendo clave, no solo para cuidar la salud y la vida de los trabajadores, sino también para acompañar el crecimiento productivo y económico de la región", expresaron desde la organización.</p>
+
+        <p>Entre los disertantes confirmados se destacan representantes de Argentina, Paraguay y Brasil, entre ellos el presidente del Instituto Argentino de Seguridad (IAS), la presidenta de la Asociación Paraguaya de Ergonomía, y funcionarios del Ministerio de Trabajo de Brasil, entre otros invitados.</p>
+
+        <p>Durante la jornada se tratarán temas de actualidad en materia de seguridad laboral: desde las nuevas normativas sobre equipos de protección personal, el riesgo de fuego repentino y arco eléctrico, y la gestión de la seguridad mediante inteligencia artificial, hasta los factores psicosociales que influyen en el trabajo, como el estrés y la toma de decisiones.</p>
+
+        <p>La actividad será gratuita y abierta al público, aunque se requiere inscripción previa debido a la capacidad limitada del auditorio.</p>
+          </div>
+        </div>
+      </article>
+
+<!--       <article id="2" class="bg-white shadow-sm rounded-lg overflow-hidden mt-10">
         <figure>
           <img src="./img/blog01.jpeg" alt="Iguazú evento" class="w-full block object-cover max-h-[60vh]" />
         </figure>
@@ -151,7 +183,7 @@
             <p>La actividad será gratuita y abierta al público, aunque se requiere inscripción previa debido a la capacidad limitada del auditorio.</p>
           </div>
         </div>
-      </article>
+      </article> -->
 
 
 
@@ -451,6 +483,16 @@
             <p class="text-xs text-gray-400">2025 CIPRODEC</p>
           </div>
         </footer>
+
+        <script>
+          function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+              alert('Enlace copiado al portapapeles: ' + text);
+            }, function(err) {
+              console.error('Error al copiar al portapapeles: ', err);
+            });
+          }
+        </script>
 
 </body>
 </html>

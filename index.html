@@ -198,15 +198,51 @@
         </div>
 
         <div class="group relative">
-          <img src="./img/evacuacion01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
+          <button onclick="openModal('contingencias')" class="w-full text-left">
+            <img src="./img/evacuacion01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
+            <h3 class="mt-6 text-sm text-gray-500">
               <span class="absolute inset-0"></span>
               Plan de Contingencias
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Protocolos de seguridad y respuesta ante emergencias.</p>
+            </h3>
+            <p class="text-base font-semibold text-gray-900">Protocolos de seguridad y respuesta ante emergencias.</p>
+          </button>
         </div>
+
+        <!-- Modal -->
+        <dialog id="contingenciasModal" class="fixed inset-0 z-50 w-full max-w-md mt-16 mx-auto p-4 rounded-lg shadow-lg backdrop:bg-black/90">
+          <div class="bg-white rounded-lg p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold text-gray-900">Higiene y Seguridad</h2>
+              <button onclick="closeModal('contingencias')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div class="space-y-3 text-gray-700">
+              <p class="mt-16"><strong>Capacitación al personal:</strong> </p>
+              <p>   - Inducción en HyS.</p>
+              <p>   - Uso de EPP.</p>
+              <p>   - Plan de evacuación ante emergencias.</p>
+              <p>   - Riesgo de incendio y uso de extintores.</p>
+              <p>   - Riesgo eléctrico.</p>
+              <p>   - Manejo seguro y responsable.</p>
+              <p>   - Ergonomía.</p>
+              <p>   - HyS en la construcción.</p>
+              <p>   - Documentación y asesoramientos.</p>
+              <p>   - Capacitaciones a colaboradores.</p>
+            </div>
+            <button onclick="closeModal('contingencias')" class="mt-16 w-full bg-black text-white py-2 rounded-md hover:bg-gray-800">Cerrar</button>
+          </div>
+        </dialog>
+
+        <script>
+        function openModal(id) {
+          document.getElementById(id + 'Modal').showModal();
+        }
+        function closeModal(id) {
+          document.getElementById(id + 'Modal').close();
+        }
+        </script>
+        <!-- fin tarjeta de hys------------------------------------------------------------------------------------------------------------ -->
+
+
 
         <div class="group relative">
           <img src="./img/hab-municipal.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
@@ -670,5 +706,4 @@
 
 
   
-
 

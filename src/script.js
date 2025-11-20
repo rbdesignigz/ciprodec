@@ -52,6 +52,26 @@ function openMenuu(){
                 "./img/inmobiliaria/ven0003/Imagen12.jpg",
                 "./img/inmobiliaria/ven0003/Imagen13.jpg",
                 "./img/inmobiliaria/ven0003/Imagen14.jpg",
+            ],
+            4: [
+                "./img/inmobiliaria/ven0004/01.jpeg",
+                "./img/inmobiliaria/ven0004/02.jpeg",
+                "./img/inmobiliaria/ven0004/03.jpeg",
+                
+            ],
+            5: [
+                "./img/inmobiliaria/ven0005/01.jpeg",
+                "./img/inmobiliaria/ven0005/02.jpeg",
+                
+                
+            ],
+            6: [
+                "./img/inmobiliaria/ven0006/01.jpeg",
+                "./img/inmobiliaria/ven0006/02.jpeg",
+                "./img/inmobiliaria/ven0006/03.jpeg",
+                "./img/inmobiliaria/ven0006/04.jpeg",
+                "./img/inmobiliaria/ven0006/05.jpeg",
+                
             ]
         };
         

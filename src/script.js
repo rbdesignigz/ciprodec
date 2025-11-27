@@ -183,3 +183,26 @@ function openMenuu(){
                 // Alternativamente, puedes mostrar tu propio modal de compartir personalizado aquí.
               }
             });
+
+
+            document.getElementById('shareButton2').addEventListener('click', async () => {
+              // 1. Verificar soporte del navegador
+              if (navigator.share) {
+                try {
+                  // 2. Definir los datos a compartir
+                  await navigator.share({
+                    title: 'Paso de Fronteras', // Título que se compartirá
+                    text: 'Nueva agencia Nacional de Migraciones: IGUAZÚ HOY SE ENCUENTRA AISLADO', // Descripción/texto
+                    url: 'https://ciprodec.com/blog.html#pasofront' // La URL del producto que quieres compartir
+                  });
+                  console.log('Contenido compartido con éxito.');
+                } catch (error) {
+                  // Manejar errores (ej. el usuario canceló la acción de compartir)
+                  console.error('Error al compartir:', error);
+                }
+              } else {
+                // 3. Fallback (para navegadores que no soportan la API)
+                alert('Tu navegador no soporta la función de compartir nativa. Copia el siguiente enlace: https://ciprodec.com/blog.html#seghiglab');
+                // Alternativamente, puedes mostrar tu propio modal de compartir personalizado aquí.
+              }
+            });

@@ -186,23 +186,45 @@ function openMenuu(){
 
 
             document.getElementById('shareButton2').addEventListener('click', async () => {
-              // 1. Verificar soporte del navegador
-              if (navigator.share) {
-                try {
-                  // 2. Definir los datos a compartir
-                  await navigator.share({
-                    title: 'Paso de Fronteras', // Título que se compartirá
-                    text: 'Nueva agencia Nacional de Migraciones: IGUAZÚ HOY SE ENCUENTRA AISLADO', // Descripción/texto
-                    url: 'https://ciprodec.com/blog.html#pasofront' // La URL del producto que quieres compartir
-                  });
-                  console.log('Contenido compartido con éxito.');
-                } catch (error) {
-                  // Manejar errores (ej. el usuario canceló la acción de compartir)
-                  console.error('Error al compartir:', error);
+              // Datos a compartir
+              const shareData = {
+                title: 'Paso de Fronteras',
+                text: 'Nueva agencia Nacional de Migraciones: IGUAZÚ HOY SE ENCUENTRA AISLADO',
+                url: 'https://ciprodec.com/blog.html#pasofront'
+              };
+
+              // URL de la imagen que quieres compartir (ajusta la ruta según corresponda)
+              const imageUrl = 'https://ciprodec.com/img/blog-02.jpg';
+
+              // Verificar soporte de navigator.share
+              if (!navigator.share) {
+                alert('Tu navegador no soporta la función de compartir nativa. Copia el siguiente enlace: https://ciprodec.com/blog.html#pasofront');
+                return;
+              }
+
+              try {
+                // Intentar obtener la imagen y convertirla a File (Web Share Level 2)
+                const res = await fetch(imageUrl);
+                const blob = await res.blob();
+                const file = new File([blob], 'blog-02.jpg', { type: blob.type });
+
+                // Verificar si el navegador puede compartir archivos
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                  await navigator.share({ ...shareData, files: [file] });
+                  console.log('Contenido compartido con imagen.');
+                } else {
+                  // Si no admite archivos, compartir sin imagen (la vista previa la genera la URL si tiene Open Graph)
+                  await navigator.share(shareData);
+                  console.log('Compartido sin imagen (navegador no soporta files).');
                 }
-              } else {
-                // 3. Fallback (para navegadores que no soportan la API)
-                alert('Tu navegador no soporta la función de compartir nativa. Copia el siguiente enlace: https://ciprodec.com/blog.html#seghiglab');
-                // Alternativamente, puedes mostrar tu propio modal de compartir personalizado aquí.
+              } catch (error) {
+                console.error('Error al compartir con imagen:', error);
+                // Fallback: intentar compartir sin imagen
+                try {
+                  await navigator.share(shareData);
+                } catch (err) {
+                  console.error('Error al compartir:', err);
+                  alert('No se pudo compartir. Copia el siguiente enlace: https://ciprodec.com/blog.html#pasofront');
+                }
               }
             });

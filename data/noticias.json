@@ -1,6 +1,48 @@
 {
   "noticias": [
     {
+      "id": "expo-paraguay-brasil-2026-negocios",
+      "titulo": "Expo Paraguay Brasil 2026 apunta a superar los US$ 600 millones en negocios",
+      "categoria": "Inversión y negocios",
+      "fecha": "2026-11-07",
+      "imagen": "./img/noticias/expo-2026.jpg",
+      "alt": "Portada CIPRODEC: Expo Paraguay Brasil 2026, US$ 600 millones en negocios proyectados",
+      "contenido": "La 17.ª edición de la Expo Paraguay Brasil se realiza del 11 al 13 de noviembre en el Parque Tecnológico Itaipu (PTI), en Hernandarias, con eje en tecnología, innovación e Industria 4.0. Según sus organizadores, cerca de 1.000 empresas brasileñas de 18 estados se preparan para buscar oportunidades en Paraguay, y la construcción figura entre los sectores representados, junto con la industria y la maquila.\n\nLa organización espera unos 12.000 visitantes, más de 260 stands y alrededor de 2.000 reuniones de negocios. Las intenciones de negocio proyectadas superan los US$ 600 millones, con una meta posible de US$ 1.000 millones.",
+      "analisis": "Que constructoras y desarrolladores inmobiliarios figuren entre los compradores buscados muestra que la demanda no es solo de productos: las empresas que llegan necesitan dónde instalarse. Para un inversor brasileño, el primer cuello de botella suele ser técnico: saber qué permite el terreno, cuánto cuesta realmente la obra y cuánto tarda la habilitación. Un equipo local que resuelva arquitectura, ingeniería, suelos y agrimensura en paralelo puede ahorrar meses. Vamos a estar recorriendo la Expo y la Rueda de Negocios: si estás evaluando una nave, oficina o depósito en Alto Paraná, escribinos y coordinamos.",
+      "fuente": "InfoNegocios",
+      "fuenteUrl": "https://infonegocios.com.py/default/expo-paraguay-brasil-proyecta-negocios-por-mas-de-us-600-millones-y-apunta-a-los-us-1-000-millones",
+      "fuenteFecha": "2026-11-03",
+      "visible": true
+    },
+    {
+      "id": "maquila-339-empresas-capital-brasileno",
+      "titulo": "Paraguay ya suma 339 maquiladoras y la mayoría tiene capital brasileño",
+      "categoria": "Industria y maquila",
+      "fecha": "2026-11-07",
+      "imagen": "./img/noticias/maquila-2026.jpg",
+      "alt": "Portada CIPRODEC: 339 maquiladoras en Paraguay, la mayoría con capital brasileño",
+      "contenido": "Según la Cámara de Empresas Maquiladoras del Paraguay (Cemap), hoy operan 339 empresas bajo el régimen de maquila, y cerca del 70 % del capital es brasileño. Autopartes, textiles, aluminio, plásticos, alimentos y servicios tecnológicos están entre los rubros principales.\n\nLa nota repasa además cambios normativos recientes: un nuevo régimen de incentivos a la inversión que reemplaza a la Ley 60/90, la incorporación de la maquila de servicios y una política para el ensamblaje tecnológico. Los referentes consultados atribuyen el interés a la estabilidad macroeconómica, la baja carga tributaria, la energía competitiva y la cercanía con Brasil.",
+      "analisis": "Cada maquiladora que se instala es, antes que nada, una obra: un galpón con estructura, instalaciones y habilitaciones que tienen que estar listas a tiempo para empezar a producir. Para quien llega, conviene arrancar por el estudio de suelos y el relevamiento del terreno, y modelar la nave en BIM antes de pedir presupuestos: así se comparan ofertas sobre la misma base y se evitan adicionales. La maquila de servicios suma además demanda de oficinas técnicas y centros de atención, obras que se planifican distinto a una planta industrial.",
+      "fuente": "Última Hora",
+      "fuenteUrl": "https://www.ultimahora.com/339-maquiladoras-operan-en-el-pais-y-la-mayoria-con-capital-brasileno",
+      "fuenteFecha": "2026-06-01",
+      "visible": true
+    },
+    {
+      "id": "construccion-obra-publica-privada-2026",
+      "titulo": "Construcción: la obra pública se frena y el sector privado sostiene el crecimiento",
+      "categoria": "Sector construcción",
+      "fecha": "2026-11-07",
+      "imagen": "./img/noticias/construccion-2026.jpg",
+      "alt": "Portada CIPRODEC: construcción en dos velocidades, la obra privada sostiene el crecimiento",
+      "contenido": "Un informe del Centro de Estudios Económicos de la Cámara Paraguaya de la Industria de la Construcción (Capaco), elaborado junto a la consultora Mentu, describe un sector con dos velocidades. La construcción creció 5,6 % interanual en el primer trimestre de 2026 gracias a la inversión privada, pero después se desaceleró por la baja ejecución de obras públicas: a julio se había ejecutado cerca del 28 % del presupuesto previsto para el año.\n\nEl empleo sigue firme, con más de 279.000 personas trabajando en el sector, y el crédito bancario a la construcción creció 7,7 % interanual con menor morosidad. El informe proyecta un crecimiento del 3,5 % al cierre del año.",
+      "analisis": "La lectura para quien construye es clara: hoy el motor es privado. Viviendas, locales, depósitos y naves siguen avanzando aunque el Estado demore. Eso también significa más competencia por cuadrillas, materiales y plazos, así que gana quien llega con el proyecto bien resuelto: planos coordinados, cómputo de materiales cerrado y seguridad e higiene en regla desde el primer día. Para las constructoras, tercerizar la parte técnica (cálculo, BIM, suelos) es una forma de crecer sin cargar estructura fija mientras el mercado se acomoda.",
+      "fuente": "Última Hora (informe Capaco – Mentu)",
+      "fuenteUrl": "https://www.ultimahora.com/construccion-freno-temporal-por-menor-ejecucion-en-obras-publicas",
+      "fuenteFecha": "2026-07-30",
+      "visible": true
+    },
+    {
       "id": "pasofront",
       "titulo": "Nueva agencia Nacional de Migraciones: \"IGUAZÚ HOY SE ENCUENTRA AISLADO\"",
       "categoria": "Paso de Frontera",
@@ -8,7 +50,11 @@
       "imagen": "./img/blog-02.jpg",
       "alt": "Iguazú evento",
       "contenido": "En el marco de la presentación de la nueva agencia nacional de migraciones, encabezada por la ministra de Seguridad Patricia Bullrich, el arquitecto Mauricio Krumkamp manifestó: \"Iguazú podría dejar de estar aislado con una sola decisión política: dinamizar el paso fronterizo\".\n\nDurante una entrevista radial, Krumkamp fue consultado sobre qué obra realizaría si tuviera la posibilidad de concretar un proyecto para Iguazú. Sin dudarlo, afirmó que \"prendería una máquina y sacaría el Centro de Frontera\", señalando que el actual sistema de paso limita el potencial económico de la ciudad.\n\nSegún el arquitecto, Iguazú se encuentra en un contexto regional privilegiado, rodeado de una enorme masa de habitantes con alto poder adquisitivo tanto en Foz do Iguaçu como en Ciudad del Este y sus alrededores. Sin embargo, la ciudad argentina permanece \"aislada\" debido a la dinámica actual del cruce internacional.\n\nLa solución, sostuvo Krumkamp, no requiere grandes inversiones sino una decisión política que simplifique el ingreso y egreso en el paso fronterizo. Propuso replicar el modelo de Foz do Iguaçu, donde el control migratorio se realiza más adelante y no en el punto de ingreso. Según su análisis, esa medida permitiría que una parte del intenso movimiento comercial y turístico de la región \"derrame inmediatamente\" en la economía local.\n\n\"Somos muchos menos que ellos; si apenas un porcentaje cruza para consumir nuestros productos, la economía de Iguazú cambiaría radicalmente\", enfatizó.\n\n**La nueva estructura de migraciones**\n\nEste miércoles, Patricia Bullrich anunció la puesta en marcha de la nueva estructura de Migraciones, presentada como un organismo destinado a \"administrar las migraciones\" de manera integral. El proyecto implica trasladar la antigua Dirección Nacional de Migraciones al Ministerio de Seguridad y transformarla en un ente con mayor autonomía.\n\nSegún explicó la ministra, el nuevo esquema contará con participación de \"todas las provincias, con una mirada federal\", y buscará fortalecer el control de fronteras para prevenir delitos vinculados al narcotráfico, el terrorismo y la trata de personas.\n\nBullrich hizo hincapié en que esta decisión permitirá que el país avance en dos aspectos clave: la rapidez en la entrada y el fortalecimiento de los controles. \"Es imposible que entren a Puerto Iguazú por las horas y horas de fila que se forman\", destacó, haciendo referencia al paso Tancredo Neves.\n\n\"El caso de Puerto Iguazú es muy serio. Argentina se pierde una cantidad de oportunidades\", enfatizó. \"Con las personas que van a Foz o Ciudad del Este, no consumen en Puerto Iguazú, no trabajan, no generan actividad turística\". Asimismo aclaró que \"Argentina tiene que alcanzar la misma altura de ciudad comercial que tienen los países vecinos\".\n\nLa funcionaria sostuvo que el sistema actual muestra \"un desfasaje\" entre el control migratorio y la realidad operativa de los puestos fronterizos. \"Las fronteras tienen que estar bien protegidas. Nuestro objetivo es unificar criterios y alinear a la Argentina con los modelos globales y estándares internacionales de gestión migratoria\".",
-      "visible": true
+      "visible": true,
+      "fuente": "",
+      "fuenteUrl": "",
+      "fuenteFecha": "",
+      "analisis": ""
     },
     {
       "id": "seghiglab",
@@ -18,7 +64,11 @@
       "imagen": "./img/blog01.jpeg",
       "alt": "Iguazú evento",
       "contenido": "El próximo 14 de noviembre, el Centro de Convenciones y Eventos de Iguazú se convertirá en punto de encuentro para especialistas, autoridades y profesionales de distintos países durante la I Jornada Internacional de Higiene, Seguridad y Salud en el Trabajo, organizada por el Colegio de Profesionales de Higiene y Seguridad en el Trabajo de la Provincia de Misiones (CPHySeM). El evento, que se desarrollará de 8 a 17 horas, tendrá alcance internacional, con la participación de referentes de varios países del Mercosur y América Latina.\n\nCon el lema de fortalecer la profesión desde la prevención, la propuesta busca impulsar el diálogo y la cooperación entre naciones, además de fomentar el trabajo interdisciplinario en temas vinculados a la seguridad laboral. \"La prevención sigue siendo clave, no solo para cuidar la salud y la vida de los trabajadores, sino también para acompañar el crecimiento productivo y económico de la región\", expresaron desde la organización.\n\nEntre los disertantes confirmados se destacan representantes de Argentina, Paraguay y Brasil, entre ellos el presidente del Instituto Argentino de Seguridad (IAS), la presidenta de la Asociación Paraguaya de Ergonomía, y funcionarios del Ministerio de Trabajo de Brasil, entre otros invitados.\n\nDurante la jornada se tratarán temas de actualidad en materia de seguridad laboral: desde las nuevas normativas sobre equipos de protección personal, el riesgo de fuego repentino y arco eléctrico, y la gestión de la seguridad mediante inteligencia artificial, hasta los factores psicosociales que influyen en el trabajo, como el estrés y la toma de decisiones.\n\nLa actividad será gratuita y abierta al público, aunque se requiere inscripción previa debido a la capacidad limitada del auditorio.",
-      "visible": true
+      "visible": true,
+      "fuente": "",
+      "fuenteUrl": "",
+      "fuenteFecha": "",
+      "analisis": ""
     }
   ]
 }

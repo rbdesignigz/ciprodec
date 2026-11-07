@@ -41,3 +41,35 @@ ACTUALIZACIÓN 7/11 (3ra versión) - PANEL DE ADMINISTRACIÓN:
   lo leen con src/contenido.js (mismo diseño que antes). Las fotos nuevas van a img/noticias/ e img/inmobiliaria/<id>/.
 - src/script.js: los botones de compartir viejos ahora no fallan si no existen (se usa ?.).
 - En inmobiliaria, el WhatsApp de consultas por propiedad se configura desde el panel (hoy: 5493757328322).
+
+ACTUALIZACIÓN 7/11 (4ta versión):
+- index.html suma la sección "Noticias" con las 3 últimas noticias publicadas (lee data/noticias.json,
+  lo mismo que carga el panel). El menú "Noticias" de la portada lleva a esa sección; "Ver todas" va a blog.html.
+
+ACTUALIZACIÓN 7/11 (5ta versión) – VERSIÓN FINAL PARA LA EXPO:
+Subir TODO el contenido de esta carpeta a la raíz del repositorio, reemplazando lo que haya.
+No borrar nada de lo existente (CNAME, src/, img/ se mantienen).
+
+1. Noticias con fuente y análisis propio
+   - data/noticias.json: 3 noticias nuevas del sector (Expo, maquila, construcción) con portadas propias
+     en img/noticias/. Cada noticia muestra "Fuente: ..." con enlace y un recuadro "Análisis CIPRODEC".
+   - blog.html y la sección Noticias de la portada ya muestran esos campos.
+
+2. Obras y proyectos (nuevo)
+   - Sección "Obras" en index.html, lee data/obras.json; fotos en img/obras/ con visor a pantalla completa.
+   - obras/estructura-hernandarias.html: visor del modelo 3D de una estructura (usa three.js desde CDN).
+   - admin.html suma la pestaña "Obras" para cargar nuevas obras con fotos.
+
+3. Precios de referencia (nuevo)
+   - precios.html: revista técnica mensual de precios de mano de obra y materiales (PY, AR, BR),
+     con fuentes citadas y análisis. Enlazada desde el menú y desde "Más de CIPRODEC".
+   - data/precios.json: contenido. Cada mes se agrega una edición NUEVA al principio de "ediciones"
+     (las anteriores quedan en el selector "Ediciones anteriores"). "fuentes" es la lista de enlaces por país.
+
+4. Revisar después de subir (1–2 minutos):
+   - ciprodec.com (portada, menú, Obras, Noticias, Precios)
+   - ciprodec.com/precios.html
+   - ciprodec.com/blog.html e inmobiliaria.html
+   - ciprodec.com/obras/estructura-hernandarias.html
+   - En el celular: botón ES/PT y botón de WhatsApp.
+   El folleto impreso tiene un QR que lleva a www.ciprodec.com: conviene que esté online antes del 11/11.

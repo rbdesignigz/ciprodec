@@ -17,6 +17,10 @@
       return r.json();
     });
   }
+  function fechaTxt(f) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(f || '');
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : (f || '');
+  }
   function irAlAncla() {
     if (location.hash.length > 1) {
       var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
@@ -36,7 +40,19 @@
           return t ? '<p>' + t + '</p>' : '';
         }).join('');
         var img = safeUrl(n.imagen);
-        var meta = esc(n.categoria || '') + (n.fecha ? ' · ' + esc(n.fecha) : '');
+        var meta = esc(n.categoria || '') + (n.fecha ? ' · ' + esc(fechaTxt(n.fecha)) : '');
+        var analisis = String(n.analisis || '').trim();
+        if (analisis) {
+          parrafos += '<div style="border-left:4px solid #E8262B;background:#F6F6F4;padding:14px 16px;border-radius:6px">' +
+            '<p class="font-semibold text-gray-900">Análisis CIPRODEC</p>' +
+            analisis.split(/\n\s*\n/).map(function (p) { return '<p>' + esc(p.trim()).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</p>'; }).join('') + '</div>';
+        }
+        var fUrl = safeUrl(n.fuenteUrl);
+        if (n.fuente || fUrl) {
+          parrafos += '<p class="text-sm text-gray-500">Fuente: ' +
+            (fUrl ? '<a href="' + esc(fUrl) + '" target="_blank" rel="noopener" style="text-decoration:underline">' + esc(n.fuente || fUrl) + '</a>' : esc(n.fuente)) +
+            (n.fuenteFecha ? ' (' + esc(fechaTxt(n.fuenteFecha)) + ')' : '') + '</p>';
+        }
         return '<article id="' + esc(n.id) + '" class="bg-white shadow-sm rounded-lg overflow-hidden' + (i ? ' mt-8' : '') + '">' +
           (img ? '<figure><img src="' + esc(img) + '" alt="' + esc(n.alt || n.titulo) + '" class="w-full block object-cover max-h-[60vh]" /></figure>' : '') +
           '<div class="p-6"><h3 class="text-xl font-semibold text-gray-900 mb-2">' + esc(n.titulo) + '</h3>' +

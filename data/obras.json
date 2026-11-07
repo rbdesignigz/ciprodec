@@ -1,0 +1,53 @@
+{
+  "obras": [
+    {
+      "id": "estructura-vivienda-hernandarias",
+      "titulo": "Estructura de vivienda con subsuelo",
+      "area": "Ingeniería · Cálculo estructural",
+      "ubicacion": "Hernandarias, Alto Paraná",
+      "estado": "Proyecto estructural 2026",
+      "descripcion": "Cálculo y documentación completa de la estructura de hormigón armado de una vivienda de dos plantas con subsuelo, garaje sin columna intermedia gracias a una viga de transferencia, y techo de estructura metálica. Entregamos carpeta de proyecto, planos de despiece de cada elemento, láminas de obra con QR y un modelo 3D navegable para la obra.",
+      "datos": [
+        "76 columnas, 272 vigas y encadenados",
+        "74 bases aisladas sobre roca",
+        "47,5 t de acero y 424 m³ de hormigón",
+        "Normas CIRSOC 201, 101, 102, 301 y 303"
+      ],
+      "fotos": [
+        "./img/obras/hernandarias-estructura.jpg",
+        "./img/obras/hernandarias-despiece-viga.jpg"
+      ],
+      "enlace": "./obras/estructura-hernandarias.html",
+      "enlaceTexto": "Ver modelo 3D",
+      "nota": "",
+      "visible": true
+    },
+    {
+      "id": "vivienda-patios-puerto-iguazu",
+      "titulo": "Vivienda alrededor de patios",
+      "area": "Arquitectura · Diseño de interiores",
+      "ubicacion": "Puerto Iguazú, Misiones",
+      "estado": "Proyecto 2026",
+      "descripcion": "Casa de una planta organizada alrededor de patios de luz y un jardín interno, con galería de ingreso, quincho y piscina. Desarrollamos el proyecto en modelo 3D y lo ajustamos versión por versión junto al cliente: distribución, cocina con isla, suite con vestidor, iluminación y paisajismo.",
+      "datos": [
+        "199,85 m² cubiertos + 51,76 m² semicubiertos",
+        "3 dormitorios, uno en suite con vestidor",
+        "3 patios de luz y jardín interno",
+        "Piscina de 7,20 × 3,50 m con deck"
+      ],
+      "fotos": [
+        "./img/obras/iguazu-fachada-aerea.jpg",
+        "./img/obras/iguazu-living.jpg",
+        "./img/obras/iguazu-cocina.jpg",
+        "./img/obras/iguazu-ingreso.jpg",
+        "./img/obras/iguazu-quincho-piscina.jpg",
+        "./img/obras/iguazu-pergola.jpg",
+        "./img/obras/iguazu-suite.jpg"
+      ],
+      "enlace": "",
+      "enlaceTexto": "",
+      "nota": "Imágenes: renders del proyecto.",
+      "visible": true
+    }
+  ]
+}

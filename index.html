@@ -102,6 +102,32 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:58px;height:58px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .wa-float svg{width:30px;height:30px}
+.news{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.ncard{background:#fff;border:2px solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
+.ncard img{width:100%;height:190px;object-fit:cover;display:block;background:#EEE}
+.ncard .b{padding:16px 18px;display:grid;gap:8px}
+.ncard .meta{font:700 .85rem var(--mono);color:var(--red)}
+.ncard h3{font-size:1.05rem;line-height:1.3}
+.ncard p{color:var(--muted);font-size:.93rem}
+.ncard .more{font-weight:700;font-size:.9rem;margin-top:2px}
+.ncard:hover{border-color:var(--red)}
+.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.work{background:#fff;border:2px solid var(--ink);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.work .cover{position:relative;border:0;padding:0;margin:0;background:#EEE;cursor:pointer;display:block;width:100%}
+.work .cover img{width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;display:block}
+.work .cover .cnt{position:absolute;right:12px;bottom:12px;background:rgba(26,26,26,.85);color:#fff;font:700 .8rem var(--mono);padding:5px 10px;border-radius:8px}
+.work .b{padding:18px 20px 20px;display:grid;gap:10px}
+.work .area{font:700 .9rem var(--mono);color:var(--red)}
+.work .loc{color:var(--muted);font-size:.92rem}
+.work ul{margin:0;padding-left:18px;color:#333;font-size:.93rem}
+.work .nota{font-size:.8rem;color:var(--muted)}
+.work .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:82vh;border-radius:8px;display:block}
+.lb .cap{color:#fff;text-align:center;margin-top:10px;font:700 .9rem var(--mono)}
+.lb button{position:absolute;background:#fff;border:0;border-radius:50%;width:48px;height:48px;font:700 1.3rem var(--sans);cursor:pointer;color:var(--ink)}
+.lb .x{top:max(16px,env(safe-area-inset-top,0px));right:16px}.lb .prev{left:12px;top:50%}.lb .next{right:12px;top:50%}
 </style>
 </head>
 <body>
@@ -111,9 +137,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <nav class="links" aria-label="Secciones">
       <a href="#servicios"><span class="es">Servicios</span><span class="pt">Serviços</span></a>
       <a href="#como"><span class="es">Cómo trabajamos</span><span class="pt">Como trabalhamos</span></a>
+      <a href="#obras"><span class="es">Obras</span><span class="pt">Obras</span></a>
       <a href="#constructoras"><span class="es">Constructoras</span><span class="pt">Construtoras</span></a>
       <a href="./inmobiliaria.html"><span class="es">Inmobiliaria</span><span class="pt">Imobiliária</span></a>
-      <a href="./blog.html"><span class="es">Noticias</span><span class="pt">Notícias</span></a>
+      <a href="#noticias"><span class="es">Noticias</span><span class="pt">Notícias</span></a>
+      <a href="./precios.html"><span class="es">Precios</span><span class="pt">Preços</span></a>
       <a href="https://ciprodecradio.com.ar/">Radio</a>
       <a href="#contacto"><span class="es">Contacto</span><span class="pt">Contato</span></a>
     </nav>
@@ -189,6 +217,30 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
+<section id="obras">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Obras y proyectos</span><span class="pt">Obras e projetos</span></div>
+      <h2><span class="es">Lo que venimos haciendo.</span><span class="pt">O que estamos fazendo.</span></h2>
+      <p><span class="es">Proyectos de arquitectura y estructuras que desarrollamos para nuestros clientes.</span><span class="pt">Projetos de arquitetura e estruturas desenvolvidos para nossos clientes.</span></p>
+    </div>
+    <div class="works" id="listaObras"></div>
+  </div>
+</section>
+
+<section id="noticias" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Noticias</span><span class="pt">Notícias</span></div>
+      <h2><span class="es">Novedades de CIPRODEC y del sector.</span><span class="pt">Novidades da CIPRODEC e do setor.</span></h2>
+    </div>
+    <div class="news" id="ultimasNoticias"><p class="es" style="color:var(--muted)">Cargando noticias…</p><p class="pt" style="color:var(--muted)">Carregando notícias…</p></div>
+    <div class="cta" style="justify-content:flex-start;margin-top:26px">
+      <a class="btn" href="./blog.html"><span class="es">Ver todas las noticias</span><span class="pt">Ver todas as notícias</span></a>
+    </div>
+  </div>
+</section>
+
 <section id="equipo">
   <div class="wrap">
     <div class="head">
@@ -209,6 +261,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="grid">
       <a class="card" href="./inmobiliaria.html" style="text-decoration:none"><h3><span class="es">Inmobiliaria</span><span class="pt">Imobiliária</span></h3><p><span class="es">Propiedades en venta y alquiler.</span><span class="pt">Imóveis à venda e para alugar.</span></p></a>
       <a class="card" href="./blog.html" style="text-decoration:none"><h3><span class="es">Noticias</span><span class="pt">Notícias</span></h3><p><span class="es">Novedades de obras, normativa y del sector.</span><span class="pt">Novidades de obras, normas e do setor.</span></p></a>
+      <a class="card" href="./precios.html" style="text-decoration:none"><h3><span class="es">Precios de referencia</span><span class="pt">Preços de referência</span></h3><p><span class="es">Revista mensual de mano de obra y materiales en PY, AR y BR, con fuentes.</span><span class="pt">Revista mensal de mão de obra e materiais no PY, AR e BR, com fontes.</span></p></a>
       <a class="card" href="https://ciprodecradio.com.ar/" style="text-decoration:none"><h3>CIPRODEC Radio</h3><p><span class="es">Escuchá nuestra radio en vivo.</span><span class="pt">Ouça nossa rádio ao vivo.</span></p></a>
     </div>
   </div>
@@ -250,6 +303,63 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   var saved=null;try{saved=localStorage.getItem('ciprodec-lang')}catch(e){}
   if(saved==='pt'||saved==='es'){set(saved)}
   else if((navigator.language||'').toLowerCase().indexOf('pt')===0){set('pt')}
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById('ultimasNoticias'); if(!box) return;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function okUrl(u){u=String(u||'');return /^(https?:\/\/|\.\/|\/|img\/)/i.test(u)?u:'';}
+  function fecha(f){if(!/^\d{4}-\d{2}-\d{2}$/.test(f||''))return '';var p=f.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
+  fetch('./data/noticias.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
+    var items=(d.noticias||[]).filter(function(n){return n.visible!==false}).slice(0,3);
+    if(!items.length){document.getElementById('noticias').style.display='none';return;}
+    box.innerHTML=items.map(function(n){
+      var txt=String(n.contenido||'').replace(/\*\*/g,'').replace(/\s+/g,' ').trim();
+      if(txt.length>160) txt=txt.slice(0,160).replace(/\s\S*$/,'')+'…';
+      var meta=[n.categoria,fecha(n.fecha)].filter(Boolean).join(' · ');
+      var img=okUrl(n.imagen);
+      return '<a class="ncard" href="./blog.html#'+encodeURIComponent(n.id)+'">'+(img?'<img src="'+esc(img)+'" alt="'+esc(n.alt||n.titulo)+'" loading="lazy">':'')+
+        '<div class="b">'+(meta?'<div class="meta">'+esc(meta)+'</div>':'')+'<h3>'+esc(n.titulo)+'</h3><p>'+esc(txt)+'</p>'+
+        (n.fuente?'<div style="font-size:.8rem;color:var(--muted)">Fuente: '+esc(n.fuente)+' · <b>con análisis CIPRODEC</b></div>':'')+
+        '<div class="more"><span class="es">Leer más →</span><span class="pt">Ler mais →</span></div></div></a>';
+    }).join('');
+  }).catch(function(){document.getElementById('noticias').style.display='none';});
+})();
+</script>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Fotos del proyecto">
+  <button type="button" class="x" id="lbX" aria-label="Cerrar">✕</button>
+  <button type="button" class="prev" id="lbP" aria-label="Foto anterior">‹</button>
+  <figure style="margin:0;max-width:1200px"><img id="lbImg" alt=""><figcaption class="cap" id="lbCap"></figcaption></figure>
+  <button type="button" class="next" id="lbN" aria-label="Foto siguiente">›</button>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('listaObras'); if(!box) return;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function ok(u){u=String(u||'');return /^(https?:\/\/|\.\/|\/|img\/|obras\/)/i.test(u)?u:'';}
+  var items=[],cur=null,idx=0,lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),last=null;
+  function show(){var f=cur.fotos;img.src=f[idx];img.alt=cur.titulo+' – foto '+(idx+1);cap.textContent=cur.titulo+' · '+(idx+1)+' / '+f.length;}
+  function open(i){cur=items[i];if(!cur.fotos.length)return;idx=0;last=document.activeElement;show();lb.classList.add('open');document.getElementById('lbX').focus();}
+  function close(){lb.classList.remove('open');if(last)last.focus();}
+  function move(d){idx=(idx+d+cur.fotos.length)%cur.fotos.length;show();}
+  document.getElementById('lbX').onclick=close;document.getElementById('lbP').onclick=function(){move(-1)};document.getElementById('lbN').onclick=function(){move(1)};
+  lb.addEventListener('click',function(e){if(e.target===lb)close();});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1);});
+  fetch('./data/obras.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
+    items=(d.obras||[]).filter(function(o){return o.visible!==false}).map(function(o){o.fotos=(o.fotos||[]).map(ok).filter(Boolean);return o;});
+    if(!items.length){document.getElementById('obras').style.display='none';return;}
+    box.innerHTML=items.map(function(o,i){
+      var link=ok(o.enlace);
+      return '<article class="work">'+(o.fotos[0]?'<button type="button" class="cover" data-o="'+i+'" aria-label="Ver fotos de '+esc(o.titulo)+'"><img src="'+esc(o.fotos[0])+'" alt="" loading="lazy">'+(o.fotos.length>1?'<span class="cnt">'+o.fotos.length+' fotos</span>':'')+'</button>':'')+
+        '<div class="b"><div class="area">'+esc(o.area)+'</div><h3>'+esc(o.titulo)+'</h3><div class="loc">'+esc([o.ubicacion,o.estado].filter(Boolean).join(' · '))+'</div>'+
+        '<p>'+esc(o.descripcion)+'</p>'+((o.datos||[]).length?'<ul>'+o.datos.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
+        (o.nota?'<div class="nota">'+esc(o.nota)+'</div>':'')+
+        '<div class="acts">'+(o.fotos.length?'<button type="button" class="btn" data-o="'+i+'"><span class="es">Ver fotos</span><span class="pt">Ver fotos</span></button>':'')+
+        (link?'<a class="btn red" href="'+esc(link)+'">'+esc(o.enlaceTexto||'Ver más')+'</a>':'')+'</div></div></article>';
+    }).join('');
+    box.addEventListener('click',function(e){var b=e.target.closest('[data-o]');if(b)open(+b.getAttribute('data-o'));});
+  }).catch(function(){document.getElementById('obras').style.display='none';});
 })();
 </script>
 </body>

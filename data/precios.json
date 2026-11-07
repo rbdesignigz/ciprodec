@@ -1,0 +1,175 @@
+{
+  "aviso": "Valores de referencia publicados por las fuentes citadas. No son precios oficiales de CIPRODEC ni reemplazan un presupuesto: cada obra, zona y proveedor cambia el número final. Verificá siempre la fuente original antes de cotizar.",
+  "ediciones": [
+    {
+      "id": "2026-11",
+      "titulo": "Noviembre 2026",
+      "titulo_pt": "Novembro 2026",
+      "fecha": "2026-11-07",
+      "visible": true,
+      "indicadores": [
+        {
+          "pais": "AR",
+          "nombre": "Costo de la construcción (ICC) – Gran Buenos Aires",
+          "valor": "+1,5 % mensual",
+          "detalle": "Septiembre 2026. Materiales +1,3 %, mano de obra +1,6 %. Variación interanual del nivel general: 31,3 %.",
+          "fuente": "INDEC – Índice del costo de la construcción",
+          "fuenteUrl": "https://www.indec.gob.ar/uploads/informesdeprensa/icc_10_26C96DA2A124.pdf"
+        },
+        {
+          "pais": "AR",
+          "nombre": "Salarios de la construcción (UOCRA)",
+          "valor": "+1,9 % · +1,8 % · +1,7 %",
+          "detalle": "Aumentos acumulativos sobre los básicos para septiembre, octubre y noviembre 2026 (CCT 76/75). El acuerdo vence el 30/11/2026: en diciembre habría nueva escala.",
+          "fuente": "Blog del Contador – Paritaria UOCRA",
+          "fuenteUrl": "https://siap.blogdelcontador.com.ar/?p=111870",
+          "fuenteFecha": "2026-09-22"
+        },
+        {
+          "pais": "BR",
+          "nombre": "CUB-PR – Custo Unitário Básico (Paraná)",
+          "valor": "R$ 2.745,40 /m²",
+          "detalle": "Referência outubro 2026, variação informada 0,24 %. Indicador do Paraná, o estado de Foz do Iguaçu.",
+          "fuente": "Sinduscon-PR",
+          "fuenteUrl": "https://sindusconpr.com.br/cub-pr"
+        },
+        {
+          "pais": "PY",
+          "nombre": "Salario mínimo legal",
+          "valor": "Gs. 3.044.000 /mes",
+          "detalle": "Jornal mínimo Gs. 117.077. Vigente desde el 1 de julio de 2026 (Decreto N° 6225, reajuste del 5 %).",
+          "fuente": "ABC Color – montos oficializados por el MTESS",
+          "fuenteUrl": "https://www.abc.com.py/economia/2026/06/26/reajuste-del-salario-minimo-estos-son-los-pagos-por-hora-dia-y-jornada-nocturna/",
+          "fuenteFecha": "2026-06-26"
+        },
+        {
+          "pais": "PY",
+          "nombre": "Mínimo para albañiles y carpinteros",
+          "valor": "Gs. 136.927 /día",
+          "detalle": "Gs. 3.560.108 por mes desde el 1 de julio de 2026. Es un piso legal, no el precio de mercado de un oficial.",
+          "fuente": "WageIndicator – Salario mínimo Paraguay",
+          "fuenteUrl": "https://wageindicator.org/es-py/ai/trabajo-en-paraguay/salario-minimo/",
+          "fuenteFecha": "2026-08-01"
+        }
+      ],
+      "analisis": [
+        "**Argentina sigue subiendo, pero más despacio.** El costo de construir en septiembre aumentó 1,5 %, un punto menos que en agosto, y la mano de obra volvió a subir más que los materiales. Para un instalador de Misiones esto significa dos cosas: un presupuesto en pesos no debería tener validez de más de 15 días, y conviene separar materiales y mano de obra en renglones distintos para poder actualizar cada uno por su lado.",
+        "**Diciembre trae nueva escala en Argentina.** El acuerdo de la UOCRA vence el 30 de noviembre. Si estás cotizando obras que se ejecutan en diciembre o enero, dejá escrito que la mano de obra se ajusta con la próxima escala.",
+        "**Brasil, estable.** El CUB del Paraná se movió apenas 0,24 % en octubre. Con costos tan quietos, en Foz do Iguaçu se puede cotizar a precio cerrado por más tiempo. Para el instalador, la referencia útil es el SINAPI: trae el costo por hora de electricista y plomero (encanador) para cada estado.",
+        "**Paraguay: el mínimo es un piso, no un precio.** El salario mínimo y el mínimo para albañiles fijan cuánto se puede pagar como mínimo a un trabajador en relación de dependencia. Un instalador independiente cobra por punto, por boca o por obra, y ese precio no lo publica ningún organismo. Por eso estamos armando la **Encuesta de precios CIPRODEC** para la Triple Frontera: si sos instalador, mandanos tus valores y en la próxima edición publicamos el rango de la zona, sin nombres."
+      ]
+    }
+  ],
+  "fuentes": [
+    {
+      "pais": "PY",
+      "nombre": "Revista Mandu'a",
+      "cubre": [
+        "Mano de obra",
+        "Materiales",
+        "Costo por m²"
+      ],
+      "frecuencia": "Mensual (desde 1983)",
+      "descripcion": "Revista técnica de la construcción en Paraguay. Cada número trae una guía de precios de mano de obra y de costeo de obra de Paraguay y el Nordeste argentino, el costo de 5 modelos de construcción y un listado de precios de productos por rubro. Es la referencia más completa para instaladores. Es una publicación paga.",
+      "url": "https://issuu.com/a.arza",
+      "urlTexto": "Ediciones publicadas en Issuu"
+    },
+    {
+      "pais": "PY",
+      "nombre": "MTESS – Salario mínimo",
+      "cubre": [
+        "Mano de obra"
+      ],
+      "frecuencia": "Anual (julio)",
+      "descripcion": "Ministerio de Trabajo, Empleo y Seguridad Social. Fija el salario mínimo y los mínimos por oficio. Sirve como piso para calcular el costo de un ayudante u oficial en relación de dependencia.",
+      "url": "https://www.mtess.gov.py",
+      "urlTexto": "mtess.gov.py"
+    },
+    {
+      "pais": "PY",
+      "nombre": "DNCP – Contrataciones Públicas",
+      "cubre": [
+        "Mano de obra",
+        "Materiales"
+      ],
+      "frecuencia": "Permanente",
+      "descripcion": "Portal de licitaciones del Estado. Las obras adjudicadas publican planillas de precios por ítem: sirven para ver a cuánto se cotizó una boca eléctrica, un metro de cañería o un m² de revoque en obras reales de Paraguay.",
+      "url": "https://www.contrataciones.gov.py",
+      "urlTexto": "contrataciones.gov.py"
+    },
+    {
+      "pais": "AR",
+      "nombre": "INDEC – Costo de la construcción (ICC)",
+      "cubre": [
+        "Mano de obra",
+        "Materiales",
+        "Índice"
+      ],
+      "frecuencia": "Mensual",
+      "descripcion": "Índice oficial del costo de construir vivienda en el Gran Buenos Aires, separado en materiales, mano de obra y gastos generales, con variaciones por ítem de obra (instalación eléctrica, instalación sanitaria, etc.). Sirve para actualizar presupuestos.",
+      "url": "https://www.indec.gob.ar/Nivel4/Tema/3/5/33",
+      "urlTexto": "indec.gob.ar"
+    },
+    {
+      "pais": "AR",
+      "nombre": "UOCRA – Escalas salariales",
+      "cubre": [
+        "Mano de obra"
+      ],
+      "frecuencia": "Por acuerdo (trimestral)",
+      "descripcion": "Unión Obrera de la Construcción. Publica los jornales básicos por categoría (ayudante, medio oficial, oficial, oficial especializado) y por zona. Es la base del costo de mano de obra en relación de dependencia.",
+      "url": "https://www.uocra.org",
+      "urlTexto": "uocra.org"
+    },
+    {
+      "pais": "AR",
+      "nombre": "Cámara Argentina de la Construcción",
+      "cubre": [
+        "Índice",
+        "Materiales",
+        "Mano de obra"
+      ],
+      "frecuencia": "Mensual",
+      "descripcion": "Publica el Indicador CAMARCO del costo de un edificio tipo, con series de materiales y mano de obra. Útil para comparar con el INDEC.",
+      "url": "https://www.camarco.org.ar",
+      "urlTexto": "camarco.org.ar"
+    },
+    {
+      "pais": "BR",
+      "nombre": "SINAPI – Caixa / IBGE",
+      "cubre": [
+        "Mano de obra",
+        "Materiales",
+        "Composições"
+      ],
+      "frecuencia": "Mensal, por estado",
+      "descripcion": "Sistema oficial de preços de insumos e custos de composições da construção. Traz o custo-hora de eletricista (composição 88264) e de encanador ou bombeiro hidráulico (88267), além de preços de materiais elétricos e hidráulicos por estado. Escolha PR para Foz do Iguaçu.",
+      "url": "https://www.caixa.gov.br/sinapi",
+      "urlTexto": "caixa.gov.br/sinapi"
+    },
+    {
+      "pais": "BR",
+      "nombre": "CUB – Sinduscon-PR",
+      "cubre": [
+        "Custo por m²",
+        "Índice"
+      ],
+      "frecuencia": "Mensal (até o dia 5)",
+      "descripcion": "Custo Unitário Básico do Paraná, calculado pela NBR 12.721. É a referência do custo do m² construído e serve para reajustar contratos.",
+      "url": "https://sindusconpr.com.br/cub-pr",
+      "urlTexto": "sindusconpr.com.br"
+    },
+    {
+      "pais": "BR",
+      "nombre": "CBIC – Hub de dados",
+      "cubre": [
+        "Índice",
+        "Custo por m²"
+      ],
+      "frecuencia": "Mensal",
+      "descripcion": "Câmara Brasileira da Indústria da Construção. Reúne o CUB médio do Brasil e de cada estado para comparar regiões.",
+      "url": "https://cbic.org.br/hubdedados/custo-construcao",
+      "urlTexto": "cbic.org.br"
+    }
+  ]
+}

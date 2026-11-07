@@ -110,6 +110,7 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
     <div class="tabs" role="tablist">
       <button type="button" role="tab" id="tab-noticias" aria-selected="true" aria-controls="sec-noticias">Noticias</button>
       <button type="button" role="tab" id="tab-props" aria-selected="false" aria-controls="sec-props">Inmobiliaria</button>
+      <button type="button" role="tab" id="tab-obras" aria-selected="false" aria-controls="sec-obras">Obras</button>
     </div>
 
     <div id="sec-noticias" role="tabpanel" aria-labelledby="tab-noticias">
@@ -134,6 +135,13 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
         <button class="btn" type="button" id="guardarWa">Guardar WhatsApp</button>
       </div>
       <div class="list" id="listaProps"></div>
+    </div>
+    <div id="sec-obras" role="tabpanel" aria-labelledby="tab-obras" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <h2>Obras y proyectos</h2>
+        <button class="btn red" type="button" id="nuevaObra">+ Nueva obra</button>
+      </div>
+      <div class="list" id="listaObras"></div>
     </div>
     <div class="status" id="appStatus" role="status"></div>
   </section>
@@ -160,6 +168,16 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
       <textarea id="nContenido"></textarea>
       <div class="hint">Dejá una línea en blanco entre párrafos. Para poner algo en <b>negrita</b>, escribilo entre dos asteriscos: <code>**así**</code>.</div>
     </div>
+    <div class="field">
+      <label for="nAnalisis">Análisis CIPRODEC (opinión propia sobre la noticia)</label>
+      <textarea id="nAnalisis" style="min-height:140px"></textarea>
+      <div class="hint">Qué significa esta noticia para quien va a construir o invertir. Se muestra destacado debajo del texto.</div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="nFuente">Fuente (medio)</label><input type="text" id="nFuente" placeholder="Ej.: Última Hora"></div>
+      <div class="field"><label for="nFuenteFecha">Fecha de la nota original</label><input type="date" id="nFuenteFecha"></div>
+    </div>
+    <div class="field"><label for="nFuenteUrl">Link a la nota original</label><input type="url" id="nFuenteUrl" placeholder="https://…"></div>
     <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="nVisible" checked> Publicada (visible en la web)</label></div>
     <div class="status" id="nStatus" role="status"></div>
     <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="nGuardar">Guardar y publicar</button></div>
@@ -196,11 +214,42 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
   </div>
 </div>
 
+<!-- Editor de obra -->
+<div class="overlay" id="edObra" role="dialog" aria-modal="true" aria-labelledby="edObraTit">
+  <div class="panel">
+    <div class="head"><h2 id="edObraTit">Obra</h2><button class="btn small ghost" type="button" data-cerrar>Cerrar</button></div>
+    <div class="field"><label for="oTitulo">Título</label><input type="text" id="oTitulo" placeholder="Ej.: Estructura de vivienda con subsuelo"></div>
+    <div class="grid2">
+      <div class="field"><label for="oArea">Área</label><input type="text" id="oArea" list="areas" placeholder="Arquitectura · Diseño de interiores"></div>
+      <div class="field"><label for="oUbicacion">Ubicación</label><input type="text" id="oUbicacion" placeholder="Hernandarias, Alto Paraná"></div>
+      <div class="field"><label for="oEstado">Estado / año</label><input type="text" id="oEstado" placeholder="Proyecto 2026 · Obra terminada 2025"></div>
+    </div>
+    <datalist id="areas"><option value="Arquitectura · Diseño de interiores"><option value="Ingeniería · Cálculo estructural"><option value="Modelado BIM"><option value="Dirección de obra"><option value="Estudio de suelos"><option value="Agrimensura"><option value="Paisajismo"></datalist>
+    <div class="field"><label for="oDescripcion">Descripción</label><textarea id="oDescripcion" style="min-height:120px"></textarea>
+      <div class="hint">No pongas nombre del cliente ni dirección exacta.</div></div>
+    <div class="field"><label for="oDatos">Datos destacados (uno por línea)</label><textarea id="oDatos" style="min-height:100px" placeholder="199,85 m² cubiertos&#10;3 dormitorios"></textarea></div>
+    <div class="field">
+      <label for="oFotos">Fotos</label>
+      <input type="file" id="oFotos" accept="image/*" multiple>
+      <div class="hint">La primera foto es la portada. Usá las flechas para cambiar el orden.</div>
+      <div class="photos" id="oFotosPrev"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="oEnlace">Link extra (opcional)</label><input type="text" id="oEnlace" placeholder="https://… o ./obras/…"></div>
+      <div class="field"><label for="oEnlaceTexto">Texto del botón</label><input type="text" id="oEnlaceTexto" placeholder="Ver modelo 3D"></div>
+    </div>
+    <div class="field"><label for="oNota">Nota al pie (opcional)</label><input type="text" id="oNota" placeholder="Imágenes: renders del proyecto."></div>
+    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="oVisible" checked> Publicada (visible en la web)</label></div>
+    <div class="status" id="oStatus" role="status"></div>
+    <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="oGuardar">Guardar y publicar</button></div>
+  </div>
+</div>
+
 <script>
 (function(){
   var REPO='rbdesignigz/ciprodec', BRANCH='main', API='https://api.github.com/repos/'+REPO+'/contents/';
-  var F_NOT='data/noticias.json', F_PROP='data/propiedades.json', KEY='ciprodec-admin-token';
-  var token='', datos={noticias:null,props:null}, sha={}, editId=null, fotosEd=[], imgNoticia=null;
+  var F_NOT='data/noticias.json', F_PROP='data/propiedades.json', F_OBRA='data/obras.json', KEY='ciprodec-admin-token';
+  var token='', datos={noticias:null,props:null,obras:null}, sha={}, editId=null, fotosEd=[], imgNoticia=null;
   var $=function(id){return document.getElementById(id)};
 
   function store(get,val){try{ if(get) return localStorage.getItem(KEY); if(val) localStorage.setItem(KEY,val); else localStorage.removeItem(KEY);}catch(e){return null}}
@@ -252,9 +301,9 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
     gh('https://api.github.com/repos/'+REPO).then(function(r){
       if(!r.permissions||!r.permissions.push) throw Object.assign(new Error('sin permiso'),{status:403});
       if(rec) store(false,token);
-      return Promise.all([leer(F_NOT),leer(F_PROP)]);
+      return Promise.all([leer(F_NOT),leer(F_PROP),leer(F_OBRA).catch(function(e){if(e.status===404){sha[F_OBRA]=undefined;return {obras:[]};}throw e;})]);
     }).then(function(v){
-      datos.noticias=v[0];datos.props=v[1];
+      datos.noticias=v[0];datos.props=v[1];datos.obras=v[2];
       $('login').classList.add('hidden');$('app').classList.remove('hidden');$('salir').classList.remove('hidden');
       clearStatus($('loginStatus'));pintar();
     }).catch(function(e){token='';status($('loginStatus'),errMsg(e),'err');});
@@ -266,11 +315,10 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
 
   // ---------- Pestañas ----------
   function tab(cual){
-    var n=cual==='n';
-    $('tab-noticias').setAttribute('aria-selected',String(n));$('tab-props').setAttribute('aria-selected',String(!n));
-    $('sec-noticias').classList.toggle('hidden',!n);$('sec-props').classList.toggle('hidden',n);
+    [['n','tab-noticias','sec-noticias'],['p','tab-props','sec-props'],['o','tab-obras','sec-obras']].forEach(function(x){
+      $(x[1]).setAttribute('aria-selected',String(x[0]===cual));$(x[2]).classList.toggle('hidden',x[0]!==cual);});
   }
-  $('tab-noticias').onclick=function(){tab('n')};$('tab-props').onclick=function(){tab('p')};
+  $('tab-noticias').onclick=function(){tab('n')};$('tab-props').onclick=function(){tab('p')};$('tab-obras').onclick=function(){tab('o')};
 
   // ---------- Listados ----------
   function filaHtml(tipo,i,item,img,sub){
@@ -293,9 +341,11 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
     var P=datos.props.propiedades=datos.props.propiedades||[];
     $('listaProps').innerHTML=P.length?P.map(function(p,i){return filaHtml('p',i,p,(p.fotos||[])[0],[p.ubicacion,p.precio].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay propiedades todavía.</p>';
     $('waProps').value=datos.props.whatsapp||'';
+    var O=datos.obras.obras=datos.obras.obras||[];
+    $('listaObras').innerHTML=O.length?O.map(function(o,i){return filaHtml('o',i,o,(o.fotos||[])[0],[o.area,o.ubicacion].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay obras todavía.</p>';
   }
   function publicar(tipo,msg,elStatus){
-    var f=tipo==='n'?F_NOT:F_PROP, obj=tipo==='n'?datos.noticias:datos.props;
+    var f=tipo==='n'?F_NOT:tipo==='o'?F_OBRA:F_PROP, obj=tipo==='n'?datos.noticias:tipo==='o'?datos.obras:datos.props;
     status(elStatus,'Publicando…','info');
     return escribir(f,obj,msg).then(function(){status(elStatus,'Listo. Se ve en la web en 1 a 2 minutos.','ok');pintar();})
       .catch(function(e){status(elStatus,errMsg(e),'err');throw e;});
@@ -303,8 +353,8 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-a]'); if(!b) return;
     var t=b.getAttribute('data-t'),i=+b.getAttribute('data-i'),a=b.getAttribute('data-a');
-    var arr=t==='n'?datos.noticias.noticias:datos.props.propiedades, nombre=t==='n'?'noticia':'propiedad';
-    if(a==='edit'){t==='n'?abrirNoticia(i):abrirProp(i);return;}
+    var arr=t==='n'?datos.noticias.noticias:t==='o'?datos.obras.obras:datos.props.propiedades, nombre=t==='n'?'noticia':t==='o'?'obra':'propiedad';
+    if(a==='edit'){t==='n'?abrirNoticia(i):t==='o'?abrirObra(i):abrirProp(i);return;}
     if(a==='del'){$('conf-'+t+'-'+i).classList.add('show');return;}
     if(a==='delno'){$('conf-'+t+'-'+i).classList.remove('show');return;}
     if(a==='delok'){var x=arr.splice(i,1)[0];publicar(t,'Eliminar '+nombre+': '+x.titulo,$('appStatus'));return;}
@@ -326,6 +376,7 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
     $('edNoticiaTit').textContent=i==null?'Nueva noticia':'Editar noticia';
     $('nTitulo').value=n.titulo||'';$('nCategoria').value=n.categoria||'';$('nFecha').value=n.fecha||'';
     $('nAlt').value=n.alt||'';$('nContenido').value=n.contenido||'';$('nVisible').checked=n.visible!==false;
+    $('nAnalisis').value=n.analisis||'';$('nFuente').value=n.fuente||'';$('nFuenteUrl').value=n.fuenteUrl||'';$('nFuenteFecha').value=n.fuenteFecha||'';
     imgNoticia={ruta:n.imagen||'',nueva:null};$('nImagen').value='';prevNoticia();clearStatus($('nStatus'));abrir('edNoticia');
   }
   function prevNoticia(){
@@ -346,7 +397,8 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
     }
     paso.then(function(){
       Object.assign(n,{titulo:titulo,categoria:$('nCategoria').value.trim(),fecha:$('nFecha').value,imagen:imgNoticia.ruta,
-        alt:$('nAlt').value.trim()||titulo,contenido:$('nContenido').value.trim(),visible:$('nVisible').checked});
+        alt:$('nAlt').value.trim()||titulo,contenido:$('nContenido').value.trim(),visible:$('nVisible').checked,
+        analisis:$('nAnalisis').value.trim(),fuente:$('nFuente').value.trim(),fuenteUrl:$('nFuenteUrl').value.trim(),fuenteFecha:$('nFuenteFecha').value});
       if(editId==null) arr.unshift(n);
       return publicar('n',(editId==null?'Nueva noticia: ':'Editar noticia: ')+titulo,$('nStatus'));
     }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('nStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
@@ -400,6 +452,56 @@ code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4p
       if(editId==null) arr.unshift(p);
       return publicar('p',(editId==null?'Nueva propiedad: ':'Editar propiedad: ')+titulo,$('pStatus'));
     }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('pStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
+  };
+  // ---------- Obra ----------
+  var fotosObra=[];
+  function abrirObra(i){
+    editId=i; var o=i==null?{visible:true}:datos.obras.obras[i];
+    $('edObraTit').textContent=i==null?'Nueva obra':'Editar obra';
+    $('oTitulo').value=o.titulo||'';$('oArea').value=o.area||'';$('oUbicacion').value=o.ubicacion||'';$('oEstado').value=o.estado||'';
+    $('oDescripcion').value=o.descripcion||'';$('oDatos').value=(o.datos||[]).join('\n');$('oEnlace').value=o.enlace||'';
+    $('oEnlaceTexto').value=o.enlaceTexto||'';$('oNota').value=o.nota||'';$('oVisible').checked=o.visible!==false;
+    fotosObra=(o.fotos||[]).map(function(r){return{ruta:r,nueva:null}});$('oFotos').value='';prevObra();clearStatus($('oStatus'));abrir('edObra');
+  }
+  function prevObra(){
+    $('oFotosPrev').innerHTML=fotosObra.map(function(f,i){
+      return '<div class="ph-item">'+(i===0?'<span class="cover">Portada</span>':'')+'<img src="'+esc(imgUrl(f.nueva||f.ruta))+'" alt="Foto '+(i+1)+'">'+
+        '<div class="row"><button type="button" data-g="izq" data-i="'+i+'" aria-label="Mover antes">←</button>'+
+        '<button type="button" data-g="quitar" data-i="'+i+'" aria-label="Quitar foto">✕</button>'+
+        '<button type="button" data-g="der" data-i="'+i+'" aria-label="Mover después">→</button></div></div>';
+    }).join('');
+  }
+  $('oFotosPrev').addEventListener('click',function(e){
+    var b=e.target.closest('[data-g]');if(!b)return;var i=+b.getAttribute('data-i'),a=b.getAttribute('data-g');
+    if(a==='quitar')fotosObra.splice(i,1);
+    if(a==='izq'&&i>0)fotosObra.splice(i-1,0,fotosObra.splice(i,1)[0]);
+    if(a==='der'&&i<fotosObra.length-1)fotosObra.splice(i+1,0,fotosObra.splice(i,1)[0]);
+    prevObra();
+  });
+  $('oFotos').onchange=function(){
+    var files=[].slice.call(this.files);status($('oStatus'),'Preparando fotos…','info');
+    Promise.all(files.map(achicar)).then(function(ds){ds.forEach(function(d){fotosObra.push({ruta:'',nueva:d})});prevObra();clearStatus($('oStatus'));})
+      .catch(function(e){status($('oStatus'),e.message,'err')});
+    this.value='';
+  };
+  $('nuevaObra').onclick=function(){abrirObra(null)};
+  $('oGuardar').onclick=function(){
+    var titulo=$('oTitulo').value.trim(); if(!titulo){status($('oStatus'),'Falta el título.','err');return;}
+    var arr=datos.obras.obras, o=editId==null?{id:slug(titulo)+'-'+Date.now().toString(36)}:arr[editId];
+    var carpeta='img/obras/'+o.id+'/', btn=this;btn.disabled=true;
+    var nuevas=fotosObra.filter(function(f){return f.nueva}), k=0;
+    nuevas.reduce(function(pr,f){return pr.then(function(){
+      k++;status($('oStatus'),'Subiendo foto '+k+' de '+nuevas.length+'…','info');
+      var ruta=carpeta+Date.now().toString(36)+'-'+k+'.jpg';
+      return subirImagen(ruta,f.nueva,'Foto de obra: '+titulo).then(function(){f.ruta='./'+ruta;f.nueva=null;});
+    })},Promise.resolve()).then(function(){
+      Object.assign(o,{titulo:titulo,area:$('oArea').value.trim(),ubicacion:$('oUbicacion').value.trim(),estado:$('oEstado').value.trim(),
+        descripcion:$('oDescripcion').value.trim(),datos:$('oDatos').value.split('\n').map(function(x){return x.trim()}).filter(Boolean),
+        fotos:fotosObra.map(function(f){return f.ruta}),enlace:$('oEnlace').value.trim(),enlaceTexto:$('oEnlaceTexto').value.trim(),
+        nota:$('oNota').value.trim(),visible:$('oVisible').checked});
+      if(editId==null) arr.unshift(o);
+      return publicar('o',(editId==null?'Nueva obra: ':'Editar obra: ')+titulo,$('oStatus'));
+    }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('oStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
   };
 })();
 </script>

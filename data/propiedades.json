@@ -1,0 +1,119 @@
+{
+  "whatsapp": "5493757328322",
+  "propiedades": [
+    {
+      "id": "prop-001",
+      "titulo": "CASA 3 DORMITORIOS - QUINCHO CON BAÑO",
+      "ubicacion": "Vivienda en venta - Puerto Iguazú - B° Nuevo Iguazú",
+      "mapa": "",
+      "terreno": "600m²",
+      "construido": "100m²",
+      "habitaciones": "3",
+      "banos": "2",
+      "condicion": "Venta",
+      "precio": "USD 116.600",
+      "fotos": [
+        "./img/inmobiliaria/ven0001/Imagen2.jpg",
+        "./img/inmobiliaria/ven0001/Imagen1.jpg",
+        "./img/inmobiliaria/ven0001/Imagen3.jpg",
+        "./img/inmobiliaria/ven0001/Imagen4.jpg",
+        "./img/inmobiliaria/ven0001/Imagen5.jpg",
+        "./img/inmobiliaria/ven0001/Imagen6.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prop-002",
+      "titulo": "CASA CON LOCAL",
+      "ubicacion": "Av. Paraná N° 103 - Pto. Iguazú",
+      "mapa": "https://maps.app.goo.gl/Kia1upiFJk2jpmtE6",
+      "terreno": "224m²",
+      "construido": "78m²",
+      "habitaciones": "1",
+      "banos": "2",
+      "condicion": "Venta",
+      "precio": "USD 65.000",
+      "fotos": [
+        "./img/inmobiliaria/ven0002/Imagen7.jpg",
+        "./img/inmobiliaria/ven0002/Imagen8.jpg",
+        "./img/inmobiliaria/ven0002/Imagen9.jpg",
+        "./img/inmobiliaria/ven0002/Imagen10.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prop-003",
+      "titulo": "TERRENO",
+      "ubicacion": "Eumenio Ramirez - Pto. Iguazú",
+      "mapa": "https://maps.app.goo.gl/schnUrHYmaBK68z6A",
+      "terreno": "300m²",
+      "construido": "0m²",
+      "habitaciones": "0",
+      "banos": "0",
+      "condicion": "Venta",
+      "precio": "USD 25.000",
+      "fotos": [
+        "./img/inmobiliaria/ven0003/Imagen12.jpg",
+        "./img/inmobiliaria/ven0003/Imagen11.jpg",
+        "./img/inmobiliaria/ven0003/Imagen13.jpg",
+        "./img/inmobiliaria/ven0003/Imagen14.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prop-004",
+      "titulo": "TERRENO",
+      "ubicacion": "Calle San Juan - Pto. Iguazú",
+      "mapa": "https://maps.app.goo.gl/VSTE1gFcTAXd6k8g9",
+      "terreno": "670m²",
+      "construido": "-",
+      "habitaciones": "-",
+      "banos": "-",
+      "condicion": "Venta",
+      "precio": "USD 53.000",
+      "fotos": [
+        "./img/inmobiliaria/ven0004/02.jpeg",
+        "./img/inmobiliaria/ven0004/01.jpeg",
+        "./img/inmobiliaria/ven0004/03.jpeg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prop-005",
+      "titulo": "TERRENO",
+      "ubicacion": "Calle San Juan - Pto. Iguazú",
+      "mapa": "https://maps.app.goo.gl/Ua5qcfNGwiMAXdDZ8",
+      "terreno": "600m²",
+      "construido": "-",
+      "habitaciones": "-",
+      "banos": "-",
+      "condicion": "Venta",
+      "precio": "USD 47.000",
+      "fotos": [
+        "./img/inmobiliaria/ven0005/01.jpeg",
+        "./img/inmobiliaria/ven0005/02.jpeg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prop-006",
+      "titulo": "TERRENO",
+      "ubicacion": "Calle San Juan - Pto. Iguazú",
+      "mapa": "https://maps.app.goo.gl/BHFbzhovhp6Rrpyh7",
+      "terreno": "650m²",
+      "construido": "-",
+      "habitaciones": "1",
+      "banos": "1",
+      "condicion": "Venta",
+      "precio": "USD 74.000",
+      "fotos": [
+        "./img/inmobiliaria/ven0006/01.jpeg",
+        "./img/inmobiliaria/ven0006/02.jpeg",
+        "./img/inmobiliaria/ven0006/03.jpeg",
+        "./img/inmobiliaria/ven0006/04.jpeg",
+        "./img/inmobiliaria/ven0006/05.jpeg"
+      ],
+      "visible": true
+    }
+  ]
+}

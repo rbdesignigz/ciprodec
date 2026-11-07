@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Administración · CIPRODEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Montserrat:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--red:#E8262B;--ink:#1A1A1A;--muted:#5A5A5A;--line:#D9D9D9;--soft:#F5F5F3;--ok:#1E7B3A;--warn:#9A5B00;
+  --mono:"Courier Prime",ui-monospace,Menlo,monospace;--sans:Montserrat,"Segoe UI",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soft);color:var(--ink);font:400 15px/1.5 var(--sans)}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header .in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header b{font-weight:800;letter-spacing:.06em}
+header .tag{font:700 .85rem var(--mono);color:var(--red)}
+header .sp{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+h1{font-size:1.6rem;margin:0 0 6px;font-weight:800}
+h2{font-size:1.2rem;margin:0;font-weight:800}
+.muted{color:var(--muted)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:8px 16px;border-radius:8px;border:2px solid var(--ink);background:#fff;color:var(--ink);font:700 .9rem var(--sans);cursor:pointer;text-decoration:none}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.small{min-height:34px;padding:4px 10px;font-size:.82rem}
+.btn.ghost{border-color:var(--line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.tabs{display:flex;gap:8px;margin:18px 0}
+.tabs button{font:700 .95rem var(--sans);padding:10px 18px;border-radius:8px;border:2px solid var(--ink);background:#fff;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.list{display:grid;gap:10px;margin-top:14px}
+.item{display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+.item img,.item .ph{width:84px;height:64px;object-fit:cover;border-radius:8px;background:#EEE;display:block}
+.item h3{margin:0;font-size:1rem}
+.item .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.badge{display:inline-block;font:700 .72rem var(--mono);padding:2px 8px;border-radius:999px;background:#EEE;color:var(--muted)}
+.badge.on{background:#E3F3E7;color:var(--ok)}
+@media (max-width:640px){.item{grid-template-columns:64px minmax(0,1fr)}.item img,.item .ph{width:64px;height:52px}.item .acts{grid-column:1/-1;justify-content:flex-start}}
+label{display:block;font-weight:600;font-size:.88rem;margin-bottom:4px}
+input[type=text],input[type=password],input[type=date],input[type=url],textarea,select{width:100%;font:400 .95rem var(--sans);padding:9px 11px;border:1.5px solid #BDBDBD;border-radius:8px;background:#fff;color:var(--ink)}
+textarea{min-height:260px;resize:vertical;line-height:1.5}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.field{margin-bottom:14px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+.photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.ph-item{position:relative;width:132px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.ph-item img{width:132px;height:96px;object-fit:cover;display:block}
+.ph-item .row{display:flex;justify-content:space-between;padding:4px}
+.ph-item .row button{border:0;background:#F0F0F0;border-radius:6px;min-width:30px;min-height:30px;cursor:pointer;font-weight:700}
+.ph-item .cover{position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font:700 .7rem var(--mono);padding:2px 6px;border-radius:6px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-start;justify-content:center;padding:24px 12px;overflow:auto;z-index:20}
+.overlay.open{display:flex}
+.panel{background:#fff;border-radius:14px;width:min(860px,100%);padding:22px}
+.panel .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px}
+.foot{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px;border-top:1px solid var(--line);padding-top:14px}
+.status{margin-top:12px;padding:10px 14px;border-radius:8px;font-weight:600;display:none}
+.status.show{display:block}
+.status.ok{background:#E3F3E7;color:var(--ok)}
+.status.err{background:#FDECEC;color:#A11A1E}
+.status.info{background:#FFF4DF;color:var(--warn)}
+.confirm{display:none;gap:8px;align-items:center;flex-wrap:wrap;background:#FDECEC;padding:8px 10px;border-radius:8px;margin-top:8px}
+.confirm.show{display:flex}
+ol.steps{padding-left:20px;margin:8px 0 0}
+ol.steps li{margin-bottom:6px}
+code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <b>CIPRODEC</b><span class="tag">Administración</span>
+  <div class="sp">
+    <a class="btn small ghost" href="./" target="_blank" rel="noopener">Ver la web</a>
+    <button class="btn small ghost hidden" id="salir" type="button">Salir</button>
+  </div>
+</div></header>
+
+<main>
+  <!-- Ingreso -->
+  <section id="login" class="card" style="max-width:640px;margin:20px auto">
+    <h1>Ingresar</h1>
+    <p class="muted">Este panel publica directamente en la web. Para entrar hace falta una <b>clave de acceso de GitHub</b> (token) de una cuenta con permiso sobre el repositorio <code>rbdesignigz/ciprodec</code>.</p>
+    <div class="field">
+      <label for="token">Clave de acceso (token de GitHub)</label>
+      <input type="password" id="token" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="recordar"> Recordar en este dispositivo</label>
+      <div class="hint">Marcalo solo en una computadora o celular propio.</div></div>
+    <button class="btn red" id="entrar" type="button">Entrar</button>
+    <div class="status" id="loginStatus" role="status"></div>
+    <details style="margin-top:18px">
+      <summary style="cursor:pointer;font-weight:700">¿Cómo saco la clave de acceso?</summary>
+      <ol class="steps">
+        <li>En GitHub, con la cuenta que tiene acceso al repositorio, entrá a <b>Settings → Developer settings → Personal access tokens → Tokens (classic)</b>.</li>
+        <li>Tocá <b>Generate new token (classic)</b>. En "Note" poné <code>admin ciprodec</code> y elegí un vencimiento (por ejemplo 90 días).</li>
+        <li>Marcá solo el permiso <code>public_repo</code> y tocá <b>Generate token</b>.</li>
+        <li>Copiá la clave (empieza con <code>ghp_</code>) y pegala acá. No la compartas por chat ni por correo.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- Panel -->
+  <section id="app" class="hidden">
+    <h1>Contenido de la web</h1>
+    <p class="muted">Los cambios se publican al guardar y se ven en la web en 1 a 2 minutos.</p>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-noticias" aria-selected="true" aria-controls="sec-noticias">Noticias</button>
+      <button type="button" role="tab" id="tab-props" aria-selected="false" aria-controls="sec-props">Inmobiliaria</button>
+    </div>
+
+    <div id="sec-noticias" role="tabpanel" aria-labelledby="tab-noticias">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <h2>Noticias</h2>
+        <button class="btn red" type="button" id="nuevaNoticia">+ Nueva noticia</button>
+      </div>
+      <div class="list" id="listaNoticias"></div>
+    </div>
+
+    <div id="sec-props" role="tabpanel" aria-labelledby="tab-props" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <h2>Propiedades</h2>
+        <button class="btn red" type="button" id="nuevaProp">+ Nueva propiedad</button>
+      </div>
+      <div class="card" style="margin-top:14px;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <label for="waProps">WhatsApp para consultas de propiedades</label>
+          <input type="text" id="waProps" placeholder="5493757328322">
+          <div class="hint">Con código de país, sin + ni espacios. Ej.: 595986573190</div>
+        </div>
+        <button class="btn" type="button" id="guardarWa">Guardar WhatsApp</button>
+      </div>
+      <div class="list" id="listaProps"></div>
+    </div>
+    <div class="status" id="appStatus" role="status"></div>
+  </section>
+</main>
+
+<!-- Editor de noticia -->
+<div class="overlay" id="edNoticia" role="dialog" aria-modal="true" aria-labelledby="edNoticiaTit">
+  <div class="panel">
+    <div class="head"><h2 id="edNoticiaTit">Noticia</h2><button class="btn small ghost" type="button" data-cerrar>Cerrar</button></div>
+    <div class="field"><label for="nTitulo">Título</label><input type="text" id="nTitulo"></div>
+    <div class="grid2">
+      <div class="field"><label for="nCategoria">Categoría</label><input type="text" id="nCategoria" placeholder="Ej.: Seguridad e Higiene"></div>
+      <div class="field"><label for="nFecha">Fecha</label><input type="date" id="nFecha"></div>
+    </div>
+    <div class="field">
+      <label for="nImagen">Imagen principal</label>
+      <input type="file" id="nImagen" accept="image/*">
+      <div class="photos" id="nImagenPrev"></div>
+      <div class="hint">Se achica sola a un tamaño liviano para la web.</div>
+    </div>
+    <div class="field"><label for="nAlt">Descripción de la imagen (para buscadores y lectores de pantalla)</label><input type="text" id="nAlt"></div>
+    <div class="field">
+      <label for="nContenido">Texto de la noticia</label>
+      <textarea id="nContenido"></textarea>
+      <div class="hint">Dejá una línea en blanco entre párrafos. Para poner algo en <b>negrita</b>, escribilo entre dos asteriscos: <code>**así**</code>.</div>
+    </div>
+    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="nVisible" checked> Publicada (visible en la web)</label></div>
+    <div class="status" id="nStatus" role="status"></div>
+    <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="nGuardar">Guardar y publicar</button></div>
+  </div>
+</div>
+
+<!-- Editor de propiedad -->
+<div class="overlay" id="edProp" role="dialog" aria-modal="true" aria-labelledby="edPropTit">
+  <div class="panel">
+    <div class="head"><h2 id="edPropTit">Propiedad</h2><button class="btn small ghost" type="button" data-cerrar>Cerrar</button></div>
+    <div class="field"><label for="pTitulo">Título</label><input type="text" id="pTitulo" placeholder="Ej.: CASA 3 DORMITORIOS - QUINCHO CON BAÑO"></div>
+    <div class="grid2">
+      <div class="field"><label for="pUbicacion">Ubicación</label><input type="text" id="pUbicacion" placeholder="Ej.: Av. Paraná N° 103 - Pto. Iguazú"></div>
+      <div class="field"><label for="pMapa">Link de Google Maps (opcional)</label><input type="url" id="pMapa" placeholder="https://maps.app.goo.gl/…"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="pTerreno">Terreno</label><input type="text" id="pTerreno" placeholder="600m²"></div>
+      <div class="field"><label for="pConstruido">Construido</label><input type="text" id="pConstruido" placeholder="100m²"></div>
+      <div class="field"><label for="pHab">Habitaciones</label><input type="text" id="pHab" placeholder="3"></div>
+      <div class="field"><label for="pBanos">Baños</label><input type="text" id="pBanos" placeholder="2"></div>
+      <div class="field"><label for="pCondicion">Condición</label><input type="text" id="pCondicion" list="condiciones" placeholder="Venta"></div>
+      <div class="field"><label for="pPrecio">Precio</label><input type="text" id="pPrecio" placeholder="USD 65.000"></div>
+    </div>
+    <datalist id="condiciones"><option value="Venta"><option value="Alquiler"><option value="Reservada"><option value="Vendida"></datalist>
+    <div class="field">
+      <label for="pFotos">Fotos</label>
+      <input type="file" id="pFotos" accept="image/*" multiple>
+      <div class="hint">La primera foto es la portada. Usá las flechas para cambiar el orden.</div>
+      <div class="photos" id="pFotosPrev"></div>
+    </div>
+    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="pVisible" checked> Publicada (visible en la web)</label></div>
+    <div class="status" id="pStatus" role="status"></div>
+    <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="pGuardar">Guardar y publicar</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var REPO='rbdesignigz/ciprodec', BRANCH='main', API='https://api.github.com/repos/'+REPO+'/contents/';
+  var F_NOT='data/noticias.json', F_PROP='data/propiedades.json', KEY='ciprodec-admin-token';
+  var token='', datos={noticias:null,props:null}, sha={}, editId=null, fotosEd=[], imgNoticia=null;
+  var $=function(id){return document.getElementById(id)};
+
+  function store(get,val){try{ if(get) return localStorage.getItem(KEY); if(val) localStorage.setItem(KEY,val); else localStorage.removeItem(KEY);}catch(e){return null}}
+  function status(el,msg,tipo){el.textContent=msg;el.className='status show '+(tipo||'info');}
+  function clearStatus(el){el.className='status';el.textContent='';}
+  function b64enc(str){var bytes=new TextEncoder().encode(str),bin='';for(var i=0;i<bytes.length;i+=0x8000)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));return btoa(bin);}
+  function b64dec(b){var bin=atob(b.replace(/\n/g,'')),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder().decode(u);}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function slug(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'item';}
+  function imgUrl(p){return p? (p.indexOf('data:')===0? p : './'+p.replace(/^\.\//,'')) : '';}
+
+  function gh(path,opt){
+    opt=opt||{};
+    return fetch(path.indexOf('http')===0?path:API+path,{method:opt.method||'GET',cache:'no-store',
+      headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},
+      body:opt.body?JSON.stringify(opt.body):undefined}).then(function(r){
+        if(!r.ok) return r.json().catch(function(){return{}}).then(function(j){var e=new Error(j.message||('Error '+r.status));e.status=r.status;throw e;});
+        return r.json();});
+  }
+  function leer(f){return gh(f+'?ref='+BRANCH).then(function(j){sha[f]=j.sha;return JSON.parse(b64dec(j.content));});}
+  function escribir(f,obj,msg){
+    return gh(f,{method:'PUT',body:{message:msg,branch:BRANCH,sha:sha[f],content:b64enc(JSON.stringify(obj,null,2)+'\n')}})
+      .then(function(j){sha[f]=j.content.sha;});
+  }
+  function subirImagen(ruta,dataUrl,msg){
+    return gh(ruta,{method:'PUT',body:{message:msg,branch:BRANCH,content:dataUrl.split(',')[1]}});
+  }
+  function achicar(file){
+    return new Promise(function(res,rej){
+      var fr=new FileReader();
+      fr.onload=function(){var im=new Image();im.onload=function(){
+        var max=1600,w=im.width,h=im.height,k=Math.min(1,max/Math.max(w,h));
+        var c=document.createElement('canvas');c.width=Math.round(w*k);c.height=Math.round(h*k);
+        var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(im,0,0,c.width,c.height);
+        res(c.toDataURL('image/jpeg',0.82));};im.onerror=function(){rej(new Error('No se pudo leer la imagen '+file.name))};im.src=fr.result;};
+      fr.onerror=rej;fr.readAsDataURL(file);});
+  }
+  function errMsg(e){
+    if(e.status===401) return 'La clave de acceso no es válida o venció.';
+    if(e.status===403||e.status===404) return 'La clave no tiene permiso para modificar el repositorio '+REPO+'.';
+    if(e.status===409) return 'Alguien modificó el contenido al mismo tiempo. Recargá la página y volvé a intentar.';
+    return 'No se pudo guardar: '+e.message;
+  }
+
+  // ---------- Ingreso ----------
+  function entrar(t,rec){
+    token=t.trim(); if(!token){status($('loginStatus'),'Pegá la clave de acceso.','err');return;}
+    status($('loginStatus'),'Verificando…','info');
+    gh('https://api.github.com/repos/'+REPO).then(function(r){
+      if(!r.permissions||!r.permissions.push) throw Object.assign(new Error('sin permiso'),{status:403});
+      if(rec) store(false,token);
+      return Promise.all([leer(F_NOT),leer(F_PROP)]);
+    }).then(function(v){
+      datos.noticias=v[0];datos.props=v[1];
+      $('login').classList.add('hidden');$('app').classList.remove('hidden');$('salir').classList.remove('hidden');
+      clearStatus($('loginStatus'));pintar();
+    }).catch(function(e){token='';status($('loginStatus'),errMsg(e),'err');});
+  }
+  $('entrar').onclick=function(){entrar($('token').value,$('recordar').checked);};
+  $('token').addEventListener('keydown',function(e){if(e.key==='Enter')$('entrar').click();});
+  $('salir').onclick=function(){store(false,null);location.reload();};
+  var guardado=store(true); if(guardado){$('recordar').checked=true;entrar(guardado,true);}
+
+  // ---------- Pestañas ----------
+  function tab(cual){
+    var n=cual==='n';
+    $('tab-noticias').setAttribute('aria-selected',String(n));$('tab-props').setAttribute('aria-selected',String(!n));
+    $('sec-noticias').classList.toggle('hidden',!n);$('sec-props').classList.toggle('hidden',n);
+  }
+  $('tab-noticias').onclick=function(){tab('n')};$('tab-props').onclick=function(){tab('p')};
+
+  // ---------- Listados ----------
+  function filaHtml(tipo,i,item,img,sub){
+    return '<div class="item">'+(img?'<img src="'+esc(imgUrl(img))+'" alt="">':'<div class="ph"></div>')+
+      '<div><h3>'+esc(item.titulo||'(sin título)')+'</h3><div class="muted" style="font-size:.85rem">'+esc(sub)+'</div>'+
+      '<span class="badge'+(item.visible!==false?' on':'')+'">'+(item.visible!==false?'Publicada':'Oculta')+'</span></div>'+
+      '<div class="acts">'+
+      '<button class="btn small ghost" type="button" data-a="up" data-t="'+tipo+'" data-i="'+i+'" aria-label="Subir">↑</button>'+
+      '<button class="btn small ghost" type="button" data-a="down" data-t="'+tipo+'" data-i="'+i+'" aria-label="Bajar">↓</button>'+
+      '<button class="btn small" type="button" data-a="vis" data-t="'+tipo+'" data-i="'+i+'">'+(item.visible!==false?'Ocultar':'Publicar')+'</button>'+
+      '<button class="btn small" type="button" data-a="edit" data-t="'+tipo+'" data-i="'+i+'">Editar</button>'+
+      '<button class="btn small" type="button" data-a="del" data-t="'+tipo+'" data-i="'+i+'">Eliminar</button></div>'+
+      '<div class="confirm" id="conf-'+tipo+'-'+i+'" style="grid-column:1/-1"><span>¿Eliminar "'+esc(item.titulo)+'" de la web?</span>'+
+      '<button class="btn small red" type="button" data-a="delok" data-t="'+tipo+'" data-i="'+i+'">Sí, eliminar</button>'+
+      '<button class="btn small" type="button" data-a="delno" data-t="'+tipo+'" data-i="'+i+'">No</button></div></div>';
+  }
+  function pintar(){
+    var N=datos.noticias.noticias=datos.noticias.noticias||[];
+    $('listaNoticias').innerHTML=N.length?N.map(function(n,i){return filaHtml('n',i,n,n.imagen,[n.categoria,n.fecha].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay noticias todavía.</p>';
+    var P=datos.props.propiedades=datos.props.propiedades||[];
+    $('listaProps').innerHTML=P.length?P.map(function(p,i){return filaHtml('p',i,p,(p.fotos||[])[0],[p.ubicacion,p.precio].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay propiedades todavía.</p>';
+    $('waProps').value=datos.props.whatsapp||'';
+  }
+  function publicar(tipo,msg,elStatus){
+    var f=tipo==='n'?F_NOT:F_PROP, obj=tipo==='n'?datos.noticias:datos.props;
+    status(elStatus,'Publicando…','info');
+    return escribir(f,obj,msg).then(function(){status(elStatus,'Listo. Se ve en la web en 1 a 2 minutos.','ok');pintar();})
+      .catch(function(e){status(elStatus,errMsg(e),'err');throw e;});
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-a]'); if(!b) return;
+    var t=b.getAttribute('data-t'),i=+b.getAttribute('data-i'),a=b.getAttribute('data-a');
+    var arr=t==='n'?datos.noticias.noticias:datos.props.propiedades, nombre=t==='n'?'noticia':'propiedad';
+    if(a==='edit'){t==='n'?abrirNoticia(i):abrirProp(i);return;}
+    if(a==='del'){$('conf-'+t+'-'+i).classList.add('show');return;}
+    if(a==='delno'){$('conf-'+t+'-'+i).classList.remove('show');return;}
+    if(a==='delok'){var x=arr.splice(i,1)[0];publicar(t,'Eliminar '+nombre+': '+x.titulo,$('appStatus'));return;}
+    if(a==='vis'){arr[i].visible=arr[i].visible===false;publicar(t,(arr[i].visible?'Publicar ':'Ocultar ')+nombre+': '+arr[i].titulo,$('appStatus'));return;}
+    if(a==='up'&&i>0){arr.splice(i-1,0,arr.splice(i,1)[0]);publicar(t,'Reordenar '+nombre+'s',$('appStatus'));return;}
+    if(a==='down'&&i<arr.length-1){arr.splice(i+1,0,arr.splice(i,1)[0]);publicar(t,'Reordenar '+nombre+'s',$('appStatus'));return;}
+  });
+  $('guardarWa').onclick=function(){datos.props.whatsapp=$('waProps').value.replace(/\D/g,'');publicar('p','Actualizar WhatsApp de inmobiliaria',$('appStatus'));};
+
+  // ---------- Overlays ----------
+  function abrir(id){$(id).classList.add('open');var f=$(id).querySelector('input,textarea');if(f)f.focus();}
+  function cerrar(){document.querySelectorAll('.overlay.open').forEach(function(o){o.classList.remove('open')});}
+  document.querySelectorAll('[data-cerrar]').forEach(function(b){b.onclick=cerrar});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrar();});
+
+  // ---------- Noticia ----------
+  function abrirNoticia(i){
+    editId=i; var n=i==null?{visible:true}:datos.noticias.noticias[i];
+    $('edNoticiaTit').textContent=i==null?'Nueva noticia':'Editar noticia';
+    $('nTitulo').value=n.titulo||'';$('nCategoria').value=n.categoria||'';$('nFecha').value=n.fecha||'';
+    $('nAlt').value=n.alt||'';$('nContenido').value=n.contenido||'';$('nVisible').checked=n.visible!==false;
+    imgNoticia={ruta:n.imagen||'',nueva:null};$('nImagen').value='';prevNoticia();clearStatus($('nStatus'));abrir('edNoticia');
+  }
+  function prevNoticia(){
+    var src=imgNoticia.nueva||imgNoticia.ruta;
+    $('nImagenPrev').innerHTML=src?'<div class="ph-item"><img src="'+esc(imgUrl(src))+'" alt="Vista previa"></div>':'';
+  }
+  $('nImagen').onchange=function(){var f=this.files[0];if(!f)return;achicar(f).then(function(d){imgNoticia.nueva=d;prevNoticia();}).catch(function(e){status($('nStatus'),e.message,'err')});};
+  $('nuevaNoticia').onclick=function(){abrirNoticia(null)};
+  $('nGuardar').onclick=function(){
+    var titulo=$('nTitulo').value.trim(); if(!titulo){status($('nStatus'),'Falta el título.','err');return;}
+    var arr=datos.noticias.noticias, n=editId==null?{id:slug(titulo)+'-'+Date.now().toString(36)}:arr[editId];
+    var btn=this;btn.disabled=true;
+    var paso=Promise.resolve();
+    if(imgNoticia.nueva){
+      var ruta='img/noticias/'+slug(titulo)+'-'+Date.now().toString(36)+'.jpg';
+      status($('nStatus'),'Subiendo imagen…','info');
+      paso=subirImagen(ruta,imgNoticia.nueva,'Imagen de noticia: '+titulo).then(function(){imgNoticia.ruta='./'+ruta;imgNoticia.nueva=null;});
+    }
+    paso.then(function(){
+      Object.assign(n,{titulo:titulo,categoria:$('nCategoria').value.trim(),fecha:$('nFecha').value,imagen:imgNoticia.ruta,
+        alt:$('nAlt').value.trim()||titulo,contenido:$('nContenido').value.trim(),visible:$('nVisible').checked});
+      if(editId==null) arr.unshift(n);
+      return publicar('n',(editId==null?'Nueva noticia: ':'Editar noticia: ')+titulo,$('nStatus'));
+    }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('nStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
+  };
+
+  // ---------- Propiedad ----------
+  function abrirProp(i){
+    editId=i; var p=i==null?{visible:true,condicion:'Venta'}:datos.props.propiedades[i];
+    $('edPropTit').textContent=i==null?'Nueva propiedad':'Editar propiedad';
+    $('pTitulo').value=p.titulo||'';$('pUbicacion').value=p.ubicacion||'';$('pMapa').value=p.mapa||'';
+    $('pTerreno').value=p.terreno||'';$('pConstruido').value=p.construido||'';$('pHab').value=p.habitaciones||'';
+    $('pBanos').value=p.banos||'';$('pCondicion').value=p.condicion||'';$('pPrecio').value=p.precio||'';$('pVisible').checked=p.visible!==false;
+    fotosEd=(p.fotos||[]).map(function(r){return{ruta:r,nueva:null}});$('pFotos').value='';prevFotos();clearStatus($('pStatus'));abrir('edProp');
+  }
+  function prevFotos(){
+    $('pFotosPrev').innerHTML=fotosEd.map(function(f,i){
+      return '<div class="ph-item">'+(i===0?'<span class="cover">Portada</span>':'')+'<img src="'+esc(imgUrl(f.nueva||f.ruta))+'" alt="Foto '+(i+1)+'">'+
+        '<div class="row"><button type="button" data-f="izq" data-i="'+i+'" aria-label="Mover antes">←</button>'+
+        '<button type="button" data-f="quitar" data-i="'+i+'" aria-label="Quitar foto">✕</button>'+
+        '<button type="button" data-f="der" data-i="'+i+'" aria-label="Mover después">→</button></div></div>';
+    }).join('');
+  }
+  $('pFotosPrev').addEventListener('click',function(e){
+    var b=e.target.closest('[data-f]');if(!b)return;var i=+b.getAttribute('data-i'),a=b.getAttribute('data-f');
+    if(a==='quitar')fotosEd.splice(i,1);
+    if(a==='izq'&&i>0)fotosEd.splice(i-1,0,fotosEd.splice(i,1)[0]);
+    if(a==='der'&&i<fotosEd.length-1)fotosEd.splice(i+1,0,fotosEd.splice(i,1)[0]);
+    prevFotos();
+  });
+  $('pFotos').onchange=function(){
+    var files=[].slice.call(this.files);status($('pStatus'),'Preparando fotos…','info');
+    Promise.all(files.map(achicar)).then(function(ds){ds.forEach(function(d){fotosEd.push({ruta:'',nueva:d})});prevFotos();clearStatus($('pStatus'));})
+      .catch(function(e){status($('pStatus'),e.message,'err')});
+    this.value='';
+  };
+  $('nuevaProp').onclick=function(){abrirProp(null)};
+  $('pGuardar').onclick=function(){
+    var titulo=$('pTitulo').value.trim(); if(!titulo){status($('pStatus'),'Falta el título.','err');return;}
+    var arr=datos.props.propiedades, p=editId==null?{id:'prop-'+Date.now().toString(36)}:arr[editId];
+    var carpeta='img/inmobiliaria/'+p.id+'/', btn=this;btn.disabled=true;
+    var nuevas=fotosEd.filter(function(f){return f.nueva}), k=0;
+    var cadena=nuevas.reduce(function(pr,f){return pr.then(function(){
+      k++;status($('pStatus'),'Subiendo foto '+k+' de '+nuevas.length+'…','info');
+      var ruta=carpeta+Date.now().toString(36)+'-'+k+'.jpg';
+      return subirImagen(ruta,f.nueva,'Foto de propiedad: '+titulo).then(function(){f.ruta='./'+ruta;f.nueva=null;});
+    })},Promise.resolve());
+    cadena.then(function(){
+      Object.assign(p,{titulo:titulo,ubicacion:$('pUbicacion').value.trim(),mapa:$('pMapa').value.trim(),terreno:$('pTerreno').value.trim(),
+        construido:$('pConstruido').value.trim(),habitaciones:$('pHab').value.trim(),banos:$('pBanos').value.trim(),
+        condicion:$('pCondicion').value.trim(),precio:$('pPrecio').value.trim(),fotos:fotosEd.map(function(f){return f.ruta}),visible:$('pVisible').checked});
+      if(editId==null) arr.unshift(p);
+      return publicar('p',(editId==null?'Nueva propiedad: ':'Editar propiedad: ')+titulo,$('pStatus'));
+    }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('pStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
+  };
+})();
+</script>
+</body>
+</html>

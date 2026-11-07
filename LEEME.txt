@@ -23,3 +23,21 @@ Hernandarias.
 Uso sugerido: publicar index.html como portada de www.ciprodec.com, o como
 sección "Expo" (por ejemplo www.ciprodec.com/expo) con un botón en el menú.
 Fecha límite: antes del miércoles 11 de noviembre.
+
+ACTUALIZACIÓN 7/11 (2da versión):
+- Se recuperan las páginas anteriores: inmobiliaria.html (con sus fotos en img/inmobiliaria) y blog.html (Noticias), con su CSS y JS en src/.
+- index.html suma en el menú: Inmobiliaria, Noticias y Radio (https://ciprodecradio.com.ar/), y una sección "Más de CIPRODEC" para que se vean también en el celular.
+- En inmobiliaria.html y blog.html, el WhatsApp general pasa al +595 986 573 190. El WhatsApp de consulta por propiedades (+54 9 3757 328322) no se tocó.
+Subir TODO el contenido de esta carpeta a la raíz del repositorio (reemplaza index.html y LEEME.txt; el resto son archivos que se habían borrado).
+
+ACTUALIZACIÓN 7/11 (3ra versión) - PANEL DE ADMINISTRACIÓN:
+- Nuevo: admin.html (ciprodec.com/admin.html). Permite crear, editar, ocultar, ordenar y eliminar
+  Noticias y Propiedades, y subir fotos (se achican solas a 1600 px). Publica directo en este repositorio
+  (rama main) por la API de GitHub; GitHub Pages actualiza la web en 1-2 minutos.
+- Ingreso: con un token de GitHub (classic, permiso public_repo) de una cuenta con permiso de escritura
+  en rbdesignigz/ciprodec. El token no se guarda en el repositorio; solo en el navegador si se marca "Recordar".
+  La página admin.html es pública pero no sirve de nada sin token, y tiene noindex.
+- El contenido ahora vive en data/noticias.json y data/propiedades.json. blog.html e inmobiliaria.html
+  lo leen con src/contenido.js (mismo diseño que antes). Las fotos nuevas van a img/noticias/ e img/inmobiliaria/<id>/.
+- src/script.js: los botones de compartir viejos ahora no fallan si no existen (se usa ?.).
+- En inmobiliaria, el WhatsApp de consultas por propiedad se configura desde el panel (hoy: 5493757328322).

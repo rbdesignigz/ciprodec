@@ -1,726 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-lang="es">
 <head>
-    <!-- git -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ciprodec | Centro de profesionales de la construcción</title>
-    <link href="./src/output.css" rel="stylesheet">
-    <link rel="icon" href="./img/iso-logo.png">
-
-    
-    <meta name="title" content="ciprodec.com" />
-    <meta name="description" content="Centro de profesionales de la construcción en Puerto Iguazú - Misiones - Argentina - CP: 3370" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.ciprodec.com/" />
-    <meta property="og:title" content="ciprodec.com" />
-    <meta property="og:description" content="Centro de profesionales de la construcción - Arquitectura - Puerto Iguazú" />
-    <meta property="og:image" content="https://ciprodec.com/img/iso-logo.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="https://ciprodec.com/img/iso-logo.png" />
-    <meta property="twitter:url" content="https://ciprodec.com/" />
-    <meta property="twitter:title" content="ciprodec.com" />
-    <meta property="twitter:description" content="Centro de profesionales de la construcción - Arquitectura - Puerto Iguazú"/>
-    <meta property="twitter:image" content="https://ciprodec.com/img/iso-logo.png" />
-
-    <meta name="keywords" content="ciprodec, Puerto Iguazú - Misiones - Argentina, Arquitecture, Arquitectura, centro de profesionales de la construcción, construction, inmobiliaria, agrimensor, seguridad e higiene">
-    <meta name="author" kcontent="rbdesign">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    
-    
-    
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CIPRODEC – Centro Integral de Profesionales de la Construcción</title>
+<meta name="description" content="Arquitectura, ingeniería, cálculo estructural, BIM, suelos, agrimensura y dirección de obra en Alto Paraná. Trabajamos con la constructora que elijas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
+<style>
+:root{--red:#E8262B;--red-bg:#F23030;--ink:#1A1A1A;--muted:#555;--line:#DADADA;--paper:#FFFFFF;--soft:#F6F6F4;
+  --mono:"Courier Prime",ui-monospace,Menlo,Consolas,monospace;--sans:Montserrat,"Segoe UI",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans);
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+html[data-lang="es"] .pt{display:none!important}
+html[data-lang="pt"] .es{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+h1,h2,h3{margin:0;line-height:1.08;text-wrap:balance}
+h1{font-weight:800;font-size:clamp(2.3rem,6.2vw,4.4rem);letter-spacing:-.02em}
+h2{font-weight:800;font-size:clamp(1.7rem,3.6vw,2.6rem);letter-spacing:-.01em}
+h3{font-weight:700;font-size:1.12rem}
+p{margin:0}
+.mono{font-family:var(--mono);font-weight:700}
+.eyebrow{font-family:var(--mono);font-weight:700;color:var(--red);font-size:1rem}
+section{padding-block:72px}
+/* header */
+header.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header.top .wrap{display:flex;align-items:center;gap:20px;min-height:68px;flex-wrap:wrap}
+.brand{display:block;line-height:0}
+.brand svg{height:30px;width:auto}
+nav.links{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+nav.links a{text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 10px}
+nav.links a:hover{color:var(--red)}
+.lang{display:flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+.lang button{font:700 .85rem var(--mono);background:transparent;border:0;padding:6px 10px;min-height:36px;cursor:pointer;color:var(--ink)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:760px){nav.links{display:none}.lang{margin-left:auto}}
+/* drafting background */
+.draft{position:relative;overflow:hidden}
+.draft>svg.bg{position:absolute;inset:auto 0 0 0;width:100%;height:100%;pointer-events:none}
+.draft>.wrap{position:relative}
+/* hero */
+.hero{padding-block:56px 64px;text-align:center}
+.hero .logo svg{width:min(560px,86vw);height:auto}
+.hero .tag{margin-top:14px;font-family:var(--mono);font-weight:700;font-size:clamp(1rem,2.3vw,1.3rem)}
+.band{position:relative;margin:30px 0 34px;display:flex;justify-content:center}
+.band::before{content:"";position:absolute;left:-50vw;right:-50vw;top:50%;height:3px;background:var(--ink)}
+.band>span{position:relative;background:var(--red-bg);color:#fff;border-radius:10px;padding:10px 30px;font:700 clamp(1.05rem,2.6vw,1.45rem)/1.3 var(--mono)}
+.hero .sub{margin:16px auto 0;max-width:46ch;font-size:1.12rem;color:#333}
+.hero .alt{margin-top:8px;color:var(--red);font-weight:600;font-style:italic;font-size:1.25rem}
+.cta{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:10px;border:2px solid var(--ink);font:700 1rem var(--sans);text-decoration:none;color:var(--ink);background:#fff}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn:hover{filter:brightness(.95)}
+.btn svg{width:22px;height:22px;flex-shrink:0}
+.expo{margin-top:28px;display:inline-block;border:2px solid var(--ink);border-radius:10px;padding:8px 16px;font:700 .95rem var(--mono);background:#fff}
+/* services */
+.head{display:grid;gap:10px;margin-bottom:34px;max-width:720px}
+.head p{color:var(--muted);font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.card{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:20px;display:grid;gap:8px;align-content:start}
+.card .n{width:36px;height:36px;border-radius:8px;background:var(--red-bg);color:#fff;display:grid;place-items:center;font:700 1rem var(--mono)}
+.card p{color:var(--muted);font-size:.95rem}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;counter-reset:s}
+.step{border-top:4px solid var(--red);padding-top:16px;display:grid;gap:8px}
+.step .k{font:700 2rem var(--mono);color:var(--red);line-height:1}
+.step p{color:var(--muted)}
+.whys{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.why{background:var(--soft);border-radius:12px;padding:16px 18px;font-weight:700}
+/* b2b */
+.b2b{background:var(--ink);color:#fff}
+.b2b .eyebrow{color:#FF8A8A}
+.b2b .head p{color:#CFCFCF}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.chips>span{border:2px solid #fff;border-radius:999px;padding:8px 16px;font-weight:600}
+.b2b .cta{justify-content:flex-start}
+.b2b .btn{background:transparent;border-color:#fff;color:#fff}
+.b2b .btn.red{background:var(--red);border-color:var(--red)}
+/* team */
+.team{background:var(--red-bg);color:#fff;border-radius:16px;padding:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;text-align:center}
+.team small{display:block;font-weight:600;font-size:.95rem;opacity:.95}
+.team b{font-size:1.25rem}
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:820px){.contact{grid-template-columns:1fr}}
+.box{border:2px solid var(--ink);border-radius:16px;padding:24px;background:#fff;display:grid;gap:14px}
+.phone{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.flag{width:46px;height:30px;border:1px solid #ccc;display:grid;grid-template-rows:1fr 1fr 1fr;position:relative;flex-shrink:0}
+.flag i:nth-child(1){background:#D52B1E}.flag i:nth-child(2){background:#fff}.flag i:nth-child(3){background:#0038A8}
+.flag::after{content:"";position:absolute;left:19px;top:11px;width:8px;height:8px;border-radius:50%;border:1px solid #2E7D32;box-sizing:border-box}
+.phone a{font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);text-decoration:none;letter-spacing:-.01em}
+.rows{display:grid;gap:8px}
+.rows div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rows .mono{color:var(--red);min-width:92px}
+footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:58px;height:58px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.wa-float svg{width:30px;height:30px}
+</style>
 </head>
 <body>
-
-
-    <div class="bg-white">
-        <header class="absolute inset-x-0 top-0 z-50">
-          <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-            <div class="flex lg:flex-1">
-              <a href="#" class="-m-1.5 p-1.5">
-                <span class="sr-only">Your Company</span>
-                <img class="h-8 w-auto" src="./img/iso-logo.png" alt="">
-              </a>
-            </div>
-            <div class="flex lg:hidden">
-              <button onclick="openMenuu()" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 menu-toggle hover:transition-all">
-                <span class="sr-only">Open main menu</span>
-                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-              </button>
-            </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-              <a href="#vento" class="text-sm/6 font-semibold text-gray-900">Servicios</a>
-              <a href="./inmobiliaria.html" class="text-sm/6 font-semibold text-gray-900">Inmobiliaria</a>
-              <a href="./blog.html" class="text-sm/6 font-semibold text-gray-900">+ contenido</a>
-            </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-gray-900">Contacto <span aria-hidden="true">&rarr;</span></a>
-            </div>
-          </nav>
-          <!-- Mobile menu, show/hide based on menu open state. -->
-          <div id="mobilemenu" class="hidden " role="dialog" aria-modal="true">  <!--antes estaba lg:hidden para no mostrar en LG-->
-            <!-- Background backdrop, show/hide based on slide-over state. -->
-            <div class="fixed inset-0 z-50"></div>
-            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div class="flex items-center justify-between">
-                <a href="./" class="-m-1.5 p-1.5">
-                  <span class="sr-only">Your Company</span>
-                  <img class="h-8 w-auto" src="./img/iso-logo.png" alt="">
-                </a>
-                <button onclick="closeMenuu()" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                  <span class="sr-only">Close menu</span>
-                  <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                  <div class="space-y-2 py-6">
-                    <a href="#vento" onclick="closeMenuu()" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Servicios</a>
-                    <a href="./blog.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">+ contenido</a>
-                    <a href="./inmobiliaria.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">inmobiliaria</a>
-                    <a href="https://www.instagram.com/ciprodec/?hl=es-la" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">instagram</a>
-                    <a href="https://www.facebook.com/profile.php?id=100064049114522" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">facebook</a>
-                    <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Contacto</a>
-                  </div>
-                  <!-- <div class="py-6">
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
-      
-        <section>
-                <div class="relative isolate px-6 pt-14 lg:px-8">
-                <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-                    <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#000000] to-[#696969] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-                </div>
-                <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                    <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <!-- <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-                    </div> -->
-                    </div>
-                    <div class="text-center">
-                    <h1 class="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">ciprodec</h1>
-                    <p class="mt-8 text-pretty text-lg font-medium text-gray-700 sm:text-xl/8">Centro integral de profesionales de la construcción</p>
-                    <p class=" text-pretty text-lg font-light text-gray-700 sm:text-x1/8">Estrenamos nueva oficina en Av. Victoria Aguirre 1190.</p>
-                    <div class="mt-10 flex items-center justify-center flex-wrap gap-2 lg:gap-x-6 ">
-                        
-                      <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" 
-                          class="rounded-md bg-black px-3 h-10  text-xs lg:text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 flex items-center justify-center">
-                             <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-phone"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" /></svg>
-                        CONTACTO
-                        
-                        </a>
-                                                <!-- botón radio -->
-                        <a href="https://ciprodecradio.com.ar/" 
-                         class="rounded-md bg-red-500 px-3 h-10 text-xs lg:text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline-2 
-                         focus-visible:outline-offset-2 focus-visible:outline-red-800 flex items-center justify-center">
-                            
-                             <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-microphone"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 9a1 1 0 0 1 1 1a8 8 0 0 1 -6.999 7.938l-.001 2.062h3a1 1 0 0 1 0 2h-8a1 1 0 0 1 0 -2h3v-2.062a8 8 0 0 1 -7 -7.938a1 1 0 1 1 2 0a6 6 0 0 0 12 0a1 1 0 0 1 1 -1m-7 -8a4 4 0 0 1 4 4v5a4 4 0 1 1 -8 0v-5a4 4 0 0 1 4 -4" /></svg>
-                            RADIO
-                        </a>
-
-                        <a href="./blog.html" 
-                         class="flex rounded-md bg-blue-700 px-3 h-10 text-xs lg:text-sm font-semibold text-white shadow-sm hover:bg-blue-900 focus-visible:outline-2 
-                         focus-visible:outline-offset-2 focus-visible:outline-blue-900 flex items-center justify-center">
-                            
-                             <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
-                            NOTICIAS
-                        </a>
-
-                        <a href="./inmobiliaria.html" 
-                         class="flex rounded-md bg-cyan-700 px-3 h-10 text-xs lg:text-sm font-semibold text-white shadow-sm hover:bg-cyan-900 focus-visible:outline-2 
-                         focus-visible:outline-offset-2 focus-visible:outline-cyan-900 flex items-center justify-center">
-                            
-                             
-
-                            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-community"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" /><path d="M13 7l0 .01" /><path d="M17 7l0 .01" /><path d="M17 11l0 .01" /><path d="M17 15l0 .01" /></svg>
-                        INMOBILIARIA
-                        
-                          </a>
-
-                        
-                                
-                    </div>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- <section class="grid h-[600px] w-[full] bg-gray-100 items-center justify-center">
-          <div class="relative flex h-full items-center justify-center">
-            <div class="absolute w-80 h-80 rounded-full bg-violet-400 left-40 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
-            <div class="absolute w-80 h-80 rounded-full bg-orange-400 right-44 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
-            <div class="absolute w-80 h-80 rounded-full bg-blue-400 bottom-16 opacity-70 filter blur-xl mix-blend-multiply animate-ping"></div>
-            <img class="z-10 w-[400px] animate-none" src="/img/astro.png" alt="Astronauta">
-          </div>
-        </section> -->
-
-       
-
-
-        <section id="vento" class="bg-slate-100">
-          <div class="bg-slate-100 pt-6">
-            <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-              <h2 class="text-center text-base/7 font-semibold text-indigo-600">ciprodec</h2>
-              <p class="mx-auto mt-2  text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">Nuestros servicios</p>
-            </div>
-          </div>
-
-<!-- plantilla -->
-<div class="bg-gray-100 ">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl py-6 sm:py-12 lg:max-w-none lg:py-12">
-      <h2 class="text-2xl font-bold text-gray-900 text-center">ciprodec - centro de profesionales de la construcción</h2>
-
-      <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-6">
-        <div class="group relative">
-          <img src="./img/arquitectura02.avif" alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Arquitectura
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Diseño y planificación de proyectos constructivos.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/ingenieria01.avif" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Ingeniería
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Cálculos, estructuras y dirección técnica de obra.</p>
-        </div>
-
-        <div class="group relative">
-          <button onclick="openModal('contingencias')" class="w-full text-left">
-            <img src="./img/evacuacion01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-            <h3 class="mt-6 text-sm text-gray-500">
-              <span class="absolute inset-0"></span>
-              Plan de Contingencias
-            </h3>
-            <p class="text-base font-semibold text-gray-900">Protocolos de seguridad y respuesta ante emergencias.</p>
-          </button>
-        </div>
-
-        <!-- Modal -->
-        <dialog id="contingenciasModal" class="fixed inset-0 z-50 w-full max-w-md mt-16 mx-auto p-4 rounded-lg shadow-lg backdrop:bg-black/90">
-          <div class="bg-white rounded-lg p-6 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-2xl font-bold text-gray-900">Higiene y Seguridad</h2>
-              <button onclick="closeModal('contingencias')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-            </div>
-            <div class="space-y-3 text-gray-700">
-              <p class="mt-16"><strong>Capacitación al personal:</strong> </p>
-              <p>   - Inducción en HyS.</p>
-              <p>   - Uso de EPP.</p>
-              <p>   - Plan de evacuación ante emergencias.</p>
-              <p>   - Riesgo de incendio y uso de extintores.</p>
-              <p>   - Riesgo eléctrico.</p>
-              <p>   - Manejo seguro y responsable.</p>
-              <p>   - Ergonomía.</p>
-              <p>   - HyS en la construcción.</p>
-              <p>   - Documentación y asesoramientos.</p>
-              <p>   - Capacitaciones a colaboradores.</p>
-            </div>
-            <button onclick="closeModal('contingencias')" class="mt-16 w-full bg-black text-white py-2 rounded-md hover:bg-gray-800">Cerrar</button>
-          </div>
-        </dialog>
-
-        <script>
-        function openModal(id) {
-          document.getElementById(id + 'Modal').showModal();
-        }
-        function closeModal(id) {
-          document.getElementById(id + 'Modal').close();
-        }
-        </script>
-        <!-- fin tarjeta de hys------------------------------------------------------------------------------------------------------------ -->
-
-
-
-        <div class="group relative">
-          <img src="./img/hab-municipal.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Habilitaciones municipales
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Gestión y obtención de permisos de construcción y uso.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/estudio-suelos01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Estudios de suelos
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Análisis de la capacidad portante y propiedades geotécnicas</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/calculos-estructurales01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Cálculos estructurales
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Determinación de cargas, dimensiones y refuerzos.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/calc-materiales01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Cálculos de materiales
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Estimación de cantidades y costos de insumos de obra.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/construccion-civil.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Construcciones civiles
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Ejecución de obras residenciales, comerciales e industriales.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/diseno-interiores01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Diseño de interiores
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Estética, funcionalidad y distribución de espacios internos.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/paisajismo01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Paisajismo
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Diseño, planificación y gestión de áreas verdes exteriores.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/inmobiliaria.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="./inmobiliaria.html">
-              <span class="absolute inset-0"></span>
-              Inmobiliaria
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Asesoría en compra, venta y alquiler de bienes inmuebles.</p>
-        </div>
-
-        <div class="group relative">
-          <img src="./img/impo-expo01.avif" alt="Collection of four insulated travel bottles on wooden shelf." class="mt-2 w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square" />
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Importación y exportación de materiales para la construcción
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Logística y comercio internacional de insumos de obra.</p>
-        </div>
-
-
-
-      </div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="CIPRODEC, inicio"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1208 148"><g fill="none" stroke="#1A1A1A" stroke-linecap="round" stroke-width="28"><path d="M59.48 15.78A60 60 0 0 0 59.48 132.22 M88.52 15.78A60 60 0 0 1 124.88 42.20 M124.88 105.80A60 60 0 0 1 88.52 132.22"/></g><path d="M63.48 -11.22V6.78M55.48 -3.22H71.48" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><g transform="translate(0 24.00)" fill="none" stroke="#1A1A1A" stroke-width="20" stroke-linejoin="round" stroke-linecap="butt"><path d="M304.0 30.0A20 20 0 0 0 284.0 10.0H218.0A20 20 0 0 0 198.0 30.0V70.0A20 20 0 0 0 218.0 90.0H284.0A20 20 0 0 0 304.0 70.0 M346.0 0V100 M388.0 100V10.0H464.0A20 20 0 0 1 484.0 30.0V36A20 20 0 0 1 464.0 56H388.0 M526.0 100V10.0H606.0A20 20 0 0 1 626.0 30.0V36A20 20 0 0 1 606.0 56H526.0M606.0 56A20 20 0 0 1 626.0 76V100 M688.0 10.0H762.0A20 20 0 0 1 782.0 30.0V70.0A20 20 0 0 1 762.0 90.0H688.0A20 20 0 0 1 668.0 70.0V30.0A20 20 0 0 1 688.0 10.0Z M824.0 10.0H910.0A20 20 0 0 1 930.0 30.0V70.0A20 20 0 0 1 910.0 90.0H824.0Z M1058.0 10.0H972.0V90.0H1058.0M972.0 56H1044.0 M1196.0 30.0A20 20 0 0 0 1176.0 10.0H1110.0A20 20 0 0 0 1090.0 30.0V70.0A20 20 0 0 0 1110.0 90.0H1176.0A20 20 0 0 0 1196.0 70.0"/></g></svg></a>
+    <nav class="links" aria-label="Secciones">
+      <a href="#servicios"><span class="es">Servicios</span><span class="pt">Serviços</span></a>
+      <a href="#como"><span class="es">Cómo trabajamos</span><span class="pt">Como trabalhamos</span></a>
+      <a href="#constructoras"><span class="es">Constructoras y estudios</span><span class="pt">Construtoras</span></a>
+      <a href="#contacto"><span class="es">Contacto</span><span class="pt">Contato</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Idioma">
+      <button type="button" data-set="es" aria-pressed="true">ES</button>
+      <button type="button" data-set="pt" aria-pressed="false">PT</button>
     </div>
   </div>
-</div>
+</header>
 
+<main>
+<section id="inicio" class="hero draft">
+  <svg  viewBox="0 0 794 1123" preserveAspectRatio="xMidYMax slice" aria-hidden="true" class="bg"><g fill="none" stroke="#1A1A1A" stroke-opacity="0.10" stroke-width="1"><path vector-effect="non-scaling-stroke" d="M0 1095L794 1095 M30 700h250v395h-250Z M30 730L280 730 M30 772L280 772 M30 814L280 814 M30 856L280 856 M30 898L280 898 M30 940L280 940 M30 982L280 982 M30 1024L280 1024 M30 1066L280 1066 M80 700L80 1095 M130 700L130 1095 M180 700L180 1095 M230 700L230 1095 M30 700L155 640 M280 700L155 640 M470 560h300v535h-300Z M470 600L770 600 M470 646L770 646 M470 692L770 692 M470 738L770 738 M470 784L770 784 M470 830L770 830 M470 876L770 876 M470 922L770 922 M470 968L770 968 M470 1014L770 1014 M470 1060L770 1060 M530 560L530 1095 M590 560L590 1095 M650 560L650 1095 M710 560L710 1095 M500 520h240v40h-240Z M290 860h170v235h-170Z M290 900L460 900 M290 940L460 940 M290 980L460 980 M290 1020L460 1020 M290 1060L460 1060 M290 860L375 760 M460 860L375 760 M290 1095L375 760 M460 1095L375 760"/></g><g fill="none" stroke="#1A1A1A" stroke-opacity="0.070" stroke-width="1" stroke-dasharray="4 6"><path vector-effect="non-scaling-stroke" d="M0 470H794 M0 520H794 M0 640H794 M155 380V1095 M375 380V1095 M620 380V1095"/></g></svg>
+  <div class="wrap">
+    <div class="logo" role="img" aria-label="CIPRODEC"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1208 148"><g fill="none" stroke="#1A1A1A" stroke-linecap="round" stroke-width="28"><path d="M59.48 15.78A60 60 0 0 0 59.48 132.22 M88.52 15.78A60 60 0 0 1 124.88 42.20 M124.88 105.80A60 60 0 0 1 88.52 132.22"/></g><path d="M63.48 -11.22V6.78M55.48 -3.22H71.48" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><g transform="translate(0 24.00)" fill="none" stroke="#1A1A1A" stroke-width="20" stroke-linejoin="round" stroke-linecap="butt"><path d="M304.0 30.0A20 20 0 0 0 284.0 10.0H218.0A20 20 0 0 0 198.0 30.0V70.0A20 20 0 0 0 218.0 90.0H284.0A20 20 0 0 0 304.0 70.0 M346.0 0V100 M388.0 100V10.0H464.0A20 20 0 0 1 484.0 30.0V36A20 20 0 0 1 464.0 56H388.0 M526.0 100V10.0H606.0A20 20 0 0 1 626.0 30.0V36A20 20 0 0 1 606.0 56H526.0M606.0 56A20 20 0 0 1 626.0 76V100 M688.0 10.0H762.0A20 20 0 0 1 782.0 30.0V70.0A20 20 0 0 1 762.0 90.0H688.0A20 20 0 0 1 668.0 70.0V30.0A20 20 0 0 1 688.0 10.0Z M824.0 10.0H910.0A20 20 0 0 1 930.0 30.0V70.0A20 20 0 0 1 910.0 90.0H824.0Z M1058.0 10.0H972.0V90.0H1058.0M972.0 56H1044.0 M1196.0 30.0A20 20 0 0 0 1176.0 10.0H1110.0A20 20 0 0 0 1090.0 30.0V70.0A20 20 0 0 0 1110.0 90.0H1176.0A20 20 0 0 0 1196.0 70.0"/></g></svg></div>
+    <div class="tag">Centro Integral de Profesionales de la Construcción</div>
+    <div class="band"><span><span class="es">Arquitectura · Ingeniería · Soporte técnico de obra</span><span class="pt">Arquitetura · Engenharia · Suporte técnico de obra</span></span></div>
+    <h1><span class="es">El soporte técnico de tu obra.</span><span class="pt">O suporte técnico da sua obra.</span></h1>
+    <p class="alt"><span class="es">Del terreno a la llave, con la constructora que elijas.</span><span class="pt">Do terreno à chave, com a construtora que você escolher.</span></p>
+    <p class="sub"><span class="es">Proyecto, ingeniería y servicios técnicos para inversores, estudios de arquitectura y constructoras en Alto Paraná: naves, maquilas, oficinas y viviendas.</span><span class="pt">Projeto, engenharia e serviços técnicos para investidores, escritórios de arquitetura e construtoras no Alto Paraná: galpões, maquiladoras, escritórios e residências.</span></p>
+    <div class="cta">
+      <a class="btn red" href="https://wa.me/595986573190"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Escribinos por WhatsApp</span><span class="pt">Fale pelo WhatsApp</span></a>
+      <a class="btn" href="#servicios"><span class="es">Ver servicios</span><span class="pt">Ver serviços</span></a>
+    </div>
+    <div class="expo"><span class="es">Expo Paraguay Brasil 2026 · 11–13 nov · PTI Hernandarias</span><span class="pt">Expo Paraguay Brasil 2026 · 11–13 nov · PTI Hernandarias</span></div>
+  </div>
+</section>
 
+<section id="servicios" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Servicios</span><span class="pt">Serviços</span></div>
+      <h2><span class="es">Todo lo técnico que una obra necesita, en un solo lugar.</span><span class="pt">Tudo o que uma obra precisa na parte técnica, num só lugar.</span></h2>
+      <p><span class="es">Un mismo equipo coordina el terreno, el proyecto, el cálculo y la obra, así la información no se pierde entre profesionales.</span><span class="pt">Uma mesma equipe coordena o terreno, o projeto, o cálculo e a obra, para que a informação não se perca entre profissionais.</span></p>
+    </div>
+    <div class="grid"><div class="card"><div class="n">01</div><h3><span class="es">Arquitectura y proyecto</span><span class="pt">Arquitetura e projeto</span></h3><p><span class="es">Proyecto y documentación de obra.</span><span class="pt">Projeto e documentação de obra.</span></p></div><div class="card"><div class="n">02</div><h3><span class="es">Ingeniería</span><span class="pt">Engenharia</span></h3><p><span class="es">Instalaciones y soluciones técnicas para tu obra.</span><span class="pt">Instalações e soluções técnicas para a sua obra.</span></p></div><div class="card"><div class="n">03</div><h3><span class="es">Cálculo estructural</span><span class="pt">Cálculo estrutural</span></h3><p><span class="es">Hormigón armado y acero, con planos de despiece.</span><span class="pt">Concreto armado e aço, com plantas de armação.</span></p></div><div class="card"><div class="n">04</div><h3><span class="es">Dirección y gestión de obra</span><span class="pt">Direção e gestão de obra</span></h3><p><span class="es">Seguimiento técnico con la constructora que elijas.</span><span class="pt">Acompanhamento técnico com a construtora que você escolher.</span></p></div><div class="card"><div class="n">05</div><h3><span class="es">Estudio de suelos</span><span class="pt">Sondagem de solo</span></h3><p><span class="es">Caracterización del terreno para definir la fundación.</span><span class="pt">Caracterização do terreno para definir a fundação.</span></p></div><div class="card"><div class="n">06</div><h3><span class="es">Agrimensura</span><span class="pt">Agrimensura e topografia</span></h3><p><span class="es">Relevamientos, mensuras y replanteo.</span><span class="pt">Levantamentos, medições e locação de obra.</span></p></div><div class="card"><div class="n">07</div><h3><span class="es">Modelado BIM (Revit)</span><span class="pt">Modelagem BIM (Revit)</span></h3><p><span class="es">Ves tu obra en 3D antes de construirla, con cómputos.</span><span class="pt">Veja a obra em 3D antes de construir, com quantitativos.</span></p></div><div class="card"><div class="n">08</div><h3><span class="es">Paisajismo</span><span class="pt">Paisagismo</span></h3><p><span class="es">Diseño de patios, jardines y espacios exteriores.</span><span class="pt">Projeto de pátios, jardins e áreas externas.</span></p></div><div class="card"><div class="n">09</div><h3><span class="es">Diseño de interiores</span><span class="pt">Design de interiores</span></h3><p><span class="es">Ambientes resueltos al detalle.</span><span class="pt">Ambientes resolvidos nos detalhes.</span></p></div><div class="card"><div class="n">10</div><h3><span class="es">Cómputo y materiales</span><span class="pt">Orçamento e materiais</span></h3><p><span class="es">Cálculo de materiales y provisión para la obra.</span><span class="pt">Cálculo e fornecimento de materiais.</span></p></div><div class="card"><div class="n">11</div><h3><span class="es">Seguridad e higiene</span><span class="pt">Segurança do trabalho</span></h3><p><span class="es">Técnicos de seguridad e higiene para la obra.</span><span class="pt">Técnicos de segurança do trabalho na obra.</span></p></div><div class="card"><div class="n">12</div><h3><span class="es">Gestión inmobiliaria</span><span class="pt">Gestão imobiliária</span></h3><p><span class="es">Venta o alquiler cuando la obra está lista.</span><span class="pt">Venda ou locação quando a obra estiver pronta.</span></p></div></div>
+  </div>
+</section>
 
-        </section>
+<section id="como">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Cómo trabajamos</span><span class="pt">Como trabalhamos</span></div>
+      <h2><span class="es">Cuatro pasos, un solo interlocutor técnico.</span><span class="pt">Quatro etapas, um único interlocutor técnico.</span></h2>
+    </div>
+    <div class="steps"><div class="step"><div class="k">1</div><h3><span class="es">Terreno</span><span class="pt">Terreno</span></h3><p><span class="es">Agrimensura y estudio de suelos para saber qué y cómo se puede construir.</span><span class="pt">Agrimensura e sondagem para saber o que e como construir.</span></p></div><div class="step"><div class="k">2</div><h3><span class="es">Proyecto</span><span class="pt">Projeto</span></h3><p><span class="es">Arquitectura, ingeniería y modelo BIM: ves tu obra antes de construirla.</span><span class="pt">Arquitetura, engenharia e BIM: veja a obra antes de construí-la.</span></p></div><div class="step"><div class="k">3</div><h3><span class="es">Obra</span><span class="pt">Obra</span></h3><p><span class="es">Dirección de obra, seguridad e higiene y materiales, con la constructora que elijas.</span><span class="pt">Direção de obra, segurança e materiais, com a construtora que você escolher.</span></p></div><div class="step"><div class="k">4</div><h3><span class="es">Entrega</span><span class="pt">Entrega</span></h3><p><span class="es">Llave en mano y, si querés, gestionamos la venta o el alquiler.</span><span class="pt">Chave na mão e, se quiser, cuidamos da venda ou locação.</span></p></div></div>
+    <div class="whys">
+      <div class="why"><span class="es">Trabajamos con cualquier constructora.</span><span class="pt">Trabalhamos com qualquer construtora.</span></div>
+      <div class="why"><span class="es">Un solo interlocutor técnico, de principio a fin.</span><span class="pt">Um único interlocutor técnico, do início ao fim.</span></div>
+      <div class="why"><span class="es">BIM: menos sorpresas en costo y plazo.</span><span class="pt">BIM: menos surpresas em custo e prazo.</span></div>
+    </div>
+  </div>
+</section>
 
-        <section id="vento">
-          <div class="bg-gray-50 py-24 sm:py-32">
-            <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-              <h2 class="text-center text-base/7 font-semibold text-indigo-600">ciprodec</h2>
-              <p class="mx-auto mt-2  text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">Expertos en construcción a tu servicio.</p>
-              <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-                <div class="relative lg:row-span-2">
-                  <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-                    <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Arquitectura</p>
-                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Diseñando soluciones innovadoras para un mundo en constante evolución.</p>
-                    </div>
-                    <div class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-                      <div class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
-                        <img class="size-full object-cover object-top" src="./img/Arquitectura.png" alt="Arquitectura">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
-                </div>
-                <div class="relative max-lg:row-start-1">
-                  <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-                    <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Diseños 3D</p>
-                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Hacemos realidad tus sueños, podrás ver la casa de tus sueños antes de empezar la obra.</p>
-                    </div>
-                    <div class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-                      <img class="w-full max-lg:max-w-xs" src="./img/Diseno3d.png" alt="">
-                    </div>
-                  </div>
-                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
-                </div>
-                <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-                  <div class="absolute inset-px rounded-lg bg-white"></div>
-                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
-                    <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Ingeniería</p>
-                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Realizamos calculos de estructuras, soluciones de estructuras innovadoras.</p>
-                    </div>
-                    <div class="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
-                      <img class="h-[min(152px,40cqw)] object-cover items-center" src="./img/Ingeniería.png" alt="">
-                    </div>
-                  </div>
-                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
-                </div>
-                <div class="relative lg:row-span-2">
-                  <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-                  <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-                    <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-                      <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Diseño de interiores</p>
-                      <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Nos encargamos del diseño de interiores, modernos, contemporaneos y atemporales.</p>
-                    </div>
-                    <div class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-                      <img class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl" src="../img/Interiores2.png" alt="">
-                    </div>
+<section id="constructoras" class="b2b">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Para constructoras y estudios</span><span class="pt">Para construtoras e escritórios</span></div>
+      <h2><span class="es">Tu equipo técnico tercerizado.</span><span class="pt">A sua equipe técnica terceirizada.</span></h2>
+      <p><span class="es">Sumanos por pedido cuando tu obra lo necesite, sin cargar estructura fija. Entregamos bajo tu marca y en tus plazos.</span><span class="pt">Conte conosco sob demanda quando a sua obra precisar, sem estrutura fixa. Entregamos com a sua marca e nos seus prazos.</span></p>
+    </div>
+    <div class="chips">
+      <span><span class="es">Modelado BIM (Revit)</span><span class="pt">Modelagem BIM (Revit)</span></span>
+      <span><span class="es">Cálculo estructural</span><span class="pt">Cálculo estrutural</span></span>
+      <span><span class="es">Estudio de suelos</span><span class="pt">Sondagem de solo</span></span>
+      <span><span class="es">Agrimensura</span><span class="pt">Topografia</span></span>
+      <span><span class="es">Seguridad e higiene</span><span class="pt">Segurança do trabalho</span></span>
+      <span><span class="es">Cómputo y presupuesto</span><span class="pt">Orçamento</span></span>
+    </div>
+    <div class="cta" style="margin-top:30px">
+      <a class="btn red" href="https://wa.me/595986573190"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Pedí una cotización</span><span class="pt">Peça um orçamento</span></a>
+    </div>
+  </div>
+</section>
 
+<section id="equipo">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Profesionales responsables</span><span class="pt">Profissionais responsáveis</span></div>
+    </div>
+    <div class="team">
+      <div><small><span class="es">Arquitecto</span><span class="pt">Arquiteto</span></small><b>Mauricio Krumkamp · MP 2774</b></div>
+      <div><small><span class="es">Arquitecto</span><span class="pt">Arquiteto</span></small><b>Sergio Schreiner · MP 3302</b></div>
+    </div>
+  </div>
+</section>
 
-                  </div>
-                  <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
+<section id="contacto" class="draft" style="padding-top:24px">
+  <svg  viewBox="0 0 794 1123" preserveAspectRatio="xMidYMax slice" aria-hidden="true" class="bg"><g fill="none" stroke="#1A1A1A" stroke-opacity="0.10" stroke-width="1"><path vector-effect="non-scaling-stroke" d="M0 1095L794 1095 M30 700h250v395h-250Z M30 730L280 730 M30 772L280 772 M30 814L280 814 M30 856L280 856 M30 898L280 898 M30 940L280 940 M30 982L280 982 M30 1024L280 1024 M30 1066L280 1066 M80 700L80 1095 M130 700L130 1095 M180 700L180 1095 M230 700L230 1095 M30 700L155 640 M280 700L155 640 M470 560h300v535h-300Z M470 600L770 600 M470 646L770 646 M470 692L770 692 M470 738L770 738 M470 784L770 784 M470 830L770 830 M470 876L770 876 M470 922L770 922 M470 968L770 968 M470 1014L770 1014 M470 1060L770 1060 M530 560L530 1095 M590 560L590 1095 M650 560L650 1095 M710 560L710 1095 M500 520h240v40h-240Z M290 860h170v235h-170Z M290 900L460 900 M290 940L460 940 M290 980L460 980 M290 1020L460 1020 M290 1060L460 1060 M290 860L375 760 M460 860L375 760 M290 1095L375 760 M460 1095L375 760"/></g><g fill="none" stroke="#1A1A1A" stroke-opacity="0.070" stroke-width="1" stroke-dasharray="4 6"><path vector-effect="non-scaling-stroke" d="M0 470H794 M0 520H794 M0 640H794 M155 380V1095 M375 380V1095 M620 380V1095"/></g></svg>
+  <div class="wrap contact">
+    <div class="head" style="margin:0">
+      <div class="eyebrow"><span class="es">Contacto</span><span class="pt">Contato</span></div>
+      <h2><span class="es">Contanos qué vas a construir.</span><span class="pt">Conte o que você vai construir.</span></h2>
+      <p><span class="es">Te respondemos por WhatsApp y coordinamos una reunión de 30 minutos para ver tu caso.</span><span class="pt">Respondemos pelo WhatsApp e marcamos uma reunião de 30 minutos para ver o seu caso.</span></p>
+    </div>
+    <div class="box">
+      <div class="phone"><span class="flag" aria-hidden="true"><i></i><i></i><i></i></span><a href="https://wa.me/595986573190">+595 986 573 190</a></div>
+      <div class="rows">
+        <div><span class="mono">Email</span><a href="mailto:ciprodecpy@gmail.com">ciprodecpy@gmail.com</a></div>
+        <div><span class="mono">Web</span><span>www.ciprodec.com</span></div>
+        <div><span class="mono">Instagram</span><a href="https://www.instagram.com/ciprodec/">@ciprodec</a></div>
+        <div><span class="mono"><span class="es">Dirección</span><span class="pt">Endereço</span></span><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Mcal.+Francisco+Solano+L%C3%B3pez+Supercarretera+PY07+Hernandarias+Paraguay">Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias</a></div>
+      </div>
+      <a class="btn red" href="https://wa.me/595986573190" style="justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Agendá tu reunión</span><span class="pt">Agende sua reunião</span></a>
+    </div>
+  </div>
+</section>
+</main>
 
-        </section>
+<footer><div class="wrap"><span><b>CIPRODEC</b> · Centro Integral de Profesionales de la Construcción</span><span>Arq. Mauricio Krumkamp (MP 2774) · Arq. Sergio Schreiner (MP 3302)</span></div></footer>
 
-        <!--
-        <section class="pt-16">
-          <div>
-              
-                <div id="caja" class="bg-gray-500">
-                  <p id="texto" class="text-center font-bold text-4xl ">texto</p>
-                </div>
-              
-          </div>
-        </section>
-        -->
-      
-        <script src="./src/script.js"></script>
+<a class="wa-float" href="https://wa.me/595986573190" aria-label="WhatsApp CIPRODEC"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg></a>
 
-       
-<!--
-        <script>
-          const menuToggle = document.getElementById('.menu-toggle');
-          const menulink = document.getElementById('.mobilemenu');
-
-          menuToggle.addEventListener('click',()=>{
-            menulink.classList.toggle('hidden');
-          });
-        </script>
-        
-        <script>
-            const button = document.querySelector('.menu-button');
-            const menu = document.querySelector('.menu');
-
-            button.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            });
-        </script> 
--->
-        <!--
-        <script>
-          const menuHamburger = document.querySelector(".menu-hamburger")
-          const navLinks = document.querySelector(".menu")
-      
-          menuHamburger.addEventListener('click',()=>{
-          navLinks.classList.toggle('lg:hidden')
-          })
-        </script>
-        
-        <script>
-            function openMenu() {
-                let menu = document.getElementById('menu');
-    
-                if(menu.ClassList.contains('hidden')){
-                    menu.ClassList.remove('hidden');
-                }else{
-                    menu.ClassList.add('hidden');
-                }
-            }
-        </script>
-        -->
-        <footer class="bg-black">
-          <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              <div>
-                <div class="text-white">
-                  <strong>ciprodec</strong>
-                </div>
-        
-                <p class="mt-4 max-w-xs text-gray-300">
-                  Centro de profesionales de la construcción
-                </p>
-        
-                <ul class="mt-8 flex gap-6">
-                  <li>
-                    <a
-                      href="https://www.facebook.com/profile.php?id=100064049114522"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-200 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Facebook</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-        
-                  <li>
-                    <a
-                      href="https://www.instagram.com/ciprodec/?hl=es-la"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-200 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Instagram</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-        
-                  <!-- <li>
-                    <a
-                      href="#"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-200 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Twitter</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
-                        />
-                      </svg>
-                    </a>
-                  </li> -->
-        
-                  <!-- <li>
-                    <a
-                      href="#"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-700 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">GitHub</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li> -->
-        
-                  <!-- <li>
-                    <a
-                      href="#"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-700 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Dribbble</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li> -->
-
-
-                </ul>
-              </div>
-        
-              <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
-                <div>
-                  <p class="font-medium text-gray-200">Servicios</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Proyectos </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseños en 3D </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Habilitaciones Municipales </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Consultoria de construcción </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Imp. - Exp. de materiales de la construcción </a>
-                    </li>
-                  </ul>
-                </div>
-        
-                <div>
-                  <p class="font-medium text-gray-200">Profesionales</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Arquitectura </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Ingenieria </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Plan de contingencia </a>
-                    </li>
-
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Estudios de suelo </a>
-                    </li>
-
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseño de interiores </a>
-                    </li>
-                    
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseño de interiores </a>
-                    </li>
-
-                  </ul>
-                </div>
-
-                <div>
-                  <p class="font-medium text-gray-200">Otros</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Paisajismos </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Interiorismos </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Inmobiliaria </a>
-                    </li>
-
-                    <li>
-                      <a href="https://api.whatsapp.com/send/?phone=5493757500540&text&type=phone_number&app_absent=0" class="text-gray-400 transition hover:opacity-75"> Contacto </a>
-                    </li>
-                  </ul>
-                </div>
-        
-                
-        
-                <!-- <div>
-                  <p class="font-medium text-gray-200">Legal</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Accessibility </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Returns Policy </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Refund Policy </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Hiring Statistics </a>
-                    </li>
-                  </ul>
-                </div> -->
-              </div>
-            </div>
-        
-            <p class="text-xs text-gray-400">2025 CIPRODEC</p>
-          </div>
-        </footer>
-
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll('.lang button');
+  function set(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l==='pt'?'pt-BR':'es');
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.set===l))});
+    try{localStorage.setItem('ciprodec-lang',l)}catch(e){}}
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+  var saved=null;try{saved=localStorage.getItem('ciprodec-lang')}catch(e){}
+  if(saved==='pt'||saved==='es'){set(saved)}
+  else if((navigator.language||'').toLowerCase().indexOf('pt')===0){set('pt')}
+})();
+</script>
 </body>
 </html>
-
-
-
-
-  
-

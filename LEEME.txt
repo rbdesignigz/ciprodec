@@ -1,0 +1,25 @@
+CIPRODEC - Página de presentación (Expo Paraguay Brasil 2026)
+
+index.html
+  Página completa en un solo archivo (HTML + CSS + JS). No necesita otros
+  archivos ni imágenes: el logo y los dibujos están dentro del HTML.
+  Tiene botón ES / PT y se ve bien en celular.
+  Tipografías: Montserrat y Courier Prime (se cargan desde Google Fonts).
+
+img/
+  Logo CIPRODEC en vector (SVG negro y blanco) y en PNG de 4000 px con fondo
+  transparente, por si se usa en otras partes del sitio (favicon, menú, etc.).
+
+Datos de contacto válidos:
+  WhatsApp: +595 986 573 190 (https://wa.me/595986573190)
+  Email: ciprodecpy@gmail.com
+  Instagram: @ciprodec
+  Dirección: Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias, Paraguay
+
+Importante: en la portada actual dice "Estrenamos nueva oficina en
+Av. Victoria Aguirre 1190". Esa dirección ya no va: reemplazar por la de
+Hernandarias.
+
+Uso sugerido: publicar index.html como portada de www.ciprodec.com, o como
+sección "Expo" (por ejemplo www.ciprodec.com/expo) con un botón en el menú.
+Fecha límite: antes del miércoles 11 de noviembre.

@@ -7,145 +7,25 @@
 <meta name="description" content="Arquitectura, ingeniería, cálculo estructural, BIM, suelos, agrimensura y dirección de obra en Alto Paraná. Trabajamos con la constructora que elijas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
-<style>
-:root{--red:#E8262B;--red-bg:#F23030;--ink:#1A1A1A;--muted:#555;--line:#DADADA;--paper:#FFFFFF;--soft:#F6F6F4;
-  --mono:"Courier Prime",ui-monospace,Menlo,Consolas,monospace;--sans:Montserrat,"Segoe UI",Helvetica,Arial,sans-serif}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans);
-  padding-bottom:env(safe-area-inset-bottom,0px)}
-html[data-lang="es"] .pt{display:none!important}
-html[data-lang="pt"] .es{display:none!important}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-a{color:var(--ink)}
-:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-h1,h2,h3{margin:0;line-height:1.08;text-wrap:balance}
-h1{font-weight:800;font-size:clamp(2.3rem,6.2vw,4.4rem);letter-spacing:-.02em}
-h2{font-weight:800;font-size:clamp(1.7rem,3.6vw,2.6rem);letter-spacing:-.01em}
-h3{font-weight:700;font-size:1.12rem}
-p{margin:0}
-.mono{font-family:var(--mono);font-weight:700}
-.eyebrow{font-family:var(--mono);font-weight:700;color:var(--red);font-size:1rem}
-section{padding-block:72px}
-/* header */
-header.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
-header.top .wrap{display:flex;align-items:center;gap:20px;min-height:68px;flex-wrap:wrap}
-.brand{display:block;line-height:0}
-.brand svg{height:30px;width:auto}
-nav.links{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
-nav.links a{text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 10px}
-nav.links a:hover{color:var(--red)}
-.lang{display:flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
-.lang button{font:700 .85rem var(--mono);background:transparent;border:0;padding:6px 10px;min-height:36px;cursor:pointer;color:var(--ink)}
-.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
-@media (max-width:760px){nav.links{display:none}.lang{margin-left:auto}}
-/* drafting background */
-.draft{position:relative;overflow:hidden}
-.draft>svg.bg{position:absolute;inset:auto 0 0 0;width:100%;height:100%;pointer-events:none}
-.draft>.wrap{position:relative}
-/* hero */
-.hero{padding-block:56px 64px;text-align:center}
-.hero .logo svg{width:min(560px,86vw);height:auto}
-.hero .tag{margin-top:14px;font-family:var(--mono);font-weight:700;font-size:clamp(1rem,2.3vw,1.3rem)}
-.band{position:relative;margin:30px 0 34px;display:flex;justify-content:center}
-.band::before{content:"";position:absolute;left:-50vw;right:-50vw;top:50%;height:3px;background:var(--ink)}
-.band>span{position:relative;background:var(--red-bg);color:#fff;border-radius:10px;padding:10px 30px;font:700 clamp(1.05rem,2.6vw,1.45rem)/1.3 var(--mono)}
-.hero .sub{margin:16px auto 0;max-width:46ch;font-size:1.12rem;color:#333}
-.hero .alt{margin-top:8px;color:var(--red);font-weight:600;font-style:italic;font-size:1.25rem}
-.cta{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:10px;border:2px solid var(--ink);font:700 1rem var(--sans);text-decoration:none;color:var(--ink);background:#fff}
-.btn.red{background:var(--red);border-color:var(--red);color:#fff}
-.btn:hover{filter:brightness(.95)}
-.btn svg{width:22px;height:22px;flex-shrink:0}
-.expo{margin-top:28px;display:inline-block;border:2px solid var(--ink);border-radius:10px;padding:8px 16px;font:700 .95rem var(--mono);background:#fff}
-/* services */
-.head{display:grid;gap:10px;margin-bottom:34px;max-width:720px}
-.head p{color:var(--muted);font-size:1.05rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.card{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:20px;display:grid;gap:8px;align-content:start}
-.card .n{width:36px;height:36px;border-radius:8px;background:var(--red-bg);color:#fff;display:grid;place-items:center;font:700 1rem var(--mono)}
-.card p{color:var(--muted);font-size:.95rem}
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;counter-reset:s}
-.step{border-top:4px solid var(--red);padding-top:16px;display:grid;gap:8px}
-.step .k{font:700 2rem var(--mono);color:var(--red);line-height:1}
-.step p{color:var(--muted)}
-.whys{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.why{background:var(--soft);border-radius:12px;padding:16px 18px;font-weight:700}
-/* b2b */
-.b2b{background:var(--ink);color:#fff}
-.b2b .eyebrow{color:#FF8A8A}
-.b2b .head p{color:#CFCFCF}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-.chips>span{border:2px solid #fff;border-radius:999px;padding:8px 16px;font-weight:600}
-.b2b .cta{justify-content:flex-start}
-.b2b .btn{background:transparent;border-color:#fff;color:#fff}
-.b2b .btn.red{background:var(--red);border-color:var(--red)}
-/* team */
-.team{background:var(--red-bg);color:#fff;border-radius:16px;padding:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;text-align:center}
-.team small{display:block;font-weight:600;font-size:.95rem;opacity:.95}
-.team b{font-size:1.25rem}
-/* contact */
-.contact{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
-@media (max-width:820px){.contact{grid-template-columns:1fr}}
-.box{border:2px solid var(--ink);border-radius:16px;padding:24px;background:#fff;display:grid;gap:14px}
-.phone{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.flag{width:46px;height:30px;border:1px solid #ccc;display:grid;grid-template-rows:1fr 1fr 1fr;position:relative;flex-shrink:0}
-.flag i:nth-child(1){background:#D52B1E}.flag i:nth-child(2){background:#fff}.flag i:nth-child(3){background:#0038A8}
-.flag::after{content:"";position:absolute;left:19px;top:11px;width:8px;height:8px;border-radius:50%;border:1px solid #2E7D32;box-sizing:border-box}
-.phone a{font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);text-decoration:none;letter-spacing:-.01em}
-.rows{display:grid;gap:8px}
-.rows div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-.rows .mono{color:var(--red);min-width:92px}
-footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:.88rem}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:58px;height:58px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
-.wa-float svg{width:30px;height:30px}
-.news{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.ncard{background:#fff;border:2px solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
-.ncard img{width:100%;height:190px;object-fit:cover;display:block;background:#EEE}
-.ncard .b{padding:16px 18px;display:grid;gap:8px}
-.ncard .meta{font:700 .85rem var(--mono);color:var(--red)}
-.ncard h3{font-size:1.05rem;line-height:1.3}
-.ncard p{color:var(--muted);font-size:.93rem}
-.ncard .more{font-weight:700;font-size:.9rem;margin-top:2px}
-.ncard:hover{border-color:var(--red)}
-.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-.work{background:#fff;border:2px solid var(--ink);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-.work .cover{position:relative;border:0;padding:0;margin:0;background:#EEE;cursor:pointer;display:block;width:100%}
-.work .cover img{width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;display:block}
-.work .cover .cnt{position:absolute;right:12px;bottom:12px;background:rgba(26,26,26,.85);color:#fff;font:700 .8rem var(--mono);padding:5px 10px;border-radius:8px}
-.work .b{padding:18px 20px 20px;display:grid;gap:10px}
-.work .area{font:700 .9rem var(--mono);color:var(--red)}
-.work .loc{color:var(--muted);font-size:.92rem}
-.work ul{margin:0;padding-left:18px;color:#333;font-size:.93rem}
-.work .nota{font-size:.8rem;color:var(--muted)}
-.work .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}
-.lb.open{display:flex}
-.lb img{max-width:100%;max-height:82vh;border-radius:8px;display:block}
-.lb .cap{color:#fff;text-align:center;margin-top:10px;font:700 .9rem var(--mono)}
-.lb button{position:absolute;background:#fff;border:0;border-radius:50%;width:48px;height:48px;font:700 1.3rem var(--sans);cursor:pointer;color:var(--ink)}
-.lb .x{top:max(16px,env(safe-area-inset-top,0px));right:16px}.lb .prev{left:12px;top:50%}.lb .next{right:12px;top:50%}
-</style>
+<link rel="icon" href="./img/iso-logo.png">
+<link rel="stylesheet" href="./src/ciprodec.css">
 </head>
 <body>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="CIPRODEC, inicio"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1208 148"><g fill="none" stroke="#1A1A1A" stroke-linecap="round" stroke-width="28"><path d="M59.48 15.78A60 60 0 0 0 59.48 132.22 M88.52 15.78A60 60 0 0 1 124.88 42.20 M124.88 105.80A60 60 0 0 1 88.52 132.22"/></g><path d="M63.48 -11.22V6.78M55.48 -3.22H71.48" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><g transform="translate(0 24.00)" fill="none" stroke="#1A1A1A" stroke-width="20" stroke-linejoin="round" stroke-linecap="butt"><path d="M304.0 30.0A20 20 0 0 0 284.0 10.0H218.0A20 20 0 0 0 198.0 30.0V70.0A20 20 0 0 0 218.0 90.0H284.0A20 20 0 0 0 304.0 70.0 M346.0 0V100 M388.0 100V10.0H464.0A20 20 0 0 1 484.0 30.0V36A20 20 0 0 1 464.0 56H388.0 M526.0 100V10.0H606.0A20 20 0 0 1 626.0 30.0V36A20 20 0 0 1 606.0 56H526.0M606.0 56A20 20 0 0 1 626.0 76V100 M688.0 10.0H762.0A20 20 0 0 1 782.0 30.0V70.0A20 20 0 0 1 762.0 90.0H688.0A20 20 0 0 1 668.0 70.0V30.0A20 20 0 0 1 688.0 10.0Z M824.0 10.0H910.0A20 20 0 0 1 930.0 30.0V70.0A20 20 0 0 1 910.0 90.0H824.0Z M1058.0 10.0H972.0V90.0H1058.0M972.0 56H1044.0 M1196.0 30.0A20 20 0 0 0 1176.0 10.0H1110.0A20 20 0 0 0 1090.0 30.0V70.0A20 20 0 0 0 1110.0 90.0H1176.0A20 20 0 0 0 1196.0 70.0"/></g></svg></a>
-    <nav class="links" aria-label="Secciones">
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-principal"><span aria-hidden="true">☰</span> <span class="es">Menú</span><span class="pt">Menu</span></button>
+    <nav class="links" id="menu-principal" aria-label="Secciones">
       <a href="#servicios"><span class="es">Servicios</span><span class="pt">Serviços</span></a>
-      <a href="#como"><span class="es">Cómo trabajamos</span><span class="pt">Como trabalhamos</span></a>
       <a href="#obras"><span class="es">Obras</span><span class="pt">Obras</span></a>
-      <a href="#constructoras"><span class="es">Constructoras</span><span class="pt">Construtoras</span></a>
       <a href="./inmobiliaria.html"><span class="es">Inmobiliaria</span><span class="pt">Imobiliária</span></a>
-      <a href="#noticias"><span class="es">Noticias</span><span class="pt">Notícias</span></a>
+      <a href="./blog.html"><span class="es">Noticias</span><span class="pt">Notícias</span></a>
       <a href="./precios.html"><span class="es">Precios</span><span class="pt">Preços</span></a>
-      <a href="https://ciprodecradio.com.ar/">Radio</a>
+      <a href="https://ciprodecradio.com.ar/"><span class="es">Radio</span><span class="pt">Rádio</span></a>
       <a href="#contacto"><span class="es">Contacto</span><span class="pt">Contato</span></a>
+      <a class="ingresar" href="./cliente.html"><span class="es">Ingresar</span><span class="pt">Entrar</span></a>
     </nav>
-    <div class="lang" role="group" aria-label="Idioma / Idioma">
+    <div class="lang" role="group" aria-label="Idioma">
       <button type="button" data-set="es" aria-pressed="true">ES</button>
       <button type="button" data-set="pt" aria-pressed="false">PT</button>
     </div>
@@ -289,77 +169,59 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </section>
 </main>
 
-<footer><div class="wrap"><span><b>CIPRODEC</b> · Centro Integral de Profesionales de la Construcción</span><span>Arq. Mauricio Krumkamp (MP 2774) · Arq. Sergio Schreiner (MP 3302)</span></div></footer>
+<footer><div class="wrap"><span><b>CIPRODEC</b> · Centro Integral de Profesionales de la Construcción · Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias</span><span><a href="https://wa.me/595986573190">+595 986 573 190</a> · ciprodecpy@gmail.com · <a href="https://www.instagram.com/ciprodec/">@ciprodec</a></span></div></footer>
 
 <a class="wa-float" href="https://wa.me/595986573190" aria-label="WhatsApp CIPRODEC"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg></a>
-
-<script>
-(function(){
-  var root=document.documentElement, btns=document.querySelectorAll('.lang button');
-  function set(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l==='pt'?'pt-BR':'es');
-    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.set===l))});
-    try{localStorage.setItem('ciprodec-lang',l)}catch(e){}}
-  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
-  var saved=null;try{saved=localStorage.getItem('ciprodec-lang')}catch(e){}
-  if(saved==='pt'||saved==='es'){set(saved)}
-  else if((navigator.language||'').toLowerCase().indexOf('pt')===0){set('pt')}
-})();
-</script>
-<script>
-(function(){
-  var box=document.getElementById('ultimasNoticias'); if(!box) return;
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function okUrl(u){u=String(u||'');return /^(https?:\/\/|\.\/|\/|img\/)/i.test(u)?u:'';}
-  function fecha(f){if(!/^\d{4}-\d{2}-\d{2}$/.test(f||''))return '';var p=f.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
-  fetch('./data/noticias.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
-    var items=(d.noticias||[]).filter(function(n){return n.visible!==false}).slice(0,3);
-    if(!items.length){document.getElementById('noticias').style.display='none';return;}
-    box.innerHTML=items.map(function(n){
-      var txt=String(n.contenido||'').replace(/\*\*/g,'').replace(/\s+/g,' ').trim();
-      if(txt.length>160) txt=txt.slice(0,160).replace(/\s\S*$/,'')+'…';
-      var meta=[n.categoria,fecha(n.fecha)].filter(Boolean).join(' · ');
-      var img=okUrl(n.imagen);
-      return '<a class="ncard" href="./blog.html#'+encodeURIComponent(n.id)+'">'+(img?'<img src="'+esc(img)+'" alt="'+esc(n.alt||n.titulo)+'" loading="lazy">':'')+
-        '<div class="b">'+(meta?'<div class="meta">'+esc(meta)+'</div>':'')+'<h3>'+esc(n.titulo)+'</h3><p>'+esc(txt)+'</p>'+
-        (n.fuente?'<div style="font-size:.8rem;color:var(--muted)">Fuente: '+esc(n.fuente)+' · <b>con análisis CIPRODEC</b></div>':'')+
-        '<div class="more"><span class="es">Leer más →</span><span class="pt">Ler mais →</span></div></div></a>';
-    }).join('');
-  }).catch(function(){document.getElementById('noticias').style.display='none';});
-})();
-</script>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Fotos del proyecto">
   <button type="button" class="x" id="lbX" aria-label="Cerrar">✕</button>
   <button type="button" class="prev" id="lbP" aria-label="Foto anterior">‹</button>
   <figure style="margin:0;max-width:1200px"><img id="lbImg" alt=""><figcaption class="cap" id="lbCap"></figcaption></figure>
   <button type="button" class="next" id="lbN" aria-label="Foto siguiente">›</button>
 </div>
-<script>
-(function(){
-  var box=document.getElementById('listaObras'); if(!box) return;
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function ok(u){u=String(u||'');return /^(https?:\/\/|\.\/|\/|img\/|obras\/)/i.test(u)?u:'';}
-  var items=[],cur=null,idx=0,lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),last=null;
-  function show(){var f=cur.fotos;img.src=f[idx];img.alt=cur.titulo+' – foto '+(idx+1);cap.textContent=cur.titulo+' · '+(idx+1)+' / '+f.length;}
-  function open(i){cur=items[i];if(!cur.fotos.length)return;idx=0;last=document.activeElement;show();lb.classList.add('open');document.getElementById('lbX').focus();}
-  function close(){lb.classList.remove('open');if(last)last.focus();}
-  function move(d){idx=(idx+d+cur.fotos.length)%cur.fotos.length;show();}
-  document.getElementById('lbX').onclick=close;document.getElementById('lbP').onclick=function(){move(-1)};document.getElementById('lbN').onclick=function(){move(1)};
-  lb.addEventListener('click',function(e){if(e.target===lb)close();});
-  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1);});
-  fetch('./data/obras.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
-    items=(d.obras||[]).filter(function(o){return o.visible!==false}).map(function(o){o.fotos=(o.fotos||[]).map(ok).filter(Boolean);return o;});
-    if(!items.length){document.getElementById('obras').style.display='none';return;}
-    box.innerHTML=items.map(function(o,i){
-      var link=ok(o.enlace);
-      return '<article class="work">'+(o.fotos[0]?'<button type="button" class="cover" data-o="'+i+'" aria-label="Ver fotos de '+esc(o.titulo)+'"><img src="'+esc(o.fotos[0])+'" alt="" loading="lazy">'+(o.fotos.length>1?'<span class="cnt">'+o.fotos.length+' fotos</span>':'')+'</button>':'')+
-        '<div class="b"><div class="area">'+esc(o.area)+'</div><h3>'+esc(o.titulo)+'</h3><div class="loc">'+esc([o.ubicacion,o.estado].filter(Boolean).join(' · '))+'</div>'+
-        '<p>'+esc(o.descripcion)+'</p>'+((o.datos||[]).length?'<ul>'+o.datos.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
-        (o.nota?'<div class="nota">'+esc(o.nota)+'</div>':'')+
-        '<div class="acts">'+(o.fotos.length?'<button type="button" class="btn" data-o="'+i+'"><span class="es">Ver fotos</span><span class="pt">Ver fotos</span></button>':'')+
-        (link?'<a class="btn red" href="'+esc(link)+'">'+esc(o.enlaceTexto||'Ver más')+'</a>':'')+'</div></div></article>';
+<script src="./src/config.js"></script>
+<script src="./src/sitio.js"></script>
+<script type="module">
+import { listar, fotoUrl, esc, fechaTxt, okUrl } from './src/datos.js';
+/* Últimas noticias */
+(async () => {
+  const box = document.getElementById('ultimasNoticias'), sec = document.getElementById('noticias');
+  try {
+    const items = (await listar('noticias')).filter(n => n.visible !== false).slice(0, 3);
+    if (!items.length) { sec.style.display = 'none'; return; }
+    const imgs = await Promise.all(items.map(n => fotoUrl(n.imagen)));
+    box.innerHTML = items.map((n, i) => {
+      let txt = String(n.contenido || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+      if (txt.length > 160) txt = txt.slice(0, 160).replace(/\s\S*$/, '') + '…';
+      const meta = [n.categoria, fechaTxt(n.fecha)].filter(Boolean).join(' · ');
+      return '<a class="ncard" href="./blog.html#' + encodeURIComponent(n.id) + '">' + (imgs[i] ? '<img src="' + esc(imgs[i]) + '" alt="' + esc(n.alt || n.titulo) + '" loading="lazy">' : '') +
+        '<div class="b">' + (meta ? '<div class="meta">' + esc(meta) + '</div>' : '') + '<h3>' + esc(n.titulo) + '</h3><p>' + esc(txt) + '</p>' +
+        (n.fuente ? '<div style="font-size:.8rem;color:var(--muted)">Fuente: ' + esc(n.fuente) + (n.analisis ? ' · <b>con análisis CIPRODEC</b>' : '') + '</div>' : '') +
+        '<div class="more"><span class="es">Leer más →</span><span class="pt">Ler mais →</span></div></div></a>';
     }).join('');
-    box.addEventListener('click',function(e){var b=e.target.closest('[data-o]');if(b)open(+b.getAttribute('data-o'));});
-  }).catch(function(){document.getElementById('obras').style.display='none';});
+  } catch (e) { sec.style.display = 'none'; }
+})();
+/* Obras y proyectos */
+(async () => {
+  const box = document.getElementById('listaObras'), sec = document.getElementById('obras');
+  try {
+    const items = (await listar('obras')).filter(o => o.visible !== false);
+    if (!items.length) { sec.style.display = 'none'; return; }
+    const portadas = await Promise.all(items.map(o => fotoUrl((o.fotos || [])[0])));
+    box.innerHTML = items.map((o, i) => {
+      const link = okUrl(o.enlace) || (/^obras\//.test(o.enlace || '') ? './' + o.enlace : ''), n = (o.fotos || []).length;
+      return '<article class="work">' + (portadas[i] ? '<button type="button" class="cover" data-o="' + i + '" aria-label="Ver fotos de ' + esc(o.titulo) + '"><img src="' + esc(portadas[i]) + '" alt="" loading="lazy">' + (n > 1 ? '<span class="cnt">' + n + ' fotos</span>' : '') + '</button>' : '') +
+        '<div class="b"><div class="area">' + esc(o.area) + '</div><h3>' + esc(o.titulo) + '</h3><div class="loc">' + esc([o.ubicacion, o.estado].filter(Boolean).join(' · ')) + '</div>' +
+        '<p>' + esc(o.descripcion) + '</p>' + ((o.datos || []).length ? '<ul>' + o.datos.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') +
+        (o.nota ? '<div class="nota">' + esc(o.nota) + '</div>' : '') +
+        '<div class="acts">' + (n ? '<button type="button" class="btn" data-o="' + i + '"><span class="es">Ver fotos</span><span class="pt">Ver fotos</span></button>' : '') +
+        (link ? '<a class="btn red" href="' + esc(link) + '">' + esc(o.enlaceTexto || 'Ver más') + '</a>' : '') + '</div></div></article>';
+    }).join('');
+    box.addEventListener('click', async e => {
+      const b = e.target.closest('[data-o]'); if (!b) return;
+      const o = items[+b.dataset.o];
+      window.CipVisor && window.CipVisor.abrir(await Promise.all((o.fotos || []).map(fotoUrl)), o.titulo);
+    });
+  } catch (e) { sec.style.display = 'none'; }
 })();
 </script>
 </body>

@@ -1,509 +1,483 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Administración · CIPRODEC</title>
+<title>Panel de administración – CIPRODEC</title>
+<link rel="icon" href="./img/iso-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Montserrat:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
+<link rel="stylesheet" href="./src/ciprodec.css">
 <style>
-:root{--red:#E8262B;--ink:#1A1A1A;--muted:#5A5A5A;--line:#D9D9D9;--soft:#F5F5F3;--ok:#1E7B3A;--warn:#9A5B00;
-  --mono:"Courier Prime",ui-monospace,Menlo,monospace;--sans:Montserrat,"Segoe UI",Helvetica,Arial,sans-serif}
-*{box-sizing:border-box}
-body{margin:0;background:var(--soft);color:var(--ink);font:400 15px/1.5 var(--sans)}
-a{color:var(--ink)}
-:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-header .in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-header b{font-weight:800;letter-spacing:.06em}
-header .tag{font:700 .85rem var(--mono);color:var(--red)}
-header .sp{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-main{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
-h1{font-size:1.6rem;margin:0 0 6px;font-weight:800}
-h2{font-size:1.2rem;margin:0;font-weight:800}
-.muted{color:var(--muted)}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:8px 16px;border-radius:8px;border:2px solid var(--ink);background:#fff;color:var(--ink);font:700 .9rem var(--sans);cursor:pointer;text-decoration:none}
-.btn.red{background:var(--red);border-color:var(--red);color:#fff}
-.btn.small{min-height:34px;padding:4px 10px;font-size:.82rem}
-.btn.ghost{border-color:var(--line)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.tabs{display:flex;gap:8px;margin:18px 0}
-.tabs button{font:700 .95rem var(--sans);padding:10px 18px;border-radius:8px;border:2px solid var(--ink);background:#fff;cursor:pointer}
-.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
-.list{display:grid;gap:10px;margin-top:14px}
-.item{display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
-.item img,.item .ph{width:84px;height:64px;object-fit:cover;border-radius:8px;background:#EEE;display:block}
-.item h3{margin:0;font-size:1rem}
-.item .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.badge{display:inline-block;font:700 .72rem var(--mono);padding:2px 8px;border-radius:999px;background:#EEE;color:var(--muted)}
-.badge.on{background:#E3F3E7;color:var(--ok)}
-@media (max-width:640px){.item{grid-template-columns:64px minmax(0,1fr)}.item img,.item .ph{width:64px;height:52px}.item .acts{grid-column:1/-1;justify-content:flex-start}}
-label{display:block;font-weight:600;font-size:.88rem;margin-bottom:4px}
-input[type=text],input[type=password],input[type=date],input[type=url],textarea,select{width:100%;font:400 .95rem var(--sans);padding:9px 11px;border:1.5px solid #BDBDBD;border-radius:8px;background:#fff;color:var(--ink)}
-textarea{min-height:260px;resize:vertical;line-height:1.5}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.field{margin-bottom:14px}
-.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
-.photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-.ph-item{position:relative;width:132px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
-.ph-item img{width:132px;height:96px;object-fit:cover;display:block}
-.ph-item .row{display:flex;justify-content:space-between;padding:4px}
-.ph-item .row button{border:0;background:#F0F0F0;border-radius:6px;min-width:30px;min-height:30px;cursor:pointer;font-weight:700}
-.ph-item .cover{position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font:700 .7rem var(--mono);padding:2px 6px;border-radius:6px}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-start;justify-content:center;padding:24px 12px;overflow:auto;z-index:20}
-.overlay.open{display:flex}
-.panel{background:#fff;border-radius:14px;width:min(860px,100%);padding:22px}
-.panel .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px}
-.foot{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px;border-top:1px solid var(--line);padding-top:14px}
-.status{margin-top:12px;padding:10px 14px;border-radius:8px;font-weight:600;display:none}
-.status.show{display:block}
-.status.ok{background:#E3F3E7;color:var(--ok)}
-.status.err{background:#FDECEC;color:#A11A1E}
-.status.info{background:#FFF4DF;color:var(--warn)}
-.confirm{display:none;gap:8px;align-items:center;flex-wrap:wrap;background:#FDECEC;padding:8px 10px;border-radius:8px;margin-top:8px}
-.confirm.show{display:flex}
-ol.steps{padding-left:20px;margin:8px 0 0}
-ol.steps li{margin-bottom:6px}
-code{font-family:var(--mono);background:#F0F0F0;padding:1px 5px;border-radius:4px}
-.hidden{display:none!important}
+body{background:var(--soft)}
+.abar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.abar .wrap{display:flex;align-items:center;gap:14px;min-height:64px;flex-wrap:wrap}
+.abar .brand svg{height:24px}
+.abar .who{margin-left:auto;font-size:.88rem;color:var(--muted);text-align:right;line-height:1.3}
+.abar .who b{color:var(--ink)}
+.tabs-a{display:flex;gap:6px;flex-wrap:wrap;padding:16px 0}
+.tabs-a button{font:700 .92rem var(--sans);min-height:42px;padding:8px 14px;border-radius:999px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.tabs-a button[aria-selected="true"]{background:var(--ink);color:#fff}
+.hoja{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:22px;margin-bottom:40px}
+.hoja-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.hoja-h p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:70ch}
+.fila{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.fila .th{width:64px;height:48px;border-radius:8px;background:#EEE;object-fit:cover;display:block}
+.fila .t{font-weight:700;overflow-wrap:anywhere}
+.fila .s{font-size:.85rem;color:var(--muted)}
+.fila .oculto{font:700 .75rem var(--mono);color:#8A1414;background:#FDECEC;border-radius:6px;padding:2px 6px;margin-left:6px}
+.fila .acc{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.mini{font:700 .85rem var(--sans);min-height:38px;min-width:38px;padding:6px 10px;border-radius:8px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.mini.rojo{border-color:#B91C1C;color:#B91C1C}
+.mini:disabled{opacity:.35;cursor:default}
+@media (max-width:640px){.fila{grid-template-columns:52px minmax(0,1fr)}.fila .th{width:52px;height:40px}.fila .acc{grid-column:1/-1;justify-content:flex-start}}
+dialog.ed{border:2px solid var(--ink);border-radius:16px;padding:0;width:min(760px,96vw);max-height:92vh}
+dialog.ed::backdrop{background:rgba(0,0,0,.5)}
+.ed-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+.ed-b{padding:18px 20px;display:grid;gap:14px}
+.ed-f{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;padding:14px 20px;border-top:1px solid var(--line);position:sticky;bottom:0;background:#fff}
+.campo .ayuda{font-size:.82rem;color:var(--muted)}
+.check{display:flex;gap:10px;align-items:center;font-weight:700}
+.check input{width:22px;height:22px}
+.fotos-ed{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.fotos-ed .f{position:relative;border-radius:8px;overflow:hidden;background:#EEE;border:2px solid transparent}
+.fotos-ed .f:first-child{border-color:var(--red)}
+.fotos-ed img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.fotos-ed .f .ops{position:absolute;inset:auto 4px 4px 4px;display:flex;gap:4px;justify-content:space-between}
+.fotos-ed .f .ops button{font:700 .75rem var(--sans);border:0;border-radius:6px;padding:4px 7px;background:rgba(255,255,255,.92);cursor:pointer}
+.sub{border:1.5px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:12px;background:#FCFCFB}
+.sub-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:10px;font-weight:600;z-index:100;max-width:92vw;display:none}
+.toast.show{display:block}
+.toast.err{background:#B91C1C}
 </style>
 </head>
 <body>
-<header><div class="in">
-  <b>CIPRODEC</b><span class="tag">Administración</span>
-  <div class="sp">
-    <a class="btn small ghost" href="./" target="_blank" rel="noopener">Ver la web</a>
-    <button class="btn small ghost hidden" id="salir" type="button">Salir</button>
+<div class="abar"><div class="wrap">
+  <a class="brand" href="./index.html" aria-label="Ver el sitio">
+    <svg aria-hidden="true" viewBox="0 0 1208 148"><g fill="none" stroke="#1A1A1A" stroke-linecap="round" stroke-width="28"><path d="M59.48 15.78A60 60 0 0 0 59.48 132.22 M88.52 15.78A60 60 0 0 1 124.88 42.20 M124.88 105.80A60 60 0 0 1 88.52 132.22"/></g><g transform="translate(0 24.00)" fill="none" stroke="#1A1A1A" stroke-width="20" stroke-linejoin="round"><path d="M304.0 30.0A20 20 0 0 0 284.0 10.0H218.0A20 20 0 0 0 198.0 30.0V70.0A20 20 0 0 0 218.0 90.0H284.0A20 20 0 0 0 304.0 70.0 M346.0 0V100 M388.0 100V10.0H464.0A20 20 0 0 1 484.0 30.0V36A20 20 0 0 1 464.0 56H388.0 M526.0 100V10.0H606.0A20 20 0 0 1 626.0 30.0V36A20 20 0 0 1 606.0 56H526.0M606.0 56A20 20 0 0 1 626.0 76V100 M688.0 10.0H762.0A20 20 0 0 1 782.0 30.0V70.0A20 20 0 0 1 762.0 90.0H688.0A20 20 0 0 1 668.0 70.0V30.0A20 20 0 0 1 688.0 10.0Z M824.0 10.0H910.0A20 20 0 0 1 930.0 30.0V70.0A20 20 0 0 1 910.0 90.0H824.0Z M1058.0 10.0H972.0V90.0H1058.0M972.0 56H1044.0 M1196.0 30.0A20 20 0 0 0 1176.0 10.0H1110.0A20 20 0 0 0 1090.0 30.0V70.0A20 20 0 0 0 1110.0 90.0H1176.0A20 20 0 0 0 1196.0 70.0"/></g></svg>
+  </a>
+  <span class="mono" style="font-size:.9rem">Panel</span>
+  <div class="who" id="who"></div>
+  <button type="button" class="mini" id="btnSalir" hidden>Salir</button>
+</div></div>
+
+<main class="wrap">
+  <div id="sinAcceso" class="hoja" style="margin-top:24px" hidden></div>
+  <div id="app" hidden>
+    <div class="tabs-a" role="tablist" id="tabs"></div>
+    <section class="hoja" id="hoja" aria-live="polite"></section>
   </div>
-</div></header>
-
-<main>
-  <!-- Ingreso -->
-  <section id="login" class="card" style="max-width:640px;margin:20px auto">
-    <h1>Ingresar</h1>
-    <p class="muted">Este panel publica directamente en la web. Para entrar hace falta una <b>clave de acceso de GitHub</b> (token) de una cuenta con permiso sobre el repositorio <code>rbdesignigz/ciprodec</code>.</p>
-    <div class="field">
-      <label for="token">Clave de acceso (token de GitHub)</label>
-      <input type="password" id="token" autocomplete="off" spellcheck="false">
-    </div>
-    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="recordar"> Recordar en este dispositivo</label>
-      <div class="hint">Marcalo solo en una computadora o celular propio.</div></div>
-    <button class="btn red" id="entrar" type="button">Entrar</button>
-    <div class="status" id="loginStatus" role="status"></div>
-    <details style="margin-top:18px">
-      <summary style="cursor:pointer;font-weight:700">¿Cómo saco la clave de acceso?</summary>
-      <ol class="steps">
-        <li>En GitHub, con la cuenta que tiene acceso al repositorio, entrá a <b>Settings → Developer settings → Personal access tokens → Tokens (classic)</b>.</li>
-        <li>Tocá <b>Generate new token (classic)</b>. En "Note" poné <code>admin ciprodec</code> y elegí un vencimiento (por ejemplo 90 días).</li>
-        <li>Marcá solo el permiso <code>public_repo</code> y tocá <b>Generate token</b>.</li>
-        <li>Copiá la clave (empieza con <code>ghp_</code>) y pegala acá. No la compartas por chat ni por correo.</li>
-      </ol>
-    </details>
-  </section>
-
-  <!-- Panel -->
-  <section id="app" class="hidden">
-    <h1>Contenido de la web</h1>
-    <p class="muted">Los cambios se publican al guardar y se ven en la web en 1 a 2 minutos.</p>
-    <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="tab-noticias" aria-selected="true" aria-controls="sec-noticias">Noticias</button>
-      <button type="button" role="tab" id="tab-props" aria-selected="false" aria-controls="sec-props">Inmobiliaria</button>
-      <button type="button" role="tab" id="tab-obras" aria-selected="false" aria-controls="sec-obras">Obras</button>
-    </div>
-
-    <div id="sec-noticias" role="tabpanel" aria-labelledby="tab-noticias">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <h2>Noticias</h2>
-        <button class="btn red" type="button" id="nuevaNoticia">+ Nueva noticia</button>
-      </div>
-      <div class="list" id="listaNoticias"></div>
-    </div>
-
-    <div id="sec-props" role="tabpanel" aria-labelledby="tab-props" class="hidden">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <h2>Propiedades</h2>
-        <button class="btn red" type="button" id="nuevaProp">+ Nueva propiedad</button>
-      </div>
-      <div class="card" style="margin-top:14px;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
-        <div style="flex:1;min-width:220px">
-          <label for="waProps">WhatsApp para consultas de propiedades</label>
-          <input type="text" id="waProps" placeholder="5493757328322">
-          <div class="hint">Con código de país, sin + ni espacios. Ej.: 595986573190</div>
-        </div>
-        <button class="btn" type="button" id="guardarWa">Guardar WhatsApp</button>
-      </div>
-      <div class="list" id="listaProps"></div>
-    </div>
-    <div id="sec-obras" role="tabpanel" aria-labelledby="tab-obras" class="hidden">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <h2>Obras y proyectos</h2>
-        <button class="btn red" type="button" id="nuevaObra">+ Nueva obra</button>
-      </div>
-      <div class="list" id="listaObras"></div>
-    </div>
-    <div class="status" id="appStatus" role="status"></div>
-  </section>
 </main>
 
-<!-- Editor de noticia -->
-<div class="overlay" id="edNoticia" role="dialog" aria-modal="true" aria-labelledby="edNoticiaTit">
-  <div class="panel">
-    <div class="head"><h2 id="edNoticiaTit">Noticia</h2><button class="btn small ghost" type="button" data-cerrar>Cerrar</button></div>
-    <div class="field"><label for="nTitulo">Título</label><input type="text" id="nTitulo"></div>
-    <div class="grid2">
-      <div class="field"><label for="nCategoria">Categoría</label><input type="text" id="nCategoria" placeholder="Ej.: Seguridad e Higiene"></div>
-      <div class="field"><label for="nFecha">Fecha</label><input type="date" id="nFecha"></div>
-    </div>
-    <div class="field">
-      <label for="nImagen">Imagen principal</label>
-      <input type="file" id="nImagen" accept="image/*">
-      <div class="photos" id="nImagenPrev"></div>
-      <div class="hint">Se achica sola a un tamaño liviano para la web.</div>
-    </div>
-    <div class="field"><label for="nAlt">Descripción de la imagen (para buscadores y lectores de pantalla)</label><input type="text" id="nAlt"></div>
-    <div class="field">
-      <label for="nContenido">Texto de la noticia</label>
-      <textarea id="nContenido"></textarea>
-      <div class="hint">Dejá una línea en blanco entre párrafos. Para poner algo en <b>negrita</b>, escribilo entre dos asteriscos: <code>**así**</code>.</div>
-    </div>
-    <div class="field">
-      <label for="nAnalisis">Análisis CIPRODEC (opinión propia sobre la noticia)</label>
-      <textarea id="nAnalisis" style="min-height:140px"></textarea>
-      <div class="hint">Qué significa esta noticia para quien va a construir o invertir. Se muestra destacado debajo del texto.</div>
-    </div>
-    <div class="grid2">
-      <div class="field"><label for="nFuente">Fuente (medio)</label><input type="text" id="nFuente" placeholder="Ej.: Última Hora"></div>
-      <div class="field"><label for="nFuenteFecha">Fecha de la nota original</label><input type="date" id="nFuenteFecha"></div>
-    </div>
-    <div class="field"><label for="nFuenteUrl">Link a la nota original</label><input type="url" id="nFuenteUrl" placeholder="https://…"></div>
-    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="nVisible" checked> Publicada (visible en la web)</label></div>
-    <div class="status" id="nStatus" role="status"></div>
-    <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="nGuardar">Guardar y publicar</button></div>
-  </div>
-</div>
+<dialog class="ed" id="ed" aria-labelledby="edTitulo">
+  <form method="dialog" id="edForm" novalidate>
+    <div class="ed-h"><h2 id="edTitulo" style="font-size:1.25rem"></h2><button type="button" class="mini" id="edCerrar" aria-label="Cerrar">✕</button></div>
+    <div class="ed-b" id="edCuerpo"></div>
+    <div class="ed-f"><span id="edMsg" style="margin-right:auto;font-size:.9rem;align-self:center"></span><button type="button" class="btn" id="edCancelar">Cancelar</button><button type="submit" class="btn red" id="edGuardar">Guardar</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
 
-<!-- Editor de propiedad -->
-<div class="overlay" id="edProp" role="dialog" aria-modal="true" aria-labelledby="edPropTit">
-  <div class="panel">
-    <div class="head"><h2 id="edPropTit">Propiedad</h2><button class="btn small ghost" type="button" data-cerrar>Cerrar</button></div>
-    <div class="field"><label for="pTitulo">Título</label><input type="text" id="pTitulo" placeholder="Ej.: CASA 3 DORMITORIOS - QUINCHO CON BAÑO"></div>
-    <div class="grid2">
-      <div class="field"><label for="pUbicacion">Ubicación</label><input type="text" id="pUbicacion" placeholder="Ej.: Av. Paraná N° 103 - Pto. Iguazú"></div>
-      <div class="field"><label for="pMapa">Link de Google Maps (opcional)</label><input type="url" id="pMapa" placeholder="https://maps.app.goo.gl/…"></div>
-    </div>
-    <div class="grid2">
-      <div class="field"><label for="pTerreno">Terreno</label><input type="text" id="pTerreno" placeholder="600m²"></div>
-      <div class="field"><label for="pConstruido">Construido</label><input type="text" id="pConstruido" placeholder="100m²"></div>
-      <div class="field"><label for="pHab">Habitaciones</label><input type="text" id="pHab" placeholder="3"></div>
-      <div class="field"><label for="pBanos">Baños</label><input type="text" id="pBanos" placeholder="2"></div>
-      <div class="field"><label for="pCondicion">Condición</label><input type="text" id="pCondicion" list="condiciones" placeholder="Venta"></div>
-      <div class="field"><label for="pPrecio">Precio</label><input type="text" id="pPrecio" placeholder="USD 65.000"></div>
-    </div>
-    <datalist id="condiciones"><option value="Venta"><option value="Alquiler"><option value="Reservada"><option value="Vendida"></datalist>
-    <div class="field">
-      <label for="pFotos">Fotos</label>
-      <input type="file" id="pFotos" accept="image/*" multiple>
-      <div class="hint">La primera foto es la portada. Usá las flechas para cambiar el orden.</div>
-      <div class="photos" id="pFotosPrev"></div>
-    </div>
-    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="pVisible" checked> Publicada (visible en la web)</label></div>
-    <div class="status" id="pStatus" role="status"></div>
-    <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="pGuardar">Guardar y publicar</button></div>
-  </div>
-</div>
+<script src="./src/config.js"></script>
+<script type="module">
+import * as D from './src/datos.js';
+const $ = id => document.getElementById(id), esc = D.esc;
+let PERFIL = null, TAB = null, ITEMS = [];
 
-<!-- Editor de obra -->
-<div class="overlay" id="edObra" role="dialog" aria-modal="true" aria-labelledby="edObraTit">
-  <div class="panel">
-    <div class="head"><h2 id="edObraTit">Obra</h2><button class="btn small ghost" type="button" data-cerrar>Cerrar</button></div>
-    <div class="field"><label for="oTitulo">Título</label><input type="text" id="oTitulo" placeholder="Ej.: Estructura de vivienda con subsuelo"></div>
-    <div class="grid2">
-      <div class="field"><label for="oArea">Área</label><input type="text" id="oArea" list="areas" placeholder="Arquitectura · Diseño de interiores"></div>
-      <div class="field"><label for="oUbicacion">Ubicación</label><input type="text" id="oUbicacion" placeholder="Hernandarias, Alto Paraná"></div>
-      <div class="field"><label for="oEstado">Estado / año</label><input type="text" id="oEstado" placeholder="Proyecto 2026 · Obra terminada 2025"></div>
-    </div>
-    <datalist id="areas"><option value="Arquitectura · Diseño de interiores"><option value="Ingeniería · Cálculo estructural"><option value="Modelado BIM"><option value="Dirección de obra"><option value="Estudio de suelos"><option value="Agrimensura"><option value="Paisajismo"></datalist>
-    <div class="field"><label for="oDescripcion">Descripción</label><textarea id="oDescripcion" style="min-height:120px"></textarea>
-      <div class="hint">No pongas nombre del cliente ni dirección exacta.</div></div>
-    <div class="field"><label for="oDatos">Datos destacados (uno por línea)</label><textarea id="oDatos" style="min-height:100px" placeholder="199,85 m² cubiertos&#10;3 dormitorios"></textarea></div>
-    <div class="field">
-      <label for="oFotos">Fotos</label>
-      <input type="file" id="oFotos" accept="image/*" multiple>
-      <div class="hint">La primera foto es la portada. Usá las flechas para cambiar el orden.</div>
-      <div class="photos" id="oFotosPrev"></div>
-    </div>
-    <div class="grid2">
-      <div class="field"><label for="oEnlace">Link extra (opcional)</label><input type="text" id="oEnlace" placeholder="https://… o ./obras/…"></div>
-      <div class="field"><label for="oEnlaceTexto">Texto del botón</label><input type="text" id="oEnlaceTexto" placeholder="Ver modelo 3D"></div>
-    </div>
-    <div class="field"><label for="oNota">Nota al pie (opcional)</label><input type="text" id="oNota" placeholder="Imágenes: renders del proyecto."></div>
-    <div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="oVisible" checked> Publicada (visible en la web)</label></div>
-    <div class="status" id="oStatus" role="status"></div>
-    <div class="foot"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn red" type="button" id="oGuardar">Guardar y publicar</button></div>
-  </div>
-</div>
+function toast(t, err) { const el = $('toast'); el.textContent = t; el.className = 'toast show' + (err ? ' err' : ''); clearTimeout(toast.t); toast.t = setTimeout(() => el.className = 'toast', err ? 6000 : 2600); }
+const hoy = () => new Date().toISOString().slice(0, 10);
 
-<script>
-(function(){
-  var REPO='rbdesignigz/ciprodec', BRANCH='main', API='https://api.github.com/repos/'+REPO+'/contents/';
-  var F_NOT='data/noticias.json', F_PROP='data/propiedades.json', F_OBRA='data/obras.json', KEY='ciprodec-admin-token';
-  var token='', datos={noticias:null,props:null,obras:null}, sha={}, editId=null, fotosEd=[], imgNoticia=null;
-  var $=function(id){return document.getElementById(id)};
+/* ================= Definición de cada sección ================= */
+const SEC = {
+  noticias: {
+    col: 'noticias', titulo: 'Noticias', nuevoArriba: true,
+    ayuda: 'Se publican en la portada (las 3 primeras) y en la página Noticias. Siempre citá la fuente y escribí el análisis con tus palabras; no copies el texto de la nota.',
+    th: x => x.imagen, sub: x => [x.categoria, D.fechaTxt(x.fecha), x.fuente && 'Fuente: ' + x.fuente].filter(Boolean).join(' · '),
+    campos: [
+      { k: 'titulo', l: 'Título', req: true },
+      { k: 'categoria', l: 'Categoría', ayuda: 'Ej.: Sector construcción, Inversión y negocios, Normativa' },
+      { k: 'fecha', l: 'Fecha', t: 'date', def: hoy },
+      { k: 'imagen', l: 'Imagen de portada', t: 'foto', ayuda: 'Usá una imagen propia (no la foto del diario).' },
+      { k: 'alt', l: 'Descripción de la imagen (para accesibilidad)' },
+      { k: 'contenido', l: 'Resumen de la noticia', t: 'area', req: true, ayuda: 'Con tus palabras. Separá los párrafos con una línea en blanco. **texto** = negrita.' },
+      { k: 'analisis', l: 'Análisis CIPRODEC', t: 'area' },
+      { k: 'fuente', l: 'Fuente (medio)', ayuda: 'Ej.: Última Hora, ABC Color, INDEC' },
+      { k: 'fuenteUrl', l: 'Enlace a la nota original', t: 'url' },
+      { k: 'fuenteFecha', l: 'Fecha de la nota original', t: 'date' },
+      { k: 'visible', l: 'Publicada (visible en la web)', t: 'check', def: true }
+    ]
+  },
+  obras: {
+    col: 'obras', titulo: 'Obras y proyectos',
+    ayuda: 'Portfolio público de la portada. No pongas nombres de clientes ni direcciones exactas.',
+    th: x => (x.fotos || [])[0], sub: x => [x.area, x.ubicacion, x.estado].filter(Boolean).join(' · '),
+    campos: [
+      { k: 'titulo', l: 'Título', req: true },
+      { k: 'area', l: 'Área', ayuda: 'Ej.: Ingeniería · Cálculo estructural' },
+      { k: 'ubicacion', l: 'Ubicación (ciudad)' },
+      { k: 'estado', l: 'Estado / año', ayuda: 'Ej.: Proyecto 2026, Obra terminada 2025' },
+      { k: 'descripcion', l: 'Descripción', t: 'area' },
+      { k: 'datos', l: 'Datos destacados (uno por línea)', t: 'lineas' },
+      { k: 'fotos', l: 'Fotos (la primera es la portada)', t: 'fotos' },
+      { k: 'enlace', l: 'Enlace opcional', t: 'url', ayuda: 'Ej.: un modelo 3D o un video' },
+      { k: 'enlaceTexto', l: 'Texto del botón del enlace', ayuda: 'Ej.: Ver modelo 3D' },
+      { k: 'nota', l: 'Nota al pie', ayuda: 'Ej.: Imágenes: renders del proyecto.' },
+      { k: 'visible', l: 'Visible en la web', t: 'check', def: true }
+    ]
+  },
+  precios: {
+    col: 'ediciones', titulo: 'Revista de precios', nuevoArriba: true,
+    ayuda: 'Cada mes, una edición nueva arriba de todo. Solo números publicados por la fuente, con su enlace. Las fuentes por país se editan abajo.',
+    th: () => '', sub: x => (x.indicadores || []).length + ' indicadores · ' + D.fechaTxt(x.fecha),
+    tituloItem: x => 'Edición ' + (x.titulo || ''),
+    campos: [
+      { k: 'titulo', l: 'Título de la edición', req: true, ayuda: 'Ej.: Diciembre 2026' },
+      { k: 'titulo_pt', l: 'Título en portugués', ayuda: 'Ej.: Dezembro 2026' },
+      { k: 'fecha', l: 'Fecha', t: 'date', def: hoy },
+      { k: 'indicadores', l: 'Indicadores del mes', t: 'objetos', item: 'Indicador', campos: [
+        { k: 'pais', l: 'País', t: 'select', op: [['PY', 'Paraguay'], ['AR', 'Argentina'], ['BR', 'Brasil']] },
+        { k: 'nombre', l: 'Nombre', req: true }, { k: 'valor', l: 'Valor', req: true, ayuda: 'Ej.: +1,5 % mensual' },
+        { k: 'detalle', l: 'Detalle', t: 'area' }, { k: 'fuente', l: 'Fuente', req: true },
+        { k: 'fuenteUrl', l: 'Enlace de la fuente', t: 'url' }, { k: 'fuenteFecha', l: 'Fecha de la fuente', t: 'date' }] },
+      { k: 'analisis', l: 'Análisis CIPRODEC (un párrafo por bloque, separados por línea en blanco)', t: 'parrafos' },
+      { k: 'visible', l: 'Publicada', t: 'check', def: true }
+    ],
+    extra: 'fuentes'
+  },
+  fuentes: {
+    col: 'fuentes', titulo: 'Fuentes de precios por país',
+    th: () => '', sub: x => [x.pais, x.frecuencia].filter(Boolean).join(' · '),
+    tituloItem: x => x.nombre,
+    campos: [
+      { k: 'pais', l: 'País', t: 'select', op: [['PY', 'Paraguay'], ['AR', 'Argentina'], ['BR', 'Brasil']] },
+      { k: 'nombre', l: 'Nombre', req: true }, { k: 'cubre', l: 'Qué cubre (uno por línea)', t: 'lineas', ayuda: 'Ej.: Mano de obra / Materiales / Índice' },
+      { k: 'frecuencia', l: 'Frecuencia' }, { k: 'descripcion', l: 'Descripción', t: 'area' },
+      { k: 'url', l: 'Enlace', t: 'url' }, { k: 'urlTexto', l: 'Texto del enlace' }
+    ]
+  },
+  propiedades: {
+    col: 'propiedades', titulo: 'Inmobiliaria',
+    ayuda: 'Propiedades de la página Inmobiliaria. El WhatsApp de consultas se cambia en Ajustes.',
+    th: x => (x.fotos || [])[0], sub: x => [x.condicion, x.precio, x.ubicacion].filter(Boolean).join(' · '),
+    campos: [
+      { k: 'titulo', l: 'Título', req: true },
+      { k: 'condicion', l: 'Condición', t: 'select', op: [['Venta', 'Venta'], ['Alquiler', 'Alquiler'], ['Vendida', 'Vendida'], ['Alquilada', 'Alquilada']] },
+      { k: 'precio', l: 'Precio', ayuda: 'Ej.: USD 116.600 · Gs. 4.500.000/mes' },
+      { k: 'ubicacion', l: 'Ubicación' },
+      { k: 'mapa', l: 'Enlace a Google Maps', t: 'url' },
+      { k: 'terreno', l: 'Terreno', ayuda: 'Ej.: 600 m²' }, { k: 'construido', l: 'Superficie construida' },
+      { k: 'habitaciones', l: 'Dormitorios' }, { k: 'banos', l: 'Baños' },
+      { k: 'fotos', l: 'Fotos (la primera es la portada)', t: 'fotos' },
+      { k: 'visible', l: 'Publicada', t: 'check', def: true }
+    ]
+  },
+  clientes: {
+    col: 'obrasClientes', titulo: 'Obras de clientes',
+    ayuda: 'Área privada: cada cliente ve solo las obras donde figura su email, en "Ingresar" de la web. Recordá autorizar su email en Usuarios con el nivel Cliente.',
+    th: () => '', sub: x => [(x.clientes || []).join(', '), typeof x.avance === 'number' ? x.avance + '%' : ''].filter(Boolean).join(' · '),
+    campos: [
+      { k: 'titulo', l: 'Nombre de la obra', req: true },
+      { k: 'clientes', l: 'Emails de los clientes con acceso (uno por línea)', t: 'emails', req: true },
+      { k: 'ubicacion', l: 'Ubicación' }, { k: 'estado', l: 'Estado', ayuda: 'Ej.: En ejecución, Proyecto, Terminada' },
+      { k: 'avance', l: 'Avance general (%)', t: 'num' },
+      { k: 'descripcion', l: 'Descripción', t: 'area' },
+      { k: 'documentos', l: 'Documentos (enlaces a Drive, PDF, etc.)', t: 'objetos', item: 'Documento', campos: [
+        { k: 'nombre', l: 'Nombre', req: true }, { k: 'url', l: 'Enlace', t: 'url', req: true }] },
+      { k: 'avances', l: 'Avances de obra', t: 'objetos', item: 'Avance', campos: [
+        { k: 'fecha', l: 'Fecha', t: 'date', def: hoy }, { k: 'titulo', l: 'Título', req: true },
+        { k: 'porcentaje', l: 'Avance (%)', t: 'num' }, { k: 'texto', l: 'Detalle', t: 'area' },
+        { k: 'fotos', l: 'Fotos', t: 'fotos', privada: true }] }
+    ]
+  },
+  usuarios: {
+    col: 'usuarios', titulo: 'Usuarios', idDesde: 'email',
+    ayuda: 'Alta, baja y modificación de accesos. La persona ingresa con Google o con email y contraseña desde "Ingresar"; solo entra si su email está acá y activo.',
+    th: () => '', sub: x => (D.ROLES[x.rol] || x.rol) + (x.activo === false ? ' · inactivo' : ''),
+    tituloItem: x => (x.nombre ? x.nombre + ' – ' : '') + x.id,
+    campos: [
+      { k: 'email', l: 'Email', t: 'email', req: true, soloAlta: true },
+      { k: 'nombre', l: 'Nombre' },
+      { k: 'rol', l: 'Nivel de acceso', t: 'select', op: [['cliente', 'Cliente – ve solo sus obras'], ['inmobiliaria', 'Inmobiliaria – propiedades'], ['editor', 'Empleado – noticias, obras, precios y obras de clientes'], ['admin', 'Administrador – todo, incluido usuarios']] },
+      { k: 'activo', l: 'Acceso activo', t: 'check', def: true },
+      { k: 'notas', l: 'Notas internas', t: 'area' }
+    ]
+  },
+  ajustes: { titulo: 'Ajustes' }
+};
+const TABS = [['noticias', 'Noticias'], ['obras', 'Obras'], ['precios', 'Precios'], ['propiedades', 'Inmobiliaria'], ['clientes', 'Obras de clientes'], ['usuarios', 'Usuarios'], ['ajustes', 'Ajustes']];
 
-  function store(get,val){try{ if(get) return localStorage.getItem(KEY); if(val) localStorage.setItem(KEY,val); else localStorage.removeItem(KEY);}catch(e){return null}}
-  function status(el,msg,tipo){el.textContent=msg;el.className='status show '+(tipo||'info');}
-  function clearStatus(el){el.className='status';el.textContent='';}
-  function b64enc(str){var bytes=new TextEncoder().encode(str),bin='';for(var i=0;i<bytes.length;i+=0x8000)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));return btoa(bin);}
-  function b64dec(b){var bin=atob(b.replace(/\n/g,'')),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder().decode(u);}
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function slug(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'item';}
-  function imgUrl(p){return p? (p.indexOf('data:')===0? p : './'+p.replace(/^\.\//,'')) : '';}
+/* ================= Listado ================= */
+async function abrirTab(t) {
+  TAB = t;
+  document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.t === t)));
+  try { localStorage.setItem('ciprodec-admin-tab', t); } catch (e) { }
+  if (t === 'ajustes') return pintarAjustes();
+  const S = SEC[t];
+  $('hoja').innerHTML = '<p class="vacio">Cargando…</p>';
+  try { ITEMS = await D.listar(S.col); } catch (e) { $('hoja').innerHTML = '<div class="aviso err">' + esc(D.mensajeError(e)) + '</div>'; return; }
+  let html = cabecera(S, t) + await filas(S, ITEMS, t);
+  if (S.extra) {
+    const E = SEC[S.extra]; const ex = await D.listar(E.col).catch(() => []);
+    SEC[S.extra]._items = ex;
+    html += '<div style="margin-top:34px">' + cabecera(E, S.extra) + await filas(E, ex, S.extra) + '</div>';
+  }
+  $('hoja').innerHTML = html;
+}
+function cabecera(S, t) {
+  return '<div class="hoja-h"><div><h2 style="font-size:1.5rem">' + esc(S.titulo) + '</h2>' + (S.ayuda ? '<p>' + esc(S.ayuda) + '</p>' : '') + '</div>' +
+    '<button type="button" class="btn red" data-acc="nuevo" data-t="' + t + '">+ Agregar</button></div>' +
+    (t === 'noticias' && D.modo === 'firebase' && PERFIL.rol === 'admin' && !ITEMS.length ? '<div class="aviso info" style="margin-bottom:12px">La base está vacía. <button type="button" class="mini" data-acc="importar">Importar el contenido actual de la web</button> (noticias, obras, precios y propiedades que hoy están en la carpeta data/).</div>' : '');
+}
+async function filas(S, items, t) {
+  if (!items.length) return '<p class="vacio">Todavía no hay nada cargado.</p>';
+  const ths = await Promise.all(items.map(x => S.th ? D.fotoUrl(S.th(x)).catch(() => '') : ''));
+  return items.map((x, i) => '<div class="fila">' +
+    (ths[i] ? '<img class="th" src="' + esc(ths[i]) + '" alt="">' : '<div class="th"></div>') +
+    '<div><div class="t">' + esc(S.tituloItem ? S.tituloItem(x) : x.titulo) + (x.visible === false ? '<span class="oculto">OCULTO</span>' : '') + '</div><div class="s">' + esc(S.sub(x)) + '</div></div>' +
+    '<div class="acc">' +
+    (t !== 'usuarios' ? '<button type="button" class="mini" data-acc="subir" data-t="' + t + '" data-i="' + i + '" aria-label="Subir" ' + (i === 0 ? 'disabled' : '') + '>↑</button><button type="button" class="mini" data-acc="bajar" data-t="' + t + '" data-i="' + i + '" aria-label="Bajar" ' + (i === items.length - 1 ? 'disabled' : '') + '>↓</button>' : '') +
+    ('visible' in x || S.campos.some(c => c.k === 'visible') ? '<button type="button" class="mini" data-acc="vis" data-t="' + t + '" data-i="' + i + '">' + (x.visible === false ? 'Mostrar' : 'Ocultar') + '</button>' : '') +
+    '<button type="button" class="mini" data-acc="editar" data-t="' + t + '" data-i="' + i + '">Editar</button>' +
+    '<button type="button" class="mini rojo" data-acc="borrar" data-t="' + t + '" data-i="' + i + '">Borrar</button></div></div>').join('');
+}
+const itemsDe = t => (t === TAB ? ITEMS : SEC[t]._items) || [];
 
-  function gh(path,opt){
-    opt=opt||{};
-    return fetch(path.indexOf('http')===0?path:API+path,{method:opt.method||'GET',cache:'no-store',
-      headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},
-      body:opt.body?JSON.stringify(opt.body):undefined}).then(function(r){
-        if(!r.ok) return r.json().catch(function(){return{}}).then(function(j){var e=new Error(j.message||('Error '+r.status));e.status=r.status;throw e;});
-        return r.json();});
-  }
-  function leer(f){return gh(f+'?ref='+BRANCH).then(function(j){sha[f]=j.sha;return JSON.parse(b64dec(j.content));});}
-  function escribir(f,obj,msg){
-    return gh(f,{method:'PUT',body:{message:msg,branch:BRANCH,sha:sha[f],content:b64enc(JSON.stringify(obj,null,2)+'\n')}})
-      .then(function(j){sha[f]=j.content.sha;});
-  }
-  function subirImagen(ruta,dataUrl,msg){
-    return gh(ruta,{method:'PUT',body:{message:msg,branch:BRANCH,content:dataUrl.split(',')[1]}});
-  }
-  function achicar(file){
-    return new Promise(function(res,rej){
-      var fr=new FileReader();
-      fr.onload=function(){var im=new Image();im.onload=function(){
-        var max=1600,w=im.width,h=im.height,k=Math.min(1,max/Math.max(w,h));
-        var c=document.createElement('canvas');c.width=Math.round(w*k);c.height=Math.round(h*k);
-        var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(im,0,0,c.width,c.height);
-        res(c.toDataURL('image/jpeg',0.82));};im.onerror=function(){rej(new Error('No se pudo leer la imagen '+file.name))};im.src=fr.result;};
-      fr.onerror=rej;fr.readAsDataURL(file);});
-  }
-  function errMsg(e){
-    if(e.status===401) return 'La clave de acceso no es válida o venció.';
-    if(e.status===403||e.status===404) return 'La clave no tiene permiso para modificar el repositorio '+REPO+'.';
-    if(e.status===409) return 'Alguien modificó el contenido al mismo tiempo. Recargá la página y volvé a intentar.';
-    return 'No se pudo guardar: '+e.message;
-  }
-
-  // ---------- Ingreso ----------
-  function entrar(t,rec){
-    token=t.trim(); if(!token){status($('loginStatus'),'Pegá la clave de acceso.','err');return;}
-    status($('loginStatus'),'Verificando…','info');
-    gh('https://api.github.com/repos/'+REPO).then(function(r){
-      if(!r.permissions||!r.permissions.push) throw Object.assign(new Error('sin permiso'),{status:403});
-      if(rec) store(false,token);
-      return Promise.all([leer(F_NOT),leer(F_PROP),leer(F_OBRA).catch(function(e){if(e.status===404){sha[F_OBRA]=undefined;return {obras:[]};}throw e;})]);
-    }).then(function(v){
-      datos.noticias=v[0];datos.props=v[1];datos.obras=v[2];
-      $('login').classList.add('hidden');$('app').classList.remove('hidden');$('salir').classList.remove('hidden');
-      clearStatus($('loginStatus'));pintar();
-    }).catch(function(e){token='';status($('loginStatus'),errMsg(e),'err');});
-  }
-  $('entrar').onclick=function(){entrar($('token').value,$('recordar').checked);};
-  $('token').addEventListener('keydown',function(e){if(e.key==='Enter')$('entrar').click();});
-  $('salir').onclick=function(){store(false,null);location.reload();};
-  var guardado=store(true); if(guardado){$('recordar').checked=true;entrar(guardado,true);}
-
-  // ---------- Pestañas ----------
-  function tab(cual){
-    [['n','tab-noticias','sec-noticias'],['p','tab-props','sec-props'],['o','tab-obras','sec-obras']].forEach(function(x){
-      $(x[1]).setAttribute('aria-selected',String(x[0]===cual));$(x[2]).classList.toggle('hidden',x[0]!==cual);});
-  }
-  $('tab-noticias').onclick=function(){tab('n')};$('tab-props').onclick=function(){tab('p')};$('tab-obras').onclick=function(){tab('o')};
-
-  // ---------- Listados ----------
-  function filaHtml(tipo,i,item,img,sub){
-    return '<div class="item">'+(img?'<img src="'+esc(imgUrl(img))+'" alt="">':'<div class="ph"></div>')+
-      '<div><h3>'+esc(item.titulo||'(sin título)')+'</h3><div class="muted" style="font-size:.85rem">'+esc(sub)+'</div>'+
-      '<span class="badge'+(item.visible!==false?' on':'')+'">'+(item.visible!==false?'Publicada':'Oculta')+'</span></div>'+
-      '<div class="acts">'+
-      '<button class="btn small ghost" type="button" data-a="up" data-t="'+tipo+'" data-i="'+i+'" aria-label="Subir">↑</button>'+
-      '<button class="btn small ghost" type="button" data-a="down" data-t="'+tipo+'" data-i="'+i+'" aria-label="Bajar">↓</button>'+
-      '<button class="btn small" type="button" data-a="vis" data-t="'+tipo+'" data-i="'+i+'">'+(item.visible!==false?'Ocultar':'Publicar')+'</button>'+
-      '<button class="btn small" type="button" data-a="edit" data-t="'+tipo+'" data-i="'+i+'">Editar</button>'+
-      '<button class="btn small" type="button" data-a="del" data-t="'+tipo+'" data-i="'+i+'">Eliminar</button></div>'+
-      '<div class="confirm" id="conf-'+tipo+'-'+i+'" style="grid-column:1/-1"><span>¿Eliminar "'+esc(item.titulo)+'" de la web?</span>'+
-      '<button class="btn small red" type="button" data-a="delok" data-t="'+tipo+'" data-i="'+i+'">Sí, eliminar</button>'+
-      '<button class="btn small" type="button" data-a="delno" data-t="'+tipo+'" data-i="'+i+'">No</button></div></div>';
-  }
-  function pintar(){
-    var N=datos.noticias.noticias=datos.noticias.noticias||[];
-    $('listaNoticias').innerHTML=N.length?N.map(function(n,i){return filaHtml('n',i,n,n.imagen,[n.categoria,n.fecha].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay noticias todavía.</p>';
-    var P=datos.props.propiedades=datos.props.propiedades||[];
-    $('listaProps').innerHTML=P.length?P.map(function(p,i){return filaHtml('p',i,p,(p.fotos||[])[0],[p.ubicacion,p.precio].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay propiedades todavía.</p>';
-    $('waProps').value=datos.props.whatsapp||'';
-    var O=datos.obras.obras=datos.obras.obras||[];
-    $('listaObras').innerHTML=O.length?O.map(function(o,i){return filaHtml('o',i,o,(o.fotos||[])[0],[o.area,o.ubicacion].filter(Boolean).join(' · '))}).join(''):'<p class="muted">No hay obras todavía.</p>';
-  }
-  function publicar(tipo,msg,elStatus){
-    var f=tipo==='n'?F_NOT:tipo==='o'?F_OBRA:F_PROP, obj=tipo==='n'?datos.noticias:tipo==='o'?datos.obras:datos.props;
-    status(elStatus,'Publicando…','info');
-    return escribir(f,obj,msg).then(function(){status(elStatus,'Listo. Se ve en la web en 1 a 2 minutos.','ok');pintar();})
-      .catch(function(e){status(elStatus,errMsg(e),'err');throw e;});
-  }
-  document.addEventListener('click',function(e){
-    var b=e.target.closest('[data-a]'); if(!b) return;
-    var t=b.getAttribute('data-t'),i=+b.getAttribute('data-i'),a=b.getAttribute('data-a');
-    var arr=t==='n'?datos.noticias.noticias:t==='o'?datos.obras.obras:datos.props.propiedades, nombre=t==='n'?'noticia':t==='o'?'obra':'propiedad';
-    if(a==='edit'){t==='n'?abrirNoticia(i):t==='o'?abrirObra(i):abrirProp(i);return;}
-    if(a==='del'){$('conf-'+t+'-'+i).classList.add('show');return;}
-    if(a==='delno'){$('conf-'+t+'-'+i).classList.remove('show');return;}
-    if(a==='delok'){var x=arr.splice(i,1)[0];publicar(t,'Eliminar '+nombre+': '+x.titulo,$('appStatus'));return;}
-    if(a==='vis'){arr[i].visible=arr[i].visible===false;publicar(t,(arr[i].visible?'Publicar ':'Ocultar ')+nombre+': '+arr[i].titulo,$('appStatus'));return;}
-    if(a==='up'&&i>0){arr.splice(i-1,0,arr.splice(i,1)[0]);publicar(t,'Reordenar '+nombre+'s',$('appStatus'));return;}
-    if(a==='down'&&i<arr.length-1){arr.splice(i+1,0,arr.splice(i,1)[0]);publicar(t,'Reordenar '+nombre+'s',$('appStatus'));return;}
-  });
-  $('guardarWa').onclick=function(){datos.props.whatsapp=$('waProps').value.replace(/\D/g,'');publicar('p','Actualizar WhatsApp de inmobiliaria',$('appStatus'));};
-
-  // ---------- Overlays ----------
-  function abrir(id){$(id).classList.add('open');var f=$(id).querySelector('input,textarea');if(f)f.focus();}
-  function cerrar(){document.querySelectorAll('.overlay.open').forEach(function(o){o.classList.remove('open')});}
-  document.querySelectorAll('[data-cerrar]').forEach(function(b){b.onclick=cerrar});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrar();});
-
-  // ---------- Noticia ----------
-  function abrirNoticia(i){
-    editId=i; var n=i==null?{visible:true}:datos.noticias.noticias[i];
-    $('edNoticiaTit').textContent=i==null?'Nueva noticia':'Editar noticia';
-    $('nTitulo').value=n.titulo||'';$('nCategoria').value=n.categoria||'';$('nFecha').value=n.fecha||'';
-    $('nAlt').value=n.alt||'';$('nContenido').value=n.contenido||'';$('nVisible').checked=n.visible!==false;
-    $('nAnalisis').value=n.analisis||'';$('nFuente').value=n.fuente||'';$('nFuenteUrl').value=n.fuenteUrl||'';$('nFuenteFecha').value=n.fuenteFecha||'';
-    imgNoticia={ruta:n.imagen||'',nueva:null};$('nImagen').value='';prevNoticia();clearStatus($('nStatus'));abrir('edNoticia');
-  }
-  function prevNoticia(){
-    var src=imgNoticia.nueva||imgNoticia.ruta;
-    $('nImagenPrev').innerHTML=src?'<div class="ph-item"><img src="'+esc(imgUrl(src))+'" alt="Vista previa"></div>':'';
-  }
-  $('nImagen').onchange=function(){var f=this.files[0];if(!f)return;achicar(f).then(function(d){imgNoticia.nueva=d;prevNoticia();}).catch(function(e){status($('nStatus'),e.message,'err')});};
-  $('nuevaNoticia').onclick=function(){abrirNoticia(null)};
-  $('nGuardar').onclick=function(){
-    var titulo=$('nTitulo').value.trim(); if(!titulo){status($('nStatus'),'Falta el título.','err');return;}
-    var arr=datos.noticias.noticias, n=editId==null?{id:slug(titulo)+'-'+Date.now().toString(36)}:arr[editId];
-    var btn=this;btn.disabled=true;
-    var paso=Promise.resolve();
-    if(imgNoticia.nueva){
-      var ruta='img/noticias/'+slug(titulo)+'-'+Date.now().toString(36)+'.jpg';
-      status($('nStatus'),'Subiendo imagen…','info');
-      paso=subirImagen(ruta,imgNoticia.nueva,'Imagen de noticia: '+titulo).then(function(){imgNoticia.ruta='./'+ruta;imgNoticia.nueva=null;});
+$('hoja').addEventListener('click', async e => {
+  const b = e.target.closest('button[data-acc]'); if (!b) return;
+  const t = b.dataset.t, S = SEC[t], items = t ? itemsDe(t) : [], i = +b.dataset.i, x = items[i];
+  try {
+    if (b.dataset.acc === 'nuevo') return editar(t, null);
+    if (b.dataset.acc === 'editar') return editar(t, x);
+    if (b.dataset.acc === 'importar') return importar(b);
+    if (b.dataset.acc === 'vis') { x.visible = x.visible === false; await D.guardar(S.col, x); toast(x.visible ? 'Visible en la web' : 'Oculto'); return abrirTab(TAB); }
+    if (b.dataset.acc === 'subir' || b.dataset.acc === 'bajar') {
+      const j = b.dataset.acc === 'subir' ? i - 1 : i + 1; if (j < 0 || j >= items.length) return;
+      items.forEach((it, k) => { if (typeof it.orden !== 'number') it.orden = k; });
+      const o = items[i].orden; items[i].orden = items[j].orden; items[j].orden = o;
+      if (items[i].orden === items[j].orden) { items[i].orden = j; items[j].orden = i; }
+      b.disabled = true; await Promise.all([D.guardar(S.col, items[i]), D.guardar(S.col, items[j])]); return abrirTab(TAB);
     }
-    paso.then(function(){
-      Object.assign(n,{titulo:titulo,categoria:$('nCategoria').value.trim(),fecha:$('nFecha').value,imagen:imgNoticia.ruta,
-        alt:$('nAlt').value.trim()||titulo,contenido:$('nContenido').value.trim(),visible:$('nVisible').checked,
-        analisis:$('nAnalisis').value.trim(),fuente:$('nFuente').value.trim(),fuenteUrl:$('nFuenteUrl').value.trim(),fuenteFecha:$('nFuenteFecha').value});
-      if(editId==null) arr.unshift(n);
-      return publicar('n',(editId==null?'Nueva noticia: ':'Editar noticia: ')+titulo,$('nStatus'));
-    }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('nStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
-  };
+    if (b.dataset.acc === 'borrar') {
+      if (b.dataset.conf !== '1') { b.dataset.conf = '1'; b.textContent = '¿Seguro? Tocá de nuevo'; setTimeout(() => { b.dataset.conf = ''; b.textContent = 'Borrar'; }, 4000); return; }
+      if (t === 'usuarios' && x.id === (PERFIL.email || '').toLowerCase()) { toast('No podés borrarte a vos mismo.', true); return; }
+      await D.borrar(S.col, x.id); await borrarFotos(fotosDe(S, x)); toast('Borrado'); return abrirTab(TAB);
+    }
+  } catch (er) { toast(D.mensajeError(er), true); }
+});
 
-  // ---------- Propiedad ----------
-  function abrirProp(i){
-    editId=i; var p=i==null?{visible:true,condicion:'Venta'}:datos.props.propiedades[i];
-    $('edPropTit').textContent=i==null?'Nueva propiedad':'Editar propiedad';
-    $('pTitulo').value=p.titulo||'';$('pUbicacion').value=p.ubicacion||'';$('pMapa').value=p.mapa||'';
-    $('pTerreno').value=p.terreno||'';$('pConstruido').value=p.construido||'';$('pHab').value=p.habitaciones||'';
-    $('pBanos').value=p.banos||'';$('pCondicion').value=p.condicion||'';$('pPrecio').value=p.precio||'';$('pVisible').checked=p.visible!==false;
-    fotosEd=(p.fotos||[]).map(function(r){return{ruta:r,nueva:null}});$('pFotos').value='';prevFotos();clearStatus($('pStatus'));abrir('edProp');
+/* ================= Editor ================= */
+let ED = null; // {t, S, original, fotosNuevas:[]}
+function valorInicial(c, x) { return x && x[c.k] !== undefined ? x[c.k] : (typeof c.def === 'function' ? c.def() : c.def); }
+function campoHtml(c, v, pre) {
+  const id = pre + c.k, req = c.req ? ' required' : '', ay = c.ayuda ? '<div class="ayuda">' + esc(c.ayuda) + '</div>' : '';
+  const lab = '<label for="' + id + '">' + esc(c.l) + (c.req ? ' *' : '') + '</label>';
+  switch (c.t) {
+    case 'area': return '<div class="campo">' + lab + '<textarea id="' + id + '" data-k="' + c.k + '"' + req + '>' + esc(v || '') + '</textarea>' + ay + '</div>';
+    case 'parrafos': return '<div class="campo">' + lab + '<textarea id="' + id + '" data-k="' + c.k + '" style="min-height:200px">' + esc((v || []).join('\n\n')) + '</textarea>' + ay + '</div>';
+    case 'lineas': case 'emails': return '<div class="campo">' + lab + '<textarea id="' + id + '" data-k="' + c.k + '"' + req + '>' + esc((v || []).join('\n')) + '</textarea>' + ay + '</div>';
+    case 'check': return '<label class="check"><input type="checkbox" id="' + id + '" data-k="' + c.k + '"' + (v !== false ? ' checked' : '') + '> ' + esc(c.l) + '</label>';
+    case 'select': return '<div class="campo">' + lab + '<select id="' + id + '" data-k="' + c.k + '">' + c.op.map(o => '<option value="' + esc(o[0]) + '"' + (o[0] === v ? ' selected' : '') + '>' + esc(o[1]) + '</option>').join('') + '</select>' + ay + '</div>';
+    case 'foto': case 'fotos': return '<div class="campo"><label>' + esc(c.l) + '</label><div class="fotos-ed" data-fotos="' + c.k + '" data-uno="' + (c.t === 'foto' ? 1 : 0) + '" data-priv="' + (c.privada ? 1 : 0) + '" data-v="' + esc(JSON.stringify(c.t === 'foto' ? (v ? [v] : []) : (v || []))) + '"></div><label class="btn" style="width:max-content;cursor:pointer">+ Subir foto' + (c.t === 'fotos' ? 's' : '') + '<input type="file" accept="image/*"' + (c.t === 'fotos' ? ' multiple' : '') + ' hidden data-subir="' + c.k + '"></label>' + ay + '</div>';
+    case 'objetos': return '<div class="campo"><label>' + esc(c.l) + '</label><div data-objs="' + c.k + '" style="display:grid;gap:10px"></div><button type="button" class="mini" data-addobj="' + c.k + '" style="width:max-content">+ Agregar ' + esc(c.item.toLowerCase()) + '</button></div>';
+    default: {
+      const tipo = c.t === 'date' ? 'date' : c.t === 'url' ? 'url' : c.t === 'email' ? 'email' : c.t === 'num' ? 'number' : 'text';
+      const dis = c.soloAlta && ED && ED.original ? ' disabled' : '';
+      return '<div class="campo">' + lab + '<input id="' + id + '" type="' + tipo + '" data-k="' + c.k + '" value="' + esc(v == null ? '' : v) + '"' + req + dis + (tipo === 'number' ? ' min="0" max="100" step="1"' : '') + '>' + ay + '</div>';
+    }
   }
-  function prevFotos(){
-    $('pFotosPrev').innerHTML=fotosEd.map(function(f,i){
-      return '<div class="ph-item">'+(i===0?'<span class="cover">Portada</span>':'')+'<img src="'+esc(imgUrl(f.nueva||f.ruta))+'" alt="Foto '+(i+1)+'">'+
-        '<div class="row"><button type="button" data-f="izq" data-i="'+i+'" aria-label="Mover antes">←</button>'+
-        '<button type="button" data-f="quitar" data-i="'+i+'" aria-label="Quitar foto">✕</button>'+
-        '<button type="button" data-f="der" data-i="'+i+'" aria-label="Mover después">→</button></div></div>';
-    }).join('');
+}
+async function pintarFotos(box) {
+  const refs = JSON.parse(box.dataset.v || '[]');
+  const urls = await Promise.all(refs.map(r => D.fotoUrl(r).catch(() => '')));
+  box.innerHTML = refs.map((r, i) => '<div class="f"><img src="' + esc(urls[i]) + '" alt="Foto ' + (i + 1) + '"><div class="ops">' +
+    (i > 0 ? '<button type="button" data-portada="' + i + '" title="Usar como portada">★</button>' : '<span></span>') +
+    '<button type="button" data-quitar="' + i + '">Quitar</button></div></div>').join('') || '<span class="ayuda">Sin fotos</span>';
+}
+function objHtml(c, o, idx) {
+  return '<div class="sub" data-obj="' + c.k + '"><div class="sub-h"><b>' + esc(c.item) + ' ' + (idx + 1) + '</b><span><button type="button" class="mini" data-objup>↑</button> <button type="button" class="mini rojo" data-objdel>Quitar</button></span></div><div class="grid2">' +
+    c.campos.map(sc => sc.t === 'area' || sc.t === 'fotos' ? '' : campoHtml(sc, valorInicial(sc, o), 'o' + Math.random().toString(36).slice(2, 7) + '_')).join('') + '</div>' +
+    c.campos.filter(sc => sc.t === 'area' || sc.t === 'fotos').map(sc => campoHtml(sc, valorInicial(sc, o), 'o' + Math.random().toString(36).slice(2, 7) + '_')).join('') + '</div>';
+}
+async function editar(t, x) {
+  const S = SEC[t];
+  ED = { t, S, original: x ? JSON.parse(JSON.stringify(x)) : null, nuevas: [] };
+  $('edTitulo').textContent = (x ? 'Editar: ' : 'Nuevo: ') + S.titulo.toLowerCase();
+  $('edMsg').textContent = '';
+  $('edCuerpo').innerHTML = S.campos.map(c => campoHtml(c, valorInicial(c, x), 'c_')).join('');
+  for (const c of S.campos.filter(c => c.t === 'objetos')) {
+    const box = $('edCuerpo').querySelector('[data-objs="' + c.k + '"]');
+    box.innerHTML = ((x && x[c.k]) || []).map((o, i) => objHtml(c, o, i)).join('');
   }
-  $('pFotosPrev').addEventListener('click',function(e){
-    var b=e.target.closest('[data-f]');if(!b)return;var i=+b.getAttribute('data-i'),a=b.getAttribute('data-f');
-    if(a==='quitar')fotosEd.splice(i,1);
-    if(a==='izq'&&i>0)fotosEd.splice(i-1,0,fotosEd.splice(i,1)[0]);
-    if(a==='der'&&i<fotosEd.length-1)fotosEd.splice(i+1,0,fotosEd.splice(i,1)[0]);
-    prevFotos();
+  await Promise.all([...$('edCuerpo').querySelectorAll('[data-fotos]')].map(pintarFotos));
+  $('ed').showModal();
+  const f = $('edCuerpo').querySelector('input:not([disabled]),textarea'); if (f) f.focus();
+}
+function cerrarEd() { $('ed').close(); }
+$('edCerrar').onclick = cerrarEd; $('edCancelar').onclick = cerrarEd;
+$('edCuerpo').addEventListener('click', e => {
+  const t = e.target;
+  if (t.dataset.addobj) {
+    const c = ED.S.campos.find(c => c.k === t.dataset.addobj), box = $('edCuerpo').querySelector('[data-objs="' + c.k + '"]');
+    box.insertAdjacentHTML('beforeend', objHtml(c, null, box.children.length));
+    box.lastElementChild.querySelectorAll('[data-fotos]').forEach(pintarFotos);
+    const f = box.lastElementChild.querySelector('input,select'); if (f) f.focus();
+  }
+  if (t.hasAttribute('data-objdel')) t.closest('.sub').remove();
+  if (t.hasAttribute('data-objup')) { const s = t.closest('.sub'); if (s.previousElementSibling) s.parentNode.insertBefore(s, s.previousElementSibling); }
+  if (t.dataset.quitar !== undefined || t.dataset.portada !== undefined) {
+    const box = t.closest('[data-fotos]'), v = JSON.parse(box.dataset.v);
+    if (t.dataset.quitar !== undefined) v.splice(+t.dataset.quitar, 1);
+    else { const [f] = v.splice(+t.dataset.portada, 1); v.unshift(f); }
+    box.dataset.v = JSON.stringify(v); pintarFotos(box);
+  }
+});
+$('edCuerpo').addEventListener('change', async e => {
+  const inp = e.target; if (!inp.dataset.subir) return;
+  const box = inp.closest('.campo').querySelector('[data-fotos]'), priv = box.dataset.priv === '1';
+  const files = [...inp.files]; inp.value = ''; if (!files.length) return;
+  $('edMsg').textContent = 'Subiendo ' + files.length + ' foto(s)…'; $('edGuardar').disabled = true;
+  try {
+    const clientes = priv ? lineas(($('edCuerpo').querySelector('[data-k="clientes"]') || {}).value).map(s => s.toLowerCase()) : null;
+    for (const f of files) {
+      const data = await D.achicarImagen(f);
+      const ref = await D.subirFoto(data, priv, clientes);
+      ED.nuevas.push(ref);
+      const v = box.dataset.uno === '1' ? [ref] : JSON.parse(box.dataset.v).concat(ref);
+      box.dataset.v = JSON.stringify(v);
+    }
+    await pintarFotos(box); $('edMsg').textContent = 'Fotos listas. Tocá Guardar.';
+  } catch (er) { $('edMsg').textContent = ''; toast(D.mensajeError(er), true); }
+  finally { $('edGuardar').disabled = false; }
+});
+const lineas = s => String(s || '').split('\n').map(x => x.trim()).filter(Boolean);
+function leerCampos(campos, raiz) {
+  const out = {}, errores = [];
+  const esSub = raiz.classList && raiz.classList.contains('sub');
+  const propio = n => (n.closest('.sub') || null) === (esSub ? raiz : null);
+  for (const c of campos) {
+    if (c.t === 'objetos') {
+      out[c.k] = [...raiz.querySelectorAll(':scope [data-obj="' + c.k + '"]')].map(sub => { const r = leerCampos(c.campos, sub); errores.push(...r.errores.map(x => c.item + ': ' + x)); return r.out; });
+      continue;
+    }
+    if (c.t === 'foto' || c.t === 'fotos') {
+      const box = [...raiz.querySelectorAll('[data-fotos="' + c.k + '"]')].find(propio);
+      const v = box ? JSON.parse(box.dataset.v || '[]') : []; out[c.k] = c.t === 'foto' ? (v[0] || '') : v; continue;
+    }
+    const el = [...raiz.querySelectorAll('[data-k="' + c.k + '"]')].find(propio);
+    if (!el) continue;
+    let v;
+    if (c.t === 'check') v = el.checked;
+    else if (c.t === 'lineas') v = lineas(el.value);
+    else if (c.t === 'emails') v = lineas(el.value).map(s => s.toLowerCase());
+    else if (c.t === 'parrafos') v = String(el.value).split(/\n\s*\n/).map(s => s.trim()).filter(Boolean);
+    else if (c.t === 'num') v = el.value === '' ? null : Math.max(0, Math.min(100, Number(el.value)));
+    else v = String(el.value).trim();
+    if (c.req && (v === '' || v == null || (Array.isArray(v) && !v.length))) errores.push('falta "' + c.l + '"');
+    if (c.t === 'url' && v && !/^https?:\/\/|^\.\//.test(v)) errores.push('"' + c.l + '" tiene que empezar con https://');
+    if ((c.t === 'email') && v && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) errores.push('el email no es válido');
+    if (c.t === 'emails' && v.some(m => !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m))) errores.push('hay un email no válido en "' + c.l + '"');
+    if (v === null) continue;
+    out[c.k] = v;
+  }
+  return { out, errores };
+}
+const fotosDe = (S, x) => {
+  const r = [];
+  const walk = (campos, o) => campos.forEach(c => {
+    if (!o) return;
+    if (c.t === 'foto' && o[c.k]) r.push(o[c.k]);
+    if (c.t === 'fotos') r.push(...(o[c.k] || []));
+    if (c.t === 'objetos') (o[c.k] || []).forEach(sub => walk(c.campos, sub));
   });
-  $('pFotos').onchange=function(){
-    var files=[].slice.call(this.files);status($('pStatus'),'Preparando fotos…','info');
-    Promise.all(files.map(achicar)).then(function(ds){ds.forEach(function(d){fotosEd.push({ruta:'',nueva:d})});prevFotos();clearStatus($('pStatus'));})
-      .catch(function(e){status($('pStatus'),e.message,'err')});
-    this.value='';
-  };
-  $('nuevaProp').onclick=function(){abrirProp(null)};
-  $('pGuardar').onclick=function(){
-    var titulo=$('pTitulo').value.trim(); if(!titulo){status($('pStatus'),'Falta el título.','err');return;}
-    var arr=datos.props.propiedades, p=editId==null?{id:'prop-'+Date.now().toString(36)}:arr[editId];
-    var carpeta='img/inmobiliaria/'+p.id+'/', btn=this;btn.disabled=true;
-    var nuevas=fotosEd.filter(function(f){return f.nueva}), k=0;
-    var cadena=nuevas.reduce(function(pr,f){return pr.then(function(){
-      k++;status($('pStatus'),'Subiendo foto '+k+' de '+nuevas.length+'…','info');
-      var ruta=carpeta+Date.now().toString(36)+'-'+k+'.jpg';
-      return subirImagen(ruta,f.nueva,'Foto de propiedad: '+titulo).then(function(){f.ruta='./'+ruta;f.nueva=null;});
-    })},Promise.resolve());
-    cadena.then(function(){
-      Object.assign(p,{titulo:titulo,ubicacion:$('pUbicacion').value.trim(),mapa:$('pMapa').value.trim(),terreno:$('pTerreno').value.trim(),
-        construido:$('pConstruido').value.trim(),habitaciones:$('pHab').value.trim(),banos:$('pBanos').value.trim(),
-        condicion:$('pCondicion').value.trim(),precio:$('pPrecio').value.trim(),fotos:fotosEd.map(function(f){return f.ruta}),visible:$('pVisible').checked});
-      if(editId==null) arr.unshift(p);
-      return publicar('p',(editId==null?'Nueva propiedad: ':'Editar propiedad: ')+titulo,$('pStatus'));
-    }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('pStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
-  };
-  // ---------- Obra ----------
-  var fotosObra=[];
-  function abrirObra(i){
-    editId=i; var o=i==null?{visible:true}:datos.obras.obras[i];
-    $('edObraTit').textContent=i==null?'Nueva obra':'Editar obra';
-    $('oTitulo').value=o.titulo||'';$('oArea').value=o.area||'';$('oUbicacion').value=o.ubicacion||'';$('oEstado').value=o.estado||'';
-    $('oDescripcion').value=o.descripcion||'';$('oDatos').value=(o.datos||[]).join('\n');$('oEnlace').value=o.enlace||'';
-    $('oEnlaceTexto').value=o.enlaceTexto||'';$('oNota').value=o.nota||'';$('oVisible').checked=o.visible!==false;
-    fotosObra=(o.fotos||[]).map(function(r){return{ruta:r,nueva:null}});$('oFotos').value='';prevObra();clearStatus($('oStatus'));abrir('edObra');
+  walk(S.campos, x); return r.filter(f => /^fotop?:/.test(f));
+};
+async function borrarFotos(refs) {
+  for (const r of refs) { const m = r.match(/^(foto|fotop):(.+)$/); if (m) await D.borrar(m[1] === 'foto' ? 'fotos' : 'fotosPrivadas', m[2]).catch(() => { }); }
+}
+$('edForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const { t, S, original } = ED;
+  const { out, errores } = leerCampos(S.campos, $('edCuerpo'));
+  if (errores.length) { $('edMsg').textContent = 'Revisá: ' + errores.join(', '); return; }
+  const item = Object.assign({}, original || {}, out);
+  if (!original) {
+    if (S.idDesde === 'email') {
+      item.id = out.email.toLowerCase(); item.email = item.id;
+      if (itemsDe(t).some(u => u.id === item.id)) { $('edMsg').textContent = 'Ese email ya está cargado.'; return; }
+    } else item.id = D.nuevoId(out.titulo || out.nombre || t);
+    const ords = itemsDe(t).map((x, k) => typeof x.orden === 'number' ? x.orden : k);
+    item.orden = S.nuevoArriba ? (ords.length ? Math.min(...ords) - 1 : 0) : (ords.length ? Math.max(...ords) + 1 : 0);
   }
-  function prevObra(){
-    $('oFotosPrev').innerHTML=fotosObra.map(function(f,i){
-      return '<div class="ph-item">'+(i===0?'<span class="cover">Portada</span>':'')+'<img src="'+esc(imgUrl(f.nueva||f.ruta))+'" alt="Foto '+(i+1)+'">'+
-        '<div class="row"><button type="button" data-g="izq" data-i="'+i+'" aria-label="Mover antes">←</button>'+
-        '<button type="button" data-g="quitar" data-i="'+i+'" aria-label="Quitar foto">✕</button>'+
-        '<button type="button" data-g="der" data-i="'+i+'" aria-label="Mover después">→</button></div></div>';
-    }).join('');
-  }
-  $('oFotosPrev').addEventListener('click',function(e){
-    var b=e.target.closest('[data-g]');if(!b)return;var i=+b.getAttribute('data-i'),a=b.getAttribute('data-g');
-    if(a==='quitar')fotosObra.splice(i,1);
-    if(a==='izq'&&i>0)fotosObra.splice(i-1,0,fotosObra.splice(i,1)[0]);
-    if(a==='der'&&i<fotosObra.length-1)fotosObra.splice(i+1,0,fotosObra.splice(i,1)[0]);
-    prevObra();
-  });
-  $('oFotos').onchange=function(){
-    var files=[].slice.call(this.files);status($('oStatus'),'Preparando fotos…','info');
-    Promise.all(files.map(achicar)).then(function(ds){ds.forEach(function(d){fotosObra.push({ruta:'',nueva:d})});prevObra();clearStatus($('oStatus'));})
-      .catch(function(e){status($('oStatus'),e.message,'err')});
-    this.value='';
+  $('edGuardar').disabled = true; $('edMsg').textContent = 'Guardando…';
+  try {
+    await D.guardar(S.col, item);
+    if (t === 'clientes') { // las fotos privadas deben conocer a los clientes con acceso
+      for (const r of fotosDe(S, item)) { const id = r.slice(6); const f = await D.obtener('fotosPrivadas', id).catch(() => null); if (f) { f.clientes = item.clientes; await D.guardar('fotosPrivadas', f); } }
+    }
+    const quedan = new Set(fotosDe(S, item));
+    await borrarFotos([...fotosDe(S, original), ...ED.nuevas].filter(r => !quedan.has(r)));
+    ED.nuevas = [];
+    cerrarEd(); toast('Guardado'); abrirTab(TAB);
+  } catch (er) { $('edMsg').textContent = D.mensajeError(er); }
+  finally { $('edGuardar').disabled = false; }
+});
+$('ed').addEventListener('close', () => { if (ED && ED.nuevas.length) { borrarFotos(ED.nuevas); ED.nuevas = []; } });
+
+/* ================= Ajustes ================= */
+async function pintarAjustes() {
+  const a = (await D.obtener('ajustes', 'general').catch(() => null)) || {};
+  $('hoja').innerHTML = '<div class="hoja-h"><div><h2 style="font-size:1.5rem">Ajustes</h2><p>Datos generales que usa la web.</p></div></div>' +
+    '<form id="fAj" style="display:grid;gap:14px;max-width:620px">' +
+    '<div class="campo"><label for="ajWa">WhatsApp para consultas de propiedades</label><input id="ajWa" value="' + esc(a.whatsappInmobiliaria || '') + '" inputmode="tel"><div class="ayuda">Con código de país, sin + ni espacios. Ej.: 595986573190</div></div>' +
+    '<div class="campo"><label for="ajAv">Aviso al pie de la revista de precios</label><textarea id="ajAv">' + esc(a.avisoPrecios || '') + '</textarea></div>' +
+    '<button class="btn red" style="width:max-content">Guardar ajustes</button></form>' +
+    (D.modo === 'demo' ? '<div style="margin-top:28px"><button type="button" class="mini rojo" id="demoReset">Borrar los datos de la demostración</button></div>' : '');
+  $('fAj').onsubmit = async e => {
+    e.preventDefault();
+    try { await D.guardar('ajustes', Object.assign({}, a, { id: 'general', whatsappInmobiliaria: $('ajWa').value.replace(/\D/g, ''), avisoPrecios: $('ajAv').value.trim() })); toast('Ajustes guardados'); }
+    catch (er) { toast(D.mensajeError(er), true); }
   };
-  $('nuevaObra').onclick=function(){abrirObra(null)};
-  $('oGuardar').onclick=function(){
-    var titulo=$('oTitulo').value.trim(); if(!titulo){status($('oStatus'),'Falta el título.','err');return;}
-    var arr=datos.obras.obras, o=editId==null?{id:slug(titulo)+'-'+Date.now().toString(36)}:arr[editId];
-    var carpeta='img/obras/'+o.id+'/', btn=this;btn.disabled=true;
-    var nuevas=fotosObra.filter(function(f){return f.nueva}), k=0;
-    nuevas.reduce(function(pr,f){return pr.then(function(){
-      k++;status($('oStatus'),'Subiendo foto '+k+' de '+nuevas.length+'…','info');
-      var ruta=carpeta+Date.now().toString(36)+'-'+k+'.jpg';
-      return subirImagen(ruta,f.nueva,'Foto de obra: '+titulo).then(function(){f.ruta='./'+ruta;f.nueva=null;});
-    })},Promise.resolve()).then(function(){
-      Object.assign(o,{titulo:titulo,area:$('oArea').value.trim(),ubicacion:$('oUbicacion').value.trim(),estado:$('oEstado').value.trim(),
-        descripcion:$('oDescripcion').value.trim(),datos:$('oDatos').value.split('\n').map(function(x){return x.trim()}).filter(Boolean),
-        fotos:fotosObra.map(function(f){return f.ruta}),enlace:$('oEnlace').value.trim(),enlaceTexto:$('oEnlaceTexto').value.trim(),
-        nota:$('oNota').value.trim(),visible:$('oVisible').checked});
-      if(editId==null) arr.unshift(o);
-      return publicar('o',(editId==null?'Nueva obra: ':'Editar obra: ')+titulo,$('oStatus'));
-    }).then(function(){setTimeout(cerrar,900);}).catch(function(e){status($('oStatus'),errMsg(e),'err');}).then(function(){btn.disabled=false;});
-  };
-})();
+  if ($('demoReset')) $('demoReset').onclick = () => { D.demoReiniciar(); toast('Demostración reiniciada'); setTimeout(() => location.reload(), 600); };
+}
+
+/* ================= Importar contenido actual (una sola vez) ================= */
+async function importar(b) {
+  b.disabled = true; b.textContent = 'Importando…';
+  try {
+    const j = await D.contenidoInicial();
+    let n = 0;
+    for (const col of ['noticias', 'obras', 'ediciones', 'fuentes', 'propiedades', 'ajustes']) {
+      for (const it of j[col] || []) { await D.guardar(col, it); n++; }
+    }
+    toast('Listo: ' + n + ' elementos importados'); abrirTab(TAB);
+  } catch (er) { toast(D.mensajeError(er), true); b.disabled = false; b.textContent = 'Reintentar importación'; }
+}
+
+/* ================= Sesión ================= */
+if (D.modo === 'demo') {
+  const d = document.createElement('div'); d.className = 'demo-banda'; d.textContent = 'Modo demostración: los cambios se guardan solo en este navegador.'; document.body.prepend(d);
+}
+$('btnSalir').onclick = async () => { await D.salir(); location.href = './cliente.html' + (D.modo === 'demo' ? '?demo' : ''); };
+function sinAcceso(html) { $('app').hidden = true; const s = $('sinAcceso'); s.hidden = false; s.innerHTML = html; }
+D.alCambiarSesion(s => {
+  const ir = './cliente.html' + (D.modo === 'demo' ? '?demo' : '');
+  if (D.modo === 'json') return sinAcceso('<h2>Panel todavía sin conectar</h2><p style="margin-top:10px;color:var(--muted)">Falta configurar Firebase (ver LEEME.txt, paso a paso). Mientras tanto podés recorrer el panel en <a href="./admin.html?demo">modo demostración</a>.</p>');
+  if (s.motivo !== 'ok') return sinAcceso('<h2>Ingresá para usar el panel</h2><p style="margin:10px 0 16px;color:var(--muted)">' + (s.motivo === 'no-autorizado' ? 'Tu email no está autorizado.' : 'Ingresá con tu cuenta autorizada.') + '</p><a class="btn red" href="' + ir + '">Ingresar</a>');
+  PERFIL = s.perfil;
+  const permisos = D.PERMISOS[PERFIL.rol] || [];
+  if (!permisos.length) { location.href = ir; return; }
+  $('who').innerHTML = '<b>' + esc(PERFIL.nombre && PERFIL.nombre !== 'Demo' ? PERFIL.nombre : PERFIL.email) + '</b><br>' + esc(D.ROLES[PERFIL.rol] || PERFIL.rol);
+  $('btnSalir').hidden = false;
+  const tabs = TABS.filter(([k]) => permisos.includes(k));
+  $('tabs').innerHTML = tabs.map(([k, l]) => '<button type="button" role="tab" data-t="' + k + '">' + l + '</button>').join('') + '<a class="mini" style="display:inline-flex;align-items:center;text-decoration:none;margin-left:auto" href="./cliente.html' + (D.modo === 'demo' ? '?demo' : '') + '">Vista del cliente</a>';
+  $('tabs').onclick = e => { const b = e.target.closest('button[data-t]'); if (b) abrirTab(b.dataset.t); };
+  $('sinAcceso').hidden = true; $('app').hidden = false;
+  let guardada = null; try { guardada = localStorage.getItem('ciprodec-admin-tab'); } catch (e) { }
+  abrirTab(tabs.some(([k]) => k === guardada) ? guardada : tabs[0][0]);
+});
 </script>
 </body>
 </html>

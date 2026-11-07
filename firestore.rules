@@ -1,0 +1,57 @@
+rules_version = '2';
+// Reglas de seguridad de CIPRODEC para Cloud Firestore.
+// Copiar este archivo completo en Consola Firebase > Firestore Database > Reglas > Publicar.
+// IMPORTANTE: reemplazar REEMPLAZAR_EMAIL_ADMIN por el mismo email puesto en src/config.js (superadmin).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function email() {
+      return request.auth != null && request.auth.token.email != null
+        ? request.auth.token.email.lower() : '';
+    }
+    function verificado() {
+      return request.auth != null && (request.auth.token.email_verified == true
+        || request.auth.token.firebase.sign_in_provider == 'google.com');
+    }
+    function superadmin() {
+      return verificado() && email() == 'REEMPLAZAR_EMAIL_ADMIN';
+    }
+    function perfil() {
+      return get(/databases/$(database)/documents/usuarios/$(email())).data;
+    }
+    function tieneRol(roles) {
+      return superadmin() || (verificado()
+        && exists(/databases/$(database)/documents/usuarios/$(email()))
+        && perfil().activo == true
+        && perfil().rol in roles);
+    }
+    function esCliente(data) {
+      return verificado() && email() in data.clientes;
+    }
+
+    // Contenido público: cualquiera lo lee, solo el personal autorizado lo modifica.
+    match /noticias/{id}    { allow read: if true; allow write: if tieneRol(['admin', 'editor']); }
+    match /obras/{id}       { allow read: if true; allow write: if tieneRol(['admin', 'editor']); }
+    match /ediciones/{id}   { allow read: if true; allow write: if tieneRol(['admin', 'editor']); }
+    match /fuentes/{id}     { allow read: if true; allow write: if tieneRol(['admin', 'editor']); }
+    match /propiedades/{id} { allow read: if true; allow write: if tieneRol(['admin', 'inmobiliaria']); }
+    match /ajustes/{id}     { allow read: if true; allow write: if tieneRol(['admin']); }
+    match /fotos/{id}       { allow read: if true; allow write: if tieneRol(['admin', 'editor', 'inmobiliaria']); }
+
+    // Usuarios autorizados (el id del documento es el email en minúsculas).
+    match /usuarios/{mail} {
+      allow read: if mail == email() || tieneRol(['admin']);
+      allow write: if tieneRol(['admin']);
+    }
+
+    // Área de clientes: cada obra lista los emails de sus clientes en el campo "clientes".
+    match /obrasClientes/{id} {
+      allow read: if tieneRol(['admin', 'editor']) || esCliente(resource.data);
+      allow write: if tieneRol(['admin', 'editor']);
+    }
+    match /fotosPrivadas/{id} {
+      allow read: if tieneRol(['admin', 'editor']) || esCliente(resource.data);
+      allow write: if tieneRol(['admin', 'editor']);
+    }
+  }
+}

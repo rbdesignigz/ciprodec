@@ -1,641 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-lang="es">
 <head>
-    <!-- git -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ciprodec | Centro de profesionales de la construcción</title>
-    <link href="./src/output.css" rel="stylesheet">
-    <link rel="icon" href="./img/iso-logo.png">
-
-    
-    <meta name="title" content="ciprodec.com" />
-    <meta name="description" content="Centro de profesionales de la construcción en Puerto Iguazú - Misiones - Argentina - CP: 3370" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.ciprodec.com/" />
-    <meta property="og:title" content="ciprodec.com" />
-    <meta property="og:description" content="Centro de profesionales de la construcción - Arquitectura - Puerto Iguazú" />
-    <meta property="og:image" content="https://ciprodec.com/img/iso-logo.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="https://ciprodec.com/img/iso-logo.png" />
-    <meta property="twitter:url" content="https://ciprodec.com/" />
-    <meta property="twitter:title" content="ciprodec.com" />
-    <meta property="twitter:description" content="Centro de profesionales de la construcción - Arquitectura - Puerto Iguazú"/>
-    <meta property="twitter:image" content="https://ciprodec.com/img/iso-logo.png" />
-
-    <meta name="keywords" content="ciprodec, Puerto Iguazú - Misiones - Argentina, Arquitecture, Arquitectura, centro de profesionales de la construcción, construction, inmobiliaria, agrimensor, seguridad e higiene">
-    <meta name="author" kcontent="rbdesign">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=podcasts" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-        <style>
-        .gallery-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background-image: url('./img/inmobiliaria/ven0001/Imagen2.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        
- 
-        
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .carousel-image {
-            max-width: 100%;
-            max-height: 80vh;
-            display: none;
-        }
-        
-        .carousel-image.active {
-            display: block;
-        }
-        
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s;
-        }
-        
-        .carousel-btn:hover {
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .carousel-btn.prev {
-            left: 20px;
-        }
-        
-        .carousel-btn.next {
-            right: 20px;
-        }
-        
-        .carousel-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .indicator.active {
-            background-color: white;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
-    </style>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inmobiliaria – Propiedades en venta y alquiler | CIPRODEC</title>
+<meta name="description" content="Casas, terrenos y locales en venta y alquiler en Puerto Iguazú y Alto Paraná. Consultá por WhatsApp.">
+<meta property="og:title" content="Inmobiliaria – Propiedades en venta y alquiler | CIPRODEC">
+<meta property="og:description" content="Casas, terrenos y locales en venta y alquiler en Puerto Iguazú y Alto Paraná. Consultá por WhatsApp.">
+<meta property="og:image" content="https://ciprodec.com/img/iso-logo.png">
+<link rel="icon" href="./img/iso-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
+<link rel="stylesheet" href="./src/ciprodec.css">
 </head>
 <body>
-<div class="bg-white">
-        <header class="absolute inset-x-0 top-0 z-50">
-          <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-            <div class="flex lg:flex-1">
-              <a href="./" class="-m-1.5 p-1.5">
-                <span class="sr-only">ciprodec</span>
-                <img class="h-8 w-auto" src="./img/iso-logo.png" alt="">
-              </a>
-            </div>
-            <div class="flex lg:hidden">
-              <button onclick="openMenuu()" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 menu-toggle hover:transition-all">
-                <span class="sr-only">Open main menu</span>
-                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-              </button>
-            </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-              <a href="./index.html" class="text-sm/6 font-semibold text-gray-900">home</a>
-              <a href="./blog.html" class="text-sm/6 font-semibold text-gray-900">+ contenido</a>
-              
-            </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="https://wa.me/595986573190" class="text-sm/6 font-semibold text-gray-900">Contacto <span aria-hidden="true">&rarr;</span></a>
-            </div>
-          </nav>
-          <!-- Mobile menu, show/hide based on menu open state. -->
-          <div id="mobilemenu" class="hidden " role="dialog" aria-modal="true">  <!--antes estaba lg:hidden para no mostrar en LG-->
-            <!-- Background backdrop, show/hide based on slide-over state. -->
-            <div class="fixed inset-0 z-50"></div>
-            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div class="flex items-center justify-between">
-                <a href="#" class="-m-1.5 p-1.5">
-                  <span class="sr-only">Your Company</span>
-                  <img class="h-8 w-auto" src="./img/iso-logo.png" alt="">
-                </a>
-                <button onclick="closeMenuu()" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                  <span class="sr-only">Close menu</span>
-                  <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                  <div class="space-y-2 py-6">
-                    <a href="./index.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">home</a>
-                    <a href="./blog.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">+ contenido</a>
-                    <a href="https://www.instagram.com/ciprodec/?hl=es-la" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">instagram</a>
-                    <a href="https://www.facebook.com/profile.php?id=100064049114522" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">facebook</a>
-                    <a href="https://wa.me/595986573190" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Contacto</a>
-                  </div>
-                  <!-- <div class="py-6">
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        </div>
-
-          <div class="bg-white pt-6 mt-20">
-            <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-              <h2 class="text-center text-base/7 font-semibold text-indigo-600">ciprodec</h2>
-              <p class="mx-auto mt-2  text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">inmobiliaria</p>
-            </div>
-          </div>
-
-    <div id="lista-propiedades" class="container mx-auto px-4 py-8 grid lg:grid-cols-2 gap-8">
-        <p class="text-gray-600">Cargando propiedades…</p>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./index.html" aria-label="CIPRODEC, inicio"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1208 148"><g fill="none" stroke="#1A1A1A" stroke-linecap="round" stroke-width="28"><path d="M59.48 15.78A60 60 0 0 0 59.48 132.22 M88.52 15.78A60 60 0 0 1 124.88 42.20 M124.88 105.80A60 60 0 0 1 88.52 132.22"/></g><path d="M63.48 -11.22V6.78M55.48 -3.22H71.48" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><g transform="translate(0 24.00)" fill="none" stroke="#1A1A1A" stroke-width="20" stroke-linejoin="round" stroke-linecap="butt"><path d="M304.0 30.0A20 20 0 0 0 284.0 10.0H218.0A20 20 0 0 0 198.0 30.0V70.0A20 20 0 0 0 218.0 90.0H284.0A20 20 0 0 0 304.0 70.0 M346.0 0V100 M388.0 100V10.0H464.0A20 20 0 0 1 484.0 30.0V36A20 20 0 0 1 464.0 56H388.0 M526.0 100V10.0H606.0A20 20 0 0 1 626.0 30.0V36A20 20 0 0 1 606.0 56H526.0M606.0 56A20 20 0 0 1 626.0 76V100 M688.0 10.0H762.0A20 20 0 0 1 782.0 30.0V70.0A20 20 0 0 1 762.0 90.0H688.0A20 20 0 0 1 668.0 70.0V30.0A20 20 0 0 1 688.0 10.0Z M824.0 10.0H910.0A20 20 0 0 1 930.0 30.0V70.0A20 20 0 0 1 910.0 90.0H824.0Z M1058.0 10.0H972.0V90.0H1058.0M972.0 56H1044.0 M1196.0 30.0A20 20 0 0 0 1176.0 10.0H1110.0A20 20 0 0 0 1090.0 30.0V70.0A20 20 0 0 0 1110.0 90.0H1176.0A20 20 0 0 0 1196.0 70.0"/></g></svg></a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-principal"><span aria-hidden="true">☰</span> <span class="es">Menú</span><span class="pt">Menu</span></button>
+    <nav class="links" id="menu-principal" aria-label="Secciones">
+      <a href="./index.html#servicios"><span class="es">Servicios</span><span class="pt">Serviços</span></a>
+      <a href="./index.html#obras"><span class="es">Obras</span><span class="pt">Obras</span></a>
+      <a href="./inmobiliaria.html" aria-current="page"><span class="es">Inmobiliaria</span><span class="pt">Imobiliária</span></a>
+      <a href="./blog.html"><span class="es">Noticias</span><span class="pt">Notícias</span></a>
+      <a href="./precios.html"><span class="es">Precios</span><span class="pt">Preços</span></a>
+      <a href="https://ciprodecradio.com.ar/"><span class="es">Radio</span><span class="pt">Rádio</span></a>
+      <a href="./index.html#contacto"><span class="es">Contacto</span><span class="pt">Contato</span></a>
+      <a class="ingresar" href="./cliente.html"><span class="es">Ingresar</span><span class="pt">Entrar</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-set="es" aria-pressed="true">ES</button>
+      <button type="button" data-set="pt" aria-pressed="false">PT</button>
     </div>
-<div>
-    <!-- tarjeta talegía- modelo------------------------------------------------------------------------------------------------------------------------ -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="gallery-container" id="gallery-container-2" onclick="openGallery(4)" style="background-image: url('./img/inmobiliaria/ven0004/02.jpeg')">
-                <!-- <div class="hotspot" style="top: 40%; left: 50%;" onclick="openGallery(2)"></div> -->
-            </div>
-            
-            <div class="p-3">
-                <h2 class="text-2xl font-bold mb-2">TERRENO</h2>
-                <p class="text-gray-600 mb-2"><a href="https://maps.app.goo.gl/VSTE1gFcTAXd6k8g9" class="hover:text-red-500"><i class="fa-solid fa-location-dot"></i> Calle San Juan - Pto. Iguazú</a></p>
-                
-                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
-                    <div>
-                        <p><span class="text-sm"><i class="fa-regular fa-map"></i> Terreno:</span> <strong>670m²</strong></p>
-                        <p><span class="text-sm"><i class="fa-solid fa-house-chimney"></i> Constuido:</span> <strong> -</strong></p>
-                    </div>
-                    <div>
-                        <p><span class="text-sm"><i class="fa-solid fa-bed"></i> Habitaciones:</span> <strong>-</strong></p>
-                        <p><span class="text-sm"><i class="fa-solid fa-shower"></i> Baños:</span> <strong>-</strong></p>
-                    </div>
-                </div>
-                
-                <p class="mb-4"><span class="text-sm"><i class="fa-solid fa-coins"></i> Condición:</span> <strong>Venta</strong></p>
-                
-                <div class="flex justify-between items-center">
-                    <p class="text-2xl font-bold text-black">USD 53.000</p>
-                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-slate-900 transition">
-                      <a href="https://api.whatsapp.com/send/?phone=5493757328322&text=Buenos+d%C3%ADas%2C+me+comunico+desde+la+web+ciprodec.com%2C+estoy+interesado+en+esta+propiedad.+Agradecer%C3%ADa+que+se+ponga+en+contacto+conmigo+lo+antes+posible.&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
-                    </button>
-                </div>
-            </div>
-        
+  </div>
+</header>
+<main>
+<section class="pagehead draft">
+  <svg  viewBox="0 0 794 1123" preserveAspectRatio="xMidYMax slice" aria-hidden="true" class="bg"><g fill="none" stroke="#1A1A1A" stroke-opacity="0.10" stroke-width="1"><path vector-effect="non-scaling-stroke" d="M0 1095L794 1095 M30 700h250v395h-250Z M30 730L280 730 M30 772L280 772 M30 814L280 814 M30 856L280 856 M30 898L280 898 M30 940L280 940 M30 982L280 982 M30 1024L280 1024 M30 1066L280 1066 M80 700L80 1095 M130 700L130 1095 M180 700L180 1095 M230 700L230 1095 M30 700L155 640 M280 700L155 640 M470 560h300v535h-300Z M470 600L770 600 M470 646L770 646 M470 692L770 692 M470 738L770 738 M470 784L770 784 M470 830L770 830 M470 876L770 876 M470 922L770 922 M470 968L770 968 M470 1014L770 1014 M470 1060L770 1060 M530 560L530 1095 M590 560L590 1095 M650 560L650 1095 M710 560L710 1095 M500 520h240v40h-240Z M290 860h170v235h-170Z M290 900L460 900 M290 940L460 940 M290 980L460 980 M290 1020L460 1020 M290 1060L460 1060 M290 860L375 760 M460 860L375 760 M290 1095L375 760 M460 1095L375 760"/></g><g fill="none" stroke="#1A1A1A" stroke-opacity="0.070" stroke-width="1" stroke-dasharray="4 6"><path vector-effect="non-scaling-stroke" d="M0 470H794 M0 520H794 M0 640H794 M155 380V1095 M375 380V1095 M620 380V1095"/></g></svg>
+  <div class="wrap">
+    <div class="eyebrow"><span class="es">Inmobiliaria · Imobiliária</span><span class="pt">Imobiliária</span></div>
+    <h1><span class="es">Propiedades en venta y alquiler</span><span class="pt">Imóveis à venda e para alugar</span></h1>
+    <p><span class="es">Casas, terrenos y locales. Si te interesa alguna, consultanos por WhatsApp y coordinamos la visita.</span><span class="pt">Casas, terrenos e salas. Se tiver interesse, fale conosco pelo WhatsApp e combinamos a visita.</span></p>
+  </div>
+</section>
+<section style="padding-top:32px">
+  <div class="wrap">
+    <div class="filtros" id="filtros" role="group" aria-label="Condición"></div>
+    <div class="props" id="lista" aria-live="polite"><p class="vacio">Cargando…</p></div>
+    <div class="b2b" style="border-radius:16px;padding:28px;margin-top:40px">
+      <div class="eyebrow"><span class="es">¿Querés vender o alquilar?</span><span class="pt">Quer vender ou alugar?</span></div>
+      <h2 style="margin-top:8px;font-size:1.6rem"><span class="es">Publicá tu propiedad con nosotros</span><span class="pt">Anuncie seu imóvel conosco</span></h2>
+      <p style="color:#CFCFCF;margin-top:10px"><span class="es">Tasación, documentación, agrimensura y planos en el mismo lugar.</span><span class="pt">Avaliação, documentação, topografia e plantas no mesmo lugar.</span></p>
+      <div class="cta" style="justify-content:flex-start"><a class="btn red" href="https://wa.me/595986573190?text=Hola%20CIPRODEC%2C%20quiero%20publicar%20mi%20propiedad">WhatsApp</a></div>
     </div>
-    <!-- tarjeta talegía------------------------------------------------------------------------------------------------------------------------- -->
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span><b>CIPRODEC</b> · Centro Integral de Profesionales de la Construcción · Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias</span><span><a href="https://wa.me/595986573190">+595 986 573 190</a> · ciprodecpy@gmail.com · <a href="https://www.instagram.com/ciprodec/">@ciprodec</a></span></div></footer>
 
-
-          <!-- tarjeta talegía- modelo------------------------------------------------------------------------------------------------------------------------ -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="gallery-container" id="gallery-container-2" onclick="openGallery(5)" style="background-image: url('./img/inmobiliaria/ven0005/01.jpeg')">
-                <!-- <div class="hotspot" style="top: 40%; left: 50%;" onclick="openGallery(2)"></div> -->
-            </div>
-            
-            <div class="p-3">
-                <h2 class="text-2xl font-bold mb-2">TERRENO</h2>
-                <p class="text-gray-600 mb-2"><a href="https://maps.app.goo.gl/Ua5qcfNGwiMAXdDZ8" class="hover:text-red-500"><i class="fa-solid fa-location-dot"></i> Calle San Juan - Pto. Iguazú</a></p>
-                
-                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
-                    <div>
-                        <p><span class="text-sm"><i class="fa-regular fa-map"></i> Terreno:</span> <strong>600m²</strong></p>
-                        <p><span class="text-sm"><i class="fa-solid fa-house-chimney"></i> Constuido:</span> <strong> -</strong></p>
-                    </div>
-                    <div>
-                        <p><span class="text-sm"><i class="fa-solid fa-bed"></i> Habitaciones:</span> <strong>-</strong></p>
-                        <p><span class="text-sm"><i class="fa-solid fa-shower"></i> Baños:</span> <strong>-</strong></p>
-                    </div>
-                </div>
-                
-                <p class="mb-4"><span class="text-sm"><i class="fa-solid fa-coins"></i> Condición:</span> <strong>Venta</strong></p>
-                
-                <div class="flex justify-between items-center">
-                    <p class="text-2xl font-bold text-black">USD 47.000</p>
-                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-slate-900 transition">
-                      <a href="https://api.whatsapp.com/send/?phone=5493757328322&text=Buenos+d%C3%ADas%2C+me+comunico+desde+la+web+ciprodec.com%2C+estoy+interesado+en+esta+propiedad.+Agradecer%C3%ADa+que+se+ponga+en+contacto+conmigo+lo+antes+posible.&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
-                    </button>
-                </div>
-            </div>
-        
-    </div>
-    <!-- tarjeta talegía------------------------------------------------------------------------------------------------------------------------- -->
-
-
-          <!-- tarjeta talegía- modelo------------------------------------------------------------------------------------------------------------------------ -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="gallery-container" id="gallery-container-2" onclick="openGallery(6)" style="background-image: url('./img/inmobiliaria/ven0006/01.jpeg')">
-                <!-- <div class="hotspot" style="top: 40%; left: 50%;" onclick="openGallery(2)"></div> -->
-            </div>
-            
-            <div class="p-3">
-                <h2 class="text-2xl font-bold mb-2">TERRENO</h2>
-                <p class="text-gray-600 mb-2"><a href="https://maps.app.goo.gl/BHFbzhovhp6Rrpyh7" class="hover:text-red-500"><i class="fa-solid fa-location-dot"></i> Calle San Juan - Pto. Iguazú</a></p>
-                
-                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
-                    <div>
-                        <p><span class="text-sm"><i class="fa-regular fa-map"></i> Terreno:</span> <strong>650m²</strong></p>
-                        <p><span class="text-sm"><i class="fa-solid fa-house-chimney"></i> Constuido:</span> <strong> -</strong></p>
-                    </div>
-                    <div>
-                        <p><span class="text-sm"><i class="fa-solid fa-bed"></i> Habitaciones:</span> <strong>1</strong></p>
-                        <p><span class="text-sm"><i class="fa-solid fa-shower"></i> Baños:</span> <strong>1</strong></p>
-                    </div>
-                </div>
-                
-                <p class="mb-4"><span class="text-sm"><i class="fa-solid fa-coins"></i> Condición:</span> <strong>Venta</strong></p>
-                
-                <div class="flex justify-between items-center">
-                    <p class="text-2xl font-bold text-black">USD 74.000</p>
-                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-slate-900 transition">
-                      <a href="https://api.whatsapp.com/send/?phone=5493757328322&text=Buenos+d%C3%ADas%2C+me+comunico+desde+la+web+ciprodec.com%2C+estoy+interesado+en+esta+propiedad.+Agradecer%C3%ADa+que+se+ponga+en+contacto+conmigo+lo+antes+posible.&type=phone_number&app_absent=0" class="text-sm/6 font-semibold text-white">Contacto</a>
-                    </button>
-                </div>
-            </div>
-        
-    </div>
-    <!-- tarjeta talegía------------------------------------------------------------------------------------------------------------------------- -->
-
-    
-    <!-- Modal de Galería -->
-    <div class="modal-overlay" id="gallery-modal">
-        <button class="close-btn" onclick="closeGallery()">&times;</button>
-        
-        <div class="modal-content">
-            <div class="carousel-images" id="carousel-images">
-                <!-- Las imágenes se insertarán aquí dinámicamente -->
-            </div>
-            
-            <button class="carousel-btn prev" onclick="changeSlide(-1)">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next" onclick="changeSlide(1)">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            
-            <div class="carousel-indicators" id="carousel-indicators">
-                <!-- Los indicadores se insertarán aquí dinámicamente -->
-            </div>
-        </div>
-  
- 
-
-
-
-
-      </div>
-
-    </div>
-
-
-  </body>
-
-        <!--
-        <section class="pt-16">
-          <div>
-              
-                <div id="caja" class="bg-gray-500">
-                  <p id="texto" class="text-center font-bold text-4xl ">texto</p>
-                </div>
-              
-          </div>
-        </section>
-        -->
-      
-        <script src="./src/script.js"></script>
-        <script src="./src/contenido.js"></script>
-
-       
-<!--
-        <script>
-          const menuToggle = document.getElementById('.menu-toggle');
-          const menulink = document.getElementById('.mobilemenu');
-
-          menuToggle.addEventListener('click',()=>{
-            menulink.classList.toggle('hidden');
-          });
-        </script>
-        
-        <script>
-            const button = document.querySelector('.menu-button');
-            const menu = document.querySelector('.menu');
-
-            button.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            });
-        </script> 
--->
-        <!--
-        <script>
-          const menuHamburger = document.querySelector(".menu-hamburger")
-          const navLinks = document.querySelector(".menu")
-      
-          menuHamburger.addEventListener('click',()=>{
-          navLinks.classList.toggle('lg:hidden')
-          })
-        </script>
-        
-        <script>
-            function openMenu() {
-                let menu = document.getElementById('menu');
-    
-                if(menu.ClassList.contains('hidden')){
-                    menu.ClassList.remove('hidden');
-                }else{
-                    menu.ClassList.add('hidden');
-                }
-            }
-        </script>
-        -->
-        <footer class="bg-black">
-          <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              <div>
-                <div class="text-white">
-                  <strong>ciprodec</strong>
-                </div>
-        
-                <p class="mt-4 max-w-xs text-gray-300">
-                  Centro de profesionales de la construcción
-                </p>
-        
-                <ul class="mt-8 flex gap-6">
-                  <li>
-                    <a
-                      href="https://www.facebook.com/profile.php?id=100064049114522"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-200 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Facebook</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-        
-                  <li>
-                    <a
-                      href="https://www.instagram.com/ciprodec/?hl=es-la"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-200 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Instagram</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-        
-                  <!-- <li>
-                    <a
-                      href="#"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-200 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Twitter</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
-                        />
-                      </svg>
-                    </a>
-                  </li> -->
-        
-                  <!-- <li>
-                    <a
-                      href="#"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-700 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">GitHub</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li> -->
-        
-                  <!-- <li>
-                    <a
-                      href="#"
-                      rel="noreferrer"
-                      target="_blank"
-                      class="text-gray-700 transition hover:opacity-75"
-                    >
-                      <span class="sr-only">Dribbble</span>
-        
-                      <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          fill-rule="evenodd"
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li> -->
-
-
-                </ul>
-              </div>
-        
-              <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
-                <div>
-                  <p class="font-medium text-gray-200">Servicios</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Proyectos </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseños en 3D </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Habilitaciones Municipales </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Consultoria de construcción </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Imp. - Exp. de materiales de la construcción </a>
-                    </li>
-                  </ul>
-                </div>
-        
-                <div>
-                  <p class="font-medium text-gray-200">Profesionales</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Arquitectura </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Ingenieria </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Plan de contingencia </a>
-                    </li>
-
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Estudios de suelo </a>
-                    </li>
-
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseño de interiores </a>
-                    </li>
-                    
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Diseño de interiores </a>
-                    </li>
-
-                  </ul>
-                </div>
-
-                <div>
-                  <p class="font-medium text-gray-200">Otros</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Paisajismos </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Interiorismos </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Inmobiliaria </a>
-                    </li>
-
-                    <li>
-                      <a href="https://wa.me/595986573190" class="text-gray-400 transition hover:opacity-75"> Contacto </a>
-                    </li>
-                  </ul>
-                </div>
-        
-                
-        
-                <!-- <div>
-                  <p class="font-medium text-gray-200">Legal</p>
-        
-                  <ul class="mt-6 space-y-4 text-sm">
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Accessibility </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Returns Policy </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Refund Policy </a>
-                    </li>
-        
-                    <li>
-                      <a href="#" class="text-gray-400 transition hover:opacity-75"> Hiring Statistics </a>
-                    </li>
-                  </ul>
-                </div> -->
-              </div>
-            </div>
-        
-            <p class="text-xs text-gray-400">2025 CIPRODEC</p>
-          </div>
-        </footer>
-
-
+<a class="wa-float" href="https://wa.me/595986573190" aria-label="WhatsApp CIPRODEC"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg></a>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Fotos del proyecto">
+  <button type="button" class="x" id="lbX" aria-label="Cerrar">✕</button>
+  <button type="button" class="prev" id="lbP" aria-label="Foto anterior">‹</button>
+  <figure style="margin:0;max-width:1200px"><img id="lbImg" alt=""><figcaption class="cap" id="lbCap"></figcaption></figure>
+  <button type="button" class="next" id="lbN" aria-label="Foto siguiente">›</button>
+</div>
+<script src="./src/config.js"></script>
+<script src="./src/sitio.js"></script>
+<script type="module">
+import { listar, obtener, fotoUrl, esc } from './src/datos.js';
+const lista = document.getElementById('lista');
+let props = [], filtro = '', wa = '5493757328322';
+function datos(p) {
+  return [['terreno', 'Terreno', 'Terreno'], ['construido', 'Construido', 'Construído'], ['habitaciones', 'Dorm.', 'Quartos'], ['banos', 'Baños', 'Banheiros']]
+    .filter(d => p[d[0]] && !/^\s*(-|0|0\s*m²)?\s*$/i.test(String(p[d[0]]))).map(d => '<span><span class="es">' + d[1] + '</span><span class="pt">' + d[2] + '</span>: ' + esc(p[d[0]]) + '</span>').join('');
+}
+async function pintar() {
+  const items = props.filter(p => !filtro || (p.condicion || '') === filtro);
+  if (!items.length) { lista.innerHTML = '<p class="vacio">No hay propiedades publicadas en este momento.</p>'; return; }
+  const portadas = await Promise.all(items.map(p => fotoUrl((p.fotos || [])[0])));
+  lista.innerHTML = items.map((p, i) => {
+    const n = (p.fotos || []).length, msg = 'Hola, me interesa la propiedad: ' + p.titulo + (p.ubicacion ? ' (' + p.ubicacion + ')' : '');
+    return '<article class="prop">' + (portadas[i] ? '<button type="button" class="cover" data-p="' + esc(p.id) + '" aria-label="Ver fotos de ' + esc(p.titulo) + '"><img src="' + esc(portadas[i]) + '" alt="" loading="lazy">' +
+      (p.condicion ? '<span class="badge">' + esc(p.condicion) + '</span>' : '') + (n > 1 ? '<span class="cnt">' + n + ' fotos</span>' : '') + '</button>' : '') +
+      '<div class="b">' + (p.precio ? '<div class="precio">' + esc(p.precio) + '</div>' : '') + '<h3>' + esc(p.titulo) + '</h3><div class="loc">' + esc(p.ubicacion || '') + '</div>' +
+      '<div class="datos">' + datos(p) + '</div><div class="acts">' +
+      (n ? '<button type="button" class="btn" data-p="' + esc(p.id) + '"><span class="es">Ver fotos</span><span class="pt">Ver fotos</span></button>' : '') +
+      '<a class="btn red" target="_blank" rel="noopener" href="https://wa.me/' + esc(wa) + '?text=' + encodeURIComponent(msg) + '"><span class="es">Consultar</span><span class="pt">Consultar</span></a>' +
+      (/^https?:/.test(p.mapa || '') ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(p.mapa) + '"><span class="es">Mapa</span><span class="pt">Mapa</span></a>' : '') +
+      '</div></div></article>';
+  }).join('');
+}
+lista.addEventListener('click', async e => {
+  const b = e.target.closest('[data-p]'); if (!b) return;
+  const p = props.find(x => x.id === b.dataset.p); if (!p) return;
+  window.CipVisor && window.CipVisor.abrir(await Promise.all((p.fotos || []).map(fotoUrl)), p.titulo);
+});
+try {
+  const [lst, aj] = await Promise.all([listar('propiedades'), obtener('ajustes', 'general').catch(() => null)]);
+  if (aj && aj.whatsappInmobiliaria) wa = String(aj.whatsappInmobiliaria).replace(/\D/g, '');
+  props = lst.filter(p => p.visible !== false);
+  const conds = [...new Set(props.map(p => p.condicion).filter(Boolean))];
+  const box = document.getElementById('filtros');
+  if (conds.length > 1) {
+    box.innerHTML = ['', ...conds].map(c => '<button type="button" data-c="' + esc(c) + '" aria-pressed="' + (c === '') + '">' + (c ? esc(c) : '<span class="es">Todas</span><span class="pt">Todas</span>') + '</button>').join('');
+    box.onclick = e => { const b = e.target.closest('button'); if (!b) return; filtro = b.dataset.c; box.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); pintar(); };
+  } else box.hidden = true;
+  await pintar();
+} catch (e) { lista.innerHTML = '<p class="vacio">No se pudieron cargar las propiedades. Probá de nuevo en unos minutos.</p>'; }
+</script>
+</body>
 </html>
-
-
-
-
-  
-

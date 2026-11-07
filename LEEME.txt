@@ -1,75 +1,64 @@
-CIPRODEC - Página de presentación (Expo Paraguay Brasil 2026)
+CIPRODEC – ciprodec.com – VERSIÓN 6 (rediseño integral + panel con usuarios)
+==========================================================================
 
-index.html
-  Página completa en un solo archivo (HTML + CSS + JS). No necesita otros
-  archivos ni imágenes: el logo y los dibujos están dentro del HTML.
-  Tiene botón ES / PT y se ve bien en celular.
-  Tipografías: Montserrat y Courier Prime (se cargan desde Google Fonts).
+QUÉ CAMBIA
+- Todo el sitio tiene el diseño nuevo: portada, Noticias (blog.html), Inmobiliaria
+  (inmobiliaria.html), Precios (precios.html) y la nueva página "Ingresar" (cliente.html).
+  Ya no queda ninguna página con el diseño viejo. Menú con botón en el celular y botón ES/PT en todas.
+- Estilos en un solo archivo: src/ciprodec.css. Comportamiento común: src/sitio.js.
+- Datos: src/datos.js (lo usan todas las páginas y el panel).
+- Panel nuevo en admin.html, con usuarios por email y niveles de acceso (ver abajo).
+  Reemplaza al panel anterior que usaba token de GitHub.
+- Área de clientes: cada cliente entra con su email y ve SU obra (avance, fotos, documentos).
+- Ya no se usan (se pueden borrar si querés): src/output.css, src/input.css, src/script.js,
+  tailwind.config.js, package.json, package-lock.json, src/Pruebas/.
 
-img/
-  Logo CIPRODEC en vector (SVG negro y blanco) y en PNG de 4000 px con fondo
-  transparente, por si se usa en otras partes del sitio (favicon, menú, etc.).
-
-Datos de contacto válidos:
-  WhatsApp: +595 986 573 190 (https://wa.me/595986573190)
-  Email: ciprodecpy@gmail.com
-  Instagram: @ciprodec
-  Dirección: Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias, Paraguay
-
-Importante: en la portada actual dice "Estrenamos nueva oficina en
-Av. Victoria Aguirre 1190". Esa dirección ya no va: reemplazar por la de
-Hernandarias.
-
-Uso sugerido: publicar index.html como portada de www.ciprodec.com, o como
-sección "Expo" (por ejemplo www.ciprodec.com/expo) con un botón en el menú.
-Fecha límite: antes del miércoles 11 de noviembre.
-
-ACTUALIZACIÓN 7/11 (2da versión):
-- Se recuperan las páginas anteriores: inmobiliaria.html (con sus fotos en img/inmobiliaria) y blog.html (Noticias), con su CSS y JS en src/.
-- index.html suma en el menú: Inmobiliaria, Noticias y Radio (https://ciprodecradio.com.ar/), y una sección "Más de CIPRODEC" para que se vean también en el celular.
-- En inmobiliaria.html y blog.html, el WhatsApp general pasa al +595 986 573 190. El WhatsApp de consulta por propiedades (+54 9 3757 328322) no se tocó.
-Subir TODO el contenido de esta carpeta a la raíz del repositorio (reemplaza index.html y LEEME.txt; el resto son archivos que se habían borrado).
-
-ACTUALIZACIÓN 7/11 (3ra versión) - PANEL DE ADMINISTRACIÓN:
-- Nuevo: admin.html (ciprodec.com/admin.html). Permite crear, editar, ocultar, ordenar y eliminar
-  Noticias y Propiedades, y subir fotos (se achican solas a 1600 px). Publica directo en este repositorio
-  (rama main) por la API de GitHub; GitHub Pages actualiza la web en 1-2 minutos.
-- Ingreso: con un token de GitHub (classic, permiso public_repo) de una cuenta con permiso de escritura
-  en rbdesignigz/ciprodec. El token no se guarda en el repositorio; solo en el navegador si se marca "Recordar".
-  La página admin.html es pública pero no sirve de nada sin token, y tiene noindex.
-- El contenido ahora vive en data/noticias.json y data/propiedades.json. blog.html e inmobiliaria.html
-  lo leen con src/contenido.js (mismo diseño que antes). Las fotos nuevas van a img/noticias/ e img/inmobiliaria/<id>/.
-- src/script.js: los botones de compartir viejos ahora no fallan si no existen (se usa ?.).
-- En inmobiliaria, el WhatsApp de consultas por propiedad se configura desde el panel (hoy: 5493757328322).
-
-ACTUALIZACIÓN 7/11 (4ta versión):
-- index.html suma la sección "Noticias" con las 3 últimas noticias publicadas (lee data/noticias.json,
-  lo mismo que carga el panel). El menú "Noticias" de la portada lleva a esa sección; "Ver todas" va a blog.html.
-
-ACTUALIZACIÓN 7/11 (5ta versión) – VERSIÓN FINAL PARA LA EXPO:
+CÓMO SUBIRLO
 Subir TODO el contenido de esta carpeta a la raíz del repositorio, reemplazando lo que haya.
-No borrar nada de lo existente (CNAME, src/, img/ se mantienen).
+Mientras Firebase no esté configurado, la web funciona igual: muestra lo que hay en data/ (solo lectura).
 
-1. Noticias con fuente y análisis propio
-   - data/noticias.json: 3 noticias nuevas del sector (Expo, maquila, construcción) con portadas propias
-     en img/noticias/. Cada noticia muestra "Fuente: ..." con enlace y un recuadro "Análisis CIPRODEC".
-   - blog.html y la sección Noticias de la portada ya muestran esos campos.
+NIVELES DE ACCESO (se asignan en el panel, pestaña Usuarios)
+- Administrador: todo, incluido dar de alta, baja y modificar usuarios.
+- Empleado – contenidos: Noticias, Obras, Revista de precios y Obras de clientes.
+- Inmobiliaria: solo Propiedades.
+- Cliente: no entra al panel; en "Ingresar" ve solo las obras donde figura su email.
+Cada persona entra desde ciprodec.com/cliente.html con Google o con email y contraseña
+(la primera vez toca "crear contraseña" y confirma su email). Solo entra si su email está
+cargado y activo. Los permisos los controla Firebase (archivo firestore.rules), no solo la página.
 
-2. Obras y proyectos (nuevo)
-   - Sección "Obras" en index.html, lee data/obras.json; fotos en img/obras/ con visor a pantalla completa.
-   - obras/estructura-hernandarias.html: visor del modelo 3D de una estructura (usa three.js desde CDN).
-   - admin.html suma la pestaña "Obras" para cargar nuevas obras con fotos.
+CONFIGURAR FIREBASE (una sola vez, unos 15 minutos, gratis)
+1. Entrar a https://console.firebase.google.com con la cuenta de Google de CIPRODEC.
+   "Crear un proyecto" → nombre: ciprodec-web → sin Google Analytics.
+2. Authentication → Comenzar → Método de acceso: habilitar "Google" y "Correo electrónico/contraseña".
+   Authentication → Configuración → Dominios autorizados: agregar ciprodec.com y www.ciprodec.com.
+3. Firestore Database → Crear base de datos → ubicación southamerica-east1 (São Paulo) → modo producción.
+4. Firestore Database → Reglas: borrar todo, pegar el contenido de firestore.rules,
+   reemplazar REEMPLAZAR_EMAIL_ADMIN por el email del administrador principal (en minúsculas) → Publicar.
+5. Configuración del proyecto (engranaje) → Tus apps → ícono Web (</>) → registrar "ciprodec.com"
+   (sin Hosting). Copiar los datos de firebaseConfig (apiKey, authDomain, projectId, appId)
+   y pegarlos en src/config.js, en "firebase". En "superadmin" poner el MISMO email del paso 4.
+   (Estos datos de Firebase no son secretos: pueden estar en el repositorio público.
+   La seguridad la dan las reglas del paso 4.)
+6. Subir src/config.js al repositorio. Esperar 1–2 minutos.
+7. Entrar a ciprodec.com/cliente.html con el email del administrador → "Ir al panel".
+   En la pestaña Noticias aparece el botón "Importar el contenido actual de la web":
+   tocarlo UNA vez. Copia noticias, obras, revista de precios, fuentes y propiedades a Firebase.
+8. Pestaña Usuarios: dar de alta al resto (empleados, inmobiliaria, clientes).
 
-3. Precios de referencia (nuevo)
-   - precios.html: revista técnica mensual de precios de mano de obra y materiales (PY, AR, BR),
-     con fuentes citadas y análisis. Enlazada desde el menú y desde "Más de CIPRODEC".
-   - data/precios.json: contenido. Cada mes se agrega una edición NUEVA al principio de "ediciones"
-     (las anteriores quedan en el selector "Ediciones anteriores"). "fuentes" es la lista de enlaces por país.
+PROBAR SIN FIREBASE
+ciprodec.com/admin.html?demo  (o cliente.html?demo): modo demostración. Se puede recorrer el
+panel con cualquier nivel; los cambios quedan solo en ese navegador, no se publican.
 
-4. Revisar después de subir (1–2 minutos):
-   - ciprodec.com (portada, menú, Obras, Noticias, Precios)
-   - ciprodec.com/precios.html
-   - ciprodec.com/blog.html e inmobiliaria.html
-   - ciprodec.com/obras/estructura-hernandarias.html
-   - En el celular: botón ES/PT y botón de WhatsApp.
-   El folleto impreso tiene un QR que lleva a www.ciprodec.com: conviene que esté online antes del 11/11.
+FOTOS
+Las fotos que se suben desde el panel se achican solas (1400 px) y se guardan en Firebase
+(no hace falta habilitar Storage ni tarjeta de crédito). Las fotos de obras de clientes son
+privadas: solo las ven ese cliente y el personal.
+
+REVISAR DESPUÉS DE SUBIR
+- Portada, menú del celular, Obras, Noticias, Precios, Inmobiliaria.
+- ciprodec.com/obras/estructura-hernandarias.html (modelo 3D).
+- El folleto impreso tiene un QR a www.ciprodec.com: conviene que esté online antes del 11/11.
+
+DATOS DE CONTACTO VÁLIDOS
+WhatsApp +595 986 573 190 · ciprodecpy@gmail.com · @ciprodec
+Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias, Paraguay

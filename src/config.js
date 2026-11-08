@@ -4,14 +4,15 @@
    2) superadmin: el email del administrador principal. Tiene que ser el MISMO que figura en firestore.rules.
       Este usuario siempre puede entrar al panel y dar de alta a los demás. */
 window.CIPRODEC_CONFIG = {
-  firebase: null,
-  /* Ejemplo:
   firebase: {
-    apiKey: "AIza...",
-    authDomain: "ciprodec-web.firebaseapp.com",
-    projectId: "ciprodec-web",
-    appId: "1:123456789:web:abc123"
-  }, */
-  superadmin: "",
+    apiKey: "AIzaSyCKi2qRinJKDhMS2TbiMjhcJA9_81b10qc",
+    authDomain: "ciprodec-c.firebaseapp.com",
+    projectId: "ciprodec-c",
+    storageBucket: "ciprodec-c.firebasestorage.app",
+    messagingSenderId: "10308836558",
+    appId: "1:10308836558:web:674564a753195c087b849f",
+    measurementId: "G-L6ZDQG9LZC"
+  },
+  superadmin: "pablo.da.ber@gmail.com",
   whatsapp: "595986573190"
 };

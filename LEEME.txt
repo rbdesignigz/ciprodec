@@ -36,11 +36,13 @@ CONFIGURAR FIREBASE (una sola vez, unos 15 minutos, gratis)
 3. Firestore Database → Crear base de datos → ubicación southamerica-east1 (São Paulo) → modo producción.
 4. Firestore Database → Reglas: borrar todo, pegar el contenido de firestore.rules,
    reemplazar REEMPLAZAR_EMAIL_ADMIN por el email del administrador principal (en minúsculas) → Publicar.
+
 5. Configuración del proyecto (engranaje) → Tus apps → ícono Web (</>) → registrar "ciprodec.com"
    (sin Hosting). Copiar los datos de firebaseConfig (apiKey, authDomain, projectId, appId)
    y pegarlos en src/config.js, en "firebase". En "superadmin" poner el MISMO email del paso 4.
    (Estos datos de Firebase no son secretos: pueden estar en el repositorio público.
    La seguridad la dan las reglas del paso 4.)
+   
 6. Subir src/config.js al repositorio. Esperar 1–2 minutos.
 7. Entrar a ciprodec.com/cliente.html con el email del administrador → "Ir al panel".
    En la pestaña Noticias aparece el botón "Importar el contenido actual de la web":

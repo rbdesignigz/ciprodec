@@ -14,7 +14,7 @@ service cloud.firestore {
         || request.auth.token.firebase.sign_in_provider == 'google.com');
     }
     function superadmin() {
-      return verificado() && email() == 'REEMPLAZAR_EMAIL_ADMIN';
+      return verificado() && email() == 'pablo.da.ber@gmail.com';
     }
     function perfil() {
       return get(/databases/$(database)/documents/usuarios/$(email())).data;

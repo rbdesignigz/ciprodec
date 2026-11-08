@@ -9,6 +9,8 @@ QUÉ CAMBIA
 - Datos: src/datos.js (lo usan todas las páginas y el panel).
 - Panel nuevo en admin.html, con usuarios por email y niveles de acceso (ver abajo).
   Reemplaza al panel anterior que usaba token de GitHub.
+- Radio: página nueva radio.html con el reproductor en vivo de ArgentinaStream (puerto 8856).
+  El menú "Radio" ahora lleva a esa página (antes iba a ciprodecradio.com.ar).
 - Área de clientes: cada cliente entra con su email y ve SU obra (avance, fotos, documentos).
 - Ya no se usan (se pueden borrar si querés): src/output.css, src/input.css, src/script.js,
   tailwind.config.js, package.json, package-lock.json, src/Pruebas/.

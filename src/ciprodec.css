@@ -385,3 +385,14 @@ header.top .menu-btn{order:3}
 @media (max-width:760px){header.top .wrap{flex-wrap:wrap}header.top .lang{margin-left:0}}
 .rb-vol{width:90px;accent-color:var(--red)}
 @media (max-width:640px){.rb-vol{display:none}}
+/* nota fija con foto en el diario */
+.d-foto{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:30px;align-items:center;padding-bottom:26px;margin-bottom:26px;border-bottom:3px double var(--tinta)}
+.d-foto figure{margin:0}
+.d-foto img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.d-foto h3{font:900 clamp(1.8rem,3.6vw,2.7rem)/1.06 var(--titular);margin:0 0 14px;text-wrap:balance}
+.d-foto .d-capital{font:400 1.1rem/1.62 var(--serif);margin:0 0 12px}
+.d-foto figcaption{font:italic .88rem/1.4 var(--serif);color:#555;border-top:1px solid #bdb6a6;padding-top:6px}
+.d-foto .d-capital span::first-letter{float:left;font:900 4.1rem/.82 var(--titular);padding:6px 8px 0 0;color:var(--red)}
+.d-foto .d-capital::first-letter{float:none;font:inherit;padding:0;color:inherit}
+.d-foto .d-capital>span{display:block}
+@media (max-width:760px){.d-foto{grid-template-columns:1fr;gap:16px}.d-foto img{aspect-ratio:4/4.4}}

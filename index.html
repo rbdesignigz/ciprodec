@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CIPRODEC – Centro Integral de Profesionales de la Construcción</title>
-<meta name="description" content="Arquitectura, ingeniería, cálculo estructural, BIM, suelos, agrimensura y dirección de obra en Alto Paraná. Trabajamos con la constructora que elijas.">
+<meta name="description" content="Modelado BIM en Revit con visor 3D interactivo, cálculo estructural, presupuestos y cómputo de materiales para constructoras. Arquitectura, ingeniería, suelos, agrimensura y dirección de obra en Alto Paraná. Trabajamos con la constructora que elijas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
 <link rel="icon" href="./img/iso-logo.png">
 <link rel="stylesheet" href="./src/ciprodec.css">
 </head>
@@ -26,44 +26,81 @@
       <a class="ingresar" href="./cliente.html"><span class="es">Ingresar</span><span class="pt">Entrar</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Idioma">
-      <button type="button" data-set="es" aria-pressed="true">ES</button>
-      <button type="button" data-set="pt" aria-pressed="false">PT</button>
+      <button type="button" data-set="es" aria-pressed="true" aria-label="Español" title="Español"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#0038A8"/><rect width="30" height="13.33" fill="#fff"/><rect width="30" height="6.67" fill="#D52B1E"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#0038A8" stroke-width=".7"/><circle cx="15" cy="10" r=".9" fill="#FCD116"/></svg><span>ES</span></button>
+      <button type="button" data-set="pt" aria-pressed="false" aria-label="Português" title="Português"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#009C3B"/><path d="M15 2.2 27.6 10 15 17.8 2.4 10z" fill="#FFDF00"/><circle cx="15" cy="10" r="4.4" fill="#002776"/><path d="M10.8 9.1q4.4-1.3 8.5 1.2" stroke="#fff" stroke-width=".8" fill="none"/></svg><span>PT</span></button>
     </div>
   </div>
 </header>
 
 <main>
-<section id="inicio" class="hero draft">
-  <svg  viewBox="0 0 794 1123" preserveAspectRatio="xMidYMax slice" aria-hidden="true" class="bg"><g fill="none" stroke="#1A1A1A" stroke-opacity="0.10" stroke-width="1"><path vector-effect="non-scaling-stroke" d="M0 1095L794 1095 M30 700h250v395h-250Z M30 730L280 730 M30 772L280 772 M30 814L280 814 M30 856L280 856 M30 898L280 898 M30 940L280 940 M30 982L280 982 M30 1024L280 1024 M30 1066L280 1066 M80 700L80 1095 M130 700L130 1095 M180 700L180 1095 M230 700L230 1095 M30 700L155 640 M280 700L155 640 M470 560h300v535h-300Z M470 600L770 600 M470 646L770 646 M470 692L770 692 M470 738L770 738 M470 784L770 784 M470 830L770 830 M470 876L770 876 M470 922L770 922 M470 968L770 968 M470 1014L770 1014 M470 1060L770 1060 M530 560L530 1095 M590 560L590 1095 M650 560L650 1095 M710 560L710 1095 M500 520h240v40h-240Z M290 860h170v235h-170Z M290 900L460 900 M290 940L460 940 M290 980L460 980 M290 1020L460 1020 M290 1060L460 1060 M290 860L375 760 M460 860L375 760 M290 1095L375 760 M460 1095L375 760"/></g><g fill="none" stroke="#1A1A1A" stroke-opacity="0.070" stroke-width="1" stroke-dasharray="4 6"><path vector-effect="non-scaling-stroke" d="M0 470H794 M0 520H794 M0 640H794 M155 380V1095 M375 380V1095 M620 380V1095"/></g></svg>
+<section id="inicio" class="hero3d">
   <div class="wrap">
-    <div class="logo" role="img" aria-label="CIPRODEC"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1208 148"><g fill="none" stroke="#1A1A1A" stroke-linecap="round" stroke-width="28"><path d="M59.48 15.78A60 60 0 0 0 59.48 132.22 M88.52 15.78A60 60 0 0 1 124.88 42.20 M124.88 105.80A60 60 0 0 1 88.52 132.22"/></g><path d="M63.48 -11.22V6.78M55.48 -3.22H71.48" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><g transform="translate(0 24.00)" fill="none" stroke="#1A1A1A" stroke-width="20" stroke-linejoin="round" stroke-linecap="butt"><path d="M304.0 30.0A20 20 0 0 0 284.0 10.0H218.0A20 20 0 0 0 198.0 30.0V70.0A20 20 0 0 0 218.0 90.0H284.0A20 20 0 0 0 304.0 70.0 M346.0 0V100 M388.0 100V10.0H464.0A20 20 0 0 1 484.0 30.0V36A20 20 0 0 1 464.0 56H388.0 M526.0 100V10.0H606.0A20 20 0 0 1 626.0 30.0V36A20 20 0 0 1 606.0 56H526.0M606.0 56A20 20 0 0 1 626.0 76V100 M688.0 10.0H762.0A20 20 0 0 1 782.0 30.0V70.0A20 20 0 0 1 762.0 90.0H688.0A20 20 0 0 1 668.0 70.0V30.0A20 20 0 0 1 688.0 10.0Z M824.0 10.0H910.0A20 20 0 0 1 930.0 30.0V70.0A20 20 0 0 1 910.0 90.0H824.0Z M1058.0 10.0H972.0V90.0H1058.0M972.0 56H1044.0 M1196.0 30.0A20 20 0 0 0 1176.0 10.0H1110.0A20 20 0 0 0 1090.0 30.0V70.0A20 20 0 0 0 1110.0 90.0H1176.0A20 20 0 0 0 1196.0 70.0"/></g></svg></div>
-    <div class="tag">Centro Integral de Profesionales de la Construcción</div>
-    <div class="band"><span><span class="es">Arquitectura · Ingeniería · Soporte técnico de obra</span><span class="pt">Arquitetura · Engenharia · Suporte técnico de obra</span></span></div>
-    <h1><span class="es">El soporte técnico de tu obra.</span><span class="pt">O suporte técnico da sua obra.</span></h1>
-    <p class="alt"><span class="es">Del terreno a la llave, con la constructora que elijas.</span><span class="pt">Do terreno à chave, com a construtora que você escolher.</span></p>
-    <p class="sub"><span class="es">Proyecto, ingeniería y servicios técnicos para inversores, estudios de arquitectura y constructoras en Alto Paraná: naves, maquilas, oficinas y viviendas.</span><span class="pt">Projeto, engenharia e serviços técnicos para investidores, escritórios de arquitetura e construtoras no Alto Paraná: galpões, maquiladoras, escritórios e residências.</span></p>
+    <div class="h3-head">
+      <div class="eyebrow"><span class="es">Modelado BIM en Revit · Visor 3D interactivo</span><span class="pt">Modelagem BIM em Revit · Visualizador 3D interativo</span></div>
+      <h1><span class="es">Tu obra en 3D, elemento por elemento.</span><span class="pt">Sua obra em 3D, elemento por elemento.</span></h1>
+      <p class="sub"><span class="es">Modelamos la estructura en Revit y la entregamos en un visor interactivo: el constructor y cada persona en obra ven la obra completa, la separan por capas y consultan la ficha técnica de cada columna, viga, base y losa.</span><span class="pt">Modelamos a estrutura em Revit e entregamos num visualizador interativo: o construtor e cada pessoa na obra veem a obra completa, separam por camadas e consultam a ficha técnica de cada pilar, viga, sapata e laje.</span></p>
+    </div>
+    <div class="modelo3d" id="modelo3d">
+      <canvas aria-label="Modelo estructural 3D de la Casa Hernandarias girando" role="img"></canvas>
+      <img class="fallback" src="./img/obras/hernandarias-estructura.jpg" alt="Modelo estructural 3D de la Casa Hernandarias" loading="lazy">
+      <div class="rotulo"><b>Casa Hernandarias</b><span class="es">Modelo estructural real · H°A° y acero</span><span class="pt">Modelo estrutural real · concreto armado e aço</span></div>
+      <div class="punto" aria-hidden="true"></div>
+      <div class="ficha" aria-live="polite"></div>
+      <div class="pista" aria-hidden="true"><span class="es">Arrastrá para girar</span><span class="pt">Arraste para girar</span></div>
+      <div class="capas" role="group" aria-label="Capas del modelo">
+        <button type="button" data-capa="bases fund muros" aria-pressed="true"><i style="background:#9c8f80"></i><span class="es">Fundaciones</span><span class="pt">Fundações</span></button>
+        <button type="button" data-capa="cols" aria-pressed="true"><i style="background:#E8262B"></i><span class="es">Columnas</span><span class="pt">Pilares</span></button>
+        <button type="button" data-capa="vigas" aria-pressed="true"><i style="background:#3a3a3a"></i><span class="es">Vigas</span><span class="pt">Vigas</span></button>
+        <button type="button" data-capa="losas" aria-pressed="true"><i style="background:#d9d6d0"></i><span class="es">Losas</span><span class="pt">Lajes</span></button>
+        <button type="button" data-capa="techo" aria-pressed="true"><i style="background:#1a1a1a"></i><span class="es">Techo metálico</span><span class="pt">Cobertura metálica</span></button>
+        <button type="button" class="sep" data-separar aria-pressed="false"><span class="es">Separar por niveles</span><span class="pt">Separar por níveis</span></button>
+      </div>
+    </div>
+    <dl class="cifras">
+      <div><dt>76</dt><dd><span class="es">columnas</span><span class="pt">pilares</span></dd></div>
+      <div><dt>272</dt><dd><span class="es">vigas</span><span class="pt">vigas</span></dd></div>
+      <div><dt>74</dt><dd><span class="es">bases</span><span class="pt">sapatas</span></dd></div>
+      <div><dt>47,5 t</dt><dd><span class="es">de acero</span><span class="pt">de aço</span></dd></div>
+      <div><dt>424 m³</dt><dd><span class="es">de hormigón</span><span class="pt">de concreto</span></dd></div>
+    </dl>
     <div class="cta">
-      <a class="btn red" href="https://wa.me/595986573190"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Escribinos por WhatsApp</span><span class="pt">Fale pelo WhatsApp</span></a>
-      <a class="btn" href="#servicios"><span class="es">Ver servicios</span><span class="pt">Ver serviços</span></a>
+      <a class="btn red" href="./obras/estructura-hernandarias.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg><span class="es">Abrí el modelo completo</span><span class="pt">Abra o modelo completo</span></a>
+      <a class="btn" href="https://wa.me/595986573190?text=Hola%20CIPRODEC%2C%20quiero%20el%20modelo%203D%20de%20mi%20obra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Quiero el 3D de mi obra</span><span class="pt">Quero o 3D da minha obra</span></a>
     </div>
     <div class="expo"><span class="es">¡Gracias por visitarnos en la Expo Paraguay Brasil 2026!</span><span class="pt">Obrigado pela visita na Expo Paraguay Brasil 2026!</span></div>
-    <figure class="showcase">
-      <a class="s-main" href="#obras"><img src="./img/obras/iguazu-fachada-aerea.jpg" alt="Vista aérea de una vivienda con patios, piscina y jardín" fetchpriority="high"></a>
-      <a href="#obras"><img src="./img/obras/iguazu-quincho-piscina.jpg" alt="Quincho con piscina y deck de madera al atardecer" loading="lazy"></a>
-      <a href="#obras"><img src="./img/obras/iguazu-living.jpg" alt="Living y comedor integrados con vista al jardín" loading="lazy"></a>
-      <figcaption><span class="es">Vivienda alrededor de patios · Puerto Iguazú · Arquitectura e interiores CIPRODEC</span><span class="pt">Casa em torno de pátios · Puerto Iguazú · Arquitetura e interiores CIPRODEC</span></figcaption>
-    </figure>
   </div>
 </section>
+
+<section id="constructoras" class="b2b">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><span class="es">Tu oficina técnica, sin sumar personal</span><span class="pt">O seu escritório técnico, sem aumentar a equipe</span></div>
+      <h2><span class="es">Trabajamos para las empresas constructoras.</span><span class="pt">Trabalhamos para as empresas construtoras.</span></h2>
+      <p><span class="es">Las constructoras están a full de obra. Nosotros resolvemos el proyecto, el cálculo y los números, para que tu equipo se dedique a construir. Trabajamos por pedido, bajo tu marca y en tus plazos.</span><span class="pt">As construtoras estão cheias de obra. Nós resolvemos o projeto, o cálculo e os números, para que a sua equipe se dedique a construir. Trabalhamos sob demanda, com a sua marca e nos seus prazos.</span></p>
+    </div>
+    <div class="ofi">
+      <div><img src="./img/Diseno3d.png" alt="Render de un proyecto listo para presentar al cliente" loading="lazy"><div class="tx"><div class="n">01</div><h3><span class="es">Propuestas para tu cliente</span><span class="pt">Propostas para o seu cliente</span></h3><p><span class="es">Diseño, implantación en el terreno y 3D listos para presentar y cerrar la venta.</span><span class="pt">Projeto, implantação no terreno e 3D prontos para apresentar e fechar a venda.</span></p></div></div>
+      <div><img src="./img/obras/hernandarias-despiece-viga.jpg" style="object-fit:contain;background:#fff;padding:10px" alt="Plano de despiece de una viga con su planilla de hierros" loading="lazy"><div class="tx"><div class="n">02</div><h3><span class="es">Cálculo estructural</span><span class="pt">Cálculo estrutural</span></h3><p><span class="es">Hormigón armado y acero, con planos de despiece y planilla de hierros.</span><span class="pt">Concreto armado e aço, com plantas de armação e tabela de ferros.</span></p></div></div>
+      <div><img src="./img/Ingenieria.png" alt="Profesionales revisando un presupuesto de obra" loading="lazy"><div class="tx"><div class="n">03</div><h3><span class="es">Presupuestos</span><span class="pt">Orçamentos</span></h3><p><span class="es">Te acompañamos a armar y revisar el presupuesto de cada obra.</span><span class="pt">Acompanhamos a montagem e a revisão do orçamento de cada obra.</span></p></div></div>
+      <div><img src="./img/servicio-materiales.jpg" alt="Depósito de hierro para la construcción y exhibición de revestimientos en un corralón" loading="lazy"><div class="tx"><div class="n">04</div><h3><span class="es">Cómputo de materiales</span><span class="pt">Quantitativo de materiais</span></h3><p><span class="es">Cantidades de hormigón, hierro y materiales por etapa, sacadas del modelo.</span><span class="pt">Quantidades de concreto, ferro e materiais por etapa, tiradas do modelo.</span></p></div></div>
+      <div><img src="./img/servicio-modelo3d.jpg" alt="Modelo 3D de la estructura de la Casa Hernandarias" loading="lazy"><div class="tx"><div class="n">05</div><h3><span class="es">Modelo 3D interactivo</span><span class="pt">Modelo 3D interativo</span></h3><p><span class="es">El visor de la obra para tu equipo: cada elemento con su ficha técnica, en el celular.</span><span class="pt">O visualizador da obra para a sua equipe: cada elemento com a sua ficha técnica, no celular.</span></p></div></div>
+      <div><img src="./img/servicio-gantt.svg" alt="Diagrama de Gantt con el cronograma de una obra de 20 semanas" loading="lazy"><div class="tx"><div class="n">06</div><h3><span class="es">Planeamiento y administración</span><span class="pt">Planejamento e administração</span></h3><p><span class="es">Cronograma, documentación y seguimiento técnico-administrativo de la obra.</span><span class="pt">Cronograma, documentação e acompanhamento técnico-administrativo da obra.</span></p></div></div>
+    </div>
+    <div class="cta" style="margin-top:30px">
+      <a class="btn red" href="https://wa.me/595986573190?text=Hola%20CIPRODEC%2C%20soy%20de%20una%20constructora%20y%20quiero%20una%20cotizaci%C3%B3n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Pedí una cotización</span><span class="pt">Peça um orçamento</span></a>
+    </div>
+  </div>
+</section>
+
 
 <section id="servicios" style="background:var(--soft)">
   <div class="wrap">
     <div class="head">
-      <div class="eyebrow"><span class="es">Servicios</span><span class="pt">Serviços</span></div>
-      <h2><span class="es">Todo lo técnico que una obra necesita, en un solo lugar.</span><span class="pt">Tudo o que uma obra precisa na parte técnica, num só lugar.</span></h2>
+      <div class="eyebrow"><span class="es">Todo lo técnico que una obra necesita, en un solo lugar</span><span class="pt">Tudo o que uma obra precisa na parte técnica, num só lugar</span></div>
+      <h2><span class="es">Áreas de servicio de CIPRODEC</span><span class="pt">Áreas de serviço da CIPRODEC</span></h2>
       <p><span class="es">Un mismo equipo coordina el terreno, el proyecto, el cálculo y la obra, así la información no se pierde entre profesionales.</span><span class="pt">Uma mesma equipe coordena o terreno, o projeto, o cálculo e a obra, para que a informação não se perca entre profissionais.</span></p>
     </div>
-    <div class="grid"><div class="card"><div class="n">01</div><h3><span class="es">Arquitectura y proyecto</span><span class="pt">Arquitetura e projeto</span></h3><p><span class="es">Proyecto y documentación de obra.</span><span class="pt">Projeto e documentação de obra.</span></p></div><div class="card"><div class="n">02</div><h3><span class="es">Ingeniería</span><span class="pt">Engenharia</span></h3><p><span class="es">Instalaciones y soluciones técnicas para tu obra.</span><span class="pt">Instalações e soluções técnicas para a sua obra.</span></p></div><div class="card"><div class="n">03</div><h3><span class="es">Cálculo estructural</span><span class="pt">Cálculo estrutural</span></h3><p><span class="es">Hormigón armado y acero, con planos de despiece.</span><span class="pt">Concreto armado e aço, com plantas de armação.</span></p></div><div class="card"><div class="n">04</div><h3><span class="es">Dirección y gestión de obra</span><span class="pt">Direção e gestão de obra</span></h3><p><span class="es">Seguimiento técnico con la constructora que elijas.</span><span class="pt">Acompanhamento técnico com a construtora que você escolher.</span></p></div><div class="card"><div class="n">05</div><h3><span class="es">Estudio de suelos</span><span class="pt">Sondagem de solo</span></h3><p><span class="es">Caracterización del terreno para definir la fundación.</span><span class="pt">Caracterização do terreno para definir a fundação.</span></p></div><div class="card"><div class="n">06</div><h3><span class="es">Agrimensura</span><span class="pt">Agrimensura e topografia</span></h3><p><span class="es">Relevamientos, mensuras y replanteo.</span><span class="pt">Levantamentos, medições e locação de obra.</span></p></div><div class="card"><div class="n">07</div><h3><span class="es">Modelado BIM (Revit)</span><span class="pt">Modelagem BIM (Revit)</span></h3><p><span class="es">Ves tu obra en 3D antes de construirla, con cómputos.</span><span class="pt">Veja a obra em 3D antes de construir, com quantitativos.</span></p></div><div class="card"><div class="n">08</div><h3><span class="es">Paisajismo</span><span class="pt">Paisagismo</span></h3><p><span class="es">Diseño de patios, jardines y espacios exteriores.</span><span class="pt">Projeto de pátios, jardins e áreas externas.</span></p></div><div class="card"><div class="n">09</div><h3><span class="es">Diseño de interiores</span><span class="pt">Design de interiores</span></h3><p><span class="es">Ambientes resueltos al detalle.</span><span class="pt">Ambientes resolvidos nos detalhes.</span></p></div><div class="card"><div class="n">10</div><h3><span class="es">Cómputo y materiales</span><span class="pt">Orçamento e materiais</span></h3><p><span class="es">Cálculo de materiales y provisión para la obra.</span><span class="pt">Cálculo e fornecimento de materiais.</span></p></div><div class="card"><div class="n">11</div><h3><span class="es">Seguridad e higiene</span><span class="pt">Segurança do trabalho</span></h3><p><span class="es">Técnicos de seguridad e higiene para la obra.</span><span class="pt">Técnicos de segurança do trabalho na obra.</span></p></div><div class="card"><div class="n">12</div><h3><span class="es">Gestión inmobiliaria</span><span class="pt">Gestão imobiliária</span></h3><p><span class="es">Venta o alquiler cuando la obra está lista.</span><span class="pt">Venda ou locação quando a obra estiver pronta.</span></p></div></div>
+    <div class="grid"><div class="card foto"><img src="./img/servicio-arquitectura.jpg" alt="Render aéreo de una vivienda con piscina, deck y quincho" loading="lazy"><div class="tx"><div class="n">01</div><h3><span class="es">Arquitectura y proyecto</span><span class="pt">Arquitetura e projeto</span></h3><p><span class="es">Proyecto y documentación de obra.</span><span class="pt">Projeto e documentação de obra.</span></p></div></div><div class="card foto"><img src="./img/servicio-ingenieria.jpg" alt="Hormigonado de losa con camión mixer y bomba en una obra" loading="lazy"><div class="tx"><div class="n">02</div><h3><span class="es">Ingeniería</span><span class="pt">Engenharia</span></h3><p><span class="es">Instalaciones y soluciones técnicas para tu obra.</span><span class="pt">Instalações e soluções técnicas para a sua obra.</span></p></div></div><div class="card foto"><img src="./img/obras/hernandarias-despiece-viga.jpg" style="object-fit:contain;background:#fff;padding:10px" alt="Plano de despiece de una viga de la Casa Hernandarias con su planilla de hierros" loading="lazy"><div class="tx"><div class="n">03</div><h3><span class="es">Cálculo estructural</span><span class="pt">Cálculo estrutural</span></h3><p><span class="es">Hormigón armado y acero, con planos de despiece.</span><span class="pt">Concreto armado e aço, com plantas de armação.</span></p></div></div><div class="card foto"><a class="video" href="https://www.instagram.com/reel/CXwmqjRFEfs/" data-reel="CXwmqjRFEfs" aria-label="Ver el video de dirección de obra"><img src="./img/construccion-civil.avif" alt="Equipo revisando planos en obra" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="vtag"><span class="es">Ver video</span><span class="pt">Ver vídeo</span></span></a><div class="tx"><div class="n">04</div><h3><span class="es">Dirección y gestión de obra</span><span class="pt">Direção e gestão de obra</span></h3><p><span class="es">Seguimiento técnico con la constructora que elijas.</span><span class="pt">Acompanhamento técnico com a construtora que você escolher.</span></p></div></div><div class="card foto"><img src="./img/servicio-suelos.jpg" alt="Perforación para estudio de suelos y muestra de suelo extraída" loading="lazy"><div class="tx"><div class="n">05</div><h3><span class="es">Estudio de suelos</span><span class="pt">Sondagem de solo</span></h3><p><span class="es">Caracterización del terreno para definir la fundación.</span><span class="pt">Caracterização do terreno para definir a fundação.</span></p></div></div><div class="card foto"><img src="./img/servicio-agrimensura.jpg" alt="Agrimensor midiendo con estación total en un terreno" loading="lazy"><div class="tx"><div class="n">06</div><h3><span class="es">Agrimensura</span><span class="pt">Agrimensura e topografia</span></h3><p><span class="es">Relevamientos, mensuras y replanteo.</span><span class="pt">Levantamentos, medições e locação de obra.</span></p></div></div><div class="card foto"><img src="./img/servicio-modelo3d.jpg" alt="Modelo 3D de la estructura de la Casa Hernandarias" loading="lazy"><div class="tx"><div class="n">07</div><h3><span class="es">Modelado BIM (Revit)</span><span class="pt">Modelagem BIM (Revit)</span></h3><p><span class="es">Ves tu obra en 3D antes de construirla, con cómputos.</span><span class="pt">Veja a obra em 3D antes de construir, com quantitativos.</span></p></div></div><div class="card foto"><img src="./img/paisajismo01.avif" alt="Jardín con paisajismo" loading="lazy"><div class="tx"><div class="n">08</div><h3><span class="es">Paisajismo</span><span class="pt">Paisagismo</span></h3><p><span class="es">Diseño de patios, jardines y espacios exteriores.</span><span class="pt">Projeto de pátios, jardins e áreas externas.</span></p></div></div><div class="card foto"><img src="./img/servicio-interiores.jpg" alt="Fachada iluminada del local de CIPRODEC con el cartel vertical" loading="lazy"><div class="tx"><div class="n">09</div><h3><span class="es">Diseño de interiores</span><span class="pt">Design de interiores</span></h3><p><span class="es">Ambientes resueltos al detalle.</span><span class="pt">Ambientes resolvidos nos detalhes.</span></p></div></div><div class="card foto"><img src="./img/servicio-computo.jpg" alt="Depósito de barras de hierro para la construcción" loading="lazy"><div class="tx"><div class="n">10</div><h3><span class="es">Cómputo y materiales</span><span class="pt">Orçamento e materiais</span></h3><p><span class="es">Cálculo de materiales y provisión para la obra.</span><span class="pt">Cálculo e fornecimento de materiais.</span></p></div></div><div class="card foto"><img src="./img/blog01.jpeg" alt="Casco y guantes de seguridad" loading="lazy"><div class="tx"><div class="n">11</div><h3><span class="es">Seguridad e higiene</span><span class="pt">Segurança do trabalho</span></h3><p><span class="es">Técnicos de seguridad e higiene para la obra.</span><span class="pt">Técnicos de segurança do trabalho na obra.</span></p></div></div><div class="card foto ancho"><img src="./img/servicio-drone.jpg" alt="Foto aérea con drone de una vivienda de madera entre los árboles" loading="lazy"><div class="tx"><div class="n">12</div><h3><span class="es">Relevamiento aéreo con drone</span><span class="pt">Levantamento aéreo com drone</span></h3><p><span class="es">Fotos y videos aéreos del terreno y del avance de obra.</span><span class="pt">Fotos e vídeos aéreos do terreno e do andamento da obra.</span></p></div></div></div>
   </div>
 </section>
 
@@ -71,34 +108,12 @@
   <div class="wrap">
     <div class="head">
       <div class="eyebrow"><span class="es">Cómo trabajamos</span><span class="pt">Como trabalhamos</span></div>
-      <h2><span class="es">Cuatro pasos, un solo interlocutor técnico.</span><span class="pt">Quatro etapas, um único interlocutor técnico.</span></h2>
+      <h2><span class="es">Por qué elegir CIPRODEC.</span><span class="pt">Por que escolher a CIPRODEC.</span></h2>
     </div>
-    <div class="steps"><div class="step"><div class="k">1</div><h3><span class="es">Terreno</span><span class="pt">Terreno</span></h3><p><span class="es">Agrimensura y estudio de suelos para saber qué y cómo se puede construir.</span><span class="pt">Agrimensura e sondagem para saber o que e como construir.</span></p></div><div class="step"><div class="k">2</div><h3><span class="es">Proyecto</span><span class="pt">Projeto</span></h3><p><span class="es">Arquitectura, ingeniería y modelo BIM: ves tu obra antes de construirla.</span><span class="pt">Arquitetura, engenharia e BIM: veja a obra antes de construí-la.</span></p></div><div class="step"><div class="k">3</div><h3><span class="es">Obra</span><span class="pt">Obra</span></h3><p><span class="es">Dirección de obra, seguridad e higiene y materiales, con la constructora que elijas.</span><span class="pt">Direção de obra, segurança e materiais, com a construtora que você escolher.</span></p></div><div class="step"><div class="k">4</div><h3><span class="es">Entrega</span><span class="pt">Entrega</span></h3><p><span class="es">Llave en mano y, si querés, gestionamos la venta o el alquiler.</span><span class="pt">Chave na mão e, se quiser, cuidamos da venda ou locação.</span></p></div></div>
     <div class="whys">
       <div class="why"><span class="es">Trabajamos con cualquier constructora.</span><span class="pt">Trabalhamos com qualquer construtora.</span></div>
       <div class="why"><span class="es">Un solo interlocutor técnico, de principio a fin.</span><span class="pt">Um único interlocutor técnico, do início ao fim.</span></div>
       <div class="why"><span class="es">BIM: menos sorpresas en costo y plazo.</span><span class="pt">BIM: menos surpresas em custo e prazo.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="constructoras" class="b2b">
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><span class="es">Para constructoras y estudios</span><span class="pt">Para construtoras e escritórios</span></div>
-      <h2><span class="es">Tu equipo técnico tercerizado.</span><span class="pt">A sua equipe técnica terceirizada.</span></h2>
-      <p><span class="es">Sumanos por pedido cuando tu obra lo necesite, sin cargar estructura fija. Entregamos bajo tu marca y en tus plazos.</span><span class="pt">Conte conosco sob demanda quando a sua obra precisar, sem estrutura fixa. Entregamos com a sua marca e nos seus prazos.</span></p>
-    </div>
-    <div class="chips">
-      <span><span class="es">Modelado BIM (Revit)</span><span class="pt">Modelagem BIM (Revit)</span></span>
-      <span><span class="es">Cálculo estructural</span><span class="pt">Cálculo estrutural</span></span>
-      <span><span class="es">Estudio de suelos</span><span class="pt">Sondagem de solo</span></span>
-      <span><span class="es">Agrimensura</span><span class="pt">Topografia</span></span>
-      <span><span class="es">Seguridad e higiene</span><span class="pt">Segurança do trabalho</span></span>
-      <span><span class="es">Cómputo y presupuesto</span><span class="pt">Orçamento</span></span>
-    </div>
-    <div class="cta" style="margin-top:30px">
-      <a class="btn red" href="https://wa.me/595986573190"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Pedí una cotización</span><span class="pt">Peça um orçamento</span></a>
     </div>
   </div>
 </section>
@@ -110,20 +125,25 @@
       <h2><span class="es">Lo que venimos haciendo.</span><span class="pt">O que estamos fazendo.</span></h2>
       <p><span class="es">Proyectos de arquitectura y estructuras que desarrollamos para nuestros clientes.</span><span class="pt">Projetos de arquitetura e estruturas desenvolvidos para nossos clientes.</span></p>
     </div>
+    <figure class="galeria">
+      <a class="s-main" href="#obras"><img src="./img/obras/iguazu-fachada-aerea.jpg" alt="Vista aérea de una vivienda con patios, piscina y jardín" loading="lazy"></a>
+      <a href="#obras"><img src="./img/obras/iguazu-quincho-piscina.jpg" alt="Quincho con piscina y deck de madera al atardecer" loading="lazy"></a>
+      <a href="#obras"><img src="./img/obras/iguazu-living.jpg" alt="Living y comedor integrados con vista al jardín" loading="lazy"></a>
+      <figcaption><span class="es">Vivienda alrededor de patios · Puerto Iguazú · Arquitectura e interiores CIPRODEC</span><span class="pt">Casa em torno de pátios · Puerto Iguazú · Arquitetura e interiores CIPRODEC</span></figcaption>
+    </figure>
     <div class="works" id="listaObras"></div>
   </div>
 </section>
 
-<section id="noticias" style="background:var(--soft)">
+<section id="noticias" class="diario">
   <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><span class="es">Noticias</span><span class="pt">Notícias</span></div>
-      <h2><span class="es">Novedades de CIPRODEC y del sector.</span><span class="pt">Novidades da CIPRODEC e do setor.</span></h2>
-    </div>
-    <div class="news" id="ultimasNoticias"><p class="es" style="color:var(--muted)">Cargando noticias…</p><p class="pt" style="color:var(--muted)">Carregando notícias…</p></div>
-    <div class="cta" style="justify-content:flex-start;margin-top:26px">
-      <a class="btn" href="./blog.html"><span class="es">Ver todas las noticias</span><span class="pt">Ver todas as notícias</span></a>
-    </div>
+    <header class="cabezal">
+      <div class="cab-top"><span class="es">Construcción · Industria · Inversión</span><span class="pt">Construção · Indústria · Investimento</span><span class="cab-ed">Alto Paraná · Paraguay</span></div>
+      <h2 class="cab-nombre">El Diario de la Obra</h2>
+      <div class="cab-linea"><span id="diarioFecha"></span><span class="cab-por"><span class="es">Una publicación de CIPRODEC</span><span class="pt">Uma publicação da CIPRODEC</span></span><span class="cab-ed"><span class="es">Edición digital</span><span class="pt">Edição digital</span></span></div>
+    </header>
+    <div class="edicion" id="ultimasNoticias"><p class="es" style="color:var(--muted)">Cargando noticias…</p><p class="pt" style="color:var(--muted)">Carregando notícias…</p></div>
+    <div class="dia-pie"><a href="./blog.html"><span class="es">Leer la edición completa →</span><span class="pt">Ler a edição completa →</span></a></div>
   </div>
 </section>
 
@@ -148,7 +168,7 @@
       <a class="card" href="./inmobiliaria.html" style="text-decoration:none"><h3><span class="es">Inmobiliaria</span><span class="pt">Imobiliária</span></h3><p><span class="es">Propiedades en venta y alquiler.</span><span class="pt">Imóveis à venda e para alugar.</span></p></a>
       <a class="card" href="./blog.html" style="text-decoration:none"><h3><span class="es">Noticias</span><span class="pt">Notícias</span></h3><p><span class="es">Novedades de obras, normativa y del sector.</span><span class="pt">Novidades de obras, normas e do setor.</span></p></a>
       <a class="card" href="./precios.html" style="text-decoration:none"><h3><span class="es">Precios de referencia</span><span class="pt">Preços de referência</span></h3><p><span class="es">Revista mensual de mano de obra y materiales en PY, AR y BR, con fuentes.</span><span class="pt">Revista mensal de mão de obra e materiais no PY, AR e BR, com fontes.</span></p></a>
-      <a class="card" href="./radio.html" style="text-decoration:none"><h3>CIPRODEC Radio</h3><p><span class="es">Escuchá nuestra radio en vivo.</span><span class="pt">Ouça nossa rádio ao vivo.</span></p></a>
+      
     </div>
   </div>
 </section>
@@ -183,26 +203,65 @@
   <figure style="margin:0;max-width:1200px"><img id="lbImg" alt=""><figcaption class="cap" id="lbCap"></figcaption></figure>
   <button type="button" class="next" id="lbN" aria-label="Foto siguiente">›</button>
 </div>
+<div class="reel" id="reel" role="dialog" aria-modal="true" aria-label="Video de Instagram" hidden>
+  <div class="reel-box">
+    <button type="button" class="reel-x" aria-label="Cerrar">✕</button>
+    <iframe title="Video de CIPRODEC en Instagram" loading="lazy" allowfullscreen></iframe>
+    <a class="reel-ig" target="_blank" rel="noopener"><span class="es">Ver en Instagram</span><span class="pt">Ver no Instagram</span></a>
+  </div>
+</div>
+<script>
+/* videos de Instagram en las tarjetas de servicio */
+(function(){
+  var m=document.getElementById('reel'); if(!m) return;
+  var f=m.querySelector('iframe'), ig=m.querySelector('.reel-ig'), last=null;
+  function cerrar(){m.hidden=true;f.removeAttribute('src');if(last)last.focus();}
+  document.querySelectorAll('a.video[data-reel]').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();last=a;
+      var id=a.dataset.reel;f.src='https://www.instagram.com/reel/'+id+'/embed/';ig.href=a.href;m.hidden=false;m.querySelector('.reel-x').focus();});
+  });
+  m.querySelector('.reel-x').addEventListener('click',cerrar);
+  m.addEventListener('click',function(e){if(e.target===m)cerrar();});
+  document.addEventListener('keydown',function(e){if(!m.hidden&&e.key==='Escape')cerrar();});
+})();
+</script>
 <script src="./src/config.js"></script>
 <script src="./src/sitio.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="./src/hernandarias-modelo.js" defer></script>
+<script src="./src/portada3d.js" defer></script>
 <script type="module">
 import { listar, fotoUrl, esc, fechaTxt, okUrl } from './src/datos.js';
-/* Últimas noticias */
+/* Últimas noticias: formato diario */
 (async () => {
   const box = document.getElementById('ultimasNoticias'), sec = document.getElementById('noticias');
+  const fe = document.getElementById('diarioFecha');
+  const pintaFecha = () => { const pt = document.documentElement.getAttribute('data-lang') === 'pt';
+    const t = new Date().toLocaleDateString(pt ? 'pt-BR' : 'es-PY', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    fe.textContent = t.charAt(0).toUpperCase() + t.slice(1); };
+  pintaFecha(); new MutationObserver(pintaFecha).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
   try {
-    const items = (await listar('noticias')).filter(n => n.visible !== false).slice(0, 3);
+    const items = (await listar('noticias')).filter(n => n.visible !== false && n.visible !== 'False').slice(0, 6);
     if (!items.length) { sec.style.display = 'none'; return; }
     const imgs = await Promise.all(items.map(n => fotoUrl(n.imagen)));
-    box.innerHTML = items.map((n, i) => {
-      let txt = String(n.contenido || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
-      if (txt.length > 160) txt = txt.slice(0, 160).replace(/\s\S*$/, '') + '…';
-      const meta = [n.categoria, fechaTxt(n.fecha)].filter(Boolean).join(' · ');
-      return '<a class="ncard" href="./blog.html#' + encodeURIComponent(n.id) + '">' + (imgs[i] ? '<img src="' + esc(imgs[i]) + '" alt="' + esc(n.alt || n.titulo) + '" loading="lazy">' : '') +
-        '<div class="b">' + (meta ? '<div class="meta">' + esc(meta) + '</div>' : '') + '<h3>' + esc(n.titulo) + '</h3><p>' + esc(txt) + '</p>' +
-        (n.fuente ? '<div style="font-size:.8rem;color:var(--muted)">Fuente: ' + esc(n.fuente) + (n.analisis ? ' · <b>con análisis CIPRODEC</b>' : '') + '</div>' : '') +
-        '<div class="more"><span class="es">Leer más →</span><span class="pt">Ler mais →</span></div></div></a>';
-    }).join('');
+    const limpio = t => String(t || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+    const corta = (t, n) => { t = limpio(t); return t.length > n ? t.slice(0, n).replace(/\s\S*$/, '') + '…' : t; };
+    const link = n => './blog.html#' + encodeURIComponent(n.id);
+    const fuente = n => n.fuente ? '<div class="d-fuente">' + 'Fuente: ' + esc(n.fuente) + '</div>' : '';
+    const kicker = (n) => '<div class="d-kicker">' + esc(n.categoria || 'CIPRODEC') + (fechaTxt(n.fecha) ? ' · ' + fechaTxt(n.fecha) : '') + '</div>';
+    const [p, ...resto] = items, lado = resto.slice(0, 2), abajo = resto.slice(2);
+    let h = '<article class="d-principal">' + kicker(p) +
+      '<h3><a href="' + link(p) + '">' + esc(p.titulo) + '</a></h3>' +
+      (imgs[0] ? '<figure><a href="' + link(p) + '"><img src="' + esc(imgs[0]) + '" alt="' + esc(p.alt || p.titulo) + '" loading="lazy"></a>' + (p.alt ? '<figcaption>' + esc(p.alt) + '</figcaption>' : '') + '</figure>' : '') +
+      '<div class="d-texto"><p class="d-capital">' + esc(corta(p.contenido, 520)) + '</p>' +
+      (p.analisis ? '<aside class="d-analisis"><b><span class="es">Análisis CIPRODEC</span><span class="pt">Análise CIPRODEC</span></b><p>' + esc(corta(p.analisis, 260)) + '</p></aside>' : '') +
+      '</div>' + fuente(p) + '<a class="d-mas" href="' + link(p) + '"><span class="es">Seguir leyendo →</span><span class="pt">Continuar lendo →</span></a></article>';
+    h += '<div class="d-lateral">' + lado.map((n, i) => '<article>' +
+      (imgs[i + 1] ? '<a href="' + link(n) + '"><img src="' + esc(imgs[i + 1]) + '" alt="' + esc(n.alt || n.titulo) + '" loading="lazy"></a>' : '') +
+      kicker(n) + '<h4><a href="' + link(n) + '">' + esc(n.titulo) + '</a></h4><p>' + esc(corta(n.contenido, 170)) + '</p>' + fuente(n) + '</article>').join('') + '</div>';
+    if (abajo.length) h += '<div class="d-breves"><div class="d-breves-t"><span class="es">Breves</span><span class="pt">Notas</span></div><div class="d-breves-g">' + abajo.map(n => '<article>' + kicker(n) +
+      '<h4><a href="' + link(n) + '">' + esc(n.titulo) + '</a></h4><p>' + esc(corta(n.contenido, 150)) + '</p></article>').join('') + '</div></div>';
+    box.innerHTML = h;
   } catch (e) { sec.style.display = 'none'; }
 })();
 /* Obras y proyectos */

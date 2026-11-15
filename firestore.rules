@@ -38,6 +38,20 @@ service cloud.firestore {
     match /ajustes/{id}     { allow read: if true; allow write: if tieneRol(['admin']); }
     match /fotos/{id}       { allow read: if true; allow write: if tieneRol(['admin', 'editor', 'inmobiliaria']); }
 
+    // Chat de saludos de CIPRODEC Radio: cualquiera lee y manda un saludo (con límites de tamaño);
+    // las respuestas de la radio las escribe el respondedor (con credencial de servidor) o el personal.
+    match /radioChat/{id} {
+      allow read: if true;
+      allow create: if (request.resource.data.keys().hasOnly(['nombre', 'ciudad', 'texto', 'tipo', 'ts'])
+          && request.resource.data.tipo == 'oyente'
+          && request.resource.data.nombre is string && request.resource.data.nombre.size() > 0 && request.resource.data.nombre.size() <= 30
+          && request.resource.data.ciudad is string && request.resource.data.ciudad.size() <= 30
+          && request.resource.data.texto is string && request.resource.data.texto.size() > 0 && request.resource.data.texto.size() <= 200
+          && request.resource.data.ts == request.time)
+        || tieneRol(['admin', 'editor']);
+      allow update, delete: if tieneRol(['admin', 'editor']);
+    }
+
     // Usuarios autorizados (el id del documento es el email en minúsculas).
     match /usuarios/{mail} {
       allow read: if mail == email() || tieneRol(['admin']);

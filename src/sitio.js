@@ -124,3 +124,122 @@
   });
   texto(); new MutationObserver(texto).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 })();
+
+/* CIPRODEC Radio – chat de saludos de los oyentes.
+   Botón "Saludar" en la barra de la radio que abre un panel flotante. Los mensajes se guardan en
+   Firestore (colección radioChat) y los responde el locutor de turno (respondedor en la PC de la radio).
+   Sin Firebase o con ?demo en la dirección funciona en modo demostración, solo en este navegador. */
+(function(){
+  if (/radio\.html$/.test(location.pathname)) return;
+  var bar = document.querySelector('.radio-bar .rb-fila'); if (!bar) return;
+  var CFG = window.CIPRODEC_CONFIG || {}, SDK = 'https://www.gstatic.com/firebasejs/10.12.2/';
+  var DEMO = !CFG.firebase || /[?&]demo\b/.test(location.search);
+  var pt = function(){ return document.documentElement.getAttribute('data-lang') === 'pt'; };
+  var t = function(es, p){ return pt() ? p : es; };
+  var guardado = function(k){ try { return localStorage.getItem('rc_' + k) || ''; } catch(e){ return ''; } };
+  var guardar = function(k, v){ try { localStorage.setItem('rc_' + k, v); } catch(e){} };
+
+  var abrir = document.createElement('button'); abrir.type = 'button'; abrir.className = 'rb-chat';
+  abrir.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="rb-cl"></span>';
+  bar.insertBefore(abrir, bar.querySelector('.rb-vol') || bar.querySelector('.rb-btn'));
+
+  var panel = document.createElement('div'); panel.className = 'rc-panel'; panel.hidden = true;
+  panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Chat de CIPRODEC Radio');
+  panel.innerHTML =
+    '<div class="rc-cab"><div><b>CIPRODEC Radio</b><small class="rc-sub"></small></div>' +
+    '<button type="button" class="rc-x" aria-label="Cerrar">×</button></div>' +
+    '<ol class="rc-lista" aria-live="polite"></ol>' +
+    '<form class="rc-form" novalidate>' +
+      '<div class="rc-datos"><input name="nombre" maxlength="30" autocomplete="given-name" required><input name="ciudad" maxlength="30"></div>' +
+      '<div class="rc-envia"><input name="texto" maxlength="200" required><button type="submit" aria-label="Enviar">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 16-2-7z" fill="currentColor"/></svg></button></div>' +
+      '<p class="rc-aviso" role="status"></p>' +
+      '<p class="rc-nota"></p>' +
+    '</form>';
+  document.body.appendChild(panel);
+  var lista = panel.querySelector('.rc-lista'), form = panel.querySelector('.rc-form'), aviso = panel.querySelector('.rc-aviso');
+  form.nombre.value = guardado('nombre'); form.ciudad.value = guardado('ciudad');
+
+  function textos(){
+    abrir.querySelector('.rb-cl').textContent = t('Saludar', 'Mandar recado');
+    abrir.setAttribute('aria-label', t('Mandar un saludo a la radio', 'Mandar um recado para a rádio'));
+    panel.querySelector('.rc-sub').textContent = t('Saludos en vivo', 'Recados ao vivo');
+    form.nombre.placeholder = t('Tu nombre', 'Seu nome');
+    form.ciudad.placeholder = t('Ciudad', 'Cidade');
+    form.texto.placeholder = t('Mandá tu saludo a la radio', 'Mande seu recado para a rádio');
+    panel.querySelector('.rc-nota').textContent = t('Conducción virtual de CIPRODEC Radio. Los saludos se leen al aire.', 'Locução virtual da CIPRODEC Rádio. Os recados são lidos no ar.');
+  }
+  textos(); new MutationObserver(textos).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+
+  function hora(d){ return d ? d.toLocaleTimeString('es-PY', { hour: '2-digit', minute: '2-digit' }) : ''; }
+  function pinta(msgs){
+    lista.textContent = '';
+    if (!msgs.length) { var v = document.createElement('li'); v.className = 'rc-vacio';
+      v.textContent = t('Sé el primero en saludar a la radio.', 'Seja o primeiro a mandar um recado.'); lista.appendChild(v); }
+    msgs.forEach(function(m){
+      var li = document.createElement('li'); li.className = m.tipo === 'radio' ? 'rc-m rc-radio' : 'rc-m';
+      var q = document.createElement('small');
+      q.textContent = m.tipo === 'radio' ? (m.autor || 'CIPRODEC Radio') + ' · ' + hora(m.fecha)
+        : m.nombre + (m.ciudad ? ' · ' + m.ciudad : '') + ' · ' + hora(m.fecha);
+      var p = document.createElement('p'); p.textContent = m.texto;
+      li.appendChild(q); li.appendChild(p); lista.appendChild(li);
+    });
+    lista.scrollTop = lista.scrollHeight;
+  }
+
+  /* ---- almacenamiento: Firestore o demostración ---- */
+  var enviar, iniciado = false;
+  function iniciar(){
+    if (iniciado) return; iniciado = true;
+    if (DEMO) {
+      var demo = [];
+      pinta(demo);
+      enviar = function(m){
+        demo.push({ nombre: m.nombre, ciudad: m.ciudad, texto: m.texto, tipo: 'oyente', fecha: new Date() }); pinta(demo);
+        setTimeout(function(){
+          demo.push({ tipo: 'radio', autor: 'Zaha', fecha: new Date(),
+            texto: '¡Gracias por escribir, ' + m.nombre + '! En un ratito te saludamos al aire. (respuesta de demostración)' });
+          pinta(demo);
+        }, 1800);
+        return Promise.resolve();
+      };
+      return;
+    }
+    var listo = Promise.all([import(SDK + 'firebase-app.js'), import(SDK + 'firebase-firestore.js')]).then(function(r){
+      var A = r[0], F = r[1];
+      var app = A.getApps().length ? A.getApp() : A.initializeApp(CFG.firebase);
+      var db = F.getFirestore(app), col = F.collection(db, 'radioChat');
+      F.onSnapshot(F.query(col, F.orderBy('ts', 'desc'), F.limit(30)), function(s){
+        var msgs = []; s.forEach(function(d){ var x = d.data(); x.fecha = x.ts && x.ts.toDate ? x.ts.toDate() : new Date(); msgs.push(x); });
+        pinta(msgs.reverse());
+      }, function(){ aviso.textContent = t('El chat no está disponible en este momento.', 'O chat não está disponível agora.'); });
+      return { F: F, col: col };
+    });
+    enviar = function(m){ return listo.then(function(x){
+      return x.F.addDoc(x.col, { nombre: m.nombre, ciudad: m.ciudad, texto: m.texto, tipo: 'oyente', ts: x.F.serverTimestamp() });
+    }); };
+  }
+
+  abrir.addEventListener('click', function(){
+    panel.hidden = !panel.hidden; abrir.setAttribute('aria-expanded', String(!panel.hidden));
+    if (!panel.hidden) { iniciar(); (form.nombre.value ? form.texto : form.nombre).focus(); }
+  });
+  panel.querySelector('.rc-x').addEventListener('click', function(){ panel.hidden = true; abrir.setAttribute('aria-expanded', 'false'); abrir.focus(); });
+
+  var FEAS = /\b(put[ao]s?|mierda|pelotud[oa]|boludo|idiota|tarad[oa]|forro|concha|verga|caralho|porra|merda)\b/i;
+  form.addEventListener('submit', function(e){
+    e.preventDefault(); aviso.textContent = '';
+    var m = { nombre: form.nombre.value.trim(), ciudad: form.ciudad.value.trim(), texto: form.texto.value.trim() };
+    if (!m.nombre) { aviso.textContent = t('Escribí tu nombre.', 'Escreva seu nome.'); form.nombre.focus(); return; }
+    if (!m.texto) { aviso.textContent = t('Escribí tu saludo.', 'Escreva seu recado.'); form.texto.focus(); return; }
+    if (FEAS.test(m.texto + ' ' + m.nombre)) { aviso.textContent = t('Ese mensaje no se puede publicar.', 'Essa mensagem não pode ser publicada.'); return; }
+    var ult = +guardado('ultimo') || 0;
+    if (Date.now() - ult < 30000) { aviso.textContent = t('Esperá unos segundos antes de mandar otro saludo.', 'Espere alguns segundos antes de mandar outro recado.'); return; }
+    guardar('nombre', m.nombre); guardar('ciudad', m.ciudad);
+    var b = form.querySelector('button'); b.disabled = true;
+    enviar(m).then(function(){ guardar('ultimo', String(Date.now())); form.texto.value = '';
+      aviso.textContent = t('¡Saludo enviado! Atento a la radio.', 'Recado enviado! Fique ligado na rádio.'); })
+      .catch(function(){ aviso.textContent = t('No se pudo enviar. Probá de nuevo en un momento.', 'Não foi possível enviar. Tente de novo.'); })
+      .then(function(){ b.disabled = false; });
+  });
+})();

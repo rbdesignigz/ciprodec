@@ -138,6 +138,8 @@ function filaItem(it) {
   const cantIn = !esNum(it.cant) || staff;
   let h = '<div class="pc-it" data-id="' + esc(it.id) + '"><div class="pc-d"><b>' + esc(it.desc) + '</b>' +
     (it.esp ? '<span class="pc-sm">' + esc(it.esp) + '</span>' : '') +
+    (it.tipo !== 'mat' && esNum(it.hhOf) ? '<span class="pc-sm pc-hh">Rendimiento por ' + esc(it.unid || 'u') + ': oficial ' + fmt1.format(it.hhOf) + ' h + ayudante ' + fmt1.format(it.hhAy) + ' h' +
+      (esNum(it.cant) ? '<br>Horas totales: ' + fmt.format(it.cant * it.hhOf) + ' h oficial · ' + fmt.format(it.cant * it.hhAy) + ' h ayudante' : '') + '</span>' : '') +
     (cantIn ? '<label class="pc-in pc-cant">Cantidad (' + esc(it.unid || '') + ')<input data-f="cant" inputmode="decimal" value="' + (esNum(it.cant) ? fmt1.format(it.cant) : '') + '" placeholder="cargar"></label>'
       : '<span class="pc-sm">Cantidad: ' + cantTxt + '</span>') +
     (it.nota ? '<span class="pc-sm pc-nt">' + esc(it.nota) + '</span>' : '') + '</div><div class="pc-ps">';
@@ -152,21 +154,83 @@ function filaItem(it) {
   h += '</div><div class="pc-t"><span class="pc-sm" data-o="pu">' + (esNum(c.precio) ? 'Gs ' + gs(c.precio) + '/' + esc(it.unid || 'u') + (c.prov ? ' · ' + esc(c.prov) : '') : '') + '</span><b data-o="tot">Gs ' + gs(c.total) + '</b><span data-o="chip">' + chip(c.estado) + '</span></div></div>';
   return h;
 }
-function bloque(items, titulo) {
-  if (!items.length) return '';
-  return '<div class="pc-sec"><h4>' + titulo + '</h4>' + items.map(filaItem).join('') + '</div>';
+/* ---------- vista por rubro: rubro > ítems con columnas Material / Mano de obra / Total ---------- */
+let abierto = null; /* 'cod|mat' o 'cod|mo' */
+const actDe = it => it.act || it.rubro;
+function actividades() {
+  if (Array.isArray(pres.actividades) && pres.actividades.length) return pres.actividades;
+  const vistos = {}, out = [];
+  for (const it of pres.items || []) { const c = actDe(it); if (!vistos[c]) { vistos[c] = 1; out.push({ cod: c, rubro: it.rubro, desc: it.tipo === 'mo' ? it.desc : it.rubro }); } }
+  return out;
+}
+function sumas() {
+  const A = {}, R = {}, T = { mat: 0, mo: 0 };
+  for (const it of pres.items || []) {
+    const c = calc(it), k = actDe(it), t = it.tipo === 'mat' ? 'mat' : 'mo';
+    const a = A[k] || (A[k] = { mat: 0, mo: 0, fmat: 0, fmo: 0, nmat: 0, nmo: 0 });
+    const r = R[it.rubro] || (R[it.rubro] = { mat: 0, mo: 0, falta: 0 });
+    a[t] += c.total; a['n' + t]++; r[t] += c.total; T[t] += c.total;
+    if (c.estado !== 'ok') { a['f' + t]++; r.falta++; }
+  }
+  return { A, R, T };
+}
+function celda(cod, t, a) {
+  const n = a ? a['n' + t] : 0;
+  if (!n) return '<span class="pc-cell vacia"><small>' + (t === 'mat' ? 'Material' : 'Mano de obra') + '</small>—</span>';
+  const f = a['f' + t], ab = abierto === cod + '|' + t;
+  return '<button type="button" class="pc-cell' + (ab ? ' abierta' : '') + '" data-open="' + esc(cod) + '|' + t + '" aria-expanded="' + ab + '">' +
+    '<small>' + (t === 'mat' ? 'Material' : 'Mano de obra') + '</small><span><b data-as="' + esc(cod) + '|' + t + '">Gs ' + gs(a[t]) + '</b> <i class="pc-flecha">' + (ab ? '▴' : '▾') + '</i></span>' +
+    '<em class="pc-falta" data-af="' + esc(cod) + '|' + t + '">' + (f ? 'falta ' + f : '') + '</em></button>';
+}
+function detalle(cod, t) {
+  const its = (pres.items || []).filter(i => actDe(i) === cod && (t === 'mat' ? i.tipo === 'mat' : i.tipo !== 'mat'));
+  const act = actividades().find(x => x.cod === cod) || { desc: cod };
+  return '<div class="pc-dettit">' + (t === 'mat' ? 'Materiales' : 'Mano de obra') + ' · ' + esc(act.desc) +
+    '<button type="button" class="pc-cerrar" data-open="' + esc(cod) + '|' + t + '">Cerrar ✕</button></div>' + its.map(filaItem).join('');
 }
 function pintarRubros() {
-  const r = kpis(), abiertos = new Set([...document.querySelectorAll('#tabRubros details[open]')].map(d => d.dataset.r));
-  $('tabRubros').innerHTML = (pres.rubros || []).map(rb => {
-    const x = r.rub[rb] || { mat: 0, mo: 0, falta: 0 }, its = (pres.items || []).filter(i => i.rubro === rb);
-    if (!its.length) return '';
-    return '<details class="pc-rub" data-r="' + esc(rb) + '"' + (abiertos.has(rb) ? ' open' : '') + '><summary><span class="pc-rn">' + esc(rb) + '</span>' +
-      '<span class="pc-rv"><span><small>Materiales</small>Gs <i data-s="mat">' + gs(x.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-s="mo">' + gs(x.mo) + '</i></span>' +
-      '<span class="pc-rt"><small>Total</small>Gs <i data-s="tot">' + gs(x.mat + x.mo) + '</i></span></span>' +
-      '<span class="pc-rf" data-s="falta">' + (x.falta ? 'Faltan ' + x.falta : '✓ completo') + '</span></summary>' +
-      bloque(its.filter(i => i.tipo === 'mat'), 'Materiales') + bloque(its.filter(i => i.tipo === 'mo'), 'Mano de obra') + '</details>';
-  }).join('');
+  kpis();
+  const S = sumas();
+  let h = '<div class="pc-tabla"><div class="pc-th"><span>Rubro / ítem</span><span>Material</span><span>Mano de obra</span><span>Total</span></div>';
+  for (const rb of pres.rubros || []) {
+    const acts = actividades().filter(a => a.rubro === rb);
+    if (!acts.length) continue;
+    const r = S.R[rb] || { mat: 0, mo: 0, falta: 0 };
+    h += '<div class="pc-rrow"><span class="pc-rn">' + esc(rb) + '<em class="pc-falta" data-rf="' + esc(rb) + '">' + (r.falta ? 'faltan ' + r.falta : '✓') + '</em></span>' +
+      '<span><small>Material</small>Gs <i data-rs="' + esc(rb) + '|mat">' + gs(r.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-rs="' + esc(rb) + '|mo">' + gs(r.mo) + '</i></span>' +
+      '<span class="pc-tot"><small>Total rubro</small><span>Gs <i data-rs="' + esc(rb) + '|tot">' + gs(r.mat + r.mo) + '</i></span></span></div>';
+    for (const a of acts) {
+      const x = S.A[a.cod];
+      const ab = abierto && abierto.split('|')[0] === a.cod;
+      h += '<div class="pc-arow" data-act="' + esc(a.cod) + '"><span class="pc-an"><small>' + esc(a.cod) + '</small> ' + esc(a.desc) + '</span>' +
+        celda(a.cod, 'mat', x) + celda(a.cod, 'mo', x) +
+        '<span class="pc-tot"><small>Total</small><b data-as="' + esc(a.cod) + '|tot">Gs ' + gs(x ? x.mat + x.mo : 0) + '</b></span></div>' +
+        '<div class="pc-det" data-det="' + esc(a.cod) + '"' + (ab ? '' : ' hidden') + '>' + (ab ? detalle(a.cod, abierto.split('|')[1]) : '') + '</div>';
+    }
+  }
+  h += '<div class="pc-rrow pc-gran"><span class="pc-rn">Total de la obra</span><span><small>Material</small>Gs <i data-rs="*|mat">' + gs(S.T.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-rs="*|mo">' + gs(S.T.mo) + '</i></span><span class="pc-tot"><small>Total</small><span>Gs <i data-rs="*|tot">' + gs(S.T.mat + S.T.mo) + '</i></span></span></div></div>';
+  $('tabRubros').innerHTML = h;
+}
+$('tabRubros').addEventListener('click', e => {
+  const b = e.target.closest('[data-open]'); if (!b) return;
+  const k = b.dataset.open, cod = k.split('|')[0];
+  abierto = abierto === k ? null : k;
+  pintarRubros();
+  const fila = document.querySelector('.pc-arow[data-act="' + CSS.escape(cod) + '"]');
+  if (fila && abierto) { const y = fila.getBoundingClientRect().top + window.scrollY - 140; if (fila.getBoundingClientRect().top < 120) window.scrollTo(0, y); }
+});
+function actualizarSumas() {
+  const S = sumas();
+  document.querySelectorAll('[data-as]').forEach(el => {
+    const [c, t] = el.dataset.as.split('|'), x = S.A[c] || { mat: 0, mo: 0 };
+    el.textContent = 'Gs ' + gs(t === 'tot' ? x.mat + x.mo : x[t]);
+  });
+  document.querySelectorAll('[data-af]').forEach(el => { const [c, t] = el.dataset.af.split('|'), x = S.A[c]; el.textContent = x && x['f' + t] ? 'falta ' + x['f' + t] : ''; });
+  document.querySelectorAll('[data-rs]').forEach(el => {
+    const [r, t] = el.dataset.rs.split('|'), x = r === '*' ? S.T : (S.R[r] || { mat: 0, mo: 0 });
+    el.textContent = gs(t === 'tot' ? x.mat + x.mo : x[t]);
+  });
+  document.querySelectorAll('[data-rf]').forEach(el => { const x = S.R[el.dataset.rf]; el.textContent = x && x.falta ? 'faltan ' + x.falta : '✓'; });
 }
 function pintarFalta() {
   kpis();
@@ -197,7 +261,7 @@ function tab(t) {
 
 /* actualizar en el lugar después de cargar un valor, sin perder el foco */
 function refrescar(id) {
-  const r = kpis();
+  kpis();
   document.querySelectorAll('.pc-it[data-id="' + CSS.escape(id) + '"]').forEach(el => {
     const it = pres.items.find(x => x.id === id), c = calc(it);
     el.querySelector('[data-o="tot"]').textContent = 'Gs ' + gs(c.total);
@@ -205,12 +269,7 @@ function refrescar(id) {
     el.querySelector('[data-o="pu"]').textContent = esNum(c.precio) ? 'Gs ' + gs(c.precio) + '/' + (it.unid || 'u') + (c.prov ? ' · ' + c.prov : '') : '';
     el.classList.toggle('pc-listo', c.estado === 'ok');
   });
-  document.querySelectorAll('#tabRubros details').forEach(d => {
-    const x = r.rub[d.dataset.r]; if (!x) return;
-    d.querySelector('[data-s="mat"]').textContent = gs(x.mat); d.querySelector('[data-s="mo"]').textContent = gs(x.mo);
-    d.querySelector('[data-s="tot"]').textContent = gs(x.mat + x.mo);
-    d.querySelector('[data-s="falta"]').textContent = x.falta ? 'Faltan ' + x.falta : '✓ completo';
-  });
+  actualizarSumas();
 }
 
 /* ---------- guardar ---------- */

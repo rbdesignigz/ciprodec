@@ -517,3 +517,40 @@ footer .wrap{align-items:center}
   .pc-rv{grid-template-columns:1fr 1fr}
   .pc-rt{grid-column:1/-1}
 }
+/* tabla por rubro: Material | Mano de obra | Total */
+.pc-tabla{display:grid;gap:0;border:2px solid var(--ink);border-radius:12px;overflow:hidden;background:#fff}
+.pc-th,.pc-rrow,.pc-arow{display:grid;grid-template-columns:minmax(0,1fr) 190px 190px 170px;gap:10px;align-items:center;padding:10px 14px}
+.pc-th{background:var(--ink);color:#fff;font:700 .8rem var(--mono);text-transform:uppercase;letter-spacing:.03em}
+.pc-th span:not(:first-child){text-align:right}
+.pc-rrow{background:var(--soft);border-top:2px solid var(--ink);font-weight:800}
+.pc-rrow>span:not(:first-child){text-align:right}
+.pc-rrow small,.pc-arow .pc-tot small,.pc-cell small{display:none}
+.pc-rrow i{font-style:normal}
+.pc-rn{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pc-falta{font:700 .74rem var(--sans);color:var(--red);font-style:normal}
+.pc-gran{background:var(--ink);color:#fff}
+.pc-gran .pc-falta{display:none}
+.pc-arow{border-top:1px solid var(--line)}
+.pc-an{font-size:.95rem}
+.pc-an small{font:700 .78rem var(--mono);color:var(--muted)}
+.pc-cell{display:grid;justify-items:end;gap:0;text-align:right;background:#fff;border:2px solid var(--line);border-radius:10px;padding:6px 10px;font:inherit;color:var(--ink);cursor:pointer;min-height:44px}
+.pc-cell:hover{border-color:var(--ink)}
+.pc-cell.abierta{border-color:var(--red);background:#FFF5F5}
+.pc-cell.vacia{cursor:default;border-style:dashed;color:var(--muted);align-content:center}
+.pc-cell .pc-falta{font-size:.7rem}
+.pc-flecha{font-style:normal;color:var(--red)}
+.pc-arow .pc-tot{text-align:right;font-weight:800}
+.pc-det{border-top:2px solid var(--red);background:#FFFBF0;padding:4px 14px 12px}
+.pc-dettit{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0 4px;font:800 .82rem var(--mono);color:var(--red);text-transform:uppercase}
+.pc-cerrar{background:none;border:2px solid var(--line);border-radius:8px;padding:4px 10px;font:700 .8rem var(--sans);cursor:pointer;color:var(--ink);text-transform:none}
+.pc-hh{color:#333}
+@media (max-width:760px){
+  .pc-th{display:none}
+  .pc-rrow,.pc-arow{grid-template-columns:1fr 1fr;gap:8px}
+  .pc-rrow .pc-rn,.pc-arow .pc-an{grid-column:1/-1}
+  .pc-rrow small,.pc-arow .pc-tot small,.pc-cell small{display:block;font-size:.7rem;color:var(--muted);font-weight:600}
+  .pc-gran small{color:#ccc!important}
+  .pc-rrow>span:not(:first-child){text-align:left}
+  .pc-rrow .pc-tot,.pc-arow .pc-tot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline}
+  .pc-cell{justify-items:start;text-align:left}
+}

@@ -67,5 +67,23 @@ service cloud.firestore {
       allow read: if tieneRol(['admin', 'editor']) || esCliente(resource.data);
       allow write: if tieneRol(['admin', 'editor']);
     }
+
+    // Portal de constructores (constructor.html): se entra con un código, sin cuenta.
+    // El código es el id del documento de la constructora y solo se puede leer conociéndolo (get, no list).
+    // Cada presupuesto tiene un id aleatorio largo que solo figura en su constructora.
+    // Quien tiene el código puede cambiar precios, cantidades y ajustes, pero no crear, borrar ni moverlo de constructora.
+    match /constructores/{codigo} {
+      allow get: if true;
+      allow list, create, update, delete: if tieneRol(['admin', 'editor']);
+    }
+    match /presupuestos/{id} {
+      allow get: if true;
+      allow list, create, delete: if tieneRol(['admin', 'editor']);
+      allow update: if tieneRol(['admin', 'editor'])
+        || (request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(['items', 'parametros', 'proveedores', 'actualizado', 'actualizadoPor'])
+            && request.resource.data.items is list
+            && request.resource.data.items.size() <= 2000);
+    }
   }
 }

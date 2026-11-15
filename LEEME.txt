@@ -66,3 +66,15 @@ REVISAR DESPUÉS DE SUBIR
 DATOS DE CONTACTO VÁLIDOS
 WhatsApp +595 986 573 190 · ciprodecpy@gmail.com · @ciprodec
 Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias, Paraguay
+
+PORTAL DE CONSTRUCTORES (constructor.html) – nuevo
+- Menú "Constructores". La constructora entra con un CÓDIGO (sin cuenta) y ve solo sus presupuestos:
+  costo de la obra por rubro (materiales + mano de obra), detalle de cada rubro, "Falta cargar" y "Ajustes"
+  (jornales y nombres de proveedores). Lo que carga se guarda solo en Firebase.
+- Link directo para mandar por WhatsApp: ciprodec.com/constructor.html?c=CODIGO (queda recordado en el celular).
+- Alta (personal de CIPRODEC con sesión iniciada en cliente.html): al pie de constructor.html aparece
+  "Administración": crear constructora (genera el código), crear presupuesto subiendo el archivo .json del cómputo,
+  enviar el link por WhatsApp, abrir o borrar presupuestos.
+- ANTES DE USARLO: copiar de nuevo firestore.rules completo en Consola Firebase > Firestore > Reglas > Publicar
+  (se agregaron las colecciones "constructores" y "presupuestos").
+- Probar sin tocar datos reales: constructor.html?demo

@@ -161,7 +161,7 @@
   form.nombre.value = guardado('nombre'); form.ciudad.value = guardado('ciudad');
 
   function textos(){
-    abrir.querySelector('.rb-cl').textContent = t('Saludar', 'Mandar recado');
+    abrir.querySelector('.rb-cl').textContent = t('Saludar en vivo', 'Recado ao vivo');
     abrir.setAttribute('aria-label', t('Mandar un saludo a la radio', 'Mandar um recado para a rádio'));
     panel.querySelector('.rc-sub').textContent = t('Saludos en vivo', 'Recados ao vivo');
     form.nombre.placeholder = t('Tu nombre', 'Seu nome');

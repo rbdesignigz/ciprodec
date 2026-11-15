@@ -156,6 +156,7 @@ function filaItem(it) {
 }
 /* ---------- vista por rubro: rubro > ítems con columnas Material / Mano de obra / Total ---------- */
 let abierto = null; /* 'cod|mat' o 'cod|mo' */
+const rubAbiertos = new Set();
 const actDe = it => it.act || it.rubro;
 function actividades() {
   if (Array.isArray(pres.actividades) && pres.actividades.length) return pres.actividades;
@@ -191,14 +192,17 @@ function detalle(cod, t) {
 function pintarRubros() {
   kpis();
   const S = sumas();
-  let h = '<div class="pc-tabla"><div class="pc-th"><span>Rubro / ítem</span><span>Material</span><span>Mano de obra</span><span>Total</span></div>';
+  let h = '<div class="pc-tools"><span class="pc-sm">Tocá un rubro para ver sus ítems.</span><span><button type="button" class="pc-lnk" data-todos="1">Abrir todos</button> · <button type="button" class="pc-lnk" data-todos="0">Cerrar todos</button></span></div>' +
+    '<div class="pc-tabla"><div class="pc-th"><span>Rubro / ítem</span><span>Material</span><span>Mano de obra</span><span>Total</span></div>';
   for (const rb of pres.rubros || []) {
     const acts = actividades().filter(a => a.rubro === rb);
     if (!acts.length) continue;
     const r = S.R[rb] || { mat: 0, mo: 0, falta: 0 };
-    h += '<div class="pc-rrow"><span class="pc-rn">' + esc(rb) + '<em class="pc-falta" data-rf="' + esc(rb) + '">' + (r.falta ? 'faltan ' + r.falta : '✓') + '</em></span>' +
+    const rab = rubAbiertos.has(rb);
+    h += '<div class="pc-rrow pc-rclick' + (rab ? ' abierto' : '') + '" data-rub="' + esc(rb) + '" role="button" tabindex="0" aria-expanded="' + rab + '"><span class="pc-rn"><i class="pc-chev">' + (rab ? '▾' : '▸') + '</i>' + esc(rb) + '<em class="pc-falta" data-rf="' + esc(rb) + '">' + (r.falta ? 'faltan ' + r.falta : '✓') + '</em></span>' +
       '<span><small>Material</small>Gs <i data-rs="' + esc(rb) + '|mat">' + gs(r.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-rs="' + esc(rb) + '|mo">' + gs(r.mo) + '</i></span>' +
       '<span class="pc-tot"><small>Total rubro</small><span>Gs <i data-rs="' + esc(rb) + '|tot">' + gs(r.mat + r.mo) + '</i></span></span></div>';
+    if (!rab) continue;
     for (const a of acts) {
       const x = S.A[a.cod];
       const ab = abierto && abierto.split('|')[0] === a.cod;
@@ -211,7 +215,16 @@ function pintarRubros() {
   h += '<div class="pc-rrow pc-gran"><span class="pc-rn">Total de la obra</span><span><small>Material</small>Gs <i data-rs="*|mat">' + gs(S.T.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-rs="*|mo">' + gs(S.T.mo) + '</i></span><span class="pc-tot"><small>Total</small><span>Gs <i data-rs="*|tot">' + gs(S.T.mat + S.T.mo) + '</i></span></span></div></div>';
   $('tabRubros').innerHTML = h;
 }
+function toggleRubro(rb) {
+  if (rubAbiertos.has(rb)) { rubAbiertos.delete(rb); if (abierto && (actividades().find(a => a.cod === abierto.split('|')[0]) || {}).rubro === rb) abierto = null; }
+  else rubAbiertos.add(rb);
+  pintarRubros();
+}
+$('tabRubros').addEventListener('keydown', e => { const r = e.target.closest('[data-rub]'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleRubro(r.dataset.rub); } });
 $('tabRubros').addEventListener('click', e => {
+  const t = e.target.closest('[data-todos]');
+  if (t) { if (t.dataset.todos === '1') (pres.rubros || []).forEach(r => rubAbiertos.add(r)); else { rubAbiertos.clear(); abierto = null; } pintarRubros(); return; }
+  const r = e.target.closest('[data-rub]'); if (r) { toggleRubro(r.dataset.rub); return; }
   const b = e.target.closest('[data-open]'); if (!b) return;
   const k = b.dataset.open, cod = k.split('|')[0];
   abierto = abierto === k ? null : k;
@@ -236,12 +249,37 @@ function pintarFalta() {
   kpis();
   const falta = (pres.items || []).filter(it => calc(it).estado !== 'ok');
   if (!falta.length) { $('tabFalta').innerHTML = '<div class="aviso ok">¡Está todo cargado! El presupuesto está completo.</div>'; return; }
-  let h = '<p class="pc-nota">Cargá acá lo que falta: cada precio que escribís se guarda en el presupuesto general. Lo cargado queda en verde hasta que cambies de pestaña.</p>';
-  for (const rb of pres.rubros || []) {
-    const its = falta.filter(i => i.rubro === rb);
-    if (its.length) h += '<div class="pc-sec"><h4>' + esc(rb) + '</h4>' + its.map(filaItem).join('') + '</div>';
-  }
+  const porRub = (pres.rubros || []).map(rb => [rb, falta.filter(i => i.rubro === rb)]).filter(x => x[1].length);
+  let h = '<div class="pc-fresumen"><b>Resumen de lo que falta</b>' + porRub.map(([rb, its], i) => {
+      const m = its.filter(x => x.tipo === 'mat').length, w = its.length - m;
+      return '<a href="#" data-ir="fr' + i + '"><span>' + esc(rb) + '</span><em>' + [m ? m + ' material' + (m > 1 ? 'es' : '') : '', w ? w + ' mano de obra' : ''].filter(Boolean).join(' · ') + '</em></a>';
+    }).join('') + '</div>' +
+    '<p class="pc-nota">Cargá acá lo que falta: cada precio que escribís se guarda en el presupuesto general. Lo cargado queda en verde hasta que cambies de pestaña.</p>';
+  porRub.forEach(([rb, its], i) => { h += '<div class="pc-sec" id="fr' + i + '"><h4>' + esc(rb) + '</h4>' + its.map(filaItem).join('') + '</div>'; });
   $('tabFalta').innerHTML = h;
+}
+$('tabFalta').addEventListener('click', e => {
+  const a = e.target.closest('[data-ir]'); if (!a) return; e.preventDefault();
+  const el = $(a.dataset.ir); if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 140);
+});
+function pintarEstad() {
+  const S = sumas(), T = S.T.mat + S.T.mo || 1, pm = S.T.mat / T * 100;
+  const pc = (v, t) => t ? fmt1.format(Math.round(v / t * 1000) / 10) + '%' : '—';
+  const barra = (v, t, cls) => '<span class="pc-ebar ' + (cls || '') + '"><i style="width:' + (t ? Math.min(100, v / t * 100) : 0) + '%"></i></span>';
+  let h = '<div class="pc-sec"><h4>Composición de la obra</h4><div class="pc-comp"><span class="m" style="width:' + pm + '%"></span><span class="w" style="width:' + (100 - pm) + '%"></span></div>' +
+    '<div class="pc-leg"><span><i class="m"></i>Material ' + pc(S.T.mat, T) + ' · Gs ' + gs(S.T.mat) + '</span><span><i class="w"></i>Mano de obra ' + pc(S.T.mo, T) + ' · Gs ' + gs(S.T.mo) + '</span></div></div>';
+  h += '<div class="pc-sec"><h4>Peso de cada rubro en el total de la obra</h4><div class="pc-etabla"><div class="pc-eh"><span>Rubro</span><span>Total Gs</span><span>% de la obra</span><span>% del material</span><span>% de la mano de obra</span><span>Material / M. de obra del rubro</span></div>';
+  const filas = (pres.rubros || []).map(rb => [rb, S.R[rb] || { mat: 0, mo: 0 }]).filter(x => x[1].mat + x[1].mo > 0).sort((a, b) => (b[1].mat + b[1].mo) - (a[1].mat + a[1].mo));
+  for (const [rb, r] of filas) {
+    const t = r.mat + r.mo;
+    h += '<div class="pc-er"><span class="pc-ern">' + esc(rb) + '</span><span class="pc-num"><small>Total</small>Gs ' + gs(t) + '</span>' +
+      '<span><small>% de la obra</small><b>' + pc(t, T) + '</b>' + barra(t, T) + '</span>' +
+      '<span><small>% del material</small>' + pc(r.mat, S.T.mat) + barra(r.mat, S.T.mat, 'm') + '</span>' +
+      '<span><small>% de la mano de obra</small>' + pc(r.mo, S.T.mo) + barra(r.mo, S.T.mo, 'w') + '</span>' +
+      '<span><small>Material / M. de obra</small><span class="pc-comp chica"><span class="m" style="width:' + (r.mat / t * 100) + '%"></span><span class="w" style="width:' + (r.mo / t * 100) + '%"></span></span><span class="pc-sm">' + pc(r.mat, t) + ' / ' + pc(r.mo, t) + '</span></span></div>';
+  }
+  h += '</div><p class="pc-nota">Ordenado de mayor a menor. Los porcentajes se recalculan solos cada vez que se cargan precios. Los ítems que todavía no tienen precio no suman.</p></div>';
+  $('tabEstad').innerHTML = h;
 }
 function pintarAjustes() {
   const p = par(), np = nombresProv();
@@ -255,8 +293,8 @@ function pintarAjustes() {
 }
 function tab(t) {
   document.querySelectorAll('.pc-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
-  $('tabRubros').hidden = t !== 'rubros'; $('tabFalta').hidden = t !== 'falta'; $('tabAjustes').hidden = t !== 'ajustes';
-  if (t === 'rubros') pintarRubros(); else if (t === 'falta') pintarFalta(); else { kpis(); pintarAjustes(); }
+  $('tabRubros').hidden = t !== 'rubros'; $('tabFalta').hidden = t !== 'falta'; $('tabEstad').hidden = t !== 'estad'; $('tabAjustes').hidden = t !== 'ajustes';
+  if (t === 'rubros') pintarRubros(); else if (t === 'falta') pintarFalta(); else if (t === 'estad') { kpis(); pintarEstad(); } else { kpis(); pintarAjustes(); }
 }
 
 /* actualizar en el lugar después de cargar un valor, sin perder el foco */

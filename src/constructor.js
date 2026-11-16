@@ -126,6 +126,7 @@ async function abrir(id) {
   $('pCliente').textContent = [p.constructora, p.cliente ? 'Cliente: ' + p.cliente : ''].filter(Boolean).join(' · ');
   estadoGuardado(p.actualizado ? 'Actualizado ' + cuando(p.actualizado) : '');
   ver('vPres'); tab('rubros');
+  if (!cot('USD') && !cot('BRL')) cotizacionHoy(true);
   history.replaceState(null, '', location.pathname + '?' + (D.modo === 'demo' ? 'demo&' : '') + 'p=' + encodeURIComponent(id));
 }
 function cuando(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('es-PY') + ' ' + d.toLocaleTimeString('es-PY', { hour: '2-digit', minute: '2-digit' }); }
@@ -529,7 +530,7 @@ function imprimir() {
   h += '<tr class="pr-gran"><td>TOTAL</td><td>Gs ' + gs(tc.total) + '</td></tr>';
   if (c.equiv) for (const m of ['USD', 'BRL']) if (cot(m)) h += '<tr class="pr-eq"><td>Equivalente en ' + (m === 'USD' ? 'dólares' : 'reales') + '</td><td>' + SIM[m] + ' ' + enMon(tc.total, m) + '</td></tr>';
   h += '</table>';
-  if (c.equiv && (cot('USD') || cot('BRL'))) h += '<p class="pr-cot">Cotización usada: ' + ['USD', 'BRL'].filter(m => cot(m)).map(m => '1 ' + SIM[m] + ' = Gs ' + gs(cot(m))).join(' · ') + '. Los montos en otra moneda son de referencia; el presupuesto se expresa en guaraníes.</p>';
+  if (c.equiv && (cot('USD') || cot('BRL'))) h += '<p class="pr-cot">Cotización usada: ' + ['USD', 'BRL'].filter(m => cot(m)).map(m => '1 ' + SIM[m] + ' = Gs ' + gs(cot(m))).join(' · ') + (pres.parametros && pres.parametros.cotFuente ? ' (' + esc(pres.parametros.cotFuente.split(' (venta')[0]) + ')' : '') + '. Los montos en otra moneda son de referencia; el presupuesto se expresa en guaraníes.</p>';
   const notas = [c.validez ? 'Presupuesto válido por ' + esc(c.validez) + ' días.' : '', esc(c.obs || ''), esc(pf.condiciones || '')].filter(Boolean);
   if (notas.length) h += '<div class="pr-notas">' + notas.map(n => '<p>' + n.replace(/\n/g, '<br>') + '</p>').join('') + '</div>';
   h += '<div class="pr-firma"><div><span></span>' + esc(pf.resp || pf.nombre || '') + '<small>' + esc(pf.nombre || '') + '</small></div><div><span></span>Conforme cliente<small>' + esc(cl.nombre || '') + '</small></div></div>' +
@@ -550,23 +551,37 @@ function barraMoneda() {
     ['GS', 'USD', 'BRL'].map(m => '<button type="button" data-mon="' + m + '" aria-pressed="' + (monAct() === m) + '">' + (m === 'GS' ? 'Gs Guaraníes' : m === 'USD' ? 'US$ Dólares' : 'R$ Reales') + '</button>').join('') + '</div>' +
     '<div class="pc-cots"><label class="pc-cot">1 US$ = Gs <input data-cot="cotUSD" inputmode="numeric" value="' + v('cotUSD') + '" placeholder="7.300"></label>' +
     '<label class="pc-cot">1 R$ = Gs <input data-cot="cotBRL" inputmode="numeric" value="' + v('cotBRL') + '" placeholder="1.350"></label>' +
-    '<button type="button" class="pc-lnk" data-cothoy>Traer cotización de hoy</button></div>' +
-    '<span class="pc-sm" data-cotmsg>' + (p.cotFecha ? 'Cotización cargada el ' + esc(p.cotFecha) + '. Tocá el número para cambiarla.' : 'Cargá la cotización para ver los montos en dólares o reales.') + '</span></div>';
+    '<button type="button" class="pc-lnk" data-cothoy>Traer cotización de Cambios Chaco</button></div>' +
+    '<span class="pc-sm" data-cotmsg>' + (p.cotFuente ? 'Cotización: ' + esc(p.cotFuente) + '. Podés cambiar el número a mano.' : p.cotFecha ? 'Cotización cargada a mano el ' + esc(p.cotFecha) + '.' : 'Cargá la cotización para ver los montos en dólares o reales.') + '</span></div>';
 }
 function setCot(k, val) {
   pres.parametros = Object.assign({}, pres.parametros); pres.parametros[k] = val;
   pres.parametros.cotFecha = new Date().toLocaleDateString('es-PY');
 }
-async function cotizacionHoy() {
-  const msg = document.querySelector('[data-cotmsg]'); if (msg) msg.textContent = 'Buscando la cotización…';
+/* Cotización de Cambios Chaco, sucursal Hernandarias - Super Carretera (id 16).
+   Se usa el precio de COMPRA: lo que paga la casa de cambio cuando el cliente trae dólares o reales. */
+const CHACO = 'https://www.cambioschaco.com.py/api/branch_office/16/exchange';
+async function cotizacionHoy(silencioso) {
+  const msg = () => document.querySelector('[data-cotmsg]');
+  if (!silencioso && msg()) msg().textContent = 'Buscando la cotización en Cambios Chaco Hernandarias…';
   try {
-    const r = await fetch('https://open.er-api.com/v6/latest/USD'), j = await r.json();
-    const pyg = j && j.rates && j.rates.PYG, brl = j && j.rates && j.rates.BRL;
-    if (!pyg || !brl) throw new Error('sin datos');
-    setCot('cotUSD', Math.round(pyg)); setCot('cotBRL', Math.round(pyg / brl));
+    const j = await (await fetch(CHACO, { cache: 'no-store' })).json();
+    const it = c => (j.items || []).find(x => x.isoCode === c) || {};
+    const u = it('USD'), r = it('BRL');
+    if (!(u.purchasePrice > 0) || !(r.purchasePrice > 0)) throw new Error('sin datos');
+    setCot('cotUSD', u.purchasePrice); setCot('cotBRL', r.purchasePrice);
+    const f = new Date(j.updateTs || u.updatedAt), cuandoF = isNaN(f) ? '' : f.toLocaleDateString('es-PY') + ' ' + f.toLocaleTimeString('es-PY', { hour: '2-digit', minute: '2-digit' });
+    pres.parametros.cotFuente = 'Cambios Chaco Hernandarias, compra' + (cuandoF ? ', ' + cuandoF : '') +
+      ' (venta: US$ ' + fmt.format(u.salePrice) + ' · R$ ' + fmt.format(r.salePrice) + ')';
     programarGuardado(); refrescarMoneda();
-    const m2 = document.querySelector('[data-cotmsg]'); if (m2) m2.textContent = 'Cotización de referencia de hoy (mercado internacional). Si el cambio de la casa es otro, escribilo encima.';
-  } catch (e) { const m3 = document.querySelector('[data-cotmsg]'); if (m3) m3.textContent = 'No se pudo traer la cotización. Escribila a mano.'; }
+  } catch (e) {
+    try {
+      const j = await (await fetch('https://open.er-api.com/v6/latest/USD')).json(), pyg = j.rates.PYG, brl = j.rates.BRL;
+      setCot('cotUSD', Math.round(pyg)); setCot('cotBRL', Math.round(pyg / brl));
+      pres.parametros.cotFuente = 'referencia internacional (no se pudo leer Cambios Chaco)';
+      programarGuardado(); refrescarMoneda();
+    } catch (e2) { if (!silencioso && msg()) msg().textContent = 'No se pudo traer la cotización. Escribila a mano.'; }
+  }
 }
 function refrescarMoneda() {
   const t = document.querySelector('.pc-tabs [aria-selected="true"]');
@@ -578,7 +593,7 @@ $('pKpis').addEventListener('click', e => {
     if (b.dataset.mon !== 'GS' && !cot(b.dataset.mon)) {
       const i = document.querySelector('[data-cot="' + (b.dataset.mon === 'USD' ? 'cotUSD' : 'cotBRL') + '"]');
       if (i) { i.focus(); i.classList.add('pc-pide'); }
-      const m = document.querySelector('[data-cotmsg]'); if (m) m.textContent = 'Primero cargá la cotización (o tocá "Traer cotización de hoy").';
+      const m = document.querySelector('[data-cotmsg]'); if (m) m.textContent = 'Primero cargá la cotización (o tocá "Traer cotización de Cambios Chaco").';
       return;
     }
     mon = b.dataset.mon; try { localStorage.setItem('ciprodec-moneda', mon); } catch (er) {}
@@ -589,7 +604,7 @@ $('pKpis').addEventListener('click', e => {
 $('pKpis').addEventListener('change', e => {
   const i = e.target.closest('[data-cot]'); if (!i) return;
   const n = parseFloat(String(i.value).replace(/\./g, '').replace(',', '.'));
-  setCot(i.dataset.cot, n > 0 ? n : null); programarGuardado(); refrescarMoneda();
+  setCot(i.dataset.cot, n > 0 ? n : null); delete pres.parametros.cotFuente; programarGuardado(); refrescarMoneda();
 });
 
 /* ---------- navegación ---------- */

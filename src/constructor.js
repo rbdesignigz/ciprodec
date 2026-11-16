@@ -10,6 +10,15 @@ const LS = 'ciprodec-constructor';
 const fmt = new Intl.NumberFormat('es-PY', { maximumFractionDigits: 0 });
 const fmt1 = new Intl.NumberFormat('es-PY', { maximumFractionDigits: 2 });
 const gs = n => (n == null || isNaN(n)) ? '—' : fmt.format(Math.round(n));
+/* ---------- moneda de visualización (Gs, US$, R$) ---------- */
+const SIM = { GS: 'Gs', USD: 'US$', BRL: 'R$' };
+let mon = (() => { try { return localStorage.getItem('ciprodec-moneda') || 'GS'; } catch (e) { return 'GS'; } })();
+function cot(m) { const p = (pres && pres.parametros) || {}; const v = Number(m === 'USD' ? p.cotUSD : m === 'BRL' ? p.cotBRL : 1); return v > 0 ? v : 0; }
+function monAct() { return mon !== 'GS' && cot(mon) ? mon : 'GS'; }
+const fmtD = new Intl.NumberFormat('es-PY', { maximumFractionDigits: 0 });
+function enMon(n, m) { if (n == null || isNaN(n)) return '—'; m = m || monAct(); if (m === 'GS') return gs(n); const v = n / cot(m); return fmtD.format(Math.round(v)); }
+const mn = n => enMon(n);
+const M = n => SIM[monAct()] + ' ' + enMon(n);
 const esNum = v => typeof v === 'number' && isFinite(v);
 const params = new URLSearchParams(location.search);
 
@@ -125,9 +134,10 @@ function cuando(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocal
 function kpis() {
   const r = resumen(pres), av = r.n ? Math.round((r.n - r.falta) / r.n * 100) : 0;
   $('pKpis').innerHTML =
-    '<div class="pc-kpi main"><span>Costo total de la obra</span><b>Gs ' + gs(r.total) + '</b></div>' +
-    '<div class="pc-kpi"><span>Materiales</span><b>Gs ' + gs(r.mat) + '</b></div>' +
-    '<div class="pc-kpi"><span>Mano de obra</span><b>Gs ' + gs(r.mo) + '</b></div>' +
+    barraMoneda() +
+    '<div class="pc-kpi main"><span>Costo total de la obra</span><b>' + M(r.total) + '</b>' + equivalencias(r.total) + '</div>' +
+    '<div class="pc-kpi"><span>Materiales</span><b>' + M(r.mat) + '</b></div>' +
+    '<div class="pc-kpi"><span>Mano de obra</span><b>' + M(r.mo) + '</b></div>' +
     '<div class="pc-kpi"><span>Cargado</span><b>' + av + '%</b><span class="pc-bar"><i style="width:' + av + '%"></i></span><span class="pc-sm">Faltan ' + r.falta + ' de ' + r.n + '</span></div>';
   $('tFalta').textContent = r.falta ? '(' + r.falta + ')' : '';
   return r;
@@ -180,7 +190,7 @@ function celda(cod, t, a) {
   if (!n) return '<span class="pc-cell vacia"><small>' + (t === 'mat' ? 'Material' : 'Mano de obra') + '</small>—</span>';
   const f = a['f' + t], ab = abierto === cod + '|' + t;
   return '<button type="button" class="pc-cell' + (ab ? ' abierta' : '') + '" data-open="' + esc(cod) + '|' + t + '" aria-expanded="' + ab + '">' +
-    '<small>' + (t === 'mat' ? 'Material' : 'Mano de obra') + '</small><span><b data-as="' + esc(cod) + '|' + t + '">Gs ' + gs(a[t]) + '</b> <i class="pc-flecha">' + (ab ? '▴' : '▾') + '</i></span>' +
+    '<small>' + (t === 'mat' ? 'Material' : 'Mano de obra') + '</small><span><b data-as="' + esc(cod) + '|' + t + '">' + M(a[t]) + '</b> <i class="pc-flecha">' + (ab ? '▴' : '▾') + '</i></span>' +
     '<em class="pc-falta" data-af="' + esc(cod) + '|' + t + '">' + (f ? 'falta ' + f : '') + '</em></button>';
 }
 function detalle(cod, t) {
@@ -200,19 +210,19 @@ function pintarRubros() {
     const r = S.R[rb] || { mat: 0, mo: 0, falta: 0 };
     const rab = rubAbiertos.has(rb);
     h += '<div class="pc-rrow pc-rclick' + (rab ? ' abierto' : '') + '" data-rub="' + esc(rb) + '" role="button" tabindex="0" aria-expanded="' + rab + '"><span class="pc-rn"><i class="pc-chev">' + (rab ? '▾' : '▸') + '</i>' + esc(rb) + '<em class="pc-falta" data-rf="' + esc(rb) + '">' + (r.falta ? 'faltan ' + r.falta : '✓') + '</em></span>' +
-      '<span><small>Material</small>Gs <i data-rs="' + esc(rb) + '|mat">' + gs(r.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-rs="' + esc(rb) + '|mo">' + gs(r.mo) + '</i></span>' +
-      '<span class="pc-tot"><small>Total rubro</small><span>Gs <i data-rs="' + esc(rb) + '|tot">' + gs(r.mat + r.mo) + '</i></span></span></div>';
+      '<span><small>Material</small>' + SIM[monAct()] + ' <i data-rs="' + esc(rb) + '|mat">' + mn(r.mat) + '</i></span><span><small>Mano de obra</small>' + SIM[monAct()] + ' <i data-rs="' + esc(rb) + '|mo">' + mn(r.mo) + '</i></span>' +
+      '<span class="pc-tot"><small>Total rubro</small><span>' + SIM[monAct()] + ' <i data-rs="' + esc(rb) + '|tot">' + mn(r.mat + r.mo) + '</i></span></span></div>';
     if (!rab) continue;
     for (const a of acts) {
       const x = S.A[a.cod];
       const ab = abierto && abierto.split('|')[0] === a.cod;
       h += '<div class="pc-arow" data-act="' + esc(a.cod) + '"><span class="pc-an"><small>' + esc(a.cod) + '</small> ' + esc(a.desc) + '</span>' +
         celda(a.cod, 'mat', x) + celda(a.cod, 'mo', x) +
-        '<span class="pc-tot"><small>Total</small><b data-as="' + esc(a.cod) + '|tot">Gs ' + gs(x ? x.mat + x.mo : 0) + '</b></span></div>' +
+        '<span class="pc-tot"><small>Total</small><b data-as="' + esc(a.cod) + '|tot">' + M(x ? x.mat + x.mo : 0) + '</b></span></div>' +
         '<div class="pc-det" data-det="' + esc(a.cod) + '"' + (ab ? '' : ' hidden') + '>' + (ab ? detalle(a.cod, abierto.split('|')[1]) : '') + '</div>';
     }
   }
-  h += '<div class="pc-rrow pc-gran"><span class="pc-rn">Total de la obra</span><span><small>Material</small>Gs <i data-rs="*|mat">' + gs(S.T.mat) + '</i></span><span><small>Mano de obra</small>Gs <i data-rs="*|mo">' + gs(S.T.mo) + '</i></span><span class="pc-tot"><small>Total</small><span>Gs <i data-rs="*|tot">' + gs(S.T.mat + S.T.mo) + '</i></span></span></div></div>';
+  h += '<div class="pc-rrow pc-gran"><span class="pc-rn">Total de la obra</span><span><small>Material</small>' + SIM[monAct()] + ' <i data-rs="*|mat">' + mn(S.T.mat) + '</i></span><span><small>Mano de obra</small>' + SIM[monAct()] + ' <i data-rs="*|mo">' + mn(S.T.mo) + '</i></span><span class="pc-tot"><small>Total</small><span>' + SIM[monAct()] + ' <i data-rs="*|tot">' + mn(S.T.mat + S.T.mo) + '</i></span></span></div></div>';
   $('tabRubros').innerHTML = h;
 }
 function toggleRubro(rb) {
@@ -236,12 +246,12 @@ function actualizarSumas() {
   const S = sumas();
   document.querySelectorAll('[data-as]').forEach(el => {
     const [c, t] = el.dataset.as.split('|'), x = S.A[c] || { mat: 0, mo: 0 };
-    el.textContent = 'Gs ' + gs(t === 'tot' ? x.mat + x.mo : x[t]);
+    el.textContent = M(t === 'tot' ? x.mat + x.mo : x[t]);
   });
   document.querySelectorAll('[data-af]').forEach(el => { const [c, t] = el.dataset.af.split('|'), x = S.A[c]; el.textContent = x && x['f' + t] ? 'falta ' + x['f' + t] : ''; });
   document.querySelectorAll('[data-rs]').forEach(el => {
     const [r, t] = el.dataset.rs.split('|'), x = r === '*' ? S.T : (S.R[r] || { mat: 0, mo: 0 });
-    el.textContent = gs(t === 'tot' ? x.mat + x.mo : x[t]);
+    el.textContent = mn(t === 'tot' ? x.mat + x.mo : x[t]);
   });
   document.querySelectorAll('[data-rf]').forEach(el => { const x = S.R[el.dataset.rf]; el.textContent = x && x.falta ? 'faltan ' + x.falta : '✓'; });
 }
@@ -276,7 +286,7 @@ function torta(vals, colores, titulo, total, nombres) {
     if (f >= 0.06) { const am = (ang + a2) / 2; h += '<text x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" y="' + (C + 58 * Math.sin(am)).toFixed(1) + '" text-anchor="middle" dominant-baseline="middle" class="pc-ptxt">' + (nombres ? '<tspan x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" dy="-0.6em">' + nombres[i] + '</tspan><tspan x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" dy="1.2em">' + Math.round(f * 100) + '%</tspan>' : Math.round(f * 100) + '%') + '</text>'; }
     ang = a2;
   });
-  return '<figure class="pc-pie"><figcaption>' + titulo + '</figcaption><svg viewBox="0 0 200 200" role="img" aria-label="' + titulo + '">' + h + '</svg><div class="pc-sm">Total Gs ' + gs(total) + '</div></figure>';
+  return '<figure class="pc-pie"><figcaption>' + titulo + '</figcaption><svg viewBox="0 0 200 200" role="img" aria-label="' + titulo + '">' + h + '</svg><div class="pc-sm">Total ' + M(total) + '</div></figure>';
 }
 function pintarEstad() {
   const S = sumas(), T = S.T.mat + S.T.mo || 1;
@@ -287,24 +297,24 @@ function pintarEstad() {
   const R = rubs.map(rb => S.R[rb] || { mat: 0, mo: 0 });
   let h = '<div class="pc-sec"><h4>Composición de la obra</h4><div class="pc-pies">' +
     torta([S.T.mat, S.T.mo], ['#2F3439', '#E8262B'], 'Material y mano de obra', S.T.mat + S.T.mo, ['Material', 'Mano de obra']) +
-    '<div class="pc-leg2"><div><i style="background:#2F3439"></i><b>Material</b> ' + pc(S.T.mat, T) + '<span class="pc-sm">Gs ' + gs(S.T.mat) + '</span></div>' +
-    '<div><i style="background:#E8262B"></i><b>Mano de obra</b> ' + pc(S.T.mo, T) + '<span class="pc-sm">Gs ' + gs(S.T.mo) + '</span></div></div></div></div>';
+    '<div class="pc-leg2"><div><i style="background:#2F3439"></i><b>Material</b> ' + pc(S.T.mat, T) + '<span class="pc-sm">' + M(S.T.mat) + '</span></div>' +
+    '<div><i style="background:#E8262B"></i><b>Mano de obra</b> ' + pc(S.T.mo, T) + '<span class="pc-sm">' + M(S.T.mo) + '</span></div></div></div></div>';
   const maxT = Math.max(1, ...R.map(r => r.mat + r.mo));
   h += '<div class="pc-sec"><h4>Peso de cada rubro en la obra</h4><div class="pc-leg"><span><i class="m"></i>Material</span><span><i class="w"></i>Mano de obra</span></div><div class="pc-barras">' +
     rubs.map((rb, i) => {
       const r = R[i], t = r.mat + r.mo;
-      return '<div class="pc-bf"><div class="pc-bl"><b>' + esc(rb) + '</b><span><b>' + pc(t, T) + '</b> de la obra · Gs ' + gs(t) + '</span></div>' +
+      return '<div class="pc-bf"><div class="pc-bl"><b>' + esc(rb) + '</b><span><b>' + pc(t, T) + '</b> de la obra · ' + M(t) + '</span></div>' +
         '<div class="pc-bt"><span class="pc-bb" style="width:' + (t / maxT * 100) + '%">' +
         (r.mat ? '<span class="m" style="width:' + (r.mat / (t || 1) * 100) + '%">' + (r.mat / maxT > 0.18 ? 'Material ' + pc(r.mat, t) : '') + '</span>' : '') +
         (r.mo ? '<span class="w" style="width:' + (r.mo / (t || 1) * 100) + '%">' + (r.mo / maxT > 0.18 ? 'M. de obra ' + pc(r.mo, t) : '') + '</span>' : '') +
         '</span>' + (t ? '' : '<span class="pc-sm">sin precios cargados</span>') + '</div>' +
-        (t ? '<div class="pc-bd"><span><i class="m"></i>Material Gs ' + gs(r.mat) + ' (' + pc(r.mat, t) + ')</span><span><i class="w"></i>Mano de obra Gs ' + gs(r.mo) + ' (' + pc(r.mo, t) + ')</span></div>' : '') +
+        (t ? '<div class="pc-bd"><span><i class="m"></i>Material ' + M(r.mat) + ' (' + pc(r.mat, t) + ')</span><span><i class="w"></i>Mano de obra ' + M(r.mo) + ' (' + pc(r.mo, t) + ')</span></div>' : '') +
         '<div class="pc-sm">Del total de la obra: ' + pc(r.mat, S.T.mat) + ' del material y ' + pc(r.mo, S.T.mo) + ' de la mano de obra</div></div>';
     }).join('') + '</div></div>';
-  h += '<div class="pc-sec"><h4>Detalle por rubro (orden del presupuesto)</h4><div class="pc-etabla"><div class="pc-eh"><span>Rubro</span><span>Total Gs</span><span>% de la obra</span><span>% del material</span><span>% de la mano de obra</span><span>Material / M. de obra del rubro</span></div>';
+  h += '<div class="pc-sec"><h4>Detalle por rubro (orden del presupuesto)</h4><div class="pc-etabla"><div class="pc-eh"><span>Rubro</span><span>Total</span><span>% de la obra</span><span>% del material</span><span>% de la mano de obra</span><span>Material / M. de obra del rubro</span></div>';
   rubs.forEach((rb, i) => {
     const r = R[i], t = r.mat + r.mo;
-    h += '<div class="pc-er"><span class="pc-ern">' + esc(rb) + '</span><span class="pc-num"><small>Total</small>Gs ' + gs(t) + '</span>' +
+    h += '<div class="pc-er"><span class="pc-ern">' + esc(rb) + '</span><span class="pc-num"><small>Total</small>' + M(t) + '</span>' +
       '<span><small>% de la obra</small><b>' + pc(t, T) + '</b>' + barra(t, T) + '</span>' +
       '<span><small>% del material</small>' + pc(r.mat, S.T.mat) + barra(r.mat, S.T.mat, 'm') + '</span>' +
       '<span><small>% de la mano de obra</small>' + pc(r.mo, S.T.mo) + barra(r.mo, S.T.mo, 'w') + '</span>' +
@@ -464,7 +474,8 @@ function pintarExport() {
     '<div class="pc-sec"><h4>Qué se imprime</h4><div class="pc-aj">' +
     '<label class="pc-in pc-txt">Nivel de detalle<select data-ci="detalle"><option value="resumen"' + (c.detalle === 'resumen' ? ' selected' : '') + '>Resumen por rubro (material, mano de obra y total)</option><option value="items"' + (c.detalle === 'items' ? ' selected' : '') + '>Por rubro e ítem</option><option value="completo"' + (c.detalle === 'completo' ? ' selected' : '') + '>Completo (con cada material y la mano de obra)</option></select></label></div>' +
     '<label class="pc-in pc-txt" style="margin-top:8px">Observaciones para este cliente<textarea data-ci="obs" rows="3">' + esc(c.obs) + '</textarea></label></div>' +
-    '<div class="pc-sec"><p class="pc-nota">Total a presupuestar: <b>Gs ' + gs(totalesCierre(r, c).total) + '</b> (costo directo Gs ' + gs(r.total) + ')</p>' +
+    '<div class="pc-sec"><h4>Moneda en el impreso</h4><label class="pc-check"><input type="checkbox" data-ci="equiv"' + (c.equiv ? ' checked' : '') + '> Mostrar el total también en dólares y reales (con la cotización cargada arriba)</label></div>' +
+    '<div class="pc-sec"><p class="pc-nota">Total a presupuestar: <b>Gs ' + gs(totalesCierre(r, c).total) + '</b> (costo directo Gs ' + gs(r.total) + ')' + equivalencias(totalesCierre(r, c).total) + '</p>' +
     '<button type="button" class="btn red" id="bImprimir">Ver e imprimir / guardar PDF</button></div>';
   $('bImprimir').onclick = imprimir;
 }
@@ -515,7 +526,10 @@ function imprimir() {
     if (tc.gg || tc.ben) h += '<tr><td>Subtotal</td><td>Gs ' + gs(tc.sub) + '</td></tr>';
   }
   if (tc.iva) h += '<tr><td>IVA (' + esc(c.iva) + '%)</td><td>Gs ' + gs(tc.iva) + '</td></tr>';
-  h += '<tr class="pr-gran"><td>TOTAL</td><td>Gs ' + gs(tc.total) + '</td></tr></table>';
+  h += '<tr class="pr-gran"><td>TOTAL</td><td>Gs ' + gs(tc.total) + '</td></tr>';
+  if (c.equiv) for (const m of ['USD', 'BRL']) if (cot(m)) h += '<tr class="pr-eq"><td>Equivalente en ' + (m === 'USD' ? 'dólares' : 'reales') + '</td><td>' + SIM[m] + ' ' + enMon(tc.total, m) + '</td></tr>';
+  h += '</table>';
+  if (c.equiv && (cot('USD') || cot('BRL'))) h += '<p class="pr-cot">Cotización usada: ' + ['USD', 'BRL'].filter(m => cot(m)).map(m => '1 ' + SIM[m] + ' = Gs ' + gs(cot(m))).join(' · ') + '. Los montos en otra moneda son de referencia; el presupuesto se expresa en guaraníes.</p>';
   const notas = [c.validez ? 'Presupuesto válido por ' + esc(c.validez) + ' días.' : '', esc(c.obs || ''), esc(pf.condiciones || '')].filter(Boolean);
   if (notas.length) h += '<div class="pr-notas">' + notas.map(n => '<p>' + n.replace(/\n/g, '<br>') + '</p>').join('') + '</div>';
   h += '<div class="pr-firma"><div><span></span>' + esc(pf.resp || pf.nombre || '') + '<small>' + esc(pf.nombre || '') + '</small></div><div><span></span>Conforme cliente<small>' + esc(cl.nombre || '') + '</small></div></div>' +
@@ -524,6 +538,59 @@ function imprimir() {
   const t = document.title; document.title = 'Presupuesto ' + (cl.nombre || pres.obra || '');
   setTimeout(() => { window.print(); document.title = t; }, 150);
 }
+
+/* ---------- barra de moneda y cotización ---------- */
+function equivalencias(n) {
+  const ot = ['GS', 'USD', 'BRL'].filter(m => m !== monAct() && cot(m));
+  return ot.length && cot('USD') + cot('BRL') > 2 ? '<span class="pc-eq">' + ot.map(m => '≈ ' + SIM[m] + ' ' + enMon(n, m)).join(' · ') + '</span>' : '';
+}
+function barraMoneda() {
+  const p = pres.parametros || {}, v = k => esNum(p[k]) ? fmt.format(p[k]) : '';
+  return '<div class="pc-mon"><div class="pc-monb" role="group" aria-label="Ver montos en">' +
+    ['GS', 'USD', 'BRL'].map(m => '<button type="button" data-mon="' + m + '" aria-pressed="' + (monAct() === m) + '">' + (m === 'GS' ? 'Gs Guaraníes' : m === 'USD' ? 'US$ Dólares' : 'R$ Reales') + '</button>').join('') + '</div>' +
+    '<div class="pc-cots"><label class="pc-cot">1 US$ = Gs <input data-cot="cotUSD" inputmode="numeric" value="' + v('cotUSD') + '" placeholder="7.300"></label>' +
+    '<label class="pc-cot">1 R$ = Gs <input data-cot="cotBRL" inputmode="numeric" value="' + v('cotBRL') + '" placeholder="1.350"></label>' +
+    '<button type="button" class="pc-lnk" data-cothoy>Traer cotización de hoy</button></div>' +
+    '<span class="pc-sm" data-cotmsg>' + (p.cotFecha ? 'Cotización cargada el ' + esc(p.cotFecha) + '. Tocá el número para cambiarla.' : 'Cargá la cotización para ver los montos en dólares o reales.') + '</span></div>';
+}
+function setCot(k, val) {
+  pres.parametros = Object.assign({}, pres.parametros); pres.parametros[k] = val;
+  pres.parametros.cotFecha = new Date().toLocaleDateString('es-PY');
+}
+async function cotizacionHoy() {
+  const msg = document.querySelector('[data-cotmsg]'); if (msg) msg.textContent = 'Buscando la cotización…';
+  try {
+    const r = await fetch('https://open.er-api.com/v6/latest/USD'), j = await r.json();
+    const pyg = j && j.rates && j.rates.PYG, brl = j && j.rates && j.rates.BRL;
+    if (!pyg || !brl) throw new Error('sin datos');
+    setCot('cotUSD', Math.round(pyg)); setCot('cotBRL', Math.round(pyg / brl));
+    programarGuardado(); refrescarMoneda();
+    const m2 = document.querySelector('[data-cotmsg]'); if (m2) m2.textContent = 'Cotización de referencia de hoy (mercado internacional). Si el cambio de la casa es otro, escribilo encima.';
+  } catch (e) { const m3 = document.querySelector('[data-cotmsg]'); if (m3) m3.textContent = 'No se pudo traer la cotización. Escribila a mano.'; }
+}
+function refrescarMoneda() {
+  const t = document.querySelector('.pc-tabs [aria-selected="true"]');
+  tab((t && t.dataset.tab) || 'rubros');
+}
+$('pKpis').addEventListener('click', e => {
+  const b = e.target.closest('[data-mon]');
+  if (b) {
+    if (b.dataset.mon !== 'GS' && !cot(b.dataset.mon)) {
+      const i = document.querySelector('[data-cot="' + (b.dataset.mon === 'USD' ? 'cotUSD' : 'cotBRL') + '"]');
+      if (i) { i.focus(); i.classList.add('pc-pide'); }
+      const m = document.querySelector('[data-cotmsg]'); if (m) m.textContent = 'Primero cargá la cotización (o tocá "Traer cotización de hoy").';
+      return;
+    }
+    mon = b.dataset.mon; try { localStorage.setItem('ciprodec-moneda', mon); } catch (er) {}
+    refrescarMoneda(); return;
+  }
+  if (e.target.closest('[data-cothoy]')) cotizacionHoy();
+});
+$('pKpis').addEventListener('change', e => {
+  const i = e.target.closest('[data-cot]'); if (!i) return;
+  const n = parseFloat(String(i.value).replace(/\./g, '').replace(',', '.'));
+  setCot(i.dataset.cot, n > 0 ? n : null); programarGuardado(); refrescarMoneda();
+});
 
 /* ---------- navegación ---------- */
 $('fCodigo').onsubmit = async e => { e.preventDefault(); await entrar($('codigo').value, $('recordar').checked); };

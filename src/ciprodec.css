@@ -699,3 +699,18 @@ footer .wrap{align-items:center}
 .pr-firma span{border-top:1px solid #111;margin-bottom:4px}
 .pr-firma small{font-weight:400;color:#444}
 .pr-pie{margin-top:18px;border-top:1px solid #999;padding-top:6px;font-size:8.5pt;color:#444;text-align:center}
+/* moneda: guaraníes, dólares y reales */
+.pc-mon{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;background:#fff}
+.pc-monb{display:flex;border:2px solid var(--ink);border-radius:10px;overflow:hidden}
+.pc-monb button{font:700 .95rem var(--sans);padding:9px 14px;min-height:44px;border:0;background:#fff;color:var(--ink);cursor:pointer}
+.pc-monb button+button{border-left:2px solid var(--ink)}
+.pc-monb button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.pc-cots{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.pc-cot{font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.pc-cot input{width:92px;font:700 1rem var(--sans);min-height:40px;padding:4px 8px;border:2px solid #E0B84B;border-radius:8px;background:#FFF7DA;text-align:right}
+.pc-cot input.pc-pide{outline:3px solid var(--red)}
+.pc-mon [data-cotmsg]{flex-basis:100%}
+.pc-eq{display:block;font-size:.85rem;font-weight:600;margin-top:4px;opacity:.9}
+.pr-eq td{font-size:10pt;color:#333}
+.pr-cot{font-size:8.5pt;color:#444;text-align:right;margin-top:4px}
+@media (max-width:640px){.pc-monb{width:100%}.pc-monb button{flex:1;padding:9px 6px;font-size:.85rem}}

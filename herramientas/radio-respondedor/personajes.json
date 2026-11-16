@@ -1,0 +1,82 @@
+{
+  "_ayuda": "Cada personaje tiene un horario (desde/hasta en horas, 0 a 24; dias 0=domingo ... 6=sábado). Se usa el primero que coincide con la hora. En las frases se puede usar {nombre}, {ciudad}, {desde}, {momento} y {whatsapp}. Se pueden agregar o cambiar frases libremente: el programa las lee en cada respuesta.",
+  "personajes": [
+    {
+      "nombre": "Zaha",
+      "desde": 6,
+      "hasta": 13,
+      "dias": [1, 2, 3, 4, 5, 6],
+      "personalidad": "Zaha conduce las mañanas: alegre, enérgica, le gusta saludar en guaraní (Mba'éichapa, Jajotopata) y arrancar el día con buena música y noticias de la construcción.",
+      "frases": {
+        "saludo": [
+          "¡Mba'éichapa, {nombre}! {momento} para vos{desde}. Gracias por acompañar a CIPRODEC Radio esta mañana.",
+          "¡Qué lindo leerte, {nombre}! Un abrazo grande{desde}. Seguimos con buena música.",
+          "¡Hola {nombre}! Gracias por el saludo{desde}. Arrancamos el día juntos en CIPRODEC Radio."
+        ],
+        "pedido": [
+          "¡Anotado, {nombre}! Lo sumamos a la lista de pedidos. Seguí atento a CIPRODEC Radio.",
+          "¡Buena elección, {nombre}! Tu pedido queda en la lista. Gracias por escuchar{desde}."
+        ],
+        "servicios": [
+          "¡Gracias por la consulta, {nombre}! Para obras, planos o presupuestos escribile al equipo de CIPRODEC al WhatsApp {whatsapp}.",
+          "{nombre}, para eso te atiende el equipo de CIPRODEC por WhatsApp: {whatsapp}. ¡Y seguí con nosotros en la radio!"
+        ],
+        "portugues": [
+          "Olá, {nombre}! Obrigada pelo recado{desde}. Bom dia e boa música na CIPRODEC Rádio!",
+          "Que bom te ler, {nombre}! Um abraço grande{desde}."
+        ]
+      }
+    },
+    {
+      "nombre": "Don Ramón",
+      "desde": 13,
+      "hasta": 20,
+      "dias": [1, 2, 3, 4, 5, 6],
+      "personalidad": "Don Ramón conduce las tardes: maestro mayor de obra jubilado, tranquilo, con humor de obra y consejos sencillos; le encantan las polcas y guaranias.",
+      "frases": {
+        "saludo": [
+          "¡{momento}, {nombre}! Gracias por pasar por CIPRODEC Radio{desde}. Acá seguimos, como en la obra: paso a paso.",
+          "¡Qué tal, {nombre}! Un saludo grande{desde}. Ponete cómodo que la tarde recién empieza.",
+          "¡Gracias por escribir, {nombre}! Saludos{desde}, y que no falte el tereré."
+        ],
+        "pedido": [
+          "¡Anotado en la libreta, {nombre}! Lo ponemos en la lista de pedidos de la tarde.",
+          "¡Muy buen gusto, {nombre}! Tu pedido queda anotado. Gracias por acompañar{desde}."
+        ],
+        "servicios": [
+          "{nombre}, para obras, planos o cálculo, el equipo de CIPRODEC te asesora por WhatsApp: {whatsapp}. ¡Consultá sin compromiso!",
+          "¡Buena pregunta, {nombre}! Escribile a CIPRODEC al {whatsapp} y te orientan con tu obra."
+        ],
+        "portugues": [
+          "Boa tarde, {nombre}! Obrigado pelo recado{desde}. Um abraço da CIPRODEC Rádio!",
+          "Olá, {nombre}! Que bom ter você com a gente{desde}."
+        ]
+      }
+    },
+    {
+      "nombre": "Luna",
+      "desde": 20,
+      "hasta": 6,
+      "personalidad": "Luna conduce la noche y los domingos: voz serena, cercana, ideal para acompañar el descanso con guaranias y música tranquila.",
+      "frases": {
+        "saludo": [
+          "¡{momento}, {nombre}! Gracias por acompañarnos{desde}. Que disfrutes la música de CIPRODEC Radio.",
+          "Hola {nombre}, qué lindo leerte{desde}. Un abrazo y buena compañía.",
+          "¡Gracias por el saludo, {nombre}! Seguimos acompañándote{desde}."
+        ],
+        "pedido": [
+          "¡Anotado, {nombre}! Tu pedido queda en la lista. Gracias por escuchar.",
+          "Lindo pedido, {nombre}. Lo sumamos a la lista de CIPRODEC Radio."
+        ],
+        "servicios": [
+          "{nombre}, para tu obra o proyecto escribile al equipo de CIPRODEC al WhatsApp {whatsapp}. Te responden apenas puedan.",
+          "Gracias por la consulta, {nombre}. El equipo de CIPRODEC te atiende por WhatsApp: {whatsapp}."
+        ],
+        "portugues": [
+          "Boa noite, {nombre}! Obrigada pelo recado{desde}. Boa música na CIPRODEC Rádio.",
+          "Olá, {nombre}! Um abraço{desde} e boa noite."
+        ]
+      }
+    }
+  ]
+}

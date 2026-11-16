@@ -1,0 +1,51 @@
+CIPRODEC RADIO - RESPONDEDOR DE SALUDOS CON PERSONAJES
+=======================================================
+
+Qué hace
+--------
+Los oyentes mandan saludos desde ciprodec.com (botón "Saludar en vivo" de la barra de la radio).
+Este programa los lee y los contesta en el chat como el personaje que está "al aire":
+  - Zaha       lunes a sábado de 6 a 13 h   (mañanas, alegre, saluda en guaraní)
+  - Don Ramón  lunes a sábado de 13 a 20 h  (tardes, maestro mayor de obra jubilado)
+  - Luna       todas las noches de 20 a 6 h y los domingos
+Si el saludo pide un tema, lo "anota"; si pregunta por obras o presupuestos, deriva al WhatsApp
+de CIPRODEC; si está en portugués, contesta en portugués. Los mensajes con insultos se ignoran.
+
+Cómo se usa
+-----------
+1. La primera vez: instalar Node.js (versión LTS) desde https://nodejs.org/es/download
+   (si no está, iniciar.bat abre la página solo).
+2. Doble clic en iniciar.bat. Se abre una ventana negra: dejarla abierta mientras la radio está al aire.
+   Si se corta (por ejemplo, sin internet), se reinicia solo a los 30 segundos.
+3. Para que arranque solo al prender la computadora: Windows + R, escribir  shell:startup  y Enter,
+   y pegar ahí un acceso directo a iniciar.bat.
+
+La llave de Firebase
+--------------------
+El programa usa el archivo ciprodec-c-firebase-adminsdk-....json (la llave privada de Firebase).
+Lo busca en esta carpeta y, si no está, en el Escritorio. Lo mejor es moverlo a esta carpeta.
+Esa llave da acceso completo a la base de datos de la web: NO mandarla por WhatsApp ni correo,
+NO subirla a ninguna página. Si se comparte por error, anularla en Firebase y generar otra.
+
+Cambiar los personajes o las frases
+-----------------------------------
+Abrir personajes.json con el Bloc de notas. Se pueden cambiar nombres, horarios y frases.
+En las frases se puede usar {nombre}, {ciudad}, {desde}, {momento} y {whatsapp}.
+Los cambios se toman en la próxima respuesta, sin reiniciar.
+
+Respuestas con inteligencia artificial (opcional)
+--------------------------------------------------
+Sin configurar nada, los personajes responden con las frases de personajes.json (gratis).
+Para que respondan con IA (más variadas, contestan lo que el oyente escribe): crear una clave
+en https://console.anthropic.com (tiene costo según el uso; con un modelo chico, cada respuesta
+cuesta una fracción de centavo de dólar) y pegarla en config.json, en "anthropicApiKey".
+Si la IA falla, el programa vuelve solo a las frases.
+
+Archivos
+--------
+iniciar.bat       arranca el programa
+respondedor.js    el programa
+personajes.json   personajes, horarios y frases
+config.json       ajustes (cada cuántos segundos revisa, demora de la respuesta, WhatsApp, IA)
+estado.json       se crea solo: recuerda qué saludos ya respondió
+respondedor.log   se crea solo: registro de saludos y respuestas

@@ -1,0 +1,9 @@
+{
+  "cadaSegundos": 8,
+  "demoraMin": 4,
+  "demoraMax": 12,
+  "responderUltimosMinutos": 30,
+  "whatsapp": "+595 986 573190",
+  "anthropicApiKey": "",
+  "modeloIA": "claude-haiku-5-5"
+}

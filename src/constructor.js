@@ -263,7 +263,7 @@ $('tabFalta').addEventListener('click', e => {
   const el = $(a.dataset.ir); if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 140);
 });
 const COLORES = ['#2F6FD0', '#E8A33A', '#2E9E5B', '#8E44AD', '#17A2B8', '#C2185B', '#8D6E63', '#C9B000', '#FF7043', '#5D6D7E', '#26A69A', '#AB47BC'];
-function torta(vals, colores, titulo, total) {
+function torta(vals, colores, titulo, total, nombres) {
   const T = vals.reduce((x, y) => x + y, 0), R = 90, C = 100;
   let ang = -Math.PI / 2, h = '';
   if (!T) h = '<circle cx="100" cy="100" r="90" fill="#EEE"/>';
@@ -273,7 +273,7 @@ function torta(vals, colores, titulo, total) {
     if (f >= 0.9999) { h += '<circle cx="100" cy="100" r="90" fill="' + colores[i] + '"/>'; return; }
     const a2 = ang + f * 2 * Math.PI, x1 = C + R * Math.cos(ang), y1 = C + R * Math.sin(ang), x2 = C + R * Math.cos(a2), y2 = C + R * Math.sin(a2);
     h += '<path d="M100 100L' + x1.toFixed(2) + ' ' + y1.toFixed(2) + 'A90 90 0 ' + (f > 0.5 ? 1 : 0) + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) + 'Z" fill="' + colores[i] + '" stroke="#fff" stroke-width="2"/>';
-    if (f >= 0.06) { const am = (ang + a2) / 2; h += '<text x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" y="' + (C + 58 * Math.sin(am)).toFixed(1) + '" text-anchor="middle" dominant-baseline="middle" class="pc-ptxt">' + Math.round(f * 100) + '%</text>'; }
+    if (f >= 0.06) { const am = (ang + a2) / 2; h += '<text x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" y="' + (C + 58 * Math.sin(am)).toFixed(1) + '" text-anchor="middle" dominant-baseline="middle" class="pc-ptxt">' + (nombres ? '<tspan x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" dy="-0.6em">' + nombres[i] + '</tspan><tspan x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" dy="1.2em">' + Math.round(f * 100) + '%</tspan>' : Math.round(f * 100) + '%') + '</text>'; }
     ang = a2;
   });
   return '<figure class="pc-pie"><figcaption>' + titulo + '</figcaption><svg viewBox="0 0 200 200" role="img" aria-label="' + titulo + '">' + h + '</svg><div class="pc-sm">Total Gs ' + gs(total) + '</div></figure>';
@@ -286,18 +286,25 @@ function pintarEstad() {
   const col = rubs.map((_, i) => COLORES[i % COLORES.length]);
   const R = rubs.map(rb => S.R[rb] || { mat: 0, mo: 0 });
   let h = '<div class="pc-sec"><h4>Composición de la obra</h4><div class="pc-pies">' +
-    torta([S.T.mat, S.T.mo], ['#2F3439', '#E8262B'], 'Material y mano de obra', S.T.mat + S.T.mo) +
+    torta([S.T.mat, S.T.mo], ['#2F3439', '#E8262B'], 'Material y mano de obra', S.T.mat + S.T.mo, ['Material', 'Mano de obra']) +
     '<div class="pc-leg2"><div><i style="background:#2F3439"></i><b>Material</b> ' + pc(S.T.mat, T) + '<span class="pc-sm">Gs ' + gs(S.T.mat) + '</span></div>' +
     '<div><i style="background:#E8262B"></i><b>Mano de obra</b> ' + pc(S.T.mo, T) + '<span class="pc-sm">Gs ' + gs(S.T.mo) + '</span></div></div></div></div>';
-  h += '<div class="pc-sec"><h4>Peso de cada rubro</h4><div class="pc-pies">' +
-    torta(R.map(r => r.mat + r.mo), col, 'En el total de la obra', S.T.mat + S.T.mo) +
-    torta(R.map(r => r.mat), col, 'En el total del material', S.T.mat) +
-    torta(R.map(r => r.mo), col, 'En el total de la mano de obra', S.T.mo) + '</div>' +
-    '<div class="pc-leg3">' + rubs.map((rb, i) => '<span><i style="background:' + col[i] + '"></i>' + esc(rb) + '</span>').join('') + '</div></div>';
+  const maxT = Math.max(1, ...R.map(r => r.mat + r.mo));
+  h += '<div class="pc-sec"><h4>Peso de cada rubro en la obra</h4><div class="pc-leg"><span><i class="m"></i>Material</span><span><i class="w"></i>Mano de obra</span></div><div class="pc-barras">' +
+    rubs.map((rb, i) => {
+      const r = R[i], t = r.mat + r.mo;
+      return '<div class="pc-bf"><div class="pc-bl"><b>' + esc(rb) + '</b><span><b>' + pc(t, T) + '</b> de la obra · Gs ' + gs(t) + '</span></div>' +
+        '<div class="pc-bt"><span class="pc-bb" style="width:' + (t / maxT * 100) + '%">' +
+        (r.mat ? '<span class="m" style="width:' + (r.mat / (t || 1) * 100) + '%">' + (r.mat / maxT > 0.18 ? 'Material ' + pc(r.mat, t) : '') + '</span>' : '') +
+        (r.mo ? '<span class="w" style="width:' + (r.mo / (t || 1) * 100) + '%">' + (r.mo / maxT > 0.18 ? 'M. de obra ' + pc(r.mo, t) : '') + '</span>' : '') +
+        '</span>' + (t ? '' : '<span class="pc-sm">sin precios cargados</span>') + '</div>' +
+        (t ? '<div class="pc-bd"><span><i class="m"></i>Material Gs ' + gs(r.mat) + ' (' + pc(r.mat, t) + ')</span><span><i class="w"></i>Mano de obra Gs ' + gs(r.mo) + ' (' + pc(r.mo, t) + ')</span></div>' : '') +
+        '<div class="pc-sm">Del total de la obra: ' + pc(r.mat, S.T.mat) + ' del material y ' + pc(r.mo, S.T.mo) + ' de la mano de obra</div></div>';
+    }).join('') + '</div></div>';
   h += '<div class="pc-sec"><h4>Detalle por rubro (orden del presupuesto)</h4><div class="pc-etabla"><div class="pc-eh"><span>Rubro</span><span>Total Gs</span><span>% de la obra</span><span>% del material</span><span>% de la mano de obra</span><span>Material / M. de obra del rubro</span></div>';
   rubs.forEach((rb, i) => {
     const r = R[i], t = r.mat + r.mo;
-    h += '<div class="pc-er"><span class="pc-ern"><i class="pc-dot" style="background:' + col[i] + '"></i>' + esc(rb) + '</span><span class="pc-num"><small>Total</small>Gs ' + gs(t) + '</span>' +
+    h += '<div class="pc-er"><span class="pc-ern">' + esc(rb) + '</span><span class="pc-num"><small>Total</small>Gs ' + gs(t) + '</span>' +
       '<span><small>% de la obra</small><b>' + pc(t, T) + '</b>' + barra(t, T) + '</span>' +
       '<span><small>% del material</small>' + pc(r.mat, S.T.mat) + barra(r.mat, S.T.mat, 'm') + '</span>' +
       '<span><small>% de la mano de obra</small>' + pc(r.mo, S.T.mo) + barra(r.mo, S.T.mo, 'w') + '</span>' +

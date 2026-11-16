@@ -635,3 +635,19 @@ footer .wrap{align-items:center}
 .pc-leg2 div{grid-template-columns:18px auto 1fr;align-items:baseline;column-gap:8px}
 .pc-leg2 i{grid-row:auto;margin-top:0}
 .pc-leg2 .pc-sm{grid-column:2/-1;font-size:.9rem}
+/* barras horizontales con el nombre escrito */
+.pc-barras{display:grid;gap:14px;margin-top:10px}
+.pc-bf{display:grid;gap:4px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.pc-bl{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.pc-bl>b{font-size:1rem}
+.pc-bl>span{font-size:.92rem}
+.pc-bt{background:var(--soft);border-radius:8px;min-height:30px}
+.pc-bb{display:flex;height:30px;border-radius:8px;overflow:hidden;min-width:2px}
+.pc-bb span{display:flex;align-items:center;padding:0 8px;white-space:nowrap;overflow:hidden;font:700 .8rem var(--sans);color:#fff}
+.pc-bb .m{background:#2F3439}
+.pc-bb .w{background:var(--red)}
+.pc-ptxt tspan{font-size:12px}
+.pc-bd{display:flex;gap:6px 18px;flex-wrap:wrap;font-size:.88rem;font-weight:600}
+.pc-bd i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.pc-bd i.m{background:#2F3439}.pc-bd i.w{background:var(--red)}
+@media (max-width:760px){ .pc-bb span{font-size:0;padding:0} }

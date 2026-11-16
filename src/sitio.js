@@ -259,13 +259,16 @@
     var f = document.querySelector('iframe[src*="streamcasthd"]');
     if (f) { var s = f.src; f.src = 'about:blank'; setTimeout(function(){ f.src = s; }, 300); }
   }
+  /* El iframe se arma directo (no depende de la API); la API solo se usa para saber cuándo empieza a sonar. */
+  var q = 'rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
+  var f = document.createElement('iframe');
+  f.id = 'ytPlayer'; f.title = 'Música regional – CIPRODEC Radio';
+  f.src = 'https://www.youtube-nocookie.com/embed/' + (lista ? 'videoseries?list=' + lista + '&' : video + '?') + q;
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true; f.loading = 'lazy';
+  f.referrerPolicy = 'strict-origin-when-cross-origin';
+  var viejo = document.getElementById('ytPlayer'); viejo.parentNode.replaceChild(f, viejo);
   window.onYouTubeIframeAPIReady = function(){
-    var vars = { rel: 0, modestbranding: 1, playsinline: 1 };
-    if (lista) { vars.listType = 'playlist'; vars.list = lista; }
-    new YT.Player('ytPlayer', {
-      host: 'https://www.youtube-nocookie.com', width: '100%', height: '100%', videoId: video || undefined, playerVars: vars,
-      events: { onStateChange: function(e){ if (e.data === 1) cortarRadio(); } }
-    });
+    try { new YT.Player('ytPlayer', { events: { onStateChange: function(e){ if (e.data === 1) cortarRadio(); } } }); } catch (er) {}
   };
   var s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.async = true; document.head.appendChild(s);
 })();

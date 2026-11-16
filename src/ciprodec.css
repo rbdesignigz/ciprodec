@@ -620,3 +620,18 @@ footer .wrap{align-items:center}
   .pc-tabs{gap:4px}
   .pc-tabs button{padding:8px 9px;font-size:.84rem}
 }
+/* tortas de estadística */
+.pc-pies{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-around}
+.pc-pie{margin:0;display:grid;justify-items:center;gap:6px;flex:1 1 220px;max-width:300px}
+.pc-pie figcaption{font-weight:800;font-size:.95rem;text-align:center}
+.pc-pie svg{width:100%;max-width:240px;height:auto}
+.pc-ptxt{font:800 13px var(--sans);fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2px}
+.pc-leg2{display:grid;gap:14px;flex:1 1 220px}
+.pc-leg2 div{display:grid;grid-template-columns:18px 1fr;column-gap:8px;font-size:1.05rem}
+.pc-leg2 i,.pc-leg3 i,.pc-dot{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px}
+.pc-leg2 i{grid-row:1/3;margin-top:4px}
+.pc-leg3{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 16px;margin-top:16px;font-weight:700;font-size:.92rem}
+.pc-leg3 i,.pc-dot{margin-right:8px}
+.pc-leg2 div{grid-template-columns:18px auto 1fr;align-items:baseline;column-gap:8px}
+.pc-leg2 i{grid-row:auto;margin-top:0}
+.pc-leg2 .pc-sm{grid-column:2/-1;font-size:.9rem}

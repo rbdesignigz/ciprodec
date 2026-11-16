@@ -262,23 +262,48 @@ $('tabFalta').addEventListener('click', e => {
   const a = e.target.closest('[data-ir]'); if (!a) return; e.preventDefault();
   const el = $(a.dataset.ir); if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 140);
 });
+const COLORES = ['#2F6FD0', '#E8A33A', '#2E9E5B', '#8E44AD', '#17A2B8', '#C2185B', '#8D6E63', '#C9B000', '#FF7043', '#5D6D7E', '#26A69A', '#AB47BC'];
+function torta(vals, colores, titulo, total) {
+  const T = vals.reduce((x, y) => x + y, 0), R = 90, C = 100;
+  let ang = -Math.PI / 2, h = '';
+  if (!T) h = '<circle cx="100" cy="100" r="90" fill="#EEE"/>';
+  else vals.forEach((v, i) => {
+    if (!v) return;
+    const f = v / T;
+    if (f >= 0.9999) { h += '<circle cx="100" cy="100" r="90" fill="' + colores[i] + '"/>'; return; }
+    const a2 = ang + f * 2 * Math.PI, x1 = C + R * Math.cos(ang), y1 = C + R * Math.sin(ang), x2 = C + R * Math.cos(a2), y2 = C + R * Math.sin(a2);
+    h += '<path d="M100 100L' + x1.toFixed(2) + ' ' + y1.toFixed(2) + 'A90 90 0 ' + (f > 0.5 ? 1 : 0) + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) + 'Z" fill="' + colores[i] + '" stroke="#fff" stroke-width="2"/>';
+    if (f >= 0.06) { const am = (ang + a2) / 2; h += '<text x="' + (C + 58 * Math.cos(am)).toFixed(1) + '" y="' + (C + 58 * Math.sin(am)).toFixed(1) + '" text-anchor="middle" dominant-baseline="middle" class="pc-ptxt">' + Math.round(f * 100) + '%</text>'; }
+    ang = a2;
+  });
+  return '<figure class="pc-pie"><figcaption>' + titulo + '</figcaption><svg viewBox="0 0 200 200" role="img" aria-label="' + titulo + '">' + h + '</svg><div class="pc-sm">Total Gs ' + gs(total) + '</div></figure>';
+}
 function pintarEstad() {
-  const S = sumas(), T = S.T.mat + S.T.mo || 1, pm = S.T.mat / T * 100;
+  const S = sumas(), T = S.T.mat + S.T.mo || 1;
   const pc = (v, t) => t ? fmt1.format(Math.round(v / t * 1000) / 10) + '%' : '—';
   const barra = (v, t, cls) => '<span class="pc-ebar ' + (cls || '') + '"><i style="width:' + (t ? Math.min(100, v / t * 100) : 0) + '%"></i></span>';
-  let h = '<div class="pc-sec"><h4>Composición de la obra</h4><div class="pc-comp"><span class="m" style="width:' + pm + '%"></span><span class="w" style="width:' + (100 - pm) + '%"></span></div>' +
-    '<div class="pc-leg"><span><i class="m"></i>Material ' + pc(S.T.mat, T) + ' · Gs ' + gs(S.T.mat) + '</span><span><i class="w"></i>Mano de obra ' + pc(S.T.mo, T) + ' · Gs ' + gs(S.T.mo) + '</span></div></div>';
-  h += '<div class="pc-sec"><h4>Peso de cada rubro en el total de la obra</h4><div class="pc-etabla"><div class="pc-eh"><span>Rubro</span><span>Total Gs</span><span>% de la obra</span><span>% del material</span><span>% de la mano de obra</span><span>Material / M. de obra del rubro</span></div>';
-  const filas = (pres.rubros || []).map(rb => [rb, S.R[rb] || { mat: 0, mo: 0 }]).filter(x => x[1].mat + x[1].mo > 0).sort((a, b) => (b[1].mat + b[1].mo) - (a[1].mat + a[1].mo));
-  for (const [rb, r] of filas) {
-    const t = r.mat + r.mo;
-    h += '<div class="pc-er"><span class="pc-ern">' + esc(rb) + '</span><span class="pc-num"><small>Total</small>Gs ' + gs(t) + '</span>' +
+  const rubs = (pres.rubros || []).filter(rb => actividades().some(a => a.rubro === rb));
+  const col = rubs.map((_, i) => COLORES[i % COLORES.length]);
+  const R = rubs.map(rb => S.R[rb] || { mat: 0, mo: 0 });
+  let h = '<div class="pc-sec"><h4>Composición de la obra</h4><div class="pc-pies">' +
+    torta([S.T.mat, S.T.mo], ['#2F3439', '#E8262B'], 'Material y mano de obra', S.T.mat + S.T.mo) +
+    '<div class="pc-leg2"><div><i style="background:#2F3439"></i><b>Material</b> ' + pc(S.T.mat, T) + '<span class="pc-sm">Gs ' + gs(S.T.mat) + '</span></div>' +
+    '<div><i style="background:#E8262B"></i><b>Mano de obra</b> ' + pc(S.T.mo, T) + '<span class="pc-sm">Gs ' + gs(S.T.mo) + '</span></div></div></div></div>';
+  h += '<div class="pc-sec"><h4>Peso de cada rubro</h4><div class="pc-pies">' +
+    torta(R.map(r => r.mat + r.mo), col, 'En el total de la obra', S.T.mat + S.T.mo) +
+    torta(R.map(r => r.mat), col, 'En el total del material', S.T.mat) +
+    torta(R.map(r => r.mo), col, 'En el total de la mano de obra', S.T.mo) + '</div>' +
+    '<div class="pc-leg3">' + rubs.map((rb, i) => '<span><i style="background:' + col[i] + '"></i>' + esc(rb) + '</span>').join('') + '</div></div>';
+  h += '<div class="pc-sec"><h4>Detalle por rubro (orden del presupuesto)</h4><div class="pc-etabla"><div class="pc-eh"><span>Rubro</span><span>Total Gs</span><span>% de la obra</span><span>% del material</span><span>% de la mano de obra</span><span>Material / M. de obra del rubro</span></div>';
+  rubs.forEach((rb, i) => {
+    const r = R[i], t = r.mat + r.mo;
+    h += '<div class="pc-er"><span class="pc-ern"><i class="pc-dot" style="background:' + col[i] + '"></i>' + esc(rb) + '</span><span class="pc-num"><small>Total</small>Gs ' + gs(t) + '</span>' +
       '<span><small>% de la obra</small><b>' + pc(t, T) + '</b>' + barra(t, T) + '</span>' +
       '<span><small>% del material</small>' + pc(r.mat, S.T.mat) + barra(r.mat, S.T.mat, 'm') + '</span>' +
       '<span><small>% de la mano de obra</small>' + pc(r.mo, S.T.mo) + barra(r.mo, S.T.mo, 'w') + '</span>' +
-      '<span><small>Material / M. de obra</small><span class="pc-comp chica"><span class="m" style="width:' + (r.mat / t * 100) + '%"></span><span class="w" style="width:' + (r.mo / t * 100) + '%"></span></span><span class="pc-sm">' + pc(r.mat, t) + ' / ' + pc(r.mo, t) + '</span></span></div>';
-  }
-  h += '</div><p class="pc-nota">Ordenado de mayor a menor. Los porcentajes se recalculan solos cada vez que se cargan precios. Los ítems que todavía no tienen precio no suman.</p></div>';
+      '<span><small>Material / M. de obra</small>' + (t ? '<span class="pc-comp chica"><span class="m" style="width:' + (r.mat / t * 100) + '%"></span><span class="w" style="width:' + (r.mo / t * 100) + '%"></span></span><span class="pc-sm">' + pc(r.mat, t) + ' / ' + pc(r.mo, t) + '</span>' : '<span class="pc-sm">sin precios cargados</span>') + '</span></div>';
+  });
+  h += '</div><p class="pc-nota">Los porcentajes se recalculan solos cada vez que se cargan precios. Los ítems que todavía no tienen precio no suman.</p></div>';
   $('tabEstad').innerHTML = h;
 }
 function pintarAjustes() {

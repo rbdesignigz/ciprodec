@@ -1,7 +1,6 @@
 rules_version = '2';
 // Reglas de seguridad de CIPRODEC para Cloud Firestore.
 // Copiar este archivo completo en Consola Firebase > Firestore Database > Reglas > Publicar.
-// IMPORTANTE: reemplazar REEMPLAZAR_EMAIL_ADMIN por el mismo email puesto en src/config.js (superadmin).
 service cloud.firestore {
   match /databases/{database}/documents {
 

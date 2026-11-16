@@ -18,5 +18,8 @@ window.CIPRODEC_CONFIG = {
   /* CIPRODEC Radio: direcciones del stream (RadioBOSS emite a server.streamcasthd.com:8856, MP3 128k).
      Se prueban en orden hasta que una suene. Vacío = usa el reproductor oficial de streamcasthd. */
   radioStream: ["https://server.streamcasthd.com:8856/stream", "https://server.streamcasthd.com:8856/;"],
-  radioPanel: 8856
+  radioPanel: 8856,
+  /* Música regional en la página de la radio: pegar el link de una lista de reproducción de YouTube
+     (https://www.youtube.com/playlist?list=...) o de un video. Vacío = no se muestra el recuadro. */
+  youtubeLista: ""
 };

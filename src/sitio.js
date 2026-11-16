@@ -243,3 +243,29 @@
       .then(function(){ b.disabled = false; });
   });
 })();
+
+/* Música regional (YouTube) en radio.html: lista de reproducción configurada en src/config.js (youtubeLista).
+   Usa el reproductor oficial de YouTube (visible). Al empezar a sonar, corta el reproductor de la radio. */
+(function(){
+  if (!/radio\.html$/.test(location.pathname)) return;
+  var CFG = window.CIPRODEC_CONFIG || {}, link = String(CFG.youtubeLista || '').trim(), caja = document.getElementById('ytMusica');
+  if (!link || !caja) return;
+  var lista = (link.match(/[?&]list=([\w-]+)/) || [])[1], video = (link.match(/(?:[?&]v=|youtu\.be\/|\/embed\/|\/shorts\/)([\w-]{11})/) || [])[1];
+  if (!lista && /^[\w-]{11}$/.test(link)) video = link;
+  if (!lista && /^(PL|OL|UU|RD)[\w-]+$/.test(link)) lista = link;
+  if (!lista && !video) return;
+  caja.hidden = false;
+  function cortarRadio(){
+    var f = document.querySelector('iframe[src*="streamcasthd"]');
+    if (f) { var s = f.src; f.src = 'about:blank'; setTimeout(function(){ f.src = s; }, 300); }
+  }
+  window.onYouTubeIframeAPIReady = function(){
+    var vars = { rel: 0, modestbranding: 1, playsinline: 1 };
+    if (lista) { vars.listType = 'playlist'; vars.list = lista; }
+    new YT.Player('ytPlayer', {
+      host: 'https://www.youtube-nocookie.com', width: '100%', height: '100%', videoId: video || undefined, playerVars: vars,
+      events: { onStateChange: function(e){ if (e.data === 1) cortarRadio(); } }
+    });
+  };
+  var s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.async = true; document.head.appendChild(s);
+})();

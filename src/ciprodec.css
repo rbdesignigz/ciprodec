@@ -714,3 +714,6 @@ footer .wrap{align-items:center}
 .pr-eq td{font-size:10pt;color:#333}
 .pr-cot{font-size:8.5pt;color:#444;text-align:right;margin-top:4px}
 @media (max-width:640px){.pc-monb{width:100%}.pc-monb button{flex:1;padding:9px 6px;font-size:.85rem}}
+/* música regional (YouTube) en la radio */
+.yt-marco{position:relative;width:100%;aspect-ratio:16/9;background:#111;border-radius:10px;overflow:hidden}
+.yt-marco iframe,.yt-marco #ytPlayer{position:absolute;inset:0;width:100%;height:100%;border:0}

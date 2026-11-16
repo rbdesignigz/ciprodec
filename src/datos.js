@@ -177,7 +177,7 @@ export function achicarImagen(file, max = 1400, calidad = 0.8) {
 }
 
 /* ---------- usuarios y sesión ---------- */
-function esSuper(email) { return !!CFG.superadmin && email === String(CFG.superadmin).toLowerCase(); }
+function esSuper(email) { return [].concat(CFG.superadmin || []).some(s => email === String(s).toLowerCase()); }
 async function perfilDe(email) {
   if (esSuper(email)) return { id: email, email, nombre: 'Administrador principal', rol: 'admin', activo: true, principal: true };
   const p = await obtener('usuarios', email).catch(() => null);

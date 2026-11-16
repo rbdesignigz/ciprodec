@@ -13,7 +13,7 @@ window.CIPRODEC_CONFIG = {
     appId: "1:10308836558:web:674564a753195c087b849f",
     measurementId: "G-L6ZDQG9LZC"
   },
-  superadmin: "pablo.da.ber@gmail.com",
+  superadmin: ["gerenciaciprodec@gmail.com", "pablo.da.ber@gmail.com"],
   whatsapp: "595986573190",
   /* CIPRODEC Radio: direcciones del stream (RadioBOSS emite a server.streamcasthd.com:8856, MP3 128k).
      Se prueban en orden hasta que una suene. Vacío = usa el reproductor oficial de streamcasthd. */

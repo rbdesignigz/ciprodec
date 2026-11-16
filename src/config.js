@@ -21,5 +21,5 @@ window.CIPRODEC_CONFIG = {
   radioPanel: 8856,
   /* Música regional en la página de la radio: pegar el link de una lista de reproducción de YouTube
      (https://www.youtube.com/playlist?list=...) o de un video. Vacío = no se muestra el recuadro. */
-  youtubeLista: ""
+  youtubeLista: "https://www.youtube.com/playlist?list=PLOlgfcX6S8ks"
 };

@@ -651,3 +651,51 @@ footer .wrap{align-items:center}
 .pc-bd i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 .pc-bd i.m{background:#2F3439}.pc-bd i.w{background:var(--red)}
 @media (max-width:760px){ .pc-bb span{font-size:0;padding:0} }
+/* datos de la empresa */
+.pc-datos{display:grid;gap:12px;border:2px solid var(--ink);border-radius:12px;padding:16px;margin-bottom:18px;background:#fff}
+.pc-logo{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.pc-logo img{max-width:160px;max-height:90px;border:1px solid var(--line);border-radius:8px;padding:4px;background:#fff}
+.pc-logo .btn{min-height:40px;padding:8px 14px;font-size:.9rem;cursor:pointer}
+.pc-txt input,.pc-txt textarea,.pc-txt select{font:500 1rem var(--sans);min-height:42px;padding:6px 10px;border:2px solid #BDBDBD;border-radius:8px;width:100%;box-sizing:border-box;background:#fff;color:var(--ink)}
+.pc-in.pc-txt input{background:#fff;border-color:#BDBDBD}
+.pc-txt{flex:1 1 240px}
+
+/* presupuesto impreso con los datos de la constructora */
+#printArea{display:none}
+@media print{
+  @page{size:A4;margin:12mm}
+  body>*:not(#printArea){display:none!important}
+  body{padding:0;background:#fff}
+  #printArea{display:block!important}
+}
+.pr-doc{font:400 10.5pt/1.35 var(--sans);color:#111}
+.pr-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;border-bottom:3px solid #111;padding-bottom:10px}
+.pr-head img{max-height:70px;max-width:170px}
+.pr-emp{font-size:16pt;font-weight:800}
+.pr-dat{font-size:9pt;color:#333}
+.pr-num{display:grid;text-align:right;gap:2px}
+.pr-num b{font-size:14pt;letter-spacing:.06em}
+.pr-cli{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.pr-cli div{display:grid;border:1px solid #999;border-radius:6px;padding:6px 10px}
+.pr-cli small{font-size:8pt;text-transform:uppercase;color:#555}
+.pr-t{width:100%;border-collapse:collapse}
+.pr-t th{background:#111;color:#fff;font-size:8.5pt;text-transform:uppercase;padding:5px 6px;text-align:right}
+.pr-t th:first-child{text-align:left}
+.pr-t td{padding:4px 6px;text-align:right;border-bottom:1px solid #ccc;vertical-align:top}
+.pr-t td:first-child{text-align:left}
+.pr-t tr{break-inside:avoid}
+.pr-rub td{background:#E4E6E8;font-weight:800;border-top:2px solid #111}
+.pr-act td{font-weight:700}
+.pr-act td:first-child{padding-left:14px}
+.pr-it td{font-size:9pt;color:#333}
+.pr-it td:first-child{padding-left:28px}
+.pr-tot{margin:10px 0 0 auto;border-collapse:collapse;min-width:300px}
+.pr-tot td{padding:4px 8px;text-align:right}
+.pr-tot td:first-child{text-align:left}
+.pr-gran td{font-size:13pt;font-weight:800;border-top:2px solid #111}
+.pr-notas{margin-top:14px;font-size:9.5pt;display:grid;gap:4px}
+.pr-firma{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:46px;break-inside:avoid}
+.pr-firma div{display:grid;text-align:center;font-weight:700}
+.pr-firma span{border-top:1px solid #111;margin-bottom:4px}
+.pr-firma small{font-weight:400;color:#444}
+.pr-pie{margin-top:18px;border-top:1px solid #999;padding-top:6px;font-size:8.5pt;color:#444;text-align:center}

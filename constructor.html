@@ -62,8 +62,23 @@
     <div id="vLista" hidden>
       <div class="pc-top">
         <div><div class="eyebrow" id="lConst"></div><h2 style="margin-top:6px"><span class="es">Tus presupuestos</span><span class="pt">Seus orçamentos</span></h2></div>
-        <button type="button" class="btn" id="bSalir"><span class="es">Salir</span><span class="pt">Sair</span></button>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn" id="bDatos"><span class="es">Datos de mi empresa</span><span class="pt">Dados da empresa</span></button><button type="button" class="btn" id="bSalir"><span class="es">Salir</span><span class="pt">Sair</span></button></div>
       </div>
+      <form id="fDatos" class="pc-datos" hidden>
+        <h3>Datos de tu empresa para imprimir los presupuestos</h3>
+        <p class="pc-nota">Estos datos y tu logo salen en el encabezado del presupuesto que entregás a tus clientes.</p>
+        <div class="pc-logo"><img id="dLogoImg" alt="Logo de la empresa" hidden><div><label class="btn" for="dLogo">Subir logo</label><input id="dLogo" type="file" accept="image/*" hidden> <button type="button" class="pc-lnk" id="dLogoQuitar" hidden>quitar logo</button><p class="pc-sm">Imagen JPG o PNG. Se achica sola.</p></div></div>
+        <div class="pc-aj">
+          <label class="pc-in pc-txt">Nombre de la empresa<input id="dNombre" maxlength="80"></label>
+          <label class="pc-in pc-txt">RUC<input id="dRuc" maxlength="30"></label>
+          <label class="pc-in pc-txt">Teléfono / WhatsApp<input id="dTel" maxlength="40" inputmode="tel"></label>
+          <label class="pc-in pc-txt">Email<input id="dEmail" maxlength="80" inputmode="email"></label>
+          <label class="pc-in pc-txt">Dirección<input id="dDir" maxlength="120"></label>
+          <label class="pc-in pc-txt">Responsable / firma<input id="dResp" maxlength="80" placeholder="Ej.: Gustavo Aristides"></label>
+        </div>
+        <label class="pc-in pc-txt">Condiciones que van al pie del presupuesto<textarea id="dCond" rows="3" maxlength="800" placeholder="Ej.: Forma de pago 40% anticipo, 60% por avance de obra."></textarea></label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button type="submit" class="btn red">Guardar datos</button><button type="button" class="btn" id="dCancelar">Cerrar</button><span id="dMsg" class="pc-guardado"></span></div>
+      </form>
       <div id="lPres" class="pc-cards" aria-live="polite"></div>
     </div>
 
@@ -78,11 +93,13 @@
         <button type="button" role="tab" data-tab="rubros" aria-selected="true"><span class="es">Por rubro</span><span class="pt">Por etapa</span></button>
         <button type="button" role="tab" data-tab="falta" aria-selected="false"><span class="es">Falta cargar</span><span class="pt">Falta carregar</span> <b id="tFalta"></b></button>
         <button type="button" role="tab" data-tab="estad" aria-selected="false"><span class="es">Estadística</span><span class="pt">Estatística</span></button>
+        <button type="button" role="tab" data-tab="export" aria-selected="false"><span class="es">Imprimir</span><span class="pt">Imprimir</span></button>
         <button type="button" role="tab" data-tab="ajustes" aria-selected="false"><span class="es">Ajustes</span><span class="pt">Ajustes</span></button>
       </div>
       <div id="tabRubros"></div>
       <div id="tabFalta" hidden></div>
       <div id="tabEstad" hidden></div>
+      <div id="tabExport" hidden></div>
       <div id="tabAjustes" hidden></div>
       <p class="pc-nota"><span class="es">Amarillo: celdas para cargar. Si no hay precio de proveedor o de Bronce, se usa el precio de referencia de CIPRODEC (marcado "ref.").</span></p>
       <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn" id="bCsv"><span class="es">Descargar planilla (CSV)</span><span class="pt">Baixar planilha (CSV)</span></button></div>
@@ -110,6 +127,7 @@
   </div>
 </section>
 </main>
+<div id="printArea" aria-hidden="true"></div>
 <footer><div class="wrap"><span><b>CIPRODEC</b> · Centro Integral de Profesionales de la Construcción · Av. Mcal. Francisco Solano López, Supercarretera PY07, Hernandarias</span><span><a href="https://wa.me/595986573190">+595 986 573 190</a> · ciprodecpy@gmail.com</span><span class="redes"><a class="red-soc fb" href="https://www.facebook.com/100798958612461" target="_blank" rel="noopener" aria-label="CIPRODEC en Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.4V14h2.7v8z"/></svg></a><a class="red-soc ig" href="https://www.instagram.com/ciprodec/" target="_blank" rel="noopener" aria-label="CIPRODEC en Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a><a class="red-soc tt" href="https://www.tiktok.com/@ciprodec" target="_blank" rel="noopener" aria-label="CIPRODEC en TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.4 2.1 1.7 3.6 3.9 3.8v3.1c-1.4 0-2.7-.4-3.9-1.1v6.1c0 3.4-2.6 5.6-5.6 5.6S5.5 18.3 5.5 15.2c0-3.3 2.9-5.7 6.3-5.2v3.2c-1.5-.4-3.1.6-3.1 2.1 0 1.3 1 2.3 2.3 2.3 1.4 0 2.4-1 2.4-2.6V3z"/></svg></a></span></div></footer>
 
 <a class="wa-float" href="https://wa.me/595986573190" aria-label="WhatsApp CIPRODEC"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg></a>

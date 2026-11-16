@@ -77,4 +77,6 @@ PORTAL DE CONSTRUCTORES (constructor.html) – nuevo
   enviar el link por WhatsApp, abrir o borrar presupuestos.
 - ANTES DE USARLO: copiar de nuevo firestore.rules completo en Consola Firebase > Firestore > Reglas > Publicar
   (se agregaron las colecciones "constructores" y "presupuestos").
+- Cada constructora carga sus datos (logo, RUC, teléfono, condiciones) en "Datos de mi empresa" e imprime o guarda en PDF
+  sus presupuestos con SU marca (pestaña "Imprimir"): no figura CIPRODEC en el impreso.
 - Probar sin tocar datos reales: constructor.html?demo

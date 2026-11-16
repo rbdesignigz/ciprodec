@@ -74,14 +74,18 @@ service cloud.firestore {
     // Quien tiene el código puede cambiar precios, cantidades y ajustes, pero no crear, borrar ni moverlo de constructora.
     match /constructores/{codigo} {
       allow get: if true;
-      allow list, create, update, delete: if tieneRol(['admin', 'editor']);
+      allow list, create, delete: if tieneRol(['admin', 'editor']);
+      // La constructora solo puede cambiar sus datos para imprimir (nombre, RUC, logo, etc.).
+      allow update: if tieneRol(['admin', 'editor'])
+        || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['perfil', 'actualizado'])
+            && request.resource.data.perfil is map);
     }
     match /presupuestos/{id} {
       allow get: if true;
       allow list, create, delete: if tieneRol(['admin', 'editor']);
       allow update: if tieneRol(['admin', 'editor'])
         || (request.resource.data.diff(resource.data).affectedKeys()
-              .hasOnly(['items', 'parametros', 'proveedores', 'actualizado', 'actualizadoPor'])
+              .hasOnly(['items', 'parametros', 'proveedores', 'cierre', 'clienteDatos', 'actualizado', 'actualizadoPor'])
             && request.resource.data.items is list
             && request.resource.data.items.size() <= 2000);
     }

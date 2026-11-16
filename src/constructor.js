@@ -91,7 +91,7 @@ async function entrar(c, recordar) {
 }
 
 async function pintarLista() {
-  $('lConst').textContent = constr.nombre || '';
+  $('lConst').textContent = (constr.perfil && constr.perfil.nombre) || constr.nombre || '';
   const box = $('lPres'); ver('vLista');
   const lista = constr.presupuestos || [];
   if (!lista.length) { box.innerHTML = '<div class="aviso info">Todavía no hay presupuestos cargados para tu empresa. CIPRODEC te avisa cuando esté el primero.</div>'; return; }
@@ -325,8 +325,8 @@ function pintarAjustes() {
 }
 function tab(t) {
   document.querySelectorAll('.pc-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
-  $('tabRubros').hidden = t !== 'rubros'; $('tabFalta').hidden = t !== 'falta'; $('tabEstad').hidden = t !== 'estad'; $('tabAjustes').hidden = t !== 'ajustes';
-  if (t === 'rubros') pintarRubros(); else if (t === 'falta') pintarFalta(); else if (t === 'estad') { kpis(); pintarEstad(); } else { kpis(); pintarAjustes(); }
+  $('tabRubros').hidden = t !== 'rubros'; $('tabFalta').hidden = t !== 'falta'; $('tabEstad').hidden = t !== 'estad'; $('tabExport').hidden = t !== 'export'; $('tabAjustes').hidden = t !== 'ajustes';
+  if (t === 'rubros') pintarRubros(); else if (t === 'falta') pintarFalta(); else if (t === 'estad') { kpis(); pintarEstad(); } else if (t === 'export') { kpis(); pintarExport(); } else { kpis(); pintarAjustes(); }
 }
 
 /* actualizar en el lugar después de cargar un valor, sin perder el foco */
@@ -399,6 +399,131 @@ $('bCsv').onclick = () => {
   a.href = URL.createObjectURL(new Blob(['﻿' + L.join('\r\n')], { type: 'text/csv;charset=utf-8' }));
   a.download = D.slug(pres.obra || 'presupuesto') + '.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 };
+
+
+/* ---------- datos de la empresa (logo y datos para imprimir) ---------- */
+let logoNuevo;
+function perfil() { return Object.assign({ nombre: constr ? constr.nombre : '' }, (constr && constr.perfil) || {}); }
+function llenarDatos() {
+  const p = perfil();
+  $('dNombre').value = p.nombre || ''; $('dRuc').value = p.ruc || ''; $('dTel').value = p.tel || ''; $('dEmail').value = p.email || '';
+  $('dDir').value = p.dir || ''; $('dResp').value = p.resp || ''; $('dCond').value = p.condiciones || '';
+  logoNuevo = p.logo || ''; mostrarLogo(); $('dMsg').textContent = '';
+}
+function mostrarLogo() { $('dLogoImg').hidden = !logoNuevo; $('dLogoImg').src = logoNuevo || ''; $('dLogoQuitar').hidden = !logoNuevo; }
+function achicarLogo(file) {
+  return new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onerror = () => rej(new Error('No se pudo leer la imagen'));
+    fr.onload = () => {
+      const img = new Image();
+      img.onerror = () => rej(new Error('Formato de imagen no válido'));
+      img.onload = () => {
+        const k = Math.min(1, 480 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0, c.width, c.height);
+        res(c.toDataURL('image/jpeg', 0.88));
+      };
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+$('bDatos').onclick = () => { const f = $('fDatos'); f.hidden = !f.hidden; if (!f.hidden) { llenarDatos(); f.scrollIntoView({ block: 'start' }); } };
+$('dCancelar').onclick = () => { $('fDatos').hidden = true; };
+$('dLogo').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { logoNuevo = await achicarLogo(f); mostrarLogo(); } catch (er) { $('dMsg').textContent = er.message; } e.target.value = ''; };
+$('dLogoQuitar').onclick = () => { logoNuevo = ''; mostrarLogo(); };
+$('fDatos').onsubmit = async e => {
+  e.preventDefault(); $('dMsg').textContent = 'Guardando…'; $('dMsg').classList.remove('err');
+  constr.perfil = { nombre: $('dNombre').value.trim(), ruc: $('dRuc').value.trim(), tel: $('dTel').value.trim(), email: $('dEmail').value.trim(),
+    dir: $('dDir').value.trim(), resp: $('dResp').value.trim(), condiciones: $('dCond').value.trim(), logo: logoNuevo || '' };
+  try { await D.guardar('constructores', Object.assign({}, constr, { id: codigo })); $('dMsg').textContent = '✓ Guardado'; }
+  catch (er) { $('dMsg').textContent = 'No se pudo guardar: ' + D.mensajeError(er); $('dMsg').classList.add('err'); }
+};
+
+/* ---------- imprimir el presupuesto con los datos de la constructora ---------- */
+function cierre() { return Object.assign({ fecha: new Date().toISOString().slice(0, 10), validez: 15, gg: 0, ben: 0, iva: 10, incluir: true, detalle: 'resumen', numero: '', obs: '' }, pres.cierre || {}); }
+function cliente() { return Object.assign({ nombre: pres.cliente || '', contacto: '' }, pres.clienteDatos || {}); }
+function pintarExport() {
+  const c = cierre(), cl = cliente(), r = resumen(pres), sinB = (pres.items || []).filter(it => calc(it).estado !== 'ok').length;
+  const pf = perfil();
+  $('tabExport').innerHTML =
+    (sinB ? '<div class="aviso info" style="margin-bottom:12px">Hay <b>' + sinB + ' ítems</b> sin precio propio: en el presupuesto impreso salen con el precio de referencia (o en cero si no tienen). Revisalos en "Falta cargar" antes de entregar.</div>' : '') +
+    (!pf.logo || !pf.ruc ? '<div class="aviso info" style="margin-bottom:12px">Para que el presupuesto salga con tu logo y tus datos, completalos en <b>Datos de mi empresa</b> (en "Mis presupuestos").</div>' : '') +
+    '<div class="pc-sec"><h4>Cliente y presupuesto</h4><div class="pc-aj">' +
+    '<label class="pc-in pc-txt">Cliente<input data-cl="nombre" value="' + esc(cl.nombre) + '"></label>' +
+    '<label class="pc-in pc-txt">Dirección / teléfono del cliente<input data-cl="contacto" value="' + esc(cl.contacto) + '"></label>' +
+    '<label class="pc-in pc-txt">N° de presupuesto<input data-ci="numero" value="' + esc(c.numero) + '"></label>' +
+    '<label class="pc-in pc-txt">Fecha<input data-ci="fecha" type="date" value="' + esc(c.fecha) + '"></label>' +
+    '<label class="pc-in">Validez (días)<input data-ci="validez" inputmode="numeric" value="' + esc(c.validez) + '"></label></div></div>' +
+    '<div class="pc-sec"><h4>Gastos, beneficio e IVA</h4><div class="pc-aj">' +
+    '<label class="pc-in">Gastos generales (%)<input data-ci="gg" inputmode="decimal" value="' + esc(c.gg) + '"></label>' +
+    '<label class="pc-in">Beneficio (%)<input data-ci="ben" inputmode="decimal" value="' + esc(c.ben) + '"></label>' +
+    '<label class="pc-in">IVA (%)<input data-ci="iva" inputmode="decimal" value="' + esc(c.iva) + '"></label></div>' +
+    '<label class="pc-check" style="margin-top:10px"><input type="checkbox" data-ci="incluir"' + (c.incluir ? ' checked' : '') + '> Incluir gastos generales y beneficio dentro de los precios de cada rubro (el cliente no los ve por separado)</label></div>' +
+    '<div class="pc-sec"><h4>Qué se imprime</h4><div class="pc-aj">' +
+    '<label class="pc-in pc-txt">Nivel de detalle<select data-ci="detalle"><option value="resumen"' + (c.detalle === 'resumen' ? ' selected' : '') + '>Resumen por rubro (material, mano de obra y total)</option><option value="items"' + (c.detalle === 'items' ? ' selected' : '') + '>Por rubro e ítem</option><option value="completo"' + (c.detalle === 'completo' ? ' selected' : '') + '>Completo (con cada material y la mano de obra)</option></select></label></div>' +
+    '<label class="pc-in pc-txt" style="margin-top:8px">Observaciones para este cliente<textarea data-ci="obs" rows="3">' + esc(c.obs) + '</textarea></label></div>' +
+    '<div class="pc-sec"><p class="pc-nota">Total a presupuestar: <b>Gs ' + gs(totalesCierre(r, c).total) + '</b> (costo directo Gs ' + gs(r.total) + ')</p>' +
+    '<button type="button" class="btn red" id="bImprimir">Ver e imprimir / guardar PDF</button></div>';
+  $('bImprimir').onclick = imprimir;
+}
+function numIn(v) { const n = parseFloat(String(v || '').replace(',', '.')); return isFinite(n) ? n : 0; }
+function totalesCierre(r, c) {
+  const cd = r.total, gg = cd * numIn(c.gg) / 100, ben = cd * numIn(c.ben) / 100, sub = cd + gg + ben, iva = sub * numIn(c.iva) / 100;
+  return { cd, gg, ben, sub, iva, total: sub + iva, k: cd ? sub / cd : 1 };
+}
+$('tabExport').addEventListener('change', e => {
+  const i = e.target;
+  if (i.dataset.cl) { pres.clienteDatos = cliente(); pres.clienteDatos[i.dataset.cl] = i.value.trim(); }
+  else if (i.dataset.ci) { pres.cierre = cierre(); pres.cierre[i.dataset.ci] = i.type === 'checkbox' ? i.checked : i.value; }
+  else return;
+  programarGuardado(); pintarExport();
+});
+function imprimir() {
+  const c = cierre(), cl = cliente(), pf = perfil(), S = sumas(), r = resumen(pres), tc = totalesCierre(r, c), k = c.incluir ? tc.k : 1;
+  const fecha = /^\d{4}-\d{2}-\d{2}$/.test(c.fecha) ? c.fecha.split('-').reverse().join('/') : '';
+  const datos = [pf.ruc ? 'RUC ' + esc(pf.ruc) : '', esc(pf.dir || ''), esc(pf.tel || ''), esc(pf.email || '')].filter(Boolean).join(' · ');
+  let h = '<div class="pr-doc"><header class="pr-head">' + (pf.logo ? '<img src="' + pf.logo + '" alt="">' : '') +
+    '<div><div class="pr-emp">' + esc(pf.nombre || '') + '</div><div class="pr-dat">' + datos + '</div></div>' +
+    '<div class="pr-num"><b>PRESUPUESTO</b>' + (c.numero ? '<span>N° ' + esc(c.numero) + '</span>' : '') + (fecha ? '<span>Fecha: ' + fecha + '</span>' : '') + '</div></header>' +
+    '<div class="pr-cli"><div><small>Cliente</small><b>' + esc(cl.nombre || '—') + '</b>' + (cl.contacto ? '<span>' + esc(cl.contacto) + '</span>' : '') + '</div>' +
+    '<div><small>Obra</small><b>' + esc(pres.obra || '') + '</b></div></div>';
+  h += '<table class="pr-t"><thead><tr><th>Rubro / ítem</th>' + (c.detalle === 'completo' ? '<th>Cantidad</th><th>P. unitario</th>' : '') + '<th>Material</th><th>Mano de obra</th><th>Total Gs</th></tr></thead><tbody>';
+  const cols = c.detalle === 'completo' ? 6 : 4, nm = v => gs(v * k);
+  for (const rb of pres.rubros || []) {
+    const x = S.R[rb]; if (!x || !(x.mat + x.mo)) continue;
+    h += '<tr class="pr-rub"><td' + (c.detalle === 'completo' ? ' colspan="3"' : '') + '>' + esc(rb) + '</td><td>' + nm(x.mat) + '</td><td>' + nm(x.mo) + '</td><td>' + nm(x.mat + x.mo) + '</td></tr>';
+    if (c.detalle === 'resumen') continue;
+    for (const a of actividades().filter(a => a.rubro === rb)) {
+      const y = S.A[a.cod]; if (!y || !(y.mat + y.mo)) continue;
+      h += '<tr class="pr-act"><td' + (c.detalle === 'completo' ? ' colspan="3"' : '') + '>' + esc(a.cod) + ' ' + esc(a.desc) + '</td><td>' + nm(y.mat) + '</td><td>' + nm(y.mo) + '</td><td>' + nm(y.mat + y.mo) + '</td></tr>';
+      if (c.detalle !== 'completo') continue;
+      for (const it of (pres.items || []).filter(i => actDe(i) === a.cod)) {
+        const z = calc(it); if (!z.total) continue;
+        h += '<tr class="pr-it"><td>' + esc(it.desc) + '</td><td>' + fmt1.format(it.cant) + ' ' + esc(it.unid || '') + '</td><td>' + gs(z.precio * k) + '</td>' +
+          (it.tipo === 'mat' ? '<td>' + gs(z.total * k) + '</td><td></td>' : '<td></td><td>' + gs(z.total * k) + '</td>') + '<td></td></tr>';
+      }
+    }
+  }
+  h += '</tbody></table><table class="pr-tot">';
+  if (c.incluir) h += '<tr><td>Subtotal</td><td>Gs ' + gs(tc.sub) + '</td></tr>';
+  else {
+    h += '<tr><td>Costo directo</td><td>Gs ' + gs(tc.cd) + '</td></tr>';
+    if (tc.gg) h += '<tr><td>Gastos generales (' + esc(c.gg) + '%)</td><td>Gs ' + gs(tc.gg) + '</td></tr>';
+    if (tc.ben) h += '<tr><td>Beneficio (' + esc(c.ben) + '%)</td><td>Gs ' + gs(tc.ben) + '</td></tr>';
+    if (tc.gg || tc.ben) h += '<tr><td>Subtotal</td><td>Gs ' + gs(tc.sub) + '</td></tr>';
+  }
+  if (tc.iva) h += '<tr><td>IVA (' + esc(c.iva) + '%)</td><td>Gs ' + gs(tc.iva) + '</td></tr>';
+  h += '<tr class="pr-gran"><td>TOTAL</td><td>Gs ' + gs(tc.total) + '</td></tr></table>';
+  const notas = [c.validez ? 'Presupuesto válido por ' + esc(c.validez) + ' días.' : '', esc(c.obs || ''), esc(pf.condiciones || '')].filter(Boolean);
+  if (notas.length) h += '<div class="pr-notas">' + notas.map(n => '<p>' + n.replace(/\n/g, '<br>') + '</p>').join('') + '</div>';
+  h += '<div class="pr-firma"><div><span></span>' + esc(pf.resp || pf.nombre || '') + '<small>' + esc(pf.nombre || '') + '</small></div><div><span></span>Conforme cliente<small>' + esc(cl.nombre || '') + '</small></div></div>' +
+    '<footer class="pr-pie">' + esc(pf.nombre || '') + (datos ? ' · ' + datos : '') + '</footer></div>';
+  $('printArea').innerHTML = h;
+  const t = document.title; document.title = 'Presupuesto ' + (cl.nombre || pres.obra || '');
+  setTimeout(() => { window.print(); document.title = t; }, 150);
+}
 
 /* ---------- navegación ---------- */
 $('fCodigo').onsubmit = async e => { e.preventDefault(); await entrar($('codigo').value, $('recordar').checked); };

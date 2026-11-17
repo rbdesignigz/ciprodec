@@ -14,17 +14,18 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
   .tel{position:relative;height:100dvh;max-width:480px;margin:0 auto;overflow:hidden;background:#000}
-  .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 0;transform-origin:50% 35%;transition:filter .4s}
-  .tel.esperando .foto{filter:brightness(.55) saturate(.9)}
+  .foto{position:absolute;left:0;right:0;bottom:0;top:calc(76px + env(safe-area-inset-top));width:100%;height:calc(100% - 76px - env(safe-area-inset-top));object-fit:cover;object-position:52% 0;transform-origin:50% 35%;transition:filter .4s}
+  .tel.esperando .foto{filter:brightness(.85)}
   .tel.hablando .foto{animation:respira 1.6s ease-in-out infinite}
   @keyframes respira{0%,100%{transform:scale(1.02)}50%{transform:scale(1.045)}}
-  .sombra-top{position:absolute;inset:0 0 auto 0;height:180px;background:linear-gradient(#000c,#0000)}
-  .sombra-bot{position:absolute;inset:auto 0 0 0;height:300px;background:linear-gradient(#0000,#000e)}
-  header{position:absolute;top:0;left:0;right:0;padding:calc(18px + env(safe-area-inset-top)) 20px 0;display:flex;align-items:center;gap:12px}
+  .sombra-top{display:none}
+  .sombra-bot{position:absolute;inset:auto 0 0 0;height:240px;background:linear-gradient(#0000,#000d 70%)}
+  header{position:absolute;top:0;left:0;right:0;height:calc(76px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 16px 0;display:flex;align-items:center;gap:10px;background:#0d0d0d;border-bottom:3px solid var(--rojo);z-index:2}
   header img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff3}
-  header b{display:block;font-size:18px}
-  header span{font-size:13px;color:#ddd}
-  .ia{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.04em;background:#ffffff22;backdrop-filter:blur(6px);padding:6px 10px;border-radius:20px;white-space:nowrap}
+  header b{display:block;font-size:17px;line-height:1.1}
+  header span{font-size:12px;color:#ccc;display:block}
+  header .logo{margin-left:auto;height:26px;width:auto;border:0;border-radius:0}
+  .ia{display:inline-block;margin-top:3px;font-size:10px;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--rojo);padding:2px 7px;border-radius:10px;white-space:nowrap}
   .estado{position:absolute;left:0;right:0;bottom:calc(150px + env(safe-area-inset-bottom));text-align:center;padding:0 24px}
   .estado .txt{font-size:15px;color:#eee;min-height:22px}
   .estado .reloj{font-variant-numeric:tabular-nums;font-size:13px;color:var(--gris);margin-top:4px;min-height:18px}
@@ -53,8 +54,8 @@
   <div class="sombra-top"></div><div class="sombra-bot"></div>
   <header>
     <img src="mauricio-avatar.webp" alt="">
-    <div><b>Mauricio</b><span>Gerencia · CIPRODEC</span></div>
-    <div class="ia">ASISTENTE VIRTUAL · IA</div>
+    <div><b>Mauricio</b><span>Gerencia · CIPRODEC</span><span class="ia">ASISTENTE VIRTUAL · IA</span></div>
+    <img class="logo" src="ciprodec-logo-blanco.svg" alt="CIPRODEC">
   </header>
   <div class="estado">
     <div class="txt" id="txt">Tocá el botón verde para hablar conmigo</div>

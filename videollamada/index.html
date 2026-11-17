@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Videollamada con Mauricio · CIPRODEC</title>
+<meta name="description" content="Hablá en vivo con el asistente virtual de Mauricio, de CIPRODEC: proyecto, cálculo estructural, presupuestos y modelado 3D de tu obra.">
+<meta property="og:title" content="Videollamada con Mauricio · CIPRODEC">
+<meta property="og:description" content="Contanos de tu obra y te ayudamos al instante. Asistente virtual con IA.">
+<meta property="og:image" content="https://ciprodec.com/videollamada/mauricio.webp">
+<meta name="theme-color" content="#111111">
+<style>
+  :root{--rojo:#E8262B;--verde:#1DB954;--tinta:#111;--gris:#9a9a9a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .tel{position:relative;height:100dvh;max-width:480px;margin:0 auto;overflow:hidden;background:#000}
+  .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 0;transform-origin:50% 35%;transition:filter .4s}
+  .tel.esperando .foto{filter:brightness(.55) saturate(.9)}
+  .tel.hablando .foto{animation:respira 1.6s ease-in-out infinite}
+  @keyframes respira{0%,100%{transform:scale(1.02)}50%{transform:scale(1.045)}}
+  .sombra-top{position:absolute;inset:0 0 auto 0;height:180px;background:linear-gradient(#000c,#0000)}
+  .sombra-bot{position:absolute;inset:auto 0 0 0;height:300px;background:linear-gradient(#0000,#000e)}
+  header{position:absolute;top:0;left:0;right:0;padding:calc(18px + env(safe-area-inset-top)) 20px 0;display:flex;align-items:center;gap:12px}
+  header img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff3}
+  header b{display:block;font-size:18px}
+  header span{font-size:13px;color:#ddd}
+  .ia{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.04em;background:#ffffff22;backdrop-filter:blur(6px);padding:6px 10px;border-radius:20px;white-space:nowrap}
+  .estado{position:absolute;left:0;right:0;bottom:calc(150px + env(safe-area-inset-bottom));text-align:center;padding:0 24px}
+  .estado .txt{font-size:15px;color:#eee;min-height:22px}
+  .estado .reloj{font-variant-numeric:tabular-nums;font-size:13px;color:var(--gris);margin-top:4px;min-height:18px}
+  .onda{display:flex;justify-content:center;align-items:flex-end;gap:5px;height:34px;margin-top:10px;opacity:0;transition:opacity .3s}
+  .tel.hablando .onda{opacity:1}
+  .onda i{display:block;width:5px;height:6px;border-radius:3px;background:#fff;transition:height .08s}
+  .controles{position:absolute;left:0;right:0;bottom:calc(36px + env(safe-area-inset-bottom));display:flex;justify-content:center;align-items:center;gap:28px}
+  .btn{width:72px;height:72px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;color:#fff;box-shadow:0 6px 20px #0008}
+  .btn svg{width:32px;height:32px}
+  .llamar{background:var(--verde)}
+  .colgar{background:var(--rojo);display:none}
+  .tel.en-llamada .llamar{display:none}
+  .tel.en-llamada .colgar{display:grid}
+  .wa{width:54px;height:54px;background:#ffffff26;backdrop-filter:blur(6px)}
+  .wa svg{width:26px;height:26px}
+  .etq{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));text-align:center;font-size:11px;color:#bbb}
+  .anillo{position:absolute;inset:-8px;border-radius:50%;border:3px solid var(--verde);opacity:0;animation:none}
+  .tel.esperando .llamar .anillo{animation:pulso 1.8s infinite}
+  @keyframes pulso{0%{transform:scale(.9);opacity:.8}100%{transform:scale(1.35);opacity:0}}
+  .btn{position:relative}
+</style>
+</head>
+<body>
+<main class="tel esperando" id="tel">
+  <img class="foto" src="mauricio.webp" alt="Mauricio, personaje virtual de CIPRODEC con casco de obra">
+  <div class="sombra-top"></div><div class="sombra-bot"></div>
+  <header>
+    <img src="mauricio-avatar.webp" alt="">
+    <div><b>Mauricio</b><span>Gerencia · CIPRODEC</span></div>
+    <div class="ia">ASISTENTE VIRTUAL · IA</div>
+  </header>
+  <div class="estado">
+    <div class="txt" id="txt">Tocá el botón verde para hablar conmigo</div>
+    <div class="reloj" id="reloj"></div>
+    <div class="onda" id="onda"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="controles">
+    <a class="btn wa" href="https://wa.me/595986573190?text=Hola%20CIPRODEC%2C%20quiero%20consultar%20por%20mi%20obra" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>
+    </a>
+    <button class="btn llamar" id="llamar" aria-label="Iniciar videollamada"><span class="anillo"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.3 1z"/></svg>
+    </button>
+    <button class="btn colgar" id="colgar" aria-label="Terminar llamada">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9c-1.6 0-3.2.3-4.6.7v3.1a1 1 0 0 1-.6.9 11.5 11.5 0 0 0-2.7 1.9 1 1 0 0 1-1.4 0L.3 13.2a1 1 0 0 1 0-1.4A16.9 16.9 0 0 1 12 7a16.9 16.9 0 0 1 11.7 4.8 1 1 0 0 1 0 1.4l-2.4 2.4a1 1 0 0 1-1.4 0 11.5 11.5 0 0 0-2.7-1.9 1 1 0 0 1-.6-.9V9.7C15.2 9.3 13.6 9 12 9z"/></svg>
+    </button>
+  </div>
+  <div class="etq">Hablás con una inteligencia artificial que usa la imagen y la voz de Mauricio · ciprodec.com</div>
+</main>
+<script type="module">
+  import { Conversation } from "https://esm.sh/@elevenlabs/client@0.11";
+  const AGENT_ID = "agent_5301m7kqr3qrf8gth2c8arxbfejf";
+  const $ = id => document.getElementById(id);
+  const tel = $("tel"), txt = $("txt"), reloj = $("reloj");
+  const barras = [...document.querySelectorAll("#onda i")];
+  let conv = null, t0 = 0, timer = 0, raf = 0;
+
+  function estado(clase, mensaje){ tel.classList.remove("esperando","en-llamada","hablando"); clase.split(" ").forEach(c=>c&&tel.classList.add(c)); if(mensaje!==undefined) txt.textContent = mensaje; }
+  function animar(){
+    if(conv){ const v = Math.min(1, (conv.getOutputVolume?.() || 0) * 2.2);
+      barras.forEach((b,i)=>{ const k = 0.55 + 0.45*Math.sin(Date.now()/120 + i*1.3); b.style.height = (6 + v*28*k) + "px"; }); }
+    raf = requestAnimationFrame(animar);
+  }
+  async function llamar(){
+    try{
+      estado("en-llamada","Conectando…");
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      conv = await Conversation.startSession({
+        agentId: AGENT_ID,
+        connectionType: "webrtc",
+        onConnect: () => { t0 = Date.now(); timer = setInterval(()=>{ const s=Math.floor((Date.now()-t0)/1000); reloj.textContent = String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); },1000); estado("en-llamada","Te escucho…"); },
+        onModeChange: ({ mode }) => { if(mode === "speaking") estado("en-llamada hablando","Mauricio está hablando"); else estado("en-llamada","Te escucho…"); },
+        onDisconnect: () => terminar(false),
+        onError: (e) => { console.error(e); txt.textContent = "Se cortó la conexión. Probá de nuevo."; }
+      });
+      animar();
+    }catch(e){
+      console.error(e);
+      estado("esperando", e && e.name === "NotAllowedError" ? "Para hablar, permití el uso del micrófono." : "No se pudo conectar. Probá de nuevo o escribinos por WhatsApp.");
+    }
+  }
+  async function terminar(cortar = true){
+    clearInterval(timer); cancelAnimationFrame(raf);
+    if(cortar && conv){ try{ await conv.endSession(); }catch{} }
+    conv = null; reloj.textContent = "";
+    estado("esperando","Llamada terminada. ¡Gracias por comunicarte con CIPRODEC!");
+  }
+  $("llamar").addEventListener("click", llamar);
+  $("colgar").addEventListener("click", () => terminar(true));
+</script>
+</body>
+</html>

@@ -64,7 +64,8 @@ import { listar, fotoUrl, esc, fechaTxt, okUrl } from './src/datos.js';
 const lista = document.getElementById('lista'), nota = document.getElementById('vistaNota'), vl = document.getElementById('vistaLista');
 let todas = [], cat = '';
 const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
-const parrafos = s => String(s || '').split(/\n\s*\n|\n/).map(p => p.trim()).filter(Boolean).map(p => '<p>' + md(p) + '</p>').join('');
+const imgMd = p => { const m = p.match(/^!\[([^\]]*)\]\(((?:\.\/img\/|https:\/\/)[^\s)]+)\)$/); return m ? '<figure class="graf"><img src="' + esc(m[2]) + '" alt="' + esc(m[1]) + '" loading="lazy">' + (m[1] ? '<figcaption>' + esc(m[1]) + '</figcaption>' : '') + '</figure>' : null; };
+const parrafos = s => String(s || '').split(/\n\s*\n|\n/).map(p => p.trim()).filter(Boolean).map(p => imgMd(p) || '<p>' + md(p) + '</p>').join('');
 const resumen = n => { let t = String(n.contenido || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim(); return t.length > 170 ? t.slice(0, 170).replace(/\s\S*$/, '') + '…' : t; };
 async function pintarLista() {
   const items = todas.filter(n => !cat || n.categoria === cat);

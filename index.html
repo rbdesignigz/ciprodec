@@ -270,7 +270,7 @@ import { listar, fotoUrl, esc, fechaTxt, okUrl } from './src/datos.js';
     const items = (await listar('noticias')).filter(n => n.visible !== false && n.visible !== 'False').slice(0, 6);
     if (!items.length) { sec.style.display = 'none'; return; }
     const imgs = await Promise.all(items.map(n => fotoUrl(n.imagen)));
-    const limpio = t => String(t || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+    const limpio = t => String(t || '').replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
     const corta = (t, n) => { t = limpio(t); return t.length > n ? t.slice(0, n).replace(/\s\S*$/, '') + '…' : t; };
     const link = n => './blog.html#' + encodeURIComponent(n.id);
     const fuente = n => n.fuente ? '<div class="d-fuente">' + 'Fuente: ' + esc(n.fuente) + '</div>' : '';

@@ -721,3 +721,13 @@ footer .wrap{align-items:center}
 .graf{margin:22px 0}.graf img{width:100%;height:auto;border-radius:12px;border:1px solid #e5e5e5;display:block}.graf figcaption{font-size:.82rem;color:var(--muted);margin-top:6px}
 
 .compartir{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.compartir .comp-t{font-weight:700;margin-right:4px}
+
+.rb-radio{flex:none;border:0;background:none;padding:0;margin-right:-2px;cursor:pointer;line-height:0}
+.rb-radio svg{width:52px;height:40px;transition:transform .15s}
+.rb-radio:hover svg{transform:scale(1.08) rotate(-3deg)}
+.rb-ondas path{opacity:0}
+.radio-bar.sonando .rb-ondas .o1{animation:rbonda 1.4s ease-out infinite}
+.radio-bar.sonando .rb-ondas .o2{animation:rbonda 1.4s ease-out .35s infinite}
+@keyframes rbonda{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@media (max-width:640px){.rb-radio svg{width:38px;height:30px}}
+@media (max-width:440px){.rb-vivo{padding:6px}.rb-vivo .es,.rb-vivo .pt{display:none!important}.rb-nombre{font-size:.85rem}}

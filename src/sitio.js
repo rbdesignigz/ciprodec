@@ -51,6 +51,7 @@
   var bar = document.createElement('div'); bar.className = 'radio-bar';
   bar.innerHTML =
     '<div class="wrap rb-fila">' +
+      '<button type="button" class="rb-radio" aria-label="Escuchar CIPRODEC Radio"><svg viewBox="0 0 72 56" aria-hidden="true"><g class="rb-ondas" fill="none" stroke="#E6262E" stroke-width="2.5" stroke-linecap="round"><path class="o1" d="M62 4 q4 4 0 8"/><path class="o2" d="M66 1 q7 7 0 14"/></g><line x1="40" y1="16" x2="55" y2="5" stroke="#ddd" stroke-width="2.5" stroke-linecap="round"/><circle cx="55.5" cy="5" r="2.5" fill="#E6262E"/><rect x="4" y="16" width="56" height="36" rx="7" fill="#E6262E" stroke="#8f1218" stroke-width="2"/><rect x="9" y="21" width="24" height="26" rx="4" fill="#1b1b1b"/><g fill="#E6262E"><circle cx="14" cy="26" r="1.6"/><circle cx="21" cy="26" r="1.6"/><circle cx="28" cy="26" r="1.6"/><circle cx="14" cy="33" r="1.6"/><circle cx="21" cy="33" r="1.6"/><circle cx="28" cy="33" r="1.6"/><circle cx="14" cy="40" r="1.6"/><circle cx="21" cy="40" r="1.6"/><circle cx="28" cy="40" r="1.6"/></g><rect x="37" y="21" width="18" height="9" rx="2" fill="#f6efe2"/><line x1="43" y1="22" x2="43" y2="29" stroke="#E6262E" stroke-width="1.5"/><circle cx="46" cy="40" r="6" fill="#f6efe2" stroke="#8f1218" stroke-width="1.5"/><line x1="46" y1="40" x2="49" y2="36" stroke="#8f1218" stroke-width="1.5"/></svg></button>' +
       '<span class="rb-vivo"><i></i><span class="es">EN VIVO</span><span class="pt">AO VIVO</span></span>' +
       '<b class="rb-nombre">CIPRODEC Radio</b>' +
       '<span class="rb-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>' +
@@ -61,6 +62,7 @@
   head.appendChild(bar);
   var btn = bar.querySelector('.rb-btn'), lbl = bar.querySelector('.rb-l'), ico = bar.querySelector('.rb-ico'), txt = bar.querySelector('.rb-txt');
   var PLAY = 'M8 5v14l11-7z', PAUSA = 'M7 5h4v14H7zM13 5h4v14h-4z';
+  bar.querySelector('.rb-radio').addEventListener('click', function(){ btn.click(); });
 
   if (STREAM) {
     /* reproductor directo */

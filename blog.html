@@ -96,7 +96,11 @@ async function ruta() {
     '<div class="cuerpo">' + parrafos(n.contenido) + '</div>' +
     (n.analisis ? '<div class="ana"><div class="eyebrow">Análisis CIPRODEC</div>' + parrafos(n.analisis) + '</div>' : '') +
     (n.fuente ? '<p class="fuente">Fuente: ' + (fu ? '<a href="' + esc(fu) + '" target="_blank" rel="noopener">' + esc(n.fuente) + '</a>' : esc(n.fuente)) + (fechaTxt(n.fuenteFecha) ? ' · ' + fechaTxt(n.fuenteFecha) : '') + '</p>' : '') +
-    '<div class="compartir"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(n.titulo + ' ' + url) + '"><span class="es">Compartir por WhatsApp</span><span class="pt">Compartilhar no WhatsApp</span></a>' +
+    '<div class="compartir"><span class="comp-t"><span class="es">Compartir:</span><span class="pt">Compartilhar:</span></span>' +
+    '<a class="btn" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(n.titulo + ' ' + url) + '">WhatsApp</a>' +
+    '<a class="btn" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '">Facebook</a>' +
+    '<button type="button" class="btn" data-compartir="' + esc(url) + '" data-titulo="' + esc(n.titulo) + '"><span class="es">Instagram / Estado / más</span><span class="pt">Instagram / Status / mais</span></button>' +
+    '<button type="button" class="btn" data-copiar="' + esc(url) + '"><span class="es">Copiar enlace</span><span class="pt">Copiar link</span></button>' +
     '<a class="btn red" href="https://wa.me/595986573190"><span class="es">Consultar a CIPRODEC</span><span class="pt">Falar com a CIPRODEC</span></a></div>';
   document.title = n.titulo + ' – CIPRODEC';
   vl.hidden = true; nota.hidden = false; window.scrollTo(0, 0);
@@ -106,6 +110,12 @@ try {
   todas.sort((a, b) => (typeof a.orden === 'number' && typeof b.orden === 'number') ? a.orden - b.orden : String(b.fecha || '').localeCompare(String(a.fecha || '')));
   pintarFiltros(); await pintarLista(); await ruta();
   window.addEventListener('hashchange', ruta);
+  nota.addEventListener('click', async e => {
+    const b = e.target.closest('[data-compartir],[data-copiar]'); if (!b) return;
+    const u = b.dataset.compartir || b.dataset.copiar;
+    if (b.dataset.compartir && navigator.share) { try { await navigator.share({ title: b.dataset.titulo, text: b.dataset.titulo, url: u }); } catch (_) {} return; }
+    try { await navigator.clipboard.writeText(u); b.textContent = '✓ Enlace copiado'; } catch (_) { prompt('Copiá el enlace:', u); }
+  });
 } catch (e) { lista.innerHTML = '<p class="vacio">No se pudieron cargar las noticias. Probá de nuevo en unos minutos.</p>'; }
 </script>
 </body>

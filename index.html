@@ -44,6 +44,15 @@
 </header>
 
 <main>
+<section class="carrusel-notas" id="carruselNotas" aria-label="Noticias CIPRODEC" hidden>
+  <div class="wrap cn-wrap">
+    <a class="cn-tit" href="#noticias"><span class="cn-punto"></span><span class="es">Noticias CIPRODEC</span><span class="pt">Notícias CIPRODEC</span></a>
+    <button type="button" class="cn-flecha" data-d="-1" aria-label="Nota anterior">‹</button>
+    <div class="cn-pista" id="cnPista"></div>
+    <button type="button" class="cn-flecha" data-d="1" aria-label="Nota siguiente">›</button>
+    <a class="cn-todas" href="#noticias"><span class="es">Ver todas ↓</span><span class="pt">Ver todas ↓</span></a>
+  </div>
+</section>
 <section id="inicio" class="hero3d">
   <div class="wrap">
     <div class="h3-head">
@@ -270,6 +279,23 @@ import { listar, fotoUrl, esc, fechaTxt, okUrl } from './src/datos.js';
     const items = (await listar('noticias')).filter(n => n.visible !== false && n.visible !== 'False').slice(0, 6);
     if (!items.length) { sec.style.display = 'none'; return; }
     const imgs = await Promise.all(items.map(n => fotoUrl(n.imagen)));
+    /* Carrusel chiquito de noticias arriba de todo */
+    try {
+      const car = document.getElementById('carruselNotas'), pista = document.getElementById('cnPista');
+      pista.innerHTML = items.map((n, i) => '<a class="cn-nota" href="./blog.html#' + encodeURIComponent(n.id) + '">' +
+        (imgs[i] ? '<img src="' + esc(imgs[i]) + '" alt="" loading="lazy">' : '<span class="cn-sinimg"></span>') +
+        '<span class="cn-txt"><small>' + esc(n.categoria || 'CIPRODEC') + (fechaTxt(n.fecha) ? ' · ' + fechaTxt(n.fecha) : '') + '</small>' +
+        '<b>' + esc(n.titulo) + '</b></span></a>').join('');
+      car.hidden = false;
+      const paso = d => { const w = pista.querySelector('.cn-nota'); if (!w) return;
+        const fin = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4;
+        if (d > 0 && fin) pista.scrollTo({ left: 0, behavior: 'smooth' });
+        else pista.scrollBy({ left: d * (w.offsetWidth + 12), behavior: 'smooth' }); };
+      car.querySelectorAll('.cn-flecha').forEach(b => b.addEventListener('click', () => paso(+b.dataset.d)));
+      let quieto = false; ['mouseenter', 'touchstart', 'focusin'].forEach(ev => car.addEventListener(ev, () => quieto = true, { passive: true }));
+      ['mouseleave', 'focusout'].forEach(ev => car.addEventListener(ev, () => quieto = false));
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => { if (!quieto && !document.hidden) paso(1); }, 5000);
+    } catch (_) {}
     const limpio = t => String(t || '').replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
     const corta = (t, n) => { t = limpio(t); return t.length > n ? t.slice(0, n).replace(/\s\S*$/, '') + '…' : t; };
     const link = n => './blog.html#' + encodeURIComponent(n.id);

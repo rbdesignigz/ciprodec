@@ -86,7 +86,7 @@ const LAY=[
  {k:'bases',n:'Bases',c:'#8a8f96'},{k:'walls',n:'Muros de subsuelo y piscina',c:'#a3a7ad'},
  {k:'cols',n:'Columnas',c:'#55606e'},{k:'beams',n:'Vigas y encadenados',c:'#7d8794'},
  {k:'slabs',n:'Losas',c:'#c4c7cc'},{k:'roof',n:'Techos',c:'#ff4f00'},{k:'metal',n:'Estructura metálica del quincho',c:'#2f6f9f'},{k:'qroof',n:'Techo del quincho con tapas',c:'#f4f3f0'},
- {k:'chapa',n:'Chapa sobre la losa',c:'#6f9fc8'},{k:'fascia',n:'Cenefa de los aleros',c:'#f4f3f0'},{k:'w_sub',n:'Paredes subsuelo',c:'#e6e3dd',a:1},{k:'w_pb',n:'Paredes planta baja',c:'#f5f4f1',a:1},{k:'w_pa',n:'Paredes planta alta',c:'#f7f6f3',a:1},{k:'w_quincho',n:'Paredes del quincho',c:'#eeebe5',a:1},{k:'balc',n:'Terrazas en voladizo',c:'#d9d6d0',a:1},{k:'rail',n:'Barandas de vidrio',c:'#9fd3c7',a:1},{k:'water',n:'Agua de piscina y jacuzzi',c:'#2f9fd6',a:1},{k:'terrain',n:'Terreno natural',c:'#9fbf8a',a:1},{k:'contour',n:'Curvas de nivel',c:'#4f8f4c',a:1},{k:'clabel',n:'Cotas de las curvas',c:'#9cc77f',a:1},{k:'limite',n:'Límite del terreno',c:'#d62f2f',a:1},{k:'limlabel',n:'Texto del límite del terreno',c:'#d62f2f',a:1,off:1},{k:'street',n:'Calle y accesos',c:'#5b5f64',a:1},{k:'glass',n:'Vidrios y aberturas',c:'#8fc4e8',a:1},{k:'floor',n:'Pisos',c:'#b88a5c',a:1},{k:'parapet',n:'Platibandas (reemplazadas por aleros)',c:'#bfb3a3',a:1,off:1}];
+ {k:'chapa',n:'Chapa sobre la losa',c:'#6f9fc8'},{k:'fascia',n:'Cenefa de los aleros',c:'#f4f3f0'},{k:'w_sub',n:'Paredes subsuelo',c:'#e6e3dd',a:1},{k:'w_pb',n:'Paredes planta baja',c:'#f5f4f1',a:1},{k:'w_pa',n:'Paredes planta alta',c:'#f7f6f3',a:1},{k:'w_quincho',n:'Paredes del quincho',c:'#eeebe5',a:1},{k:'balc',n:'Terrazas en voladizo',c:'#d9d6d0',a:1},{k:'rail',n:'Barandas de vidrio',c:'#9fd3c7',a:1},{k:'water',n:'Agua de piscina y jacuzzi',c:'#2f9fd6',a:1},{k:'terrain',n:'Terreno natural',c:'#9fbf8a',a:1},{k:'contour',n:'Curvas de nivel',c:'#4f8f4c',a:1},{k:'clabel',n:'Cotas de las curvas',c:'#9cc77f',a:1},{k:'limite',n:'Límite del terreno',c:'#d62f2f',a:1},{k:'limlabel',n:'Texto del límite del terreno',c:'#d62f2f',a:1,off:1},{k:'street',n:'Calle y accesos',c:'#5b5f64',a:1},{k:'az_par',n:'Tabique de la azotea (h 1,50 m)',c:'#f2f0ec',a:1},{k:'az_ac',n:'Equipos de aire acondicionado',c:'#d3d7db',a:1},{k:'az_tq',n:'Tanques de agua 2 × 1.000 L',c:'#2b5e8c',a:1},{k:'glass',n:'Vidrios y aberturas',c:'#8fc4e8',a:1},{k:'floor',n:'Pisos',c:'#b88a5c',a:1},{k:'parapet',n:'Platibandas (reemplazadas por aleros)',c:'#bfb3a3',a:1,off:1}];
 const CUTS=[[-9,'Solo fundaciones'],[-1.5,'Hasta subsuelo'],[0.1,'Hasta planta baja'],[3.8,'Hasta +3,75'],[5.8,'Hasta +5,75'],[8.6,'Hasta +8,50'],[9.7,'Hasta azotea'],[99,'Todo el edificio']];
 const fmt=v=>String(v).replace('.',',');
 const fig=document.getElementById('fig'),info=document.getElementById('info');
@@ -247,6 +247,22 @@ ROOF.forEach(r=>{const a=(r[1]-r[0])*(r[3]-r[2]);const L=(r[7]=='N'||r[7]=='S')?
   add('qroof',new THREE.BoxGeometry(L+0.05,h,0.05),V((p[0]+q[0])/2,(p[1]+q[1])/2,bot+h/2),Math.atan2(q[1]-p[1],q[0]-p[0]),{t:'Tapa estética del quincho',d:`cenefa perimetral de ${fmt(h.toFixed(2))} m de alto · ${fmt(L.toFixed(2))} m de largo · oculta la pendiente, las vigas y la chapa`,zb:bot,casa:false});});
  const sh2=new THREE.Shape(P.map(p=>new THREE.Vector2(p[0],p[1])));const sg=new THREE.ExtrudeGeometry(sh2,{depth:0.02,bevelEnabled:false});sg.rotateX(-Math.PI/2);
  const so=new THREE.Mesh(sg,mats.qroof);so.position.y=bot;so.userData={t:'Cielorraso del quincho',d:'tapa inferior horizontal a +1,20 · 70,5 m² · cubre la estructura metálica',zb:bot,casa:false};G.qroof.add(so);pick.push(so);}
+// azotea tecnica: tabique perimetral, equipos de aire acondicionado y tanques
+{const x0=13.48,x1=22.98,y0=6.43,y1=12.33,z=9.6,hp=1.5,tp=0.15;
+ const P=[[x0,y0],[x1,y0],[x1,y1],[x0,y1]];
+ P.forEach((p,i)=>{const q=P[(i+1)%4];const L=Math.hypot(q[0]-p[0],q[1]-p[1]);const nx=(q[1]-p[1])/L,ny=-(q[0]-p[0])/L;
+  const mx=(p[0]+q[0])/2-nx*tp/2,my=(p[1]+q[1])/2-ny*tp/2;
+  add('az_par',new THREE.BoxGeometry(L,hp,tp),V(mx,my,z+hp/2),Math.atan2(q[1]-p[1],q[0]-p[0]),{t:'Tabique de la azotea técnica',d:`pared de ${Math.round(tp*100)} cm y ${fmt(hp)} m de alto en todo el perímetro de la caja de tanque · ${fmt(L.toFixed(2))} m · oculta los equipos y los tanques`,zb:z,casa:true});});
+ const fan=new THREE.MeshStandardMaterial({color:'#3a3f45',roughness:0.7});
+ const AC=[];[17.3,18.65,20.0,21.35].forEach(x=>{AC.push([x,7.15,1]);AC.push([x,11.6,-1]);});
+ AC.forEach(([x,y,f],i)=>{const w=0.9,d=0.36,h=0.7,b=0.12;
+  add('az_ac',new THREE.BoxGeometry(w+0.1,b,d+0.1),V(x,y,z+b/2),0,{t:'Base de equipo',d:'base de hormigón o perfiles sobre la losa',zb:z,casa:true});
+  const m=add('az_ac',new THREE.BoxGeometry(w,h,d),V(x,y,z+b+h/2),0,{t:`Equipo de aire acondicionado ${i+1}`,d:'unidad exterior (condensadora) de split · referencia 0,90 × 0,36 × 0,70 m · cantidad y potencia a definir con el proyecto de instalaciones',zb:z,casa:true});
+  const disc=new THREE.Mesh(new THREE.CylinderGeometry(0.25,0.25,0.02,24),fan);disc.rotation.x=Math.PI/2;disc.position.set(-0.13,0.02,-f*(d/2+0.006));m.add(disc);});
+ [[14.55,7.95],[14.55,10.75]].forEach(([x,y],i)=>{const r=0.55,h=1.3,b=0.1;
+  add('az_tq',new THREE.BoxGeometry(1.25,b,1.25),V(x,y,z+b/2),0,{t:'Base del tanque',d:'base de apoyo nivelada sobre la losa',zb:z,casa:true});
+  add('az_tq',new THREE.CylinderGeometry(r,r*1.04,h,32),V(x,y,z+b+h/2),0,{t:`Tanque de agua ${i+1} · 1.000 L`,d:'tanque de polietileno de 1.000 litros · aprox. Ø 1,10 m × 1,30 m de alto · 2 tanques = 2.000 L de reserva',zb:z,casa:true});
+  add('az_tq',new THREE.CylinderGeometry(0.25,0.25,0.06,24),V(x,y,z+b+h+0.03),0,{t:`Tapa del tanque ${i+1}`,d:'tapa de inspección',zb:z,casa:true});});}
 // UI
 const lay=document.getElementById('layers');
 lay.innerHTML='<div class="lvl">Estructura</div>'+LAY.filter(l=>!l.a).map(l=>`<label><input type="checkbox" data-k="${l.k}" ${l.k=='chapa'?'':'checked'}><span class="sw" style="background:${l.c}"></span>${l.n}</label>`).join('')+'<div class="grp"><h2>Arquitectura</h2>'+LAY.filter(l=>l.a).map(l=>`<label><input type="checkbox" data-k="${l.k}" ${l.off?'':'checked'}><span class="sw" style="background:${l.c}"></span>${l.n}</label>`).join('')+'<div class="btns"><button type="button" id="pStr">Solo estructura</button><button type="button" id="pAll">Casa completa</button></div></div>';

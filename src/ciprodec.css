@@ -768,3 +768,4 @@ header.top.abierto nav.links a{border-bottom-color:rgba(255,255,255,.12)}
 header.top.abierto nav.links a.ingresar{border-color:var(--red)}
 @media (min-width:1101px){header.top .wrap{gap:10px}header.top nav.links a{padding:8px 7px;font-size:.88rem}header.top nav.links a.ingresar{padding:6px 12px;margin-left:4px}}
 @media (min-width:1101px) and (max-width:1340px){header.top .brand svg{height:19px}header.top nav.links a{padding:8px 5px;font-size:.8rem}header.top nav.links a.ingresar{padding:5px 9px}}
+@media (max-width:420px){header.top .brand svg{height:16px}header.top .wrap{gap:8px}}

@@ -751,3 +751,20 @@ footer .wrap{align-items:center}
 .cn-todas{flex:none;font-size:12.5px;font-weight:700;color:#1a1a1a;text-decoration:none;white-space:nowrap}
 .cn-todas:hover{color:#d7192a}
 @media (max-width:640px){.cn-tit .es,.cn-tit .pt,.cn-todas,.cn-flecha{display:none}.cn-nota{flex-basis:78%}.carrusel-notas{padding:8px 0}}
+
+/* ===== Cabecera negra (nov 2026): se separa del fondo blanco del navegador y se une a la barra de la radio ===== */
+header.top{background:#0E0E0E;color:#fff;border-bottom:3px solid var(--red)}
+header.top .brand svg [stroke="#1A1A1A"]{stroke:#fff}
+header.top nav.links a{color:#fff}
+header.top nav.links a:hover,header.top nav.links a[aria-current="page"]{color:#FF4A4F}
+header.top nav.links a.ingresar{border-color:var(--red);background:var(--red);color:#fff}
+header.top nav.links a.ingresar:hover{background:#fff;border-color:#fff;color:var(--ink)}
+header.top .lang button{background:transparent;border-color:rgba(255,255,255,.25);color:#fff}
+header.top .lang button[aria-pressed="true"]{background:transparent;border-color:#fff;color:#fff}
+header.top .menu-btn{background:transparent;border-color:#fff;color:#fff}
+header.top .radio-bar{border-top:1px solid rgba(255,255,255,.12)}
+header.top.abierto nav.links{border-top-color:rgba(255,255,255,.15)}
+header.top.abierto nav.links a{border-bottom-color:rgba(255,255,255,.12)}
+header.top.abierto nav.links a.ingresar{border-color:var(--red)}
+@media (min-width:1101px){header.top .wrap{gap:10px}header.top nav.links a{padding:8px 7px;font-size:.88rem}header.top nav.links a.ingresar{padding:6px 12px;margin-left:4px}}
+@media (min-width:1101px) and (max-width:1340px){header.top .brand svg{height:19px}header.top nav.links a{padding:8px 5px;font-size:.8rem}header.top nav.links a.ingresar{padding:5px 9px}}

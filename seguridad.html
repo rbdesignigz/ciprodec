@@ -34,6 +34,9 @@
 .seg-docencia{margin-top:24px;background:var(--soft);border-radius:12px;padding:16px 18px;color:#333}
 #diferenciales .why small{display:block;font-weight:600;color:var(--red);font-family:var(--mono);margin-bottom:4px}
 @media (max-width:760px){.seg-cifras{display:grid;grid-template-columns:1fr 1fr;gap:12px}.seg-gerente{grid-template-columns:1fr}.seg-foto{max-width:320px}}
+.seg-head-grid{display:grid;grid-template-columns:1fr minmax(200px,300px);gap:40px;align-items:center}
+.seg-logo{margin:0}.seg-logo img{display:block;width:100%;height:auto}
+@media (max-width:760px){.seg-head-grid{grid-template-columns:1fr;gap:24px}.seg-logo{order:-1;max-width:190px}}
 </style>
 </head>
 <body>
@@ -62,7 +65,8 @@
 </header>
 <main>
 <section class="pagehead seg-head">
-  <div class="wrap">
+  <div class="wrap seg-head-grid">
+  <div class="seg-head-txt">
     <div class="eyebrow"><span class="es">Seguridad de Bienes · Área CIPRODEC</span><span class="pt">Segurança Patrimonial · Área CIPRODEC</span></div>
     <h1><span class="es">Protegemos personas, patrimonio y operaciones.</span><span class="pt">Protegemos pessoas, patrimônio e operações.</span></h1>
     <p><span class="es">Consultoría en seguridad, análisis de riesgo y capacitación de equipos, con más de 20 años de experiencia real, desde la línea de frente hasta la gerencia.</span><span class="pt">Consultoria em segurança, análise de risco e capacitação de equipes, com mais de 20 anos de experiência real, da linha de frente à gerência.</span></p>
@@ -70,6 +74,8 @@
       <a class="btn red" href="https://wa.me/5534999360684?text=Hola%20Walter%2C%20vi%20el%20%C3%A1rea%20Seguridad%20de%20Bienes%20en%20ciprodec.com%20y%20quiero%20una%20visita%20de%20diagn%C3%B3stico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg><span class="es">Pedir visita de diagnóstico</span><span class="pt">Agendar visita de diagnóstico</span></a>
       <a class="btn" href="#servicios-seg"><span class="es">Ver servicios</span><span class="pt">Ver serviços</span></a>
     </div>
+  </div>
+  <figure class="seg-logo"><img src="./img/app-ciprodec-seguridad.png" alt="Logo APP Consultoría de Seguridad – CIPRODEC" width="520"></figure>
   </div>
 </section>
 
